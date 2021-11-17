@@ -1,15 +1,15 @@
 Package: DeDHeD
-Title: What the Package Does (One Line, Title Case)
+Title: Generate Quality Surrogate Variable Analysis for Degradation Correction
 Version: 0.99.0
 Date: 2021-10-26
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+    person("Joshua", "Stolz", , "josh.stolz@libd.org", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0001-5694-5247"))
+Description: The DeDHeD package contains functions for removing the effect of degration in rna-seq data from postmortem brain tissue. The package is equipped to help users generate principal components associated with degradation. The components can be used in differential expression analysis to remove the effects of degradation.
 License: Artistic-2.0
 URL: https://github.com/LieberInstitute/DeDHed
 BugReports: https://support.bioconductor.org/t/DeDHeD
-biocViews: Software
+biocViews: Software BiologicalQuestion DifferentialExpression WorkflowStep QualityControl
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
