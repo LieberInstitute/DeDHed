@@ -4,6 +4,11 @@
 # DeDHeD
 
 <!-- badges: start -->
+
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![BioC
+status](http://www.bioconductor.org/shields/build/release/bioc/DeDHeD.svg)](https://bioconductor.org/checkResults/release/bioc-LATEST/DeDHeD)
 <!-- badges: end -->
 
 The goal of `DeDHeD` is to …
@@ -70,22 +75,6 @@ Please run this yourself to check for any updates on how to cite
 
 ``` r
 print(citation('DeDHeD'), bibtex = TRUE)
-#> 
-#> To cite package 'DeDHeD' in publications use:
-#> 
-#>   First Last (2021). DeDHeD: What the Package Does (One Line, Title
-#>   Case). R package version 0.99.0.
-#>   https://github.com/LieberInstitute/DeDHed
-#> 
-#> A BibTeX entry for LaTeX users is
-#> 
-#>   @Manual{,
-#>     title = {DeDHeD: What the Package Does (One Line, Title Case)},
-#>     author = {First Last},
-#>     year = {2021},
-#>     note = {R package version 0.99.0},
-#>     url = {https://github.com/LieberInstitute/DeDHed},
-#>   }
 ```
 
 Please note that the `DeDHeD` was only made possible thanks to many
