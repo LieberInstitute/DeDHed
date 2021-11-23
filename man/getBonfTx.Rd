@@ -2,16 +2,19 @@
 % Please edit documentation in R/getBonfTx.R
 \name{getBonfTx}
 \alias{getBonfTx}
-\title{Title}
+\title{SomeTITLE}
 \usage{
 getBonfTx(covComb_tx)
 }
 \arguments{
-\item{covComb_tx}{}
+\item{covComb_tx}{TODO}
 }
 \value{
 
 }
 \description{
-Title
+TODO some description.
+}
+\examples{
+ ## TODO
 }

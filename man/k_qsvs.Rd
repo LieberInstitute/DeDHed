@@ -2,18 +2,20 @@
 % Please edit documentation in R/k_qsvs.R
 \name{k_qsvs}
 \alias{k_qsvs}
-\title{Title}
+\title{TODO Title}
 \usage{
 k_qsvs(covComb_tx, mod_tx)
 }
 \arguments{
-\item{mod_tx}{}
+\item{covComb_tx}{TODO}
+
+\item{mod_tx}{TODO}
 }
 \value{
 
 }
 \description{
-Title
+TODO Description.s
 }
 \examples{
 

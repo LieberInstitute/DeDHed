@@ -21,3 +21,6 @@ object.
 This function is used to obtain a \link[SummarizedExperiment:RangedSummarizedExperiment-class]{RangedSummarizedExperiment-class} of transcripts and their expression values #' These transcripts are selected based on a prior study of RNA degradation in postmortem brain tissues. This object can later be used to obtain the principle components
 necessary to remove the effect of degradation in differential expression.
 }
+\examples{
+## TODO
+}

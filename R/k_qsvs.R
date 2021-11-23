@@ -1,7 +1,9 @@
-#' Title
+#' TODO Title
 #'
-#' @param covComb_tx
-#' @param mod_tx
+#' TODO Description.s
+#'
+#' @param covComb_tx TODO
+#' @param mod_tx TODO
 #'
 #' @return
 #' @export

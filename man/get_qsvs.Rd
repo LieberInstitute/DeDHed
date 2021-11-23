@@ -2,16 +2,22 @@
 % Please edit documentation in R/get_qsvs.R
 \name{get_qsvs}
 \alias{get_qsvs}
-\title{Title}
+\title{TODO}
 \usage{
 get_qsvs(qsvBonf_tx, k)
 }
 \arguments{
-\item{k}{}
+\item{qsvBonf_tx}{TODO}
+
+\item{k}{TODO}
 }
 \value{
 
 }
 \description{
-Title
+Description TODO.
+}
+\examples{
+qsv <- list(x=matrix(seq_len(9),ncol=3))
+get_qsvs(qsv, 2)
 }
