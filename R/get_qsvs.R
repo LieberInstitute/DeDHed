@@ -3,10 +3,10 @@
 #'  Description TODO.
 #'
 #'
-#' @param qsvBonf_tx TODO
-#' @param k TODO
+#' @param qsvBonf_tx S4 object of pricipal comoponents that make up the qsvs
+#' @param k number of qsvs to be included.
 #'
-#' @return
+#' @return matrix with k principal components for each sample.
 #' @export
 #'
 #' @examples
