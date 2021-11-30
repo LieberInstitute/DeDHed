@@ -1,4 +1,4 @@
-library(testthat)
-library(DeDHeD)
+library("testthat")
+library("qsvaR")
 
-test_check("DeDHeD")
+test_check("qsvaR")
