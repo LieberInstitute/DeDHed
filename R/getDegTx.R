@@ -15,7 +15,7 @@
 #' @export
 #'
 #' @examples
-#' ## TODO
+#' getDegTx(covComb_tx_deg,rownames(covComb_tx_deg))
 getDegTx<-function(rse_tx, sig_transcripts){
     covComb_tx<-rse_tx[rownames(rse_tx)%in%sig_transcripts,]
     return(covComb_tx)

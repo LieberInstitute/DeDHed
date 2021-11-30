@@ -1,6 +1,6 @@
-#' SomeTITLE
+#' PCs from transcripts
 #'
-#'  TODO some description.
+#'  This function returns the pcs from the obtained RangedSummarizedExperiment object of selected transcripts
 #'
 #'
 #' @param covComb_tx Ranged Summarizeed Experiment with only trancsripts selected for qsva
@@ -10,6 +10,7 @@
 #' @importFrom stats prcomp
 #' @importFrom SummarizedExperiment assays
 #' @examples
+#' getBonfTx(covComb_tx_deg)
 #'  ## TODO
 getBonfTx<- function(covComb_tx){
         qsvBonf_tx<-prcomp(t(log2(assays(covComb_tx)$tpm+1)))
