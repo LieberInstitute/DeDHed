@@ -1,4 +1,4 @@
-# DeDHeD 0.99.0
+# qsvaR 0.99.0
 
 NEW FEATURES
 

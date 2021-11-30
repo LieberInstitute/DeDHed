@@ -1,7 +1,7 @@
 pkgVer <- function(pkg) {
     if (!exists("meta") || is.null(meta)) meta <- packageDescription(pkg)
     ver <- meta$Version
-    paste0('https://github.com/LieberInstitute/DeDHed/', pkg, ' - R package version ', ver)
+    paste0('https://github.com/LieberInstitute/qsvaR/', pkg, ' - R package version ', ver)
 }
 
 c(
@@ -12,9 +12,9 @@ c(
             as.person("LieberInstitute")
         ),
         year = format(Sys.Date(), "%Y"),
-        url = "http://www.bioconductor.org/packages/DeDHeD",
-        note = pkgVer('DeDHeD'),
-        doi = '10.18129/B9.bioc.DeDHeD'
+        url = "http://www.bioconductor.org/packages/qsvaR",
+        note = pkgVer('qsvaR'),
+        doi = '10.18129/B9.bioc.qsvaR'
     ),
     bibentry(bibtype="article",
         title = "TODO",

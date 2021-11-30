@@ -1,22 +1,22 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# DeDHeD
+# qsvaR
 
 <!-- badges: start -->
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![BioC
-status](http://www.bioconductor.org/shields/build/release/bioc/DeDHeD.svg)](https://bioconductor.org/checkResults/release/bioc-LATEST/DeDHeD)
+status](http://www.bioconductor.org/shields/build/release/bioc/qsvaR.svg)](https://bioconductor.org/checkResults/release/bioc-LATEST/qsvaR)
 <!-- badges: end -->
 
-The goal of `DeDHeD` is to …
+The goal of `qsvaR` is to …
 
 ## Installation instructions
 
 Get the latest stable `R` release from
-[CRAN](http://cran.r-project.org/). Then install `DeDHeD` using from
+[CRAN](http://cran.r-project.org/). Then install `qsvaR` using from
 [Bioconductor](http://bioconductor.org/) the following code:
 
 ``` r
@@ -24,14 +24,14 @@ if (!requireNamespace("BiocManager", quietly = TRUE)) {
     install.packages("BiocManager")
 }
 
-BiocManager::install("DeDHeD")
+BiocManager::install("qsvaR")
 ```
 
 And the development version from
-[GitHub](https://github.com/LieberInstitute/DeDHed) with:
+[GitHub](https://github.com/LieberInstitute/qsvaR) with:
 
 ``` r
-BiocManager::install("LieberInstitute/DeDHed")
+BiocManager::install("LieberInstitute/qsvaR")
 ```
 
 ## Example
@@ -39,7 +39,7 @@ BiocManager::install("LieberInstitute/DeDHed")
 This is a basic example which shows you how to solve a common problem:
 
 ``` r
-library("DeDHeD")
+library("qsvaR")
 #> Loading required package: SummarizedExperiment
 #> Loading required package: MatrixGenerics
 #> Loading required package: matrixStats
@@ -135,17 +135,17 @@ files, so they display on GitHub!
 
 ## Citation
 
-Below is the citation output from using `citation('DeDHeD')` in R.
+Below is the citation output from using `citation('qsvaR')` in R.
 Please run this yourself to check for any updates on how to cite
-**DeDHeD**.
+**qsvaR**.
 
 ``` r
-print(citation('DeDHeD'), bibtex = TRUE)
+print(citation('qsvaR'), bibtex = TRUE)
 #> 
-#> LieberInstitute (2021). _TODO_. doi: 10.18129/B9.bioc.DeDHeD (URL:
-#> https://doi.org/10.18129/B9.bioc.DeDHeD),
-#> https://github.com/LieberInstitute/DeDHed/DeDHeD - R package version
-#> 0.99.0, <URL: http://www.bioconductor.org/packages/DeDHeD>.
+#> LieberInstitute (2021). _TODO_. doi: 10.18129/B9.bioc.qsvaR (URL:
+#> https://doi.org/10.18129/B9.bioc.qsvaR),
+#> https://github.com/LieberInstitute/qsvaR/qsvaR - R package version
+#> 0.99.0, <URL: http://www.bioconductor.org/packages/qsvaR>.
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 
@@ -153,9 +153,9 @@ print(citation('DeDHeD'), bibtex = TRUE)
 #>     title = {TODO},
 #>     author = {{LieberInstitute}},
 #>     year = {2021},
-#>     url = {http://www.bioconductor.org/packages/DeDHeD},
-#>     note = {https://github.com/LieberInstitute/DeDHed/DeDHeD - R package version 0.99.0},
-#>     doi = {10.18129/B9.bioc.DeDHeD},
+#>     url = {http://www.bioconductor.org/packages/qsvaR},
+#>     note = {https://github.com/LieberInstitute/qsvaR/qsvaR - R package version 0.99.0},
+#>     doi = {10.18129/B9.bioc.qsvaR},
 #>   }
 #> 
 #> LieberInstitute (2021). "TODO." _bioRxiv_. doi: 10.1101/TODO (URL:
@@ -174,13 +174,13 @@ print(citation('DeDHeD'), bibtex = TRUE)
 #>   }
 ```
 
-Please note that the `DeDHeD` was only made possible thanks to many
+Please note that the `qsvaR` was only made possible thanks to many
 other R and bioinformatics software authors, which are cited either in
 the vignettes and/or the paper(s) describing this package.
 
 ## Code of Conduct
 
-Please note that the `DeDHeD` project is released with a [Contributor
+Please note that the `qsvaR` project is released with a [Contributor
 Code of Conduct](http://bioconductor.org/about/code-of-conduct/). By
 contributing to this project, you agree to abide by its terms.
 
@@ -197,7 +197,7 @@ contributing to this project, you agree to abide by its terms.
 -   Code coverage assessment is possible thanks to
     [codecov](https://codecov.io/gh) and
     *[covr](https://CRAN.R-project.org/package=covr)*.
--   The [documentation website](http://LieberInstitute.github.io/DeDHeD)
+-   The [documentation website](http://LieberInstitute.github.io/qsvaR)
     is automatically updated thanks to
     *[pkgdown](https://CRAN.R-project.org/package=pkgdown)*.
 -   The code is styled automatically thanks to
