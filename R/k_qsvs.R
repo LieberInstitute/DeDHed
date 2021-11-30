@@ -15,5 +15,5 @@
 #' mod_tx <- model.matrix(~ Dx + Age + Sex + mitoRate + Region + rRNA_rate + totalAssignedGene + RIN + snpPC1 + snpPC2 + snpPC3 + snpPC4 + snpPC5, data = colData(covComb_tx_deg))
 #' k_qsvs(covComb_tx_deg,mod_tx)
 k_qsvs<- function(covComb_tx, mod_tx){
-        k = num.sv(log2(assays(covComb_tx)$tpm), mod_tx)
+        k = num.sv(log2(assays(covComb_tx)$tpm+1), mod_tx)
 }
