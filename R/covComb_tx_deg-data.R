@@ -11,4 +11,6 @@
 #' @format A [RangedSummarizedExperiment-class][SummarizedExperiment::RangedSummarizedExperiment-class]
 #' @keywords datasets
 #' @seealso [getBonfTx] [k_qsvs] [getDegTx]
+
+load("/dcl01/lieber/ajaffe/lab/degradation_experiments/Joint/all/rdas/qsvs/covCombs_withdlpfc_cc.rda, verbose=TRUE)
 NULL
