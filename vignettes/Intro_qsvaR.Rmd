@@ -117,7 +117,8 @@ pcTx<-getBonfTx(DegtTx, "tpm")
 Next we use the k_qsvs function to calculate how many pcs we will need to acount for the variation. A model matrix accounting for relevant variables should be used. Common options are listed below.
 
 ```{r `k_qsvs demo`}
-mod_tx <- model.matrix(~ mitoRate + Region + rRNA_rate + totalAssignedGene + RIN , data = colData(covComb_tx_deg))
+mod_tx <-model.matrix(~ Control + Age + mitoRate + rRNA_rate + totalAssignedGene + RIN,
+    data = colData(rse_psyENCBP))
 k<-k_qsvs(pcTx,mod_tx, "tpm")
 ```
 
@@ -125,6 +126,16 @@ Finally we subest our data to the calculated number of pcs.
 ```{r `get_qsvs demo`}
 qsvs<-get_qsvs(pcTx, k)
 ```
+
+```{r `perform DE`}
+   mod_cc = model.matrix(formula(paste("~pd$cc$Control + as.numeric(pd$cc$RIN) + pd$cc$Age + pd$cc$Sex + pd$cc$Race + pd$cc$mitoMapped+ pd$cc$totalAssignedGene +",pcs$cc, collapse = "+")))
+   txExprs = log2(assays(rse_tx)$tpm+1)
+fitTx = lmFit(txExprs,mod)
+eBTx = eBayes(fitTx)
+sigTx = topTable(eBTx,coef=2,
+	p.value = 1,number=nrow(rse_tx))
+```
+   
 
 # Reproducibility
 
