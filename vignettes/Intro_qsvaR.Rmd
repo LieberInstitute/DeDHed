@@ -92,7 +92,7 @@ citation("qsvaR")
 library("qsvaR")
 ```
 
-Edit this as you see fit =)
+Edit this as you see fit =) TODO: update to include description of how to use package.
 
 Here is an example of you can cite your package inside the vignette:
 
