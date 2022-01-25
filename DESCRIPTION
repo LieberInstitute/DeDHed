@@ -17,6 +17,7 @@ Suggests:
     BiocFileCache,
     BiocStyle,
     knitr,
+    limma,
     RefManageR,
     rmarkdown,
     sessioninfo,
