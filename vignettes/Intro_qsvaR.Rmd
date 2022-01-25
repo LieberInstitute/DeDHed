@@ -1,3 +1,4 @@
+---
 title: "Introduction to qsvaR"
 author: 
   - name: Joshua M. Stolz
@@ -31,8 +32,10 @@ knitr::opts_chunk$set(
 ```{r vignetteSetup, echo=FALSE, message=FALSE, warning = FALSE}
 ## Track time spent on making the vignette
 startTime <- Sys.time()
+
 ## Bib setup
 library("RefManageR")
+
 ## Write bibliography information
 bib <- c(
     R = citation(),
@@ -57,7 +60,9 @@ bib <- c(
 if (!requireNamespace("BiocManager", quietly = TRUE)) {
     install.packages("BiocManager")
 }
+
 BiocManager::install("qsvaR")
+
 ## Check that you have a valid Bioconductor installation
 BiocManager::valid()
 ```
@@ -85,10 +90,11 @@ citation("qsvaR")
 
 ```{r "start", message=FALSE}
 library("qsvaR")
-library(limma)
-library(BiocFileCache)
+library("limma")
+library("BiocFileCache")
 ```
-Edit this as you see fit =)
+
+Edit this as you see fit =) TODO: update to include description of how to use package.
 
 Here is an example of you can cite your package inside the vignette:
 
@@ -98,49 +104,34 @@ Here is an example of you can cite your package inside the vignette:
 
 ###Significant Transcripts
 
-Differential expressions analysis requires the ability normalize complex datasets. In the case of postmortem brain tissue we are tasked with removing the effects of bench degradation. The qsvaR package combines an established method for removing the effects of degradation from RNA-seq data with easy to use functions. The first step in this workflow is to create an Ranged Summarized Experiment object with the transcripts identified in our qsva experiment. We can do this with the getDegTx function as shown below. sig_transcripts is a list of transcripts identified to be associated with degradation. In this example we use the lieber institutes brainseq phase 2 data downloaded from https://s3.us-east-2.amazonaws.com/libd-brainseq2/rse_tx_unfiltered.Rdata
+Differential expressions analysis requires the ability normalize complex datasets. In the case of postmortem brain tissue we are tasked with removing the effects of bench degradation. The qsvaR package combines an established method for removing the effects of degradation from RNA-seq data with easy to use functions. The first step in this workflow is to create an Ranged Summarized Experiment object with the transcripts identified in our qsva experiment. We can do this with the getDegTx function as shown below. sig_transcripts is a list of transcripts identified to be associated with degradation.
 
-```{r "Download demo dataset"}
-bfc <- BiocFileCache::BiocFileCache()
-rse_file <- BiocFileCache::bfcrpath("https://s3.us-east-2.amazonaws.com/libd-brainseq2/rse_tx_unfiltered.Rdata", x = bfc)
-load(rse_file, verbose = TRUE)
-```
-
-
-```{r "Get Degraded Transcripts"}
-DegTx <- getDegTx(rse_tx, rownames(covComb_tx_deg))
-dim(DegTx)
+```{r `getDegTx demo`}
+DegTx <- getDegTx(yale_rse, sig_transcripts)
 ```
 
 ###Get principal components
 The qsvs are derived from taking the principal components of the selected transcript expression data. This can be done with the function getBonfTx. Here "tpm" is the name of the assay we are using.
 
-```{r "getBonfTx demo"}
-pcTx <- getBonfTx(DegTx, "tpm")
+```{r `getBonfTx demo`}
+pcTx <- getBonfTx(DegtTx, "tpm")
 ```
-Next we use the k_qsvs function to calculate how many pcs we will need to acount for the variation. A model matrix accounting for relevant variables should be used. Common variables are shown below.
+Next we use the k_qsvs function to calculate how many pcs we will need to acount for the variation. A model matrix accounting for relevant variables should be used. Common options are listed below.
 
-```{r "k_qsvs demo"}
-mod_tx <- model.matrix(~ Dx + Age + mitoRate + rRNA_rate + totalAssignedGene,
-    data = colData(rse_tx)
+```{r `k_qsvs demo`}
+mod_tx <- model.matrix(~ Control + Age + mitoRate + rRNA_rate + totalAssignedGene + RIN,
+    data = colData(rse_psyENCBP)
 )
-k <- k_qsvs(DegTx, mod_tx, "tpm")
-print(k)
+k <- k_qsvs(pcTx, mod_tx, "tpm")
 ```
 
-Finally we subest our data to the calculated number of pcs. The output of this function will be the qsvs for each sample.
-```{r "get_qsvs demo"}
+Finally we subest our data to the calculated number of pcs.
+```{r `get_qsvs demo`}
 qsvs <- get_qsvs(pcTx, k)
-dim(qsvs)
 ```
 
-###Differential Expression
-Next we can use a standard limma package approach to do differential expression on the data. The key here is that we add our qsvs to the model.matrix.
-
-```{r "perform DE"}
-pd <- colData(rse_tx)
-pd <- cbind(qsvs, pd)
-mod <- model.matrix(~ Dx + Age + mitoRate + rRNA_rate + totalAssignedGene + pd$PC1 + pd$PC2 + pd$PC3 + pd$PC4 + pd$PC5 + pd$PC6 + pd$PC7 + pd$PC8 + pd$PC9 + pd$PC10 + pd$PC11 + pd$PC12 + pd$PC13 + pd$PC14 + pd$PC15 + pd$PC16 + pd$PC17 + pd$PC18 + pd$PC19 + pd$PC20 + pd$PC21 + pd$PC22 + pd$PC23 + pd$PC24 + pd$PC25 + pd$PC26 + pd$PC27 + pd$PC28 + pd$PC29 + pd$PC30 + pd$PC31, data = colData(rse_tx))
+```{r `perform DE`}
+mod_cc <- model.matrix(formula(paste("~pd$cc$Control + as.numeric(pd$cc$RIN) + pd$cc$Age + pd$cc$Sex + pd$cc$Race + pd$cc$mitoMapped+ pd$cc$totalAssignedGene +", pcs$cc, collapse = "+")))
 txExprs <- log2(assays(rse_tx)$tpm + 1)
 fitTx <- lmFit(txExprs, mod)
 eBTx <- eBayes(fitTx)
@@ -148,8 +139,8 @@ sigTx <- topTable(eBTx,
     coef = 2,
     p.value = 1, number = nrow(rse_tx)
 )
-head(sigTx)
 ```
+   
 
 # Reproducibility
 
@@ -173,6 +164,7 @@ Code for creating the vignette
 ## Create the vignette
 library("rmarkdown")
 system.time(render("Intro_qsvaR.Rmd", "BiocStyle::html_document"))
+
 ## Extract the R code
 library("knitr")
 knit("Intro_qsvaR.Rmd", tangle = TRUE)
@@ -214,8 +206,4 @@ Citations made with `r CRANpkg("RefManageR")` `r Citep(bib[["RefManageR"]])`.
 ```{r vignetteBiblio, results = "asis", echo = FALSE, warning = FALSE, message = FALSE}
 ## Print bibliography
 PrintBibliography(bib, .opts = list(hyperlink = "to.doc", style = "html"))
-
-
-
-
- 
+```
