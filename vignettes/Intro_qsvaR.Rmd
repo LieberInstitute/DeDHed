@@ -146,6 +146,7 @@ Next we can use a standard limma package approach to do differential expression 
     pd<-colData(rse_tx)
     pd<-cbind(qsvs,pd)
     mod <-model.matrix(~ Dx + Age + Sex + Race + Region + pd$PC1 +pd$PC2+ pd$PC3 +pd$PC4+ pd$PC5 +pd$PC6+ pd$PC7 +pd$PC8+ pd$PC9 +pd$PC10+ pd$PC11 +pd$PC12+ pd$PC13 +pd$PC14+ pd$PC15 +pd$PC16 + pd$PC17 +pd$PC18+ pd$PC19 +pd$PC20+ pd$PC21 +pd$PC22+ pd$PC23 +pd$PC24+ pd$PC25 +pd$PC26+ pd$PC27 +pd$PC28+ pd$PC29 +pd$PC30+ pd$PC31, data = colData(rse_tx))
+    txExprs <- log2(assays(rse_tx)$tpm + 1)
     fitTx <- lmFit(txExprs, mod)
     eBTx <- eBayes(fitTx)
     sigTx <- topTable(eBTx,
