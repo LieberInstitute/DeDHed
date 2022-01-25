@@ -13,9 +13,9 @@
 #' @importFrom sva num.sv
 #' @importFrom SummarizedExperiment assays
 #' @examples
-#' mod_tx <- model.matrix(~ mitoRate + Region + rRNA_rate + totalAssignedGene + RIN , data = colData(covComb_tx_deg))
-#' k_qsvs(covComb_tx_deg,mod_tx, "tpm")
-k_qsvs<- function(covComb_tx, mod_tx,assayname){
-        k = num.sv(log2(assays(covComb_tx)[[assayname]]+1), mod_tx)
-        return(k)
+#' mod_tx <- model.matrix(~ mitoRate + Region + rRNA_rate + totalAssignedGene + RIN, data = colData(covComb_tx_deg))
+#' k_qsvs(covComb_tx_deg, mod_tx, "tpm")
+k_qsvs <- function(covComb_tx, mod_tx, assayname) {
+    k <- num.sv(log2(assays(covComb_tx)[[assayname]] + 1), mod_tx)
+    return(k)
 }

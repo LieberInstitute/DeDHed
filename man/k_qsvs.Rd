@@ -20,6 +20,6 @@ integer representing number of pcs to be included
 Apply num.sv algorithm to determine the number of pcs to be included
 }
 \examples{
-mod_tx <- model.matrix(~ mitoRate + Region + rRNA_rate + totalAssignedGene + RIN , data = colData(covComb_tx_deg))
-k_qsvs(covComb_tx_deg,mod_tx, "tpm")
+mod_tx <- model.matrix(~ mitoRate + Region + rRNA_rate + totalAssignedGene + RIN, data = colData(covComb_tx_deg))
+k_qsvs(covComb_tx_deg, mod_tx, "tpm")
 }

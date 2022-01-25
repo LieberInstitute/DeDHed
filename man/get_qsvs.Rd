@@ -18,6 +18,6 @@ matrix with k principal components for each sample.
 Using the pcs and the k number of components be included, we generate the qsva matrix.
 }
 \examples{
-qsv <- list(x=matrix(seq_len(9),ncol=3))
+qsv <- list(x = matrix(seq_len(9), ncol = 3))
 get_qsvs(qsv, 2)
 }

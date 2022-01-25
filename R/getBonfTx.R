@@ -12,7 +12,7 @@
 #' @importFrom SummarizedExperiment assays
 #' @examples
 #' getBonfTx(covComb_tx_deg, "tpm")
-#'  ## TODO
-getBonfTx<- function(covComb_tx, assayname){
-        qsvBonf_tx<-prcomp(t(log2(assays(covComb_tx)[[assayname]]+1)))
+#' ## TODO
+getBonfTx <- function(covComb_tx, assayname) {
+    qsvBonf_tx <- prcomp(t(log2(assays(covComb_tx)[[assayname]] + 1)))
 }

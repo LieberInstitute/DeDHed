@@ -58,8 +58,8 @@ bib <- c(
 
 ```{r "install", eval = FALSE}
 if (!requireNamespace("BiocManager", quietly = TRUE)) {
-      install.packages("BiocManager")
-  }
+    install.packages("BiocManager")
+}
 
 BiocManager::install("qsvaR")
 
@@ -105,35 +105,38 @@ Here is an example of you can cite your package inside the vignette:
 Differential expressions analysis requires the ability normalize complex datasets. In the case of postmortem brain tissue we are tasked with removing the effects of bench degradation. The qsvaR package combines an established method for removing the effects of degradation from RNA-seq data with easy to use functions. The first step in this workflow is to create an Ranged Summarized Experiment object with the transcripts identified in our qsva experiment. We can do this with the getDegTx function as shown below. sig_transcripts is a list of transcripts identified to be associated with degradation.
 
 ```{r `getDegTx demo`}
-DegTx<-getDegTx(yale_rse,sig_transcripts)
+DegTx <- getDegTx(yale_rse, sig_transcripts)
 ```
 
 ###Get principal components
 The qsvs are derived from taking the principal components of the selected transcript expression data. This can be done with the function getBonfTx. Here "tpm" is the name of the assay we are using.
 
 ```{r `getBonfTx demo`}
-pcTx<-getBonfTx(DegtTx, "tpm")
+pcTx <- getBonfTx(DegtTx, "tpm")
 ```
 Next we use the k_qsvs function to calculate how many pcs we will need to acount for the variation. A model matrix accounting for relevant variables should be used. Common options are listed below.
 
 ```{r `k_qsvs demo`}
-mod_tx <-model.matrix(~ Control + Age + mitoRate + rRNA_rate + totalAssignedGene + RIN,
-    data = colData(rse_psyENCBP))
-k<-k_qsvs(pcTx,mod_tx, "tpm")
+mod_tx <- model.matrix(~ Control + Age + mitoRate + rRNA_rate + totalAssignedGene + RIN,
+    data = colData(rse_psyENCBP)
+)
+k <- k_qsvs(pcTx, mod_tx, "tpm")
 ```
 
 Finally we subest our data to the calculated number of pcs.
 ```{r `get_qsvs demo`}
-qsvs<-get_qsvs(pcTx, k)
+qsvs <- get_qsvs(pcTx, k)
 ```
 
 ```{r `perform DE`}
-   mod_cc = model.matrix(formula(paste("~pd$cc$Control + as.numeric(pd$cc$RIN) + pd$cc$Age + pd$cc$Sex + pd$cc$Race + pd$cc$mitoMapped+ pd$cc$totalAssignedGene +",pcs$cc, collapse = "+")))
-   txExprs = log2(assays(rse_tx)$tpm+1)
-fitTx = lmFit(txExprs,mod)
-eBTx = eBayes(fitTx)
-sigTx = topTable(eBTx,coef=2,
-	p.value = 1,number=nrow(rse_tx))
+mod_cc <- model.matrix(formula(paste("~pd$cc$Control + as.numeric(pd$cc$RIN) + pd$cc$Age + pd$cc$Sex + pd$cc$Race + pd$cc$mitoMapped+ pd$cc$totalAssignedGene +", pcs$cc, collapse = "+")))
+txExprs <- log2(assays(rse_tx)$tpm + 1)
+fitTx <- lmFit(txExprs, mod)
+eBTx <- eBayes(fitTx)
+sigTx <- topTable(eBTx,
+    coef = 2,
+    p.value = 1, number = nrow(rse_tx)
+)
 ```
    
 

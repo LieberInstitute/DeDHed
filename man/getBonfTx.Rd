@@ -19,5 +19,5 @@ This function returns the pcs from the obtained RangedSummarizedExperiment objec
 }
 \examples{
 getBonfTx(covComb_tx_deg, "tpm")
- ## TODO
+## TODO
 }

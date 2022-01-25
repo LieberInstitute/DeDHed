@@ -22,5 +22,5 @@ This function is used to obtain a \link[SummarizedExperiment:RangedSummarizedExp
 necessary to remove the effect of degradation in differential expression.
 }
 \examples{
-getDegTx(covComb_tx_deg,rownames(covComb_tx_deg))
+getDegTx(covComb_tx_deg, rownames(covComb_tx_deg))
 }
