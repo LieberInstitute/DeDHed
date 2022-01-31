@@ -119,12 +119,12 @@ dim(DegTx)
 ```
 
 ###Get principal components
-The qsvs are derived from taking the principal components of the selected transcript expression data. This can be done with the function getBonfTx. Here "tpm" is the name of the assay we are using.
+The qsvs are derived from taking the principal components (PCs) of the selected transcript expression data. This can be done with the function getBonfTx. Here "tpm" is the name of the assay we are using.
 
 ```{r "getBonfTx demo"}
 pcTx<-getBonfTx(DegTx, "tpm")
 ```
-Next we use the k_qsvs function to calculate how many pcs we will need to acount for the variation. A model matrix accounting for relevant variables should be used. Common variables are shown below.
+Next we use the k_qsvs function to calculate how many PCs we will need to acount for the variation. A model matrix accounting for relevant variables should be used. Common variables are shown below.
 
 ```{r "k_qsvs demo"}
 mod_tx <-model.matrix(~ Dx + Age +Sex + Race + Region,
@@ -133,7 +133,7 @@ k<-k_qsvs(DegTx,mod_tx, "tpm")
 print(k)
 ```
 
-Finally we subest our data to the calculated number of pcs. The output of this function will be the qsvs for each sample.
+Finally we subest our data to the calculated number of PCs. The output of this function will be the qsvs for each sample.
 ```{r "get_qsvs demo"}
 qsvs<-get_qsvs(pcTx, k)
 dim(qsvs)
