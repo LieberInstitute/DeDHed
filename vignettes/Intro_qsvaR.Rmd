@@ -157,7 +157,16 @@ Next we can use a standard limma package approach to do differential expression 
 )
     head(sigTx)
 ```
-   
+
+If we look at a plot of our most significant transcript we can see that at this level we don't have that much fold change in our data at any individual transcript. These transcripts are however significant and it might be valuable to repeat the analysis at gene level. At gene level the results can be used to do gene ontology enrichment with packages such as clusterprofiler.	
+	
+	
+```{r "DE plot"}
+	yy = txExprs[rownames(txExprs) == rownames(sigTx)[1],]
+	p<-boxplot(yy ~ rse_tx$Dx, outline=FALSE,
+		ylim=range(yy), ylab="log2 Exprs", xlab="",
+		main = paste(rownames(sigTx)[1]))
+```   
 
 # Reproducibility
 
