@@ -39,7 +39,18 @@ library("RefManageR")
 ## Write bibliography information
 bib <- c(
     R = citation(),
-    bsp2 = knitcitations::bib_metadata('doi.org/10.1016/j.neuron.2019.05.013'),
+    bsp2 = RefManageR::BibEntry(
+        bibtype = "article",
+        key = "bsp2",
+        author = "Leonardo Collado-Torres and Emily E. Burke and Amy Peterson and JooHeon Shin and Richard E. Straub and Anandita Rajpurohit and Stephen A. Semick and William S. Ulrich and Amanda J. Price and Cristian Valencia and Ran Tao and Amy Deep-Soboslay and Thomas M. Hyde and Joel E. Kleinman and Daniel R. Weinberger and Andrew E. Jaffe",
+        title = "Regional Heterogeneity in Gene Expression, Regulation, and Coherence in the Frontal Cortex and Hippocampus across Development and Schizophrenia",
+        year = 2019, doi = "0.1016/j.neuron.2019.05.013", journal = "Neuron",  month = "jul",
+        publisher = "Elsevier BV",
+        volume = "103",
+        number = "2",
+        pages = "203--216.e8",
+        
+    ),
     BiocStyle = citation("BiocStyle")[1],
     knitr = citation("knitr")[1],
     RefManageR = citation("RefManageR")[1],
