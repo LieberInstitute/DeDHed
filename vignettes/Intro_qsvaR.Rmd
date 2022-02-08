@@ -131,12 +131,12 @@ dim(DegTx)
 ```
 
 ###Get principal components
-The qsvs are derived from taking the principal components (PCs) of the selected transcript expression data. This can be done with the function `getBonfTx`. covComb_tx specifies a Ranged Summarized Experiment object that has the specified degraded transcripts. For us this is DegTx. Here "tpm" is the name of the assay we are using within the Ranged Summarized Experiment object.
+The qsvs are derived from taking the principal components (PCs) of the selected transcript expression data. This can be done with the function `getBonfTx`. `covComb_tx` specifies a `RangedSummarizedExperiment` object that has the specified degraded transcripts. For us this is `DegTx`. Here `tpm` is the name of the assay we are using within the `RangedSummarizedExperiment` object.
 
 ```{r "getBonfTx demo"}
 pcTx<-getBonfTx(covComb_tx = DegTx, assayname = "tpm")
 ```
-Next we use the `k_qsvs()` function to calculate how many PCs we will need to account for the variation. A model matrix accounting for relevant variables should be used. Common variables such as Age, Sex, Race and Religion are often included in the model. Again we are using our Ranged Summarized Experiment `DegTx` as the `covComb_tx` option. Next we specify the `mod_tx` with our `model.matrix()`. Again we use the `assayname` option to specify the we are using the "tpm" assay.
+Next we use the `k_qsvs()` function to calculate how many PCs we will need to account for the variation. A model matrix accounting for relevant variables should be used. Common variables such as Age, Sex, Race and Religion are often included in the model. Again we are using our `RangedSummarizedExperiment` `DegTx` as the `covComb_tx` option. Next we specify the `mod_tx` with our `model.matrix()`. Again we use the `assayname` option to specify the we are using the `tpm` assay.
 
 ```{r "k_qsvs demo"}
 mod_tx <-model.matrix(~ Dx + Age +Sex + Race + Region,
@@ -145,22 +145,22 @@ k<-k_qsvs(covComb_tx = DegTx,mod_tx = mod_tx, assayname = "tpm")
 print(k)
 ```
 
-Finally we subest our data to the calculated number of PCs. The output of this function will be the qsvs for each sample. Here we use the qsvBonf_tx argument to enter the principal components (pcTx). Here the argument k is the number of PCs we are going to include as calculated in the previous step.
+Finally we subset our data to the calculated number of PCs. The output of this function will be the qsvs for each sample. Here we use the `qsvBonf_tx` argument to enter the principal components (`pcTx`). Here the argument k is the number of PCs we are going to include as calculated in the previous step.
 ```{r "get_qsvs demo"}
 qsvs<-get_qsvs(qsvBonf_tx = pcTx, k = k)
 dim(qsvs)
 ```
 
 ###Differential Expression
-Next we can use a standard limma package approach to do differential expression on the data. The key here is that we add our qsvs to the model.matrix.
+Next we can use a standard limma package approach to do differential expression on the data. The key here is that we add our qsvs to the `model.matrix()`.
 
 
 ```{r "perform DE"}
 ### should be done by cbinding mod to pcs
-    mod <-model.matrix(~ Dx + Age + Sex + Race + Region + pd$PC1 +pd$PC2+ pd$PC3 +pd$PC4+ pd$PC5 +pd$PC6+ pd$PC7 +pd$PC8+ pd$PC9 +pd$PC10+ pd$PC11 +pd$PC12+ pd$PC13 +pd$PC14+ pd$PC15 +pd$PC16 + pd$PC17 +pd$PC18+ pd$PC19 +pd$PC20+ pd$PC21 +pd$PC22+ pd$PC23 +pd$PC24+ pd$PC25 +pd$PC26+ pd$PC27 +pd$PC28+ pd$PC29 +pd$PC30+ pd$PC31, data = colData(rse_tx))
     rse_tx <- rse_tx[rowData(rse_tx)$passExprsCut, ]
     pd<-colData(rse_tx)
     pd<-cbind(qsvs,pd)
+    mod <-model.matrix(~ Dx + Age + Sex + Race + Region + pd$PC1 +pd$PC2+ pd$PC3 +pd$PC4+ pd$PC5 +pd$PC6+ pd$PC7 +pd$PC8+ pd$PC9 +pd$PC10+ pd$PC11 +pd$PC12+ pd$PC13 +pd$PC14+ pd$PC15 +pd$PC16 + pd$PC17 +pd$PC18+ pd$PC19 +pd$PC20+ pd$PC21 +pd$PC22+ pd$PC23 +pd$PC24+ pd$PC25 +pd$PC26+ pd$PC27 +pd$PC28+ pd$PC29 +pd$PC30+ pd$PC31, data = colData(rse_tx))
     txExprs <- log2(assays(rse_tx)$tpm + 1)
     fitTx <- lmFit(txExprs, mod)
     eBTx <- eBayes(fitTx)
