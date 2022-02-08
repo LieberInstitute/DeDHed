@@ -27,4 +27,3 @@ c(
         url = "https://www.biorxiv.org/content/10.1101/TODO"
     )
 )
-knitcitations::bib_metadata('doi.org/10.1016/j.neuron.2019.05.013')
