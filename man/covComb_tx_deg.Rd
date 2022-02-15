@@ -14,6 +14,6 @@ expanded framework study and will be used to remove the effect of degradation
 in bulk RNA-seq data.
 }
 \seealso{
-\link{getBonfTx} \link{k_qsvs} \link{getDegTx}
+\link{getPCs} \link{k_qsvs} \link{getDegTx}
 }
 \keyword{datasets}

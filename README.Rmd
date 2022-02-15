@@ -52,7 +52,7 @@ load(rse_file,verbose = TRUE)
 DegTx<-getDegTx(rse_tx,rownames(covComb_tx_deg))
 
 #get pcs of degraded
-pcTx<-getBonfTx(DegTx, "tpm")
+pcTx<-getPCs(DegTx, "tpm")
 
 #use a simple model and our get K function to determine the number of pcs needed
 mod_tx <-model.matrix(~ Dx + Age +Sex + Race + Region,

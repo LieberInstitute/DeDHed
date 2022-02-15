@@ -10,5 +10,5 @@
 #' @docType data
 #' @format A [RangedSummarizedExperiment-class][SummarizedExperiment::RangedSummarizedExperiment-class]
 #' @keywords datasets
-#' @seealso [getBonfTx] [k_qsvs] [getDegTx]
+#' @seealso [getPCs] [k_qsvs] [getDegTx]
 NULL

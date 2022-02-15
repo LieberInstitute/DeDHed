@@ -134,10 +134,10 @@ dim(DegTx)
 ```
 
 ###Get principal components
-The qsvs are derived from taking the principal components (PCs) of the selected transcript expression data. This can be done with the function `getBonfTx`. `covComb_tx` specifies a `RangedSummarizedExperiment` object that has the specified degraded transcripts. For us this is `DegTx`. Here `tpm` is the name of the assay we are using within the `RangedSummarizedExperiment` object.
+The qsvs are derived from taking the principal components (PCs) of the selected transcript expression data. This can be done with the function `getPCs`. `covComb_tx` specifies a `RangedSummarizedExperiment` object that has the specified degraded transcripts. For us this is `DegTx`. Here `tpm` is the name of the assay we are using within the `RangedSummarizedExperiment` object.
 
-```{r "getBonfTx demo"}
-pcTx<-getBonfTx(covComb_tx = DegTx, assayname = "tpm")
+```{r "getPCs demo"}
+pcTx<-getPCs(covComb_tx = DegTx, assayname = "tpm")
 ```
 Next we use the `k_qsvs()` function to calculate how many PCs we will need to account for the variation. A model matrix accounting for relevant variables should be used. Common variables such as Age, Sex, Race and Religion are often included in the model. Again we are using our `RangedSummarizedExperiment` `DegTx` as the `covComb_tx` option. Next we specify the `mod_tx` with our `model.matrix()`. Again we use the `assayname` option to specify the we are using the `tpm` assay.
 
