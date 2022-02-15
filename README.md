@@ -116,9 +116,9 @@ DegTx<-getDegTx(rse_tx,rownames(covComb_tx_deg))
 pcTx<-getPCs(DegTx, "tpm")
 
 #use a simple model and our get K function to determine the number of pcs needed
-mod_tx <-model.matrix(~ Dx + Age +Sex + Race + Region,
+mod <-model.matrix(~ Dx + Age +Sex + Race + Region,
     data = colData(rse_tx))
-k<-k_qsvs(DegTx,mod_tx, "tpm")
+k<-k_qsvs(DegTx,mod, "tpm")
 print(k)
 #> [1] 34
 ```
