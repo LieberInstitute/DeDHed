@@ -8,7 +8,8 @@ c(
 
     bibentry(bibtype="manual",
         title = "qsvaR",
-        authas.person("Joshua M. Stolz")
+        author = personList(
+        as.person("Joshua M. Stolz"),
         as.person("Leonardo Collado-Torres")
         ),
         year = format(Sys.Date(), "%Y"),
@@ -19,7 +20,7 @@ c(
     bibentry(bibtype="article",
         title = "qsvaR",
         author = personList(
-            as.person("Joshua M. Stolz")
+            as.person("Joshua M. Stolz"),
             as.person("Leonardo Collado-Torres")
         ),
         year = format(Sys.Date(), "%Y"),
