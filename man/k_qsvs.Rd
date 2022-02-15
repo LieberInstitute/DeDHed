@@ -4,14 +4,14 @@
 \alias{k_qsvs}
 \title{Apply num.sv algorithm to determine the number of pcs to be included}
 \usage{
-k_qsvs(covComb_tx, mod, assayname)
+k_qsvs(rse_tx, mod, assayname)
 }
 \arguments{
-\item{covComb_tx}{Ranged Summarizeed Experiment with only trancsripts selected for qsva}
+\item{rse_tx}{Ranged Summarizeed Experiment with only trancsripts selected for qsva}
 
 \item{mod}{Model Matrix with necessary variables the you would model for in differential expression}
 
-\item{assayname}{character string specifying the name of the assay desired in covComb_tx}
+\item{assayname}{character string specifying the name of the assay desired in rse_tx}
 }
 \value{
 integer representing number of pcs to be included

@@ -134,19 +134,19 @@ dim(DegTx)
 ```
 
 ###Get principal components
-The qsvs are derived from taking the principal components (PCs) of the selected transcript expression data. This can be done with the function `getPCs`. `covComb_tx` specifies a `RangedSummarizedExperiment` object that has the specified degraded transcripts. For us this is `DegTx`. Here `tpm` is the name of the assay we are using within the `RangedSummarizedExperiment` object.
+The qsvs are derived from taking the principal components (PCs) of the selected transcript expression data. This can be done with the function `getPCs`. `rse_tx` specifies a `RangedSummarizedExperiment` object that has the specified degraded transcripts. For us this is `DegTx`. Here `tpm` is the name of the assay we are using within the `RangedSummarizedExperiment` object.
 
 ```{r "getPCs demo"}
-pcTx<-getPCs(covComb_tx = DegTx, assayname = "tpm")
+pcTx<-getPCs(rse_tx = DegTx, assayname = "tpm")
 ```
-Next we use the `k_qsvs()` function to calculate how many PCs we will need to account for the variation. A model matrix accounting for relevant variables should be used. Common variables such as Age, Sex, Race and Religion are often included in the model. Again we are using our `RangedSummarizedExperiment` `DegTx` as the `covComb_tx` option. Next we specify the `mod` with our `model.matrix()`. Again we use the `assayname` option to specify the we are using the `tpm` assay.
+Next we use the `k_qsvs()` function to calculate how many PCs we will need to account for the variation. A model matrix accounting for relevant variables should be used. Common variables such as Age, Sex, Race and Religion are often included in the model. Again we are using our `RangedSummarizedExperiment` `DegTx` as the `rse_tx` option. Next we specify the `mod` with our `model.matrix()`. Again we use the `assayname` option to specify the we are using the `tpm` assay.
 
 ```{r "k_qsvs demo"}
 # design a basic model matrix to model the number of pcs needed
 mod <-model.matrix(~ Dx + Age +Sex + Race + Region,
     data = colData(rse_tx))
 # use k qsvs function to return a integer of pcs needed 
-k<-k_qsvs(covComb_tx = DegTx,mod = mod, assayname = "tpm")
+k<-k_qsvs(rse_tx = DegTx,mod = mod, assayname = "tpm")
 print(k)
 ```
 
