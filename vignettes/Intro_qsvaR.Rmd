@@ -120,12 +120,15 @@ Differential expressions analysis requires the ability normalize complex dataset
 
 ```{r "Download demo dataset"}
 bfc <- BiocFileCache::BiocFileCache()
+
+## Download brainseq phase 2 ##
 rse_file <- BiocFileCache::bfcrpath("https://s3.us-east-2.amazonaws.com/libd-brainseq2/rse_tx_unfiltered.Rdata", x = bfc)
 load(rse_file,verbose = TRUE)
 ```
 
 
 ```{r "Get Degraded Transcripts"}
+#obtain transcripts with degradation signature
 DegTx<-getDegTx(rse_tx,rownames(covComb_tx_deg))
 dim(DegTx)
 ```
@@ -139,14 +142,17 @@ pcTx<-getBonfTx(covComb_tx = DegTx, assayname = "tpm")
 Next we use the `k_qsvs()` function to calculate how many PCs we will need to account for the variation. A model matrix accounting for relevant variables should be used. Common variables such as Age, Sex, Race and Religion are often included in the model. Again we are using our `RangedSummarizedExperiment` `DegTx` as the `covComb_tx` option. Next we specify the `mod_tx` with our `model.matrix()`. Again we use the `assayname` option to specify the we are using the `tpm` assay.
 
 ```{r "k_qsvs demo"}
+# design a basic model matrix to model the number of pcs needed
 mod_tx <-model.matrix(~ Dx + Age +Sex + Race + Region,
     data = colData(rse_tx))
+# use k qsvs function to return a integer of pcs needed 
 k<-k_qsvs(covComb_tx = DegTx,mod_tx = mod_tx, assayname = "tpm")
 print(k)
 ```
 
 Finally we subset our data to the calculated number of PCs. The output of this function will be the qsvs for each sample. Here we use the `qsvBonf_tx` argument to enter the principal components (`pcTx`). Here the argument k is the number of PCs we are going to include as calculated in the previous step.
 ```{r "get_qsvs demo"}
+# get_qsvs use k to subset our pca analysis
 qsvs<-get_qsvs(qsvBonf_tx = pcTx, k = k)
 dim(qsvs)
 ```
@@ -157,13 +163,19 @@ Next we can use a standard limma package approach to do differential expression 
 
 ```{r "perform DE"}
 ### should be done by cbinding mod to pcs
+    ##subset to an expression cutoff
     rse_tx <- rse_tx[rowData(rse_tx)$passExprsCut, ]
+    #create a model.matrix with demographic infor and qsvs
     pd<-colData(rse_tx)
-    pd<-cbind(qsvs,pd)
-    mod <-model.matrix(~ Dx + Age + Sex + Race + Region + pd$PC1 +pd$PC2+ pd$PC3 +pd$PC4+ pd$PC5 +pd$PC6+ pd$PC7 +pd$PC8+ pd$PC9 +pd$PC10+ pd$PC11 +pd$PC12+ pd$PC13 +pd$PC14+ pd$PC15 +pd$PC16 + pd$PC17 +pd$PC18+ pd$PC19 +pd$PC20+ pd$PC21 +pd$PC22+ pd$PC23 +pd$PC24+ pd$PC25 +pd$PC26+ pd$PC27 +pd$PC28+ pd$PC29 +pd$PC30+ pd$PC31, data = colData(rse_tx))
+    mod <-model.matrix(~ Dx + Age + Sex + Race + Region, data = colData(rse_tx))
+    mod<-cbind(mod,qsvs)
+    #log tranform transcript expression
     txExprs <- log2(assays(rse_tx)$tpm + 1)
+    # linear model differential expression
     fitTx <- lmFit(txExprs, mod)
+    #generate empirical bayesion for DE
     eBTx <- eBayes(fitTx)
+    # get DE table
     sigTx <- topTable(eBTx,
     coef = 2,
     p.value = 1, number = nrow(rse_tx)
@@ -175,6 +187,7 @@ If we look at a plot of our most significant transcript we can see that at this 
 	
 	
 ```{r "DE plot"}
+    #get expression for most significant gene
 	yy = txExprs[rownames(txExprs) == rownames(sigTx)[1],]
 	p<-boxplot(yy ~ rse_tx$Dx, outline=FALSE,
 		ylim=range(yy), ylab="log2 Exprs", xlab="",
