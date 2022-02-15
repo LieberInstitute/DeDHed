@@ -7,9 +7,9 @@ pkgVer <- function(pkg) {
 c(
 
     bibentry(bibtype="manual",
-        title = "TODO",
-        author = personList(
-            as.person("LieberInstitute")
+        title = "qsvaR",
+        authas.person("Joshua M. Stolz")
+        as.person("Leonardo Collado-Torres")
         ),
         year = format(Sys.Date(), "%Y"),
         url = "http://www.bioconductor.org/packages/qsvaR",
@@ -17,9 +17,10 @@ c(
         doi = '10.18129/B9.bioc.qsvaR'
     ),
     bibentry(bibtype="article",
-        title = "TODO",
+        title = "qsvaR",
         author = personList(
-            as.person("LieberInstitute")
+            as.person("Joshua M. Stolz")
+            as.person("Leonardo Collado-Torres")
         ),
         year = format(Sys.Date(), "%Y"),
         journal = "bioRxiv",
