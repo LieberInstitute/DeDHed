@@ -44,12 +44,11 @@ bib <- c(
         key = "bsp2",
         author = "Leonardo Collado-Torres and Emily E. Burke and Amy Peterson and JooHeon Shin and Richard E. Straub and Anandita Rajpurohit and Stephen A. Semick and William S. Ulrich and Amanda J. Price and Cristian Valencia and Ran Tao and Amy Deep-Soboslay and Thomas M. Hyde and Joel E. Kleinman and Daniel R. Weinberger and Andrew E. Jaffe",
         title = "Regional Heterogeneity in Gene Expression, Regulation, and Coherence in the Frontal Cortex and Hippocampus across Development and Schizophrenia",
-        year = 2019, doi = "0.1016/j.neuron.2019.05.013", journal = "Neuron",  month = "jul",
+        year = 2019, doi = "0.1016/j.neuron.2019.05.013", journal = "Neuron", month = "jul",
         publisher = "Elsevier BV",
         volume = "103",
         number = "2",
         pages = "203--216.e8",
-        
     ),
     BiocStyle = citation("BiocStyle")[1],
     knitr = citation("knitr")[1],
@@ -123,13 +122,13 @@ bfc <- BiocFileCache::BiocFileCache()
 
 ## Download brainseq phase 2 ##
 rse_file <- BiocFileCache::bfcrpath("https://s3.us-east-2.amazonaws.com/libd-brainseq2/rse_tx_unfiltered.Rdata", x = bfc)
-load(rse_file,verbose = TRUE)
+load(rse_file, verbose = TRUE)
 ```
 
 
 ```{r "Get Degraded Transcripts"}
-#obtain transcripts with degradation signature
-DegTx<-getDegTx(rse_tx,rownames(covComb_tx_deg))
+# obtain transcripts with degradation signature
+DegTx <- getDegTx(rse_tx, rownames(covComb_tx_deg))
 dim(DegTx)
 ```
 
@@ -137,23 +136,24 @@ dim(DegTx)
 The qsvs are derived from taking the principal components (PCs) of the selected transcript expression data. This can be done with the function `getPCs`. `rse_tx` specifies a `RangedSummarizedExperiment` object that has the specified degraded transcripts. For us this is `DegTx`. Here `tpm` is the name of the assay we are using within the `RangedSummarizedExperiment` object.
 
 ```{r "getPCs demo"}
-pcTx<-getPCs(rse_tx = DegTx, assayname = "tpm")
+pcTx <- getPCs(rse_tx = DegTx, assayname = "tpm")
 ```
 Next we use the `k_qsvs()` function to calculate how many PCs we will need to account for the variation. A model matrix accounting for relevant variables should be used. Common variables such as Age, Sex, Race and Religion are often included in the model. Again we are using our `RangedSummarizedExperiment` `DegTx` as the `rse_tx` option. Next we specify the `mod` with our `model.matrix()`. Again we use the `assayname` option to specify the we are using the `tpm` assay.
 
 ```{r "k_qsvs demo"}
 # design a basic model matrix to model the number of pcs needed
-mod <-model.matrix(~ Dx + Age +Sex + Race + Region,
-    data = colData(rse_tx))
-# use k qsvs function to return a integer of pcs needed 
-k<-k_qsvs(rse_tx = DegTx,mod = mod, assayname = "tpm")
+mod <- model.matrix(~ Dx + Age + Sex + Race + Region,
+    data = colData(rse_tx)
+)
+# use k qsvs function to return a integer of pcs needed
+k <- k_qsvs(rse_tx = DegTx, mod = mod, assayname = "tpm")
 print(k)
 ```
 
 Finally we subset our data to the calculated number of PCs. The output of this function will be the qsvs for each sample. Here we use the `qsvBonf_tx` argument to enter the principal components (`pcTx`). Here the argument k is the number of PCs we are going to include as calculated in the previous step.
 ```{r "get_qsvs demo"}
 # get_qsvs use k to subset our pca analysis
-qsvs<-get_qsvs(qsvPCs = pcTx, k = k)
+qsvs <- get_qsvs(qsvPCs = pcTx, k = k)
 dim(qsvs)
 ```
 
@@ -163,35 +163,36 @@ Next we can use a standard limma package approach to do differential expression 
 
 ```{r "perform DE"}
 ### should be done by cbinding mod to pcs
-    ##subset to an expression cutoff
-    rse_tx <- rse_tx[rowData(rse_tx)$passExprsCut, ]
-    #create a model.matrix with demographic infor and qsvs
-    pd<-colData(rse_tx)
-    mod <-model.matrix(~ Dx + Age + Sex + Race + Region, data = colData(rse_tx))
-    mod<-cbind(mod,qsvs)
-    #log tranform transcript expression
-    txExprs <- log2(assays(rse_tx)$tpm + 1)
-    # linear model differential expression
-    fitTx <- lmFit(txExprs, mod)
-    #generate empirical bayesion for DE
-    eBTx <- eBayes(fitTx)
-    # get DE table
-    sigTx <- topTable(eBTx,
+## subset to an expression cutoff
+rse_tx <- rse_tx[rowData(rse_tx)$passExprsCut, ]
+# create a model.matrix with demographic infor and qsvs
+pd <- colData(rse_tx)
+mod_qSVA <- cbind(mod, qsvs)
+# log tranform transcript expression
+txExprs <- log2(assays(rse_tx)$tpm + 1)
+# linear model differential expression
+fitTx <- lmFit(txExprs, mod_qSVA)
+# generate empirical bayes for DE
+eBTx <- eBayes(fitTx)
+# get DE results table
+sigTx <- topTable(eBTx,
     coef = 2,
     p.value = 1, number = nrow(rse_tx)
 )
-    head(sigTx)
+head(sigTx)
 ```
 
 If we look at a plot of our most significant transcript we can see that at this level we don't have that much fold change in our data at any individual transcript. These transcripts are however significant and it might be valuable to repeat the analysis at gene level. At gene level the results can be used to do gene ontology enrichment with packages such as clusterprofiler.	
 	
 	
 ```{r "DE plot"}
-    #get expression for most significant gene
-	yy = txExprs[rownames(txExprs) == rownames(sigTx)[1],]
-	p<-boxplot(yy ~ rse_tx$Dx, outline=FALSE,
-		ylim=range(yy), ylab="log2 Exprs", xlab="",
-		main = paste(rownames(sigTx)[1]))
+# get expression for most significant gene
+yy <- txExprs[rownames(txExprs) == rownames(sigTx)[1], ]
+p <- boxplot(yy ~ rse_tx$Dx,
+    outline = FALSE,
+    ylim = range(yy), ylab = "log2 Exprs", xlab = "",
+    main = paste(rownames(sigTx)[1])
+)
 ```   
 
 # Reproducibility

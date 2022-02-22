@@ -18,17 +18,20 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of qsvaR is to provide software that can remove the effects of bench degradation from RNA-seq data.
+The goal of `qsvaR` is to provide software that can remove the effects of bench degradation from RNA-seq data.
 
 ## Installation Instructions
-Get the latest stable R release from CRAN. Then install DeconvoBuddies using from Bioconductor the following code:
+
+Get the latest stable R release from CRAN. Then install `qsvaR` using from Bioconductor the following code:
+
 ```r
 if (!requireNamespace("BiocManager", quietly = TRUE)) {
     install.packages("BiocManager")
 }
 
-BiocManager::install("DeconvoBuddies")
+BiocManager::install("qsvaR")
 ```
+
 And the development version from GitHub with:
 
 ```r
@@ -39,52 +42,72 @@ devtools::install_github("LieberInstitute/qsvaR")
 
 ## Example
 
-This is a basic example which shows you how to obtain the qsvs for a dataset:
+This is a basic example which shows you how to obtain the quality surrogate variables (qSVs) for a dataset:
 
 ```{r example_qsvs}
-library(qsvaR)
-## basic example data
+library("qsvaR")
+
+## We'll download example data from the BrainSeq Phase II project
+## described at http://eqtl.brainseq.org/phase2/.
+##
+## We'll use BiocFileCache to cache these files so you don't have to download
+## them again for other examples.
 bfc <- BiocFileCache::BiocFileCache()
 rse_file <- BiocFileCache::bfcrpath("https://s3.us-east-2.amazonaws.com/libd-brainseq2/rse_tx_unfiltered.Rdata", x = bfc)
-load(rse_file,verbose = TRUE)
 
-##get degraded transcripts for qsva
-DegTx<-getDegTx(rse_tx,rownames(covComb_tx_deg))
+## Now that we have the data in our computer, we can load it.
+rse_file
+load(rse_file, verbose = TRUE)
 
-#get pcs of degraded
-pcTx<-getPCs(DegTx, "tpm")
+## Next we get the degraded transcripts for qSVA
+DegTx <- getDegTx(rse_tx, rownames(covComb_tx_deg))
 
-#use a simple model and our get K function to determine the number of pcs needed
-mod <-model.matrix(~ Dx + Age +Sex + Race + Region,
-    data = colData(rse_tx))
-k<-k_qsvs(DegTx,mod, "tpm")
+## Now we can compute the Principal Components (PCs) of the degraded transcripts
+pcTx <- getPCs(DegTx, "tpm")
+
+## Using a simple statistical model we determine the number of PCs needed (k)
+mod <- model.matrix(~ Dx + Age + Sex + Race + Region,
+    data = colData(rse_tx)
+)
+k <- k_qsvs(DegTx, mod, "tpm")
 print(k)
 ```
-Now that we have our pcs and the number we need we can generate our qsvs
 
-```{r exampleDE}
-qsvs<-get_qsvs(pcTx, k)
+Now that we have our PCs and the number we need we can generate our qSVs.
+
+```{r example_get_qSVs}
+## Obtain the k qSVs
+qsvs <- get_qsvs(pcTx, k)
 dim(qsvs)
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
+## Differential Expression
 
-###Differential Expression
-Next we can use a standard limma package approach to do differential expression on the data. The key here is that we add our qsvs to the model.matrix.
+Next we can use a standard `limma` package approach to do differential expression on the data. The key here is that we add our qSVs to the statisical model we use through `model.matrix()`.
 
 ```{r "perform DE"}
-    library(limma)
-    pd<-colData(rse_tx)
-    pd<-cbind(qsvs,pd)
-    mod <-model.matrix(~ Dx + Age + Sex + Race + Region + pd$PC1 +pd$PC2+ pd$PC3 +pd$PC4+ pd$PC5 +pd$PC6+ pd$PC7 +pd$PC8+ pd$PC9 +pd$PC10+ pd$PC11 +pd$PC12+ pd$PC13 +pd$PC14+ pd$PC15 +pd$PC16 + pd$PC17 +pd$PC18+ pd$PC19 +pd$PC20+ pd$PC21 +pd$PC22+ pd$PC23 +pd$PC24+ pd$PC25 +pd$PC26+ pd$PC27 +pd$PC28+ pd$PC29 +pd$PC30+ pd$PC31, data = colData(rse_tx))
-    txExprs <- log2(assays(rse_tx)$tpm + 1)
-    fitTx <- lmFit(txExprs, mod)
-    eBTx <- eBayes(fitTx)
-    sigTx <- topTable(eBTx,
+library("limma")
+
+## Add the qSVs to our statistical model
+mod_qSVA <- cbind(
+    mod,
+    qsvs
+)
+
+## Extract the transcript expression values and put them in the
+## log2(TPM + 1) scale
+txExprs <- log2(assays(rse_tx)$tpm + 1)
+
+## Run the standard limma pipeline for differential expression
+fitTx <- lmFit(txExprs, mod_qSVA)
+eBTx <- eBayes(fitTx)
+
+## Extract the differential expression results
+sigTx <- topTable(eBTx,
     coef = 2,
     p.value = 1, number = nrow(rse_tx)
 )
-    head(sigTx)
+head(sigTx)
 ```
 
 

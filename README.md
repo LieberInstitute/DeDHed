@@ -6,20 +6,20 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of qsvaR is to provide software that can remove the effects of
-bench degradation from RNA-seq data.
+The goal of `qsvaR` is to provide software that can remove the effects
+of bench degradation from RNA-seq data.
 
 ## Installation Instructions
 
-Get the latest stable R release from CRAN. Then install DeconvoBuddies
-using from Bioconductor the following code:
+Get the latest stable R release from CRAN. Then install `qsvaR` using
+from Bioconductor the following code:
 
 ``` r
 if (!requireNamespace("BiocManager", quietly = TRUE)) {
     install.packages("BiocManager")
 }
 
-BiocManager::install("DeconvoBuddies")
+BiocManager::install("qsvaR")
 ```
 
 And the development version from GitHub with:
@@ -31,11 +31,11 @@ devtools::install_github("LieberInstitute/qsvaR")
 
 ## Example
 
-This is a basic example which shows you how to obtain the qsvs for a
-dataset:
+This is a basic example which shows you how to obtain the quality
+surrogate variables (qSVs) for a dataset:
 
 ``` r
-library(qsvaR)
+library("qsvaR")
 #> Loading required package: SummarizedExperiment
 #> Loading required package: MatrixGenerics
 #> Loading required package: matrixStats
@@ -61,14 +61,8 @@ library(qsvaR)
 #> Loading required package: GenomicRanges
 #> Loading required package: stats4
 #> Loading required package: BiocGenerics
-#> Loading required package: parallel
 #> 
 #> Attaching package: 'BiocGenerics'
-#> The following objects are masked from 'package:parallel':
-#> 
-#>     clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,
-#>     clusterExport, clusterMap, parApply, parCapply, parLapply,
-#>     parLapplyLB, parRapply, parSapply, parSapplyLB
 #> The following objects are masked from 'package:stats':
 #> 
 #>     IQR, mad, sd, var, xtabs
@@ -102,73 +96,95 @@ library(qsvaR)
 #> The following objects are masked from 'package:matrixStats':
 #> 
 #>     anyMissing, rowMedians
-## basic example data
+
+## We'll download example data from the BrainSeq Phase II project
+## described at http://eqtl.brainseq.org/phase2/.
+##
+## We'll use BiocFileCache to cache these files so you don't have to download
+## them again for other examples.
 bfc <- BiocFileCache::BiocFileCache()
 rse_file <- BiocFileCache::bfcrpath("https://s3.us-east-2.amazonaws.com/libd-brainseq2/rse_tx_unfiltered.Rdata", x = bfc)
-load(rse_file,verbose = TRUE)
+
+## Now that we have the data in our computer, we can load it.
+rse_file
+#>                                                                                                    BFC7 
+#> "/Users/leocollado/Library/Caches/org.R-project.R/R/BiocFileCache/59ae45265167_rse_tx_unfiltered.Rdata"
+load(rse_file, verbose = TRUE)
 #> Loading objects:
 #>   rse_tx
 
-##get degraded transcripts for qsva
-DegTx<-getDegTx(rse_tx,rownames(covComb_tx_deg))
+## Next we get the degraded transcripts for qSVA
+DegTx <- getDegTx(rse_tx, rownames(covComb_tx_deg))
 
-#get pcs of degraded
-pcTx<-getPCs(DegTx, "tpm")
+## Now we can compute the Principal Components (PCs) of the degraded transcripts
+pcTx <- getPCs(DegTx, "tpm")
 
-#use a simple model and our get K function to determine the number of pcs needed
-mod <-model.matrix(~ Dx + Age +Sex + Race + Region,
-    data = colData(rse_tx))
-k<-k_qsvs(DegTx,mod, "tpm")
+## Using a simple statistical model we determine the number of PCs needed (k)
+mod <- model.matrix(~ Dx + Age + Sex + Race + Region,
+    data = colData(rse_tx)
+)
+k <- k_qsvs(DegTx, mod, "tpm")
 print(k)
 #> [1] 34
 ```
 
-Now that we have our pcs and the number we need we can generate our qsvs
+Now that we have our PCs and the number we need we can generate our
+qSVs.
 
 ``` r
-qsvs<-get_qsvs(pcTx, k)
+## Obtain the k qSVs
+qsvs <- get_qsvs(pcTx, k)
 dim(qsvs)
 #> [1] 900  34
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
+## Differential Expression
 
-\#\#\#Differential Expression Next we can use a standard limma package
-approach to do differential expression on the data. The key here is that
-we add our qsvs to the model.matrix.
+Next we can use a standard `limma` package approach to do differential
+expression on the data. The key here is that we add our qSVs to the
+statisical model we use through `model.matrix()`.
 
 ``` r
-    library(limma)
+library("limma")
 #> 
 #> Attaching package: 'limma'
 #> The following object is masked from 'package:BiocGenerics':
 #> 
 #>     plotMA
-    pd<-colData(rse_tx)
-    pd<-cbind(qsvs,pd)
-    mod <-model.matrix(~ Dx + Age + Sex + Race + Region + pd$PC1 +pd$PC2+ pd$PC3 +pd$PC4+ pd$PC5 +pd$PC6+ pd$PC7 +pd$PC8+ pd$PC9 +pd$PC10+ pd$PC11 +pd$PC12+ pd$PC13 +pd$PC14+ pd$PC15 +pd$PC16 + pd$PC17 +pd$PC18+ pd$PC19 +pd$PC20+ pd$PC21 +pd$PC22+ pd$PC23 +pd$PC24+ pd$PC25 +pd$PC26+ pd$PC27 +pd$PC28+ pd$PC29 +pd$PC30+ pd$PC31, data = colData(rse_tx))
-    txExprs <- log2(assays(rse_tx)$tpm + 1)
-    fitTx <- lmFit(txExprs, mod)
-    eBTx <- eBayes(fitTx)
+
+## Add the qSVs to our statistical model
+mod_qSVA <- cbind(
+    mod,
+    qsvs
+)
+
+## Extract the transcript expression values and put them in the
+## log2(TPM + 1) scale
+txExprs <- log2(assays(rse_tx)$tpm + 1)
+
+## Run the standard limma pipeline for differential expression
+fitTx <- lmFit(txExprs, mod_qSVA)
+eBTx <- eBayes(fitTx)
 #> Warning: Zero sample variances detected, have been offset away from zero
-    sigTx <- topTable(eBTx,
+
+## Extract the differential expression results
+sigTx <- topTable(eBTx,
     coef = 2,
     p.value = 1, number = nrow(rse_tx)
 )
-    head(sigTx)
-#>                         logFC    AveExpr         t      P.Value   adj.P.Val
-#> ENST00000552074.5 -0.13720275 2.43479854 -5.689845 1.741938e-08 0.003393897
-#> ENST00000553142.5 -0.06152815 2.03908885 -5.568843 3.426570e-08 0.003393897
-#> ENST00000530589.1 -0.10860387 2.42717114 -5.173338 2.861319e-07 0.018893579
-#> ENST00000527986.5  0.07979267 2.75115185  5.069278 4.888453e-07 0.019568383
-#> ENST00000450454.6  0.09037372 1.00424397  5.067253 4.939191e-07 0.019568383
-#> ENST00000578387.1  0.01564682 0.07057326  4.986614 7.430097e-07 0.021627801
-#>                          B
-#> ENST00000552074.5 8.466651
-#> ENST00000553142.5 7.811476
-#> ENST00000530589.1 5.761766
-#> ENST00000527986.5 5.246010
-#> ENST00000450454.6 5.236073
-#> ENST00000578387.1 4.843337
+head(sigTx)
+#>                         logFC   AveExpr         t      P.Value    adj.P.Val
+#> ENST00000553142.5 -0.06547988 2.0390889 -5.999145 2.921045e-09 0.0005786386
+#> ENST00000552074.5 -0.12911383 2.4347985 -5.370828 1.009549e-07 0.0099992338
+#> ENST00000510632.1  0.08994392 0.9073516  4.920042 1.037016e-06 0.0473143146
+#> ENST00000530589.1 -0.10297938 2.4271711 -4.918806 1.043399e-06 0.0473143146
+#> ENST00000572236.1 -0.05358333 0.6254025 -4.819980 1.697403e-06 0.0473143146
+#> ENST00000450454.6  0.08446871 1.0042440  4.816539 1.726143e-06 0.0473143146
+#>                           B
+#> ENST00000553142.5 10.200286
+#> ENST00000552074.5  6.767821
+#> ENST00000510632.1  4.524039
+#> ENST00000530589.1  4.518145
+#> ENST00000572236.1  4.051142
+#> ENST00000450454.6  4.035041
 ```
