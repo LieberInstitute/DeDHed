@@ -7,14 +7,14 @@
 #'
 #' @examples
 #' TODO
-DEqual<- function(DE){
-    data<-cbind(deg$t,DE$t)
-    p<-ggplot(data, aes(x=V2, y=V1) ) +
+DEqual <- function(DE) {
+    data <- cbind(deg$t, DE$t)
+    p <- ggplot(data, aes(x = V2, y = V1)) +
         xlab("DE statistic") +
-        eBTx_qsva = eBayes(fitTx_qsva)
-        ylab("Degradation statistic") +
+        eBTx_qsva <- eBayes(fitTx_qsva)
+    ylab("Degradation statistic") +
         geom_bin2d(bins = 70) +
         scale_fill_continuous(type = "viridis") +
         theme_bw()
-        return(p)
+    return(p)
 }
