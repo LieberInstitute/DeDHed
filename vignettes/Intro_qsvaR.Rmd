@@ -153,7 +153,7 @@ print(k)
 Finally we subset our data to the calculated number of PCs. The output of this function will be the qsvs for each sample. Here we use the `qsvBonf_tx` argument to enter the principal components (`pcTx`). Here the argument k is the number of PCs we are going to include as calculated in the previous step.
 ```{r "get_qsvs demo"}
 # get_qsvs use k to subset our pca analysis
-qsvs<-get_qsvs(qsvBonf_tx = pcTx, k = k)
+qsvs<-get_qsvs(qsvPCs = pcTx, k = k)
 dim(qsvs)
 ```
 
