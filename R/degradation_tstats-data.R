@@ -9,7 +9,7 @@
 #' @name degradation_tstats
 #' @docType data
 #' @format A `data.frame()` with the `t` statistics for degradation time. The
-#' `rownames()` are the ENSEMBL transcript IDs.
+#' `rownames()` are the GENCODE transcript IDs.
 #' @keywords datasets
 #' @seealso [DEqual]
 NULL
