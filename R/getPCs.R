@@ -12,7 +12,6 @@
 #' @importFrom SummarizedExperiment assays
 #' @examples
 #' getPCs(covComb_tx_deg, "tpm")
-#'
 getPCs <- function(rse_tx, assayname) {
     qsvPCs <- prcomp(t(log2(assays(rse_tx)[[assayname]] + 1)))
 }

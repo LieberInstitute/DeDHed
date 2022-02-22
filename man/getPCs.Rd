@@ -19,5 +19,4 @@ This function returns the pcs from the obtained RangedSummarizedExperiment objec
 }
 \examples{
 getPCs(covComb_tx_deg, "tpm")
-## TODO
 }
