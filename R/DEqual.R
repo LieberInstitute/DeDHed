@@ -8,6 +8,7 @@
 #'
 #' @return a `ggplot` object of the DE t-statistic vs the DE statistic from degradation
 #' @import ggplot2
+#' @importFrom stats cor
 #' @export
 #'
 #' @examples
@@ -23,15 +24,18 @@
 #' ## Create the DEqual plot
 #' DEqual(random_de)
 DEqual <- function(DE) {
+    ## For R CMD check
+    DE_t <- degradation_t <- NULL
+
     ## Check input
     stopifnot("t" %in% colnames(DE))
     stopifnot(!is.null(rownames(DE)))
 
     ## Locate common transcripts
-    common <- intersect(rownames(degradation_tstats), rownames(DE))
+    common <- intersect(rownames(qsvaR::degradation_tstats), rownames(DE))
     stopifnot(length(common) > 0)
     common_data <- data.frame(
-        degradation_t = degradation_tstats$t[match(common, rownames(degradation_tstats))],
+        degradation_t = qsvaR::degradation_tstats$t[match(common, rownames(qsvaR::degradation_tstats))],
         DE_t = DE$t[match(common, rownames(DE))]
     )
     p <- ggplot(common_data, aes(x = DE_t, y = degradation_t)) +

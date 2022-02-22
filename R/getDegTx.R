@@ -13,6 +13,7 @@
 #'  object.
 #'
 #' @export
+#' @importFrom methods is
 #'
 #' @examples
 #' getDegTx(covComb_tx_deg, rownames(covComb_tx_deg))

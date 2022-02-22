@@ -9,7 +9,8 @@ Description: The qsvaR package contains functions for removing the effect of deg
 License: Artistic-2.0
 URL: https://github.com/LieberInstitute/qsvaR
 BugReports: https://support.bioconductor.org/t/qsvaR
-biocViews: Software BiologicalQuestion DifferentialExpression WorkflowStep GeneExpressionWorkflow
+biocViews: Software, BiologicalQuestion, DifferentialExpression, WorkflowStep,
+    GeneExpressionWorkflow
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
@@ -26,7 +27,8 @@ Config/testthat/edition: 3
 Imports: 
     sva,
     stats,
-    ggplot2
+    ggplot2,
+    methods
 Depends: 
     R (>= 2.10),
     SummarizedExperiment
