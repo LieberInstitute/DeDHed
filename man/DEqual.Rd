@@ -2,7 +2,7 @@
 % Please edit documentation in R/DEqual.R
 \name{DEqual}
 \alias{DEqual}
-\title{DEqual plot}
+\title{Differential expression quality (DEqual) plot}
 \usage{
 DEqual(DE)
 }
@@ -15,7 +15,15 @@ The \code{rownames(DE)} should be transcript GENCODE IDs.}
 a \code{ggplot} object of the DE t-statistic vs the DE statistic from degradation
 }
 \description{
-TODO description. Maybe include links to published versions of this plot.
+A DEqual plot compares the effect of RNA degradation from an independent
+degradation experiment on the y axis to the effect of the outcome of
+interest. They were orignally described by Jaffe et al, PNAS, 2017
+\url{https://doi.org/10.1073/pnas.1617384114}. Other DEqual versions are
+included in Collado-Torres et al, Neuron, 2019
+\url{https://doi.org/10.1016/j.neuron.2019.05.013}. This function compares your
+t-statistics of interest computed on transcripts against the
+t-statistics from degradation time adjusting for the six brain regions from
+degradation experiment data used for determining \code{covComb_tx_deg}.
 }
 \examples{
 

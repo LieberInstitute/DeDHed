@@ -44,6 +44,13 @@ devtools::install_github("LieberInstitute/qsvaR")
 
 This is a basic example which shows you how to obtain the quality surrogate variables (qSVs) for a dataset:
 
+```{r "load pkgs", message = FALSE, warning = FALSE}
+## R packages we'll use
+library("qsvaR")
+library("limma")
+```
+
+
 ```{r example_qsvs}
 library("qsvaR")
 
@@ -110,4 +117,9 @@ sigTx <- topTable(eBTx,
 head(sigTx)
 ```
 
+Finally, you can compare the resulting t-statistics from your differential expression model against the degradation time t-statistics adjusting for the six different brain regions. This type of plot is called `DEqual` plot and was shown in the initial qSVA framework paper ([Jaffe et al, PNAS, 2017](https://doi.org/10.1073/pnas.1617384114)).
+
+```{r "DEqual"}
+DEqual(sigTx)
+```
 

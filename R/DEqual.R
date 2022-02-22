@@ -1,6 +1,14 @@
-#' DEqual plot
+#' Differential expression quality (DEqual) plot
 #'
-#' TODO description. Maybe include links to published versions of this plot.
+#' A DEqual plot compares the effect of RNA degradation from an independent
+#' degradation experiment on the y axis to the effect of the outcome of
+#' interest. They were orignally described by Jaffe et al, PNAS, 2017
+#' <https://doi.org/10.1073/pnas.1617384114>. Other DEqual versions are
+#' included in Collado-Torres et al, Neuron, 2019
+#' <https://doi.org/10.1016/j.neuron.2019.05.013>. This function compares your
+#' t-statistics of interest computed on transcripts against the
+#' t-statistics from degradation time adjusting for the six brain regions from
+#' degradation experiment data used for determining `covComb_tx_deg`.
 #'
 #' @param DE a `data.frame()` with one column containing the t-statistics from
 #' Differential Expression, typically generated with `limma::topTable()`.
