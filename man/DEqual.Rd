@@ -2,19 +2,31 @@
 % Please edit documentation in R/DEqual.R
 \name{DEqual}
 \alias{DEqual}
-\title{Title}
+\title{DEqual plot}
 \usage{
 DEqual(DE)
 }
 \arguments{
-\item{DE}{data.frame with one column of the t-statistic from Differential Expression. The row names are the transcripts names}
+\item{DE}{a \code{data.frame()} with one column containing the t-statistics from
+Differential Expression, typically generated with \code{limma::topTable()}.
+The \code{rownames(DE)} should be transcript GENCODE IDs.}
 }
 \value{
-a ggplot object of the DE t-statistc vs the DE statistic from degradation
+a \code{ggplot} object of the DE t-statistic vs the DE statistic from degradation
 }
 \description{
-Title
+TODO description. Maybe include links to published versions of this plot.
 }
 \examples{
-TODO
+
+## Random differential expression t-statistics for the same transcripts
+## we have degradation t-statistics for in `degradation_tstats`.
+set.seed(101)
+random_de <- data.frame(
+    t = rt(nrow(degradation_tstats), 5),
+    row.names = sample(rownames(degradation_tstats), nrow(degradation_tstats))
+)
+
+## Create the DEqual plot
+DEqual(random_de)
 }

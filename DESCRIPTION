@@ -25,7 +25,8 @@ Suggests:
 Config/testthat/edition: 3
 Imports: 
     sva,
-    stats
+    stats,
+    ggplot2
 Depends: 
     R (>= 2.10),
     SummarizedExperiment

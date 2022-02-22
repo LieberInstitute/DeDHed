@@ -6,7 +6,7 @@
 \title{Degradation time t-statistics}
 \format{
 A \code{data.frame()} with the \code{t} statistics for degradation time. The
-\code{rownames()} are the ENSEMBL transcript IDs.
+\code{rownames()} are the GENCODE transcript IDs.
 }
 \description{
 These t-statistics are derived from the same data that was used for
