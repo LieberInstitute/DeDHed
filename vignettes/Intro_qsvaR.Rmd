@@ -225,7 +225,7 @@ DEqual(DE_noqsv)
 ```
 
 We can see that in that in the plot below wehn we add qSVs to our model we reduce the assoication with degradation.
-```{r "Generate DEqual without qSVs"}
+```{r "Generate DEqual with qSVs"}
 DEqual(DE)
 ```
 # Reproducibility
