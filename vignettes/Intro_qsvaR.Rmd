@@ -194,6 +194,29 @@ p <- boxplot(yy ~ rse_tx$Dx,
 )
 ```   
 
+ We can assess the effectiveness of our analysis by first performing DE without qsvs
+
+```{r "perform DE without qSVs"}
+# log tranform transcript expression
+txExprs_noqsv <- log2(assays(rse_tx)$tpm + 1)
+# linear model differential expression with generic model
+fitTx_noqsv <- lmFit(txExprs_noqsv, mod)
+# generate empirical bayes for DE
+eBTx_noqsv <- eBayes(fitTx_noqsv)
+# get DE results table
+sigTx_noqsv <- topTable(eBTx_noqsv,
+    coef = 2,
+    p.value = 1, number = nrow(rse_tx)
+)
+head(sigTx_noqsv)
+```
+
+
+```{r "subset to t-statistics"}
+DE_noqsv<-data.frame(t = sigTx_noqsv$t, row.names = rownames(sigTx_noqsv))
+DE<-data.frame(t = sigTx$t, row.names = rownames(sigTx))
+```
+
 # Reproducibility
 
 The `r Biocpkg("qsvaR")` package `r Citep(bib[["qsvaR"]])` was made possible thanks to:
