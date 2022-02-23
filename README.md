@@ -52,9 +52,6 @@ bfc <- BiocFileCache::BiocFileCache()
 rse_file <- BiocFileCache::bfcrpath("https://s3.us-east-2.amazonaws.com/libd-brainseq2/rse_tx_unfiltered.Rdata", x = bfc)
 
 ## Now that we have the data in our computer, we can load it.
-rse_file
-#>                                                                                                    BFC7 
-#> "/Users/leocollado/Library/Caches/org.R-project.R/R/BiocFileCache/59ae45265167_rse_tx_unfiltered.Rdata"
 load(rse_file, verbose = TRUE)
 #> Loading objects:
 #>   rse_tx
@@ -141,3 +138,12 @@ DEqual(sigTx)
 ```
 
 <img src="man/figures/README-DEqual-1.png" width="100%" />
+
+For comparison, here is the `DEqual()` plot for the model without qSVs.
+
+``` r
+DEqual(topTable(eBayes(lmFit(txExprs, mod)), coef = 2, p.value = 1, number = nrow(rse_tx)))
+#> Warning: Zero sample variances detected, have been offset away from zero
+```
+
+<img src="man/figures/README-DEqual-no-qSVs-1.png" width="100%" />
