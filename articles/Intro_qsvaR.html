@@ -262,13 +262,26 @@
 <span class="co">#&gt; ENST00000540372.5 20.84637</span>
 <span class="co">#&gt; ENST00000550948.1 19.98955</span>
 <span class="co">#&gt; ENST00000412814.1 19.98506</span></code></pre></div>
+<p>Next we should subset our differential expression output to just the t-statistic</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">DE_noqsv</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>t <span class="op">=</span> <span class="va">sigTx_noqsv</span><span class="op">$</span><span class="va">t</span>, row.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">sigTx_noqsv</span><span class="op">)</span><span class="op">)</span>
-<span class="va">DE</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>t <span class="op">=</span> <span class="va">sigTx</span><span class="op">$</span><span class="va">t</span>, row.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">sigTx</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-</div>
-<div class="section level2">
-<h2 id="reproducibility">Reproducibility<a class="anchor" aria-label="anchor" href="#reproducibility"></a>
-</h2>
+<span class="va">DE</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>t <span class="op">=</span> <span class="va">sigTx</span><span class="op">$</span><span class="va">t</span>, row.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">sigTx</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">DE</span><span class="op">)</span>
+<span class="co">#&gt;                           t</span>
+<span class="co">#&gt; ENST00000553142.5 -5.981344</span>
+<span class="co">#&gt; ENST00000552074.5 -5.372043</span>
+<span class="co">#&gt; ENST00000530589.1 -4.918614</span>
+<span class="co">#&gt; ENST00000510632.1  4.918168</span>
+<span class="co">#&gt; ENST00000450454.6  4.814104</span>
+<span class="co">#&gt; ENST00000572236.1 -4.806373</span></code></pre></div>
+<p>Using our <code>DEqual</code> function we can make a plot comparing the t-statistics from degradation and our differential expression output. We can see in the first model we have a .5 correlation between degradation t-statistics and our differential expression. This means the data is likely confounded for degradation and will lead to many false positives.</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/DEqual.html">DEqual</a></span><span class="op">(</span><span class="va">DE_noqsv</span><span class="op">)</span></code></pre></div>
+<p><img src="Intro_qsvaR_files/figure-html/Generate%20DEqual%20without%20qSVs-1.png" width="700"></p>
+<p>We can see that in that in the plot below wehn we add qSVs to our model we reduce the assoication with degradation.</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/DEqual.html">DEqual</a></span><span class="op">(</span><span class="va">DE</span><span class="op">)</span></code></pre></div>
+<p><img src="Intro_qsvaR_files/figure-html/Generate%20DEqual%20with%20qSVs-1.png" width="700"> # Reproducibility</p>
 <p>The <em><a href="https://bioconductor.org/packages/3.14/qsvaR" class="external-link">qsvaR</a></em> package (Stolz and Collado-Torres, 2022) was made possible thanks to:</p>
 <ul>
 <li>R (R Core Team, 2021)</li>
@@ -289,7 +302,7 @@
 </ul>
 <p>This package was developed using <em><a href="https://bioconductor.org/packages/3.14/biocthis" class="external-link">biocthis</a></em>.</p>
 <p>Code for creating the vignette</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Create the vignette</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/rstudio/rmarkdown" class="external-link">"rmarkdown"</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="fu"><a href="https://pkgs.rstudio.com/rmarkdown/reference/render.html" class="external-link">render</a></span><span class="op">(</span><span class="st">"Intro_qsvaR.Rmd"</span>, <span class="st">"BiocStyle::html_document"</span><span class="op">)</span><span class="op">)</span>
@@ -298,9 +311,9 @@
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://yihui.org/knitr/" class="external-link">"knitr"</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit.html" class="external-link">knit</a></span><span class="op">(</span><span class="st">"Intro_qsvaR.Rmd"</span>, tangle <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p>Date the vignette was generated.</p>
-<pre><code><span class="co">#&gt; [1] "2022-02-23 19:18:33 UTC"</span></code></pre>
+<pre><code><span class="co">#&gt; [1] "2022-02-23 19:38:03 UTC"</span></code></pre>
 <p>Wallclock time spent generating the vignette.</p>
-<pre><code><span class="co">#&gt; Time difference of 1.492 mins</span></code></pre>
+<pre><code><span class="co">#&gt; Time difference of 1.095 mins</span></code></pre>
 <p><code>R</code> session information.</p>
 <pre><code><span class="co">#&gt; <span style="color: #00BBBB; font-weight: bold;">─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────</span></span>
 <span class="co">#&gt;  <span style="color: #555555; font-style: italic;">setting </span> <span style="color: #555555; font-style: italic;">value</span></span>
@@ -348,6 +361,7 @@
 <span class="co">#&gt;  ellipsis               0.3.2    <span style="color: #555555;">2021-04-29</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.1.0)</span></span>
 <span class="co">#&gt;  evaluate               0.15     <span style="color: #555555;">2022-02-18</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.1.0)</span></span>
 <span class="co">#&gt;  fansi                  1.0.2    <span style="color: #555555;">2022-01-14</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.1.0)</span></span>
+<span class="co">#&gt;  farver                 2.1.0    <span style="color: #555555;">2021-02-28</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.1.0)</span></span>
 <span class="co">#&gt;  fastmap                1.1.0    <span style="color: #555555;">2021-01-25</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.1.0)</span></span>
 <span class="co">#&gt;  filelock               1.0.2    <span style="color: #555555;">2018-10-05</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.1.0)</span></span>
 <span class="co">#&gt;  fs                     1.5.2    <span style="color: #555555;">2021-12-08</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.1.0)</span></span>
@@ -367,6 +381,7 @@
 <span class="co">#&gt;  jsonlite               1.7.3    <span style="color: #555555;">2022-01-17</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.1.0)</span></span>
 <span class="co">#&gt;  KEGGREST               1.34.0   <span style="color: #555555;">2021-10-26</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span>
 <span class="co">#&gt;  knitr                  1.37     <span style="color: #555555;">2021-12-16</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.1.0)</span></span>
+<span class="co">#&gt;  labeling               0.4.2    <span style="color: #555555;">2020-10-20</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.1.0)</span></span>
 <span class="co">#&gt;  lattice                0.20-45  <span style="color: #555555;">2021-09-22</span> <span style="color: #555555;">[3]</span> <span style="color: #555555;">CRAN (R 4.1.2)</span></span>
 <span class="co">#&gt;  lifecycle              1.0.1    <span style="color: #555555;">2021-09-24</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.1.0)</span></span>
 <span class="co">#&gt;  limma                * 3.50.1   <span style="color: #555555;">2022-02-17</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span>
@@ -412,6 +427,7 @@
 <span class="co">#&gt;  tidyselect             1.1.2    <span style="color: #555555;">2022-02-21</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.1.0)</span></span>
 <span class="co">#&gt;  utf8                   1.2.2    <span style="color: #555555;">2021-07-24</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.1.0)</span></span>
 <span class="co">#&gt;  vctrs                  0.3.8    <span style="color: #555555;">2021-04-29</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.1.0)</span></span>
+<span class="co">#&gt;  viridisLite            0.4.0    <span style="color: #555555;">2021-04-13</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.1.0)</span></span>
 <span class="co">#&gt;  withr                  2.4.3    <span style="color: #555555;">2021-11-30</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.1.0)</span></span>
 <span class="co">#&gt;  xfun                   0.29     <span style="color: #555555;">2021-12-14</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.1.0)</span></span>
 <span class="co">#&gt;  XML                    3.99-0.8 <span style="color: #555555;">2021-09-17</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.1.0)</span></span>
