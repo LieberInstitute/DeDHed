@@ -166,7 +166,6 @@ Next we can use a standard limma package approach to do differential expression 
 ## subset to an expression cutoff
 rse_tx <- rse_tx[rowData(rse_tx)$passExprsCut, ]
 # create a model.matrix with demographic infor and qsvs
-pd <- colData(rse_tx)
 mod_qSVA <- cbind(mod, qsvs)
 # log tranform transcript expression
 txExprs <- log2(assays(rse_tx)$tpm + 1)
