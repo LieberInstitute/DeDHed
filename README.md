@@ -6,8 +6,22 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of `qsvaR` is to provide software that can remove the effects
-of bench degradation from RNA-seq data.
+Differential expressions analysis requires the ability normalize complex
+datasets. In the case of postmortem brain tissue we are tasked with
+removing the effects of bench degradation. The qsvaR package combines an
+established method for removing the effects of degradation from RNA-seq
+data with easy to use functions. The first step in this workflow is to
+create an `Ranged Summarized Experiment` object with the transcripts
+identified in our qsva experiment. If you already have a
+`Ranged Summarized Experiment` of transcripts we can do this with the
+getDegTx function as shown below.If not this can be generated with the
+`SPEAQeasy` pipeline usinge the `--qsva` flag. This flage requires a
+full path to a text file, containing one Ensembl transcript ID per line
+for each transcript desired in the final transcripts R output object
+(called `rse_tx`). The `sig_transcripts` argument in this package should
+contain the same Ensembl transcript IDs as the text file for the
+`--qsva` flag.The goal of `qsvaR` is to provide software that can remove
+the effects of bench degradation from RNA-seq data.
 
 ## Installation Instructions
 
