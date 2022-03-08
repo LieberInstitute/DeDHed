@@ -43,7 +43,7 @@
   <a href="reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -82,8 +82,24 @@
 </h1></div>
 <!-- badges: start -->
 <!-- badges: end -->
-<p>The goal of <code>qsvaR</code> is to provide software that can remove
-the effects of bench degradation from RNA-seq data.</p>
+<p>Differential expressions analysis requires the ability normalize
+complex datasets. In the case of postmortem brain tissue we are tasked
+with removing the effects of bench degradation. The qsvaR package
+combines an established method for removing the effects of degradation
+from RNA-seq data with easy to use functions. The first step in this
+workflow is to create an <code>Ranged Summarized Experiment</code>
+object with the transcripts identified in our qsva experiment. If you
+already have a <code>Ranged Summarized Experiment</code> of transcripts
+we can do this with the getDegTx function as shown below.If not this can
+be generated with the <code>SPEAQeasy</code> pipeline usinge the
+<code>--qsva</code> flag. This flage requires a full path to a text
+file, containing one Ensembl transcript ID per line for each transcript
+desired in the final transcripts R output object (called
+<code>rse_tx</code>). The <code>sig_transcripts</code> argument in this
+package should contain the same Ensembl transcript IDs as the text file
+for the <code>--qsva</code> flag.The goal of <code>qsvaR</code> is to
+provide software that can remove the effects of bench degradation from
+RNA-seq data.</p>
 <div class="section level2">
 <h2 id="installation-instructions">Installation Instructions<a class="anchor" aria-label="anchor" href="#installation-instructions"></a>
 </h2>
