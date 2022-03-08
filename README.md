@@ -46,7 +46,11 @@ devtools::install_github("LieberInstitute/qsvaR")
 ## Example
 
 This is a basic example which shows you how to obtain the quality
-surrogate variables (qSVs) for a dataset:
+surrogate variables (qSVs) for the brainseq phase II dataset. At the
+start of this script we will have a `Ranged SummmarizedExperiment` and a
+list of all the transcripts found in our degradation study. At the end
+we will have a table with differential expression results that is
+adjusted for qSVs.
 
 ``` r
 ## R packages we'll use
@@ -99,7 +103,10 @@ dim(qsvs)
 
 Next we can use a standard `limma` package approach to do differential
 expression on the data. The key here is that we add our qSVs to the
-statisical model we use through `model.matrix()`.
+statisical model we use through `model.matrix()`. Here we input our
+`Ranged SummarizedExperiment` object and our `model.matrix` with qSVs.
+The expected output is a sigTx object that shows the results of
+differential expression.
 
 ``` r
 library("limma")
@@ -114,7 +121,7 @@ mod_qSVA <- cbind(
 ## log2(TPM + 1) scale
 txExprs <- log2(assays(rse_tx)$tpm + 1)
 
-## Run the standard limma pipeline for differential expression
+## Run the standard linear model for differential expression
 fitTx <- lmFit(txExprs, mod_qSVA)
 eBTx <- eBayes(fitTx)
 #> Warning: Zero sample variances detected, have been offset away from zero
