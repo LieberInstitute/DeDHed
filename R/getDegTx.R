@@ -19,6 +19,9 @@
 #' getDegTx(covComb_tx_deg, rownames(covComb_tx_deg))
 getDegTx <- function(rse_tx, sig_transcripts) {
     stopifnot(is(rse_tx, "RangedSummarizedExperiment"))
-    rse_tx <- rse_tx[rownames(rse_tx) %in% sig_transcripts, ]
+    rse_tx <- rse_tx[rownames(rse_tx) %in% sig_transcripts, , drop = FALSE]
+
+    ## TODO: consider adding checks for determining if these transcripts
+    ## are lowly expressed. Related to the tryCatch() call in k_qsvs()
     return(rse_tx)
 }
