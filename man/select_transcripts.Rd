@@ -2,7 +2,7 @@
 % Please edit documentation in R/select_transcripts.R
 \name{select_transcripts}
 \alias{select_transcripts}
-\title{Select degradation related transcripts}
+\title{Select transcripts associated with degradation}
 \usage{
 select_transcripts(type = c("cell_component", "top1500"))
 }
@@ -17,6 +17,11 @@ A \code{character()} with the transcript IDs.
 TODO Description
 }
 \examples{
+## Default set of transcripts associated with degradation
 sig_transcripts <- select_transcripts()
+length(sig_trancripts)
+head(sig_transcripts)
+
+## Example where match.arg() auto-completes
 select_transcripts("top")
 }

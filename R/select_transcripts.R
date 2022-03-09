@@ -1,4 +1,4 @@
-#' Select degradation related transcripts
+#' Select transcripts associated with degradation
 #'
 #' TODO Description
 #'
@@ -9,7 +9,12 @@
 #' @export
 #'
 #' @examples
+#' ## Default set of transcripts associated with degradation
 #' sig_transcripts <- select_transcripts()
+#' length(sig_trancripts)
+#' head(sig_transcripts)
+#'
+#' ## Example where match.arg() auto-completes
 #' select_transcripts("top")
 select_transcripts <- function(type = c("cell_component", "top1500")) {
     type <- match.arg(type)
