@@ -65,7 +65,11 @@ necessary to remove the effect of degradation in differential expression.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">getDegTx</span><span class="op">(</span><span class="va">rse_tx</span>, sig_transcripts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">covComb_tx_deg</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">getDegTx</span><span class="op">(</span>
+  <span class="va">rse_tx</span>,
+  type <span class="op">=</span> <span class="st">"cell_component"</span>,
+  sig_transcripts <span class="op">=</span> <span class="fu"><a href="select_transcripts.html">select_transcripts</a></span><span class="op">(</span><span class="va">type</span><span class="op">)</span>
+<span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -73,6 +77,9 @@ necessary to remove the effect of degradation in differential expression.</p>
     <dl><dt>rse_tx</dt>
 <dd><p>A <a href="https://rdrr.io/pkg/SummarizedExperiment/man/RangedSummarizedExperiment-class.html" class="external-link">RangedSummarizedExperiment-class</a> object containing
 the transcript data desired to be studied.</p></dd>
+<dt>type</dt>
+<dd><p>A <code>character(1)</code> specifying the transcripts set type. These
+were determined by Joshua M. Stolz et al, 2022.</p></dd>
 <dt>sig_transcripts</dt>
 <dd><p>A list of transcripts determined to haave degradation signal in the qsva expanded paper.</p></dd>
 </dl></div>

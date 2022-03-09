@@ -211,7 +211,7 @@ for the <code>--qsva</code> flag.</p>
 <span class="co">#&gt;   rse_tx</span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># obtain transcripts with degradation signature</span>
-<span class="va">DegTx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getDegTx.html">getDegTx</a></span><span class="op">(</span><span class="va">rse_tx</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">covComb_tx_deg</span><span class="op">)</span><span class="op">)</span>
+<span class="va">DegTx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getDegTx.html">getDegTx</a></span><span class="op">(</span><span class="va">rse_tx</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">DegTx</span><span class="op">)</span>
 <span class="co">#&gt; [1] 2976  900</span></code></pre></div>
 <p>###Get principal components The qsvs are derived from taking the
@@ -397,9 +397,9 @@ Johnson, Parker, Fertig, Jaffe, Zhang, Storey, and Torres, 2021)</li>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://yihui.org/knitr/" class="external-link">"knitr"</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit.html" class="external-link">knit</a></span><span class="op">(</span><span class="st">"Intro_qsvaR.Rmd"</span>, tangle <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p>Date the vignette was generated.</p>
-<pre><code><span class="co">#&gt; [1] "2022-03-09 15:01:31 UTC"</span></code></pre>
+<pre><code><span class="co">#&gt; [1] "2022-03-09 15:07:39 UTC"</span></code></pre>
 <p>Wallclock time spent generating the vignette.</p>
-<pre><code><span class="co">#&gt; Time difference of 1.531 mins</span></code></pre>
+<pre><code><span class="co">#&gt; Time difference of 1.267 mins</span></code></pre>
 <p><code>R</code> session information.</p>
 <pre><code><span class="co">#&gt; <span style="color: #00BBBB; font-weight: bold;">─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────</span></span>
 <span class="co">#&gt;  <span style="color: #555555; font-style: italic;">setting </span> <span style="color: #555555; font-style: italic;">value</span></span>

@@ -147,7 +147,7 @@ qSVs.</p>
 <span class="co">#&gt;   rse_tx</span>
 
 <span class="co">## Next we get the degraded transcripts for qSVA</span>
-<span class="va">DegTx</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/getDegTx.html">getDegTx</a></span><span class="op">(</span><span class="va">rse_tx</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">covComb_tx_deg</span><span class="op">)</span><span class="op">)</span>
+<span class="va">DegTx</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/getDegTx.html">getDegTx</a></span><span class="op">(</span><span class="va">rse_tx</span><span class="op">)</span>
 
 <span class="co">## Now we can compute the Principal Components (PCs) of the degraded transcripts</span>
 <span class="va">pcTx</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/getPCs.html">getPCs</a></span><span class="op">(</span><span class="va">DegTx</span>, <span class="st">"tpm"</span><span class="op">)</span>
