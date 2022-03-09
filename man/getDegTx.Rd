@@ -4,11 +4,18 @@
 \alias{getDegTx}
 \title{Funtion to obtain expression matrix for degraded transcripts}
 \usage{
-getDegTx(rse_tx, type, sig_transcripts = select_transcripts(type))
+getDegTx(
+  rse_tx,
+  type = "cell_component",
+  sig_transcripts = select_transcripts(type)
+)
 }
 \arguments{
 \item{rse_tx}{A \link[SummarizedExperiment:RangedSummarizedExperiment-class]{RangedSummarizedExperiment-class} object containing
 the transcript data desired to be studied.}
+
+\item{type}{A \code{character(1)} specifying the transcripts set type. These
+were determined by Joshua M. Stolz et al, 2022.}
 
 \item{sig_transcripts}{A list of transcripts determined to haave degradation signal in the qsva expanded paper.}
 }

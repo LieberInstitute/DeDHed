@@ -4,7 +4,7 @@
 \alias{select_transcripts}
 \title{Select degradation related transcripts}
 \usage{
-select_transcripts(type)
+select_transcripts(type = c("cell_component", "top1500"))
 }
 \arguments{
 \item{type}{A \code{character(1)} specifying the transcripts set type. These
@@ -17,5 +17,6 @@ A \code{character()} with the transcript IDs.
 TODO Description
 }
 \examples{
-select_transcripts()
+sig_transcripts <- select_transcripts()
+select_transcripts("top")
 }

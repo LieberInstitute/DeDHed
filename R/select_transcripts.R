@@ -9,7 +9,13 @@
 #' @export
 #'
 #' @examples
-#' select_transcripts()
-select_transcripts <- function(type) {
-    rownames(covComb_tx_deg)
+#' sig_transcripts <- select_transcripts()
+#' select_transcripts("top")
+select_transcripts <- function(type = c("cell_component", "top1500")) {
+    type <- match.arg(type)
+    if (type == "cell_component") {
+        return(rownames(covComb_tx_deg))
+    } else if (type == "top1500") {
+        return("TODO")
+    }
 }

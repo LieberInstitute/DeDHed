@@ -75,7 +75,7 @@ load(rse_file, verbose = TRUE)
 #>   rse_tx
 
 ## Next we get the degraded transcripts for qSVA
-DegTx <- getDegTx(rse_tx, rownames(covComb_tx_deg))
+DegTx <- getDegTx(rse_tx)
 
 ## Now we can compute the Principal Components (PCs) of the degraded transcripts
 pcTx <- getPCs(DegTx, "tpm")

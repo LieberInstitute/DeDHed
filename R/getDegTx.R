@@ -7,6 +7,7 @@
 #' the transcript data desired to be studied.
 #'
 #' @param sig_transcripts A list of transcripts determined to haave degradation signal in the qsva expanded paper.
+#' @inheritParams select_transcripts
 #'
 #' @return A
 #'  [RangedSummarizedExperiment-class][SummarizedExperiment::RangedSummarizedExperiment-class]
@@ -17,7 +18,7 @@
 #'
 #' @examples
 #' getDegTx(covComb_tx_deg)
-getDegTx <- function(rse_tx, type, sig_transcripts = select_transcripts(type)) {
+getDegTx <- function(rse_tx, type = "cell_component", sig_transcripts = select_transcripts(type)) {
     stopifnot(is(rse_tx, "RangedSummarizedExperiment"))
     rse_tx <- rse_tx[rownames(rse_tx) %in% sig_transcripts, , drop = FALSE]
 

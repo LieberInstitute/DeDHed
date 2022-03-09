@@ -127,7 +127,7 @@ load(rse_file, verbose = TRUE)
 
 ```{r "Get Degraded Transcripts"}
 # obtain transcripts with degradation signature
-DegTx <- getDegTx(rse_tx, rownames(covComb_tx_deg))
+DegTx <- getDegTx(rse_tx)
 dim(DegTx)
 ```
 
