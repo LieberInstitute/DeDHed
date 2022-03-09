@@ -65,7 +65,7 @@ necessary to remove the effect of degradation in differential expression.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">getDegTx</span><span class="op">(</span><span class="va">rse_tx</span>, <span class="va">sig_transcripts</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">getDegTx</span><span class="op">(</span><span class="va">rse_tx</span>, sig_transcripts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">covComb_tx_deg</span><span class="op">)</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -84,7 +84,7 @@ the transcript data desired to be studied.</p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">getDegTx</span><span class="op">(</span><span class="va">covComb_tx_deg</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">covComb_tx_deg</span><span class="op">)</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">getDegTx</span><span class="op">(</span><span class="va">covComb_tx_deg</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> class: RangedSummarizedExperiment </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> dim: 2976 119 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> metadata(0):</span>

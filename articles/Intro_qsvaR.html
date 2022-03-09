@@ -86,7 +86,7 @@ Stolz</h4>
 Development<br><a class="author_email" href="mailto:#"></a><a href="mailto:josh.stolz@libd.org" class="email">josh.stolz@libd.org</a>
       </address>
                   
-            <h4 data-toc-skip class="date">8 March 2022</h4>
+            <h4 data-toc-skip class="date">9 March 2022</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/LieberInstitute/qsvaR/blob/HEAD/vignettes/Intro_qsvaR.Rmd" class="external-link"><code>vignettes/Intro_qsvaR.Rmd</code></a></small>
       <div class="hidden name"><code>Intro_qsvaR.Rmd</code></div>
@@ -333,8 +333,8 @@ DE without qsvs</p>
 <p>Next we should subset our differential expression output to just the
 t-statistic</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">DE_noqsv</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>t <span class="op">=</span> <span class="va">sigTx_noqsv</span><span class="op">$</span><span class="va">t</span>, row.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">sigTx_noqsv</span><span class="op">)</span><span class="op">)</span>
-<span class="va">DE</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>t <span class="op">=</span> <span class="va">sigTx</span><span class="op">$</span><span class="va">t</span>, row.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">sigTx</span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">DE_noqsv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>t <span class="op">=</span> <span class="va">sigTx_noqsv</span><span class="op">$</span><span class="va">t</span>, row.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">sigTx_noqsv</span><span class="op">)</span><span class="op">)</span>
+<span class="va">DE</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>t <span class="op">=</span> <span class="va">sigTx</span><span class="op">$</span><span class="va">t</span>, row.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">sigTx</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">DE</span><span class="op">)</span>
 <span class="co">#&gt;                           t</span>
 <span class="co">#&gt; ENST00000553142.5 -5.981344</span>
@@ -397,9 +397,9 @@ Johnson, Parker, Fertig, Jaffe, Zhang, Storey, and Torres, 2021)</li>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://yihui.org/knitr/" class="external-link">"knitr"</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit.html" class="external-link">knit</a></span><span class="op">(</span><span class="st">"Intro_qsvaR.Rmd"</span>, tangle <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p>Date the vignette was generated.</p>
-<pre><code><span class="co">#&gt; [1] "2022-03-08 21:19:50 UTC"</span></code></pre>
+<pre><code><span class="co">#&gt; [1] "2022-03-09 15:01:31 UTC"</span></code></pre>
 <p>Wallclock time spent generating the vignette.</p>
-<pre><code><span class="co">#&gt; Time difference of 1.222 mins</span></code></pre>
+<pre><code><span class="co">#&gt; Time difference of 1.531 mins</span></code></pre>
 <p><code>R</code> session information.</p>
 <pre><code><span class="co">#&gt; <span style="color: #00BBBB; font-weight: bold;">─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────</span></span>
 <span class="co">#&gt;  <span style="color: #555555; font-style: italic;">setting </span> <span style="color: #555555; font-style: italic;">value</span></span>
@@ -411,7 +411,7 @@ Johnson, Parker, Fertig, Jaffe, Zhang, Storey, and Torres, 2021)</li>
 <span class="co">#&gt;  collate  en_US.UTF-8</span>
 <span class="co">#&gt;  ctype    en_US.UTF-8</span>
 <span class="co">#&gt;  tz       UTC</span>
-<span class="co">#&gt;  date     2022-03-08</span>
+<span class="co">#&gt;  date     2022-03-09</span>
 <span class="co">#&gt;  pandoc   2.17.1.1 @ /usr/local/bin/ (via rmarkdown)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; <span style="color: #00BBBB; font-weight: bold;">─ Packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────</span></span>
@@ -487,7 +487,7 @@ Johnson, Parker, Fertig, Jaffe, Zhang, Storey, and Torres, 2021)</li>
 <span class="co">#&gt;  plyr                   1.8.6    <span style="color: #555555;">2020-03-03</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.1.0)</span></span>
 <span class="co">#&gt;  png                    0.1-7    <span style="color: #555555;">2013-12-03</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.1.0)</span></span>
 <span class="co">#&gt;  purrr                  0.3.4    <span style="color: #555555;">2020-04-17</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.1.0)</span></span>
-<span class="co">#&gt;  qsvaR                * 0.99.0   <span style="color: #555555;">2022-03-08</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span>
+<span class="co">#&gt;  qsvaR                * 0.99.0   <span style="color: #555555;">2022-03-09</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span>
 <span class="co">#&gt;  R6                     2.5.1    <span style="color: #555555;">2021-08-19</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.1.0)</span></span>
 <span class="co">#&gt;  ragg                   1.2.2    <span style="color: #555555;">2022-02-21</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.1.0)</span></span>
 <span class="co">#&gt;  rappdirs               0.3.3    <span style="color: #555555;">2021-01-31</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.1.0)</span></span>
