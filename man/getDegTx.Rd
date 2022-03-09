@@ -4,7 +4,7 @@
 \alias{getDegTx}
 \title{Funtion to obtain expression matrix for degraded transcripts}
 \usage{
-getDegTx(rse_tx, sig_transcripts = rownames(covComb_tx_deg))
+getDegTx(rse_tx, type, sig_transcripts = select_transcripts(type))
 }
 \arguments{
 \item{rse_tx}{A \link[SummarizedExperiment:RangedSummarizedExperiment-class]{RangedSummarizedExperiment-class} object containing
