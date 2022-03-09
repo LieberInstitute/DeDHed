@@ -16,7 +16,7 @@
 #' mod <- model.matrix(~ mitoRate + Region + rRNA_rate + totalAssignedGene + RIN, data = colData(covComb_tx_deg))
 #' k_qsvs(covComb_tx_deg, mod, "tpm")
 k_qsvs <- function(rse_tx, mod, assayname) {
-    if(qr(mod)$rank != ncol(mod)) {
+    if (qr(mod)$rank != ncol(mod)) {
         stop("The 'mod' matrix is not full rank.", call. = FALSE)
     }
 

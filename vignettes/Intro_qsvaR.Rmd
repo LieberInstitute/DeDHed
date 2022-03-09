@@ -213,8 +213,8 @@ head(sigTx_noqsv)
 
 Next we should subset our differential expression output to just the t-statistic
 ```{r "subset to t-statistics"}
-DE_noqsv<-data.frame(t = sigTx_noqsv$t, row.names = rownames(sigTx_noqsv))
-DE<-data.frame(t = sigTx$t, row.names = rownames(sigTx))
+DE_noqsv <- data.frame(t = sigTx_noqsv$t, row.names = rownames(sigTx_noqsv))
+DE <- data.frame(t = sigTx$t, row.names = rownames(sigTx))
 head(DE)
 ```
 

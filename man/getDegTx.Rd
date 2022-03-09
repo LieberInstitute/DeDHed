@@ -4,7 +4,7 @@
 \alias{getDegTx}
 \title{Funtion to obtain expression matrix for degraded transcripts}
 \usage{
-getDegTx(rse_tx, sig_transcripts)
+getDegTx(rse_tx, sig_transcripts = rownames(covComb_tx_deg))
 }
 \arguments{
 \item{rse_tx}{A \link[SummarizedExperiment:RangedSummarizedExperiment-class]{RangedSummarizedExperiment-class} object containing
@@ -22,5 +22,5 @@ This function is used to obtain a \link[SummarizedExperiment:RangedSummarizedExp
 necessary to remove the effect of degradation in differential expression.
 }
 \examples{
-getDegTx(covComb_tx_deg, rownames(covComb_tx_deg))
+getDegTx(covComb_tx_deg)
 }
