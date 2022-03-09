@@ -11,7 +11,7 @@
 #' @examples
 #' ## Default set of transcripts associated with degradation
 #' sig_transcripts <- select_transcripts()
-#' length(sig_trancripts)
+#' length(sig_transcripts)
 #' head(sig_transcripts)
 #'
 #' ## Example where match.arg() auto-completes
