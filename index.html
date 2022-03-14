@@ -166,6 +166,13 @@ qSVs.</p>
 <span class="va">qsvs</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_qsvs.html">get_qsvs</a></span><span class="op">(</span><span class="va">pcTx</span>, <span class="va">k</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">qsvs</span><span class="op">)</span>
 <span class="co">#&gt; [1] 900  34</span></code></pre></div>
+<p>This can be done in one step with our wrapper function
+<code>qSVA</code> which just combinds all the previous mentioned
+functions.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">qsvs</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/qSVA.html">qSVA</a></span><span class="op">(</span>rse_tx <span class="op">=</span> <span class="va">rse_tx</span>, type <span class="op">=</span> <span class="st">"cell_component"</span>, mod <span class="op">=</span> <span class="va">mod</span>, assayname <span class="op">=</span> <span class="st">"tpm"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">qsvs</span><span class="op">)</span>
+<span class="co">#&gt; [1] 900  34</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="differential-expression">Differential Expression<a class="anchor" aria-label="anchor" href="#differential-expression"></a>
@@ -176,7 +183,7 @@ qSVs to the statisical model we use through <code><a href="https://rdrr.io/r/sta
 Here we input our <code>Ranged SummarizedExperiment</code> object and
 our <code>model.matrix</code> with qSVs. The expected output is a sigTx
 object that shows the results of differential expression.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="http://bioinf.wehi.edu.au/limma" class="external-link">"limma"</a></span><span class="op">)</span>
 
 <span class="co">## Add the qSVs to our statistical model</span>
@@ -228,12 +235,12 @@ lack of relationship between the x and y variables.</p>
 <div class="figure">
 <img src="./reference/figures/DEqual_example.png" alt=""><p class="caption">figure</p>
 </div>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/DEqual.html">DEqual</a></span><span class="op">(</span><span class="va">sigTx</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-DEqual-1.png" width="100%"></p>
 <p>For comparison, here is the <code><a href="reference/DEqual.html">DEqual()</a></code> plot for the model
 without qSVs.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/DEqual.html">DEqual</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/limma/man/toptable.html" class="external-link">topTable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/limma/man/ebayes.html" class="external-link">eBayes</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/limma/man/lmFit.html" class="external-link">lmFit</a></span><span class="op">(</span><span class="va">txExprs</span>, <span class="va">mod</span><span class="op">)</span><span class="op">)</span>, coef <span class="op">=</span> <span class="fl">2</span>, p.value <span class="op">=</span> <span class="fl">1</span>, number <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">rse_tx</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; Warning: Zero sample variances detected, have been offset away from zero</span></code></pre></div>
 <p><img src="reference/figures/README-DEqual-no-qSVs-1.png" width="100%"></p>
