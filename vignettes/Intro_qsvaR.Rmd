@@ -155,6 +155,13 @@ Finally we subset our data to the calculated number of PCs. The output of this f
 qsvs <- get_qsvs(qsvPCs = pcTx, k = k)
 dim(qsvs)
 ```
+This can be done in one step with our wrapper function `qSVA` which just combinds all the previous mentioned functions.
+
+```{r "wrapper function"}
+qsvs <- qSVA(rse_tx = rse_tx, type = "cell_component", mod = mod, assayname = "tpm")
+dim(qsvs)
+```
+
 
 ###Differential Expression
 Next we can use a standard limma package approach to do differential expression on the data. The key here is that we add our qsvs to the `model.matrix()`.
