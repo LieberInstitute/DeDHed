@@ -7,7 +7,8 @@
 k_qsvs(rse_tx, mod, assayname)
 }
 \arguments{
-\item{rse_tx}{Ranged Summarizeed Experiment with only trancsripts selected for qsva}
+\item{rse_tx}{A \link[SummarizedExperiment:RangedSummarizedExperiment-class]{RangedSummarizedExperiment-class} object containing
+the transcript data desired to be studied.}
 
 \item{mod}{Model Matrix with necessary variables the you would model for in differential expression}
 

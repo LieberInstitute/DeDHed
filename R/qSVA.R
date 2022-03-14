@@ -11,11 +11,12 @@
 #' @export
 #'
 #' @examples
-#' TODO
-qSVA<-function(rse_tx, type = "cell_component", sig_transcripts = select_transcripts(type), mod, assayname) {
-    DegTx<- getDegTx(rse_tx, type = type)
-    PCs<-getPCs(DegTx, assayname)
-    k <- k_qsvs(DegTx, mod=mod, assayname=assayname)
-    qSV<-get_qsvs(PCs, k)
+#' mod <- model.matrix(~ mitoRate + Region + rRNA_rate + totalAssignedGene + RIN, data = colData(covComb_tx_deg))
+#' qSVA(rse_tx = covComb_tx_deg, type = "cell_component", mod = mod, assayname = "tpm")
+qSVA <- function(rse_tx, type = "cell_component", sig_transcripts = select_transcripts(type), mod, assayname) {
+    DegTx <- getDegTx(rse_tx, type = type)
+    PCs <- getPCs(DegTx, assayname)
+    k <- k_qsvs(DegTx, mod = mod, assayname = assayname)
+    qSV <- get_qsvs(PCs, k)
     return(qSV)
 }
