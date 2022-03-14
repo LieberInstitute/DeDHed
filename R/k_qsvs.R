@@ -1,10 +1,9 @@
-
-
 #' Apply num.sv algorithm to determine the number of pcs to be included
 #'
 #'
 #'
-#' @param rse_tx Ranged Summarizeed Experiment with only trancsripts selected for qsva
+#' @param rse_tx A [RangedSummarizedExperiment-class][SummarizedExperiment::RangedSummarizedExperiment-class] object containing
+#' the transcript data desired to be studied.
 #' @param mod  Model Matrix with necessary variables the you would model for in differential expression
 #' @param assayname character string specifying the name of the assay desired in rse_tx
 #'
