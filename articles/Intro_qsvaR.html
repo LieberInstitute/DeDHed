@@ -251,10 +251,17 @@ going to include as calculated in the previous step.</p>
 <span class="va">qsvs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_qsvs.html">get_qsvs</a></span><span class="op">(</span>qsvPCs <span class="op">=</span> <span class="va">pcTx</span>, k <span class="op">=</span> <span class="va">k</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">qsvs</span><span class="op">)</span>
 <span class="co">#&gt; [1] 900  34</span></code></pre></div>
+<p>This can be done in one step with our wrapper function
+<code>qSVA</code> which just combinds all the previous mentioned
+functions.</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">qsvs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/qSVA.html">qSVA</a></span><span class="op">(</span>rse_tx <span class="op">=</span> <span class="va">rse_tx</span>, type <span class="op">=</span> <span class="st">"cell_component"</span>, mod <span class="op">=</span> <span class="va">mod</span>, assayname <span class="op">=</span> <span class="st">"tpm"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">qsvs</span><span class="op">)</span>
+<span class="co">#&gt; [1] 900  34</span></code></pre></div>
 <p>###Differential Expression Next we can use a standard limma package
 approach to do differential expression on the data. The key here is that
 we add our qsvs to the <code><a href="https://rdrr.io/r/stats/model.matrix.html" class="external-link">model.matrix()</a></code>.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">### should be done by cbinding mod to pcs</span>
 <span class="co">## subset to an expression cutoff</span>
 <span class="va">rse_tx</span> <span class="op">&lt;-</span> <span class="va">rse_tx</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">rowData</a></span><span class="op">(</span><span class="va">rse_tx</span><span class="op">)</span><span class="op">$</span><span class="va">passExprsCut</span>, <span class="op">]</span>
@@ -292,7 +299,7 @@ any individual transcript. These transcripts are however significant and
 it might be valuable to repeat the analysis at gene level. At gene level
 the results can be used to do gene ontology enrichment with packages
 such as clusterprofiler.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># get expression for most significant gene</span>
 <span class="va">yy</span> <span class="op">&lt;-</span> <span class="va">txExprs</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">txExprs</span><span class="op">)</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">sigTx</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, <span class="op">]</span>
 <span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html" class="external-link">boxplot</a></span><span class="op">(</span><span class="va">yy</span> <span class="op">~</span> <span class="va">rse_tx</span><span class="op">$</span><span class="va">Dx</span>,
@@ -303,7 +310,7 @@ such as clusterprofiler.</p>
 <p><img src="Intro_qsvaR_files/figure-html/DE%20plot-1.png" width="700"></p>
 <p>We can assess the effectiveness of our analysis by first performing
 DE without qsvs</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># log tranform transcript expression</span>
 <span class="va">txExprs_noqsv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log2</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">assays</a></span><span class="op">(</span><span class="va">rse_tx</span><span class="op">)</span><span class="op">$</span><span class="va">tpm</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span>
 <span class="co"># linear model differential expression with generic model</span>
@@ -332,7 +339,7 @@ DE without qsvs</p>
 <span class="co">#&gt; ENST00000412814.1 19.98506</span></code></pre></div>
 <p>Next we should subset our differential expression output to just the
 t-statistic</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">DE_noqsv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>t <span class="op">=</span> <span class="va">sigTx_noqsv</span><span class="op">$</span><span class="va">t</span>, row.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">sigTx_noqsv</span><span class="op">)</span><span class="op">)</span>
 <span class="va">DE</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>t <span class="op">=</span> <span class="va">sigTx</span><span class="op">$</span><span class="va">t</span>, row.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">sigTx</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">DE</span><span class="op">)</span>
@@ -349,12 +356,12 @@ output. We can see in the first model we have a .5 correlation between
 degradation t-statistics and our differential expression. This means the
 data is likely confounded for degradation and will lead to many false
 positives.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/DEqual.html">DEqual</a></span><span class="op">(</span><span class="va">DE_noqsv</span><span class="op">)</span></code></pre></div>
 <p><img src="Intro_qsvaR_files/figure-html/Generate%20DEqual%20without%20qSVs-1.png" width="700"></p>
 <p>We can see that in that in the plot below wehn we add qSVs to our
 model we reduce the assoication with degradation.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/DEqual.html">DEqual</a></span><span class="op">(</span><span class="va">DE</span><span class="op">)</span></code></pre></div>
 <p><img src="Intro_qsvaR_files/figure-html/Generate%20DEqual%20with%20qSVs-1.png" width="700">
 # Reproducibility</p>
@@ -388,7 +395,7 @@ Johnson, Parker, Fertig, Jaffe, Zhang, Storey, and Torres, 2021)</li>
 </ul>
 <p>This package was developed using <em><a href="https://bioconductor.org/packages/3.14/biocthis" class="external-link">biocthis</a></em>.</p>
 <p>Code for creating the vignette</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Create the vignette</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/rstudio/rmarkdown" class="external-link">"rmarkdown"</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="fu"><a href="https://pkgs.rstudio.com/rmarkdown/reference/render.html" class="external-link">render</a></span><span class="op">(</span><span class="st">"Intro_qsvaR.Rmd"</span>, <span class="st">"BiocStyle::html_document"</span><span class="op">)</span><span class="op">)</span>
@@ -397,9 +404,9 @@ Johnson, Parker, Fertig, Jaffe, Zhang, Storey, and Torres, 2021)</li>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://yihui.org/knitr/" class="external-link">"knitr"</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit.html" class="external-link">knit</a></span><span class="op">(</span><span class="st">"Intro_qsvaR.Rmd"</span>, tangle <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p>Date the vignette was generated.</p>
-<pre><code><span class="co">#&gt; [1] "2022-03-14 15:35:30 UTC"</span></code></pre>
+<pre><code><span class="co">#&gt; [1] "2022-03-14 19:16:23 UTC"</span></code></pre>
 <p>Wallclock time spent generating the vignette.</p>
-<pre><code><span class="co">#&gt; Time difference of 1.28 mins</span></code></pre>
+<pre><code><span class="co">#&gt; Time difference of 1.336 mins</span></code></pre>
 <p><code>R</code> session information.</p>
 <pre><code><span class="co">#&gt; <span style="color: #00BBBB; font-weight: bold;">─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────</span></span>
 <span class="co">#&gt;  <span style="color: #555555; font-style: italic;">setting </span> <span style="color: #555555; font-style: italic;">value</span></span>
