@@ -1,10 +1,11 @@
 #' A wrapper function used to perform qSVA in one step.
 #'
-#' @param rse_tx TODO
-#' @param type TODO
-#' @param sig_transcripts TODO
-#' @param mod TODO
-#' @param assayname TODO
+#' @param rse_tx A [RangedSummarizedExperiment-class][SummarizedExperiment::RangedSummarizedExperiment-class] object containing
+#' the transcript data desired to be studied.
+#' @param type a character string specifying which model you would like to use when selecting a degradation matrix.
+#' @param sig_transcripts A list of transcripts determined to have degradation signal in the qsva expanded paper.
+#' @param mod Model Matrix with necessary variables the you would model for in differential expression
+#' @param assayname character string specifying the name of the assay desired in rse_tx
 #'
 #' @return
 #' @export
