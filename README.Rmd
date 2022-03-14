@@ -87,6 +87,13 @@ qsvs <- get_qsvs(pcTx, k)
 dim(qsvs)
 ```
 
+This can be done in one step with our wrapper function `qSVA` which just combinds all the previous mentioned functions.
+
+```{r "wrapper function"}
+qsvs <- qSVA(rse_tx = rse_tx, type = "cell_component", mod = mod, assayname = "tpm")
+dim(qsvs)
+```
+
 ## Differential Expression
 
 Next we can use a standard `limma` package approach to do differential expression on the data. The key here is that we add our qSVs to the statisical model we use through `model.matrix()`. 

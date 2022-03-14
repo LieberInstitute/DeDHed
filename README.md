@@ -99,6 +99,15 @@ dim(qsvs)
 #> [1] 900  34
 ```
 
+This can be done in one step with our wrapper function `qSVA` which just
+combinds all the previous mentioned functions.
+
+``` r
+qsvs <- qSVA(rse_tx = rse_tx, type = "cell_component", mod = mod, assayname = "tpm")
+dim(qsvs)
+#> [1] 900  34
+```
+
 ## Differential Expression
 
 Next we can use a standard `limma` package approach to do differential
