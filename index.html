@@ -87,13 +87,17 @@ complex datasets. In the case of postmortem brain tissue we are tasked
 with removing the effects of bench degradation. The qsvaR package
 combines an established method for removing the effects of degradation
 from RNA-seq data with easy to use functions. The first step in this
-workflow is to create an <code>Ranged Summarized Experiment</code>
+workflow is to create an <code>Ranged Summarized Experiment</code>[<a href="https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class" class="external-link uri">https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class</a>]
 object with the transcripts identified in our qsva experiment. If you
-already have a <code>Ranged Summarized Experiment</code> of transcripts
-we can do this with the getDegTx function as shown below.If not this can
-be generated with the <code>SPEAQeasy</code> pipeline usinge the
-<code>--qsva</code> flag. This flage requires a full path to a text
-file, containing one Ensembl transcript ID per line for each transcript
+already have a <code>Ranged Summarized Experiment</code>[<a href="https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class" class="external-link uri">https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class</a>]
+of transcripts we can do this with the getDegTx function as shown
+below.If not this can be generated with the <code>SPEAQeasy</code> (a
+RNA-seq pipeline maintained by our lab) pipeline usinge the
+<code>--qsva</code> flag. If you already have a
+<code>Ranged Summarized Experiment</code>[<a href="https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class" class="external-link uri">https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class</a>]
+object with transcripts then you do not need to run
+<code>SPEAQeasy</code>. This flag requires a full path to a text file,
+containing one Ensembl transcript ID per line for each transcript
 desired in the final transcripts R output object (called
 <code>rse_tx</code>). The <code>sig_transcripts</code> argument in this
 package should contain the same Ensembl transcript IDs as the text file
@@ -120,12 +124,12 @@ RNA-seq data.</p>
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
 <p>This is a basic example which shows you how to obtain the quality
-surrogate variables (qSVs) for the brainseq phase II dataset. At the
-start of this script we will have a
-<code>Ranged SummmarizedExperiment</code> and a list of all the
-transcripts found in our degradation study. At the end we will have a
-table with differential expression results that is adjusted for
-qSVs.</p>
+surrogate variables (qSVs) for the brainseq
+<code>phase II dataset</code>[<a href="http://eqtl.brainseq.org/phase2" class="external-link uri">http://eqtl.brainseq.org/phase2</a>]. At the start of this
+script we will have a <code>Ranged SummmarizedExperiment</code>[<a href="https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class" class="external-link uri">https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class</a>]
+and a list of all the transcripts found in our degradation study. At the
+end we will have a table with differential expression results that is
+adjusted for qSVs.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## R packages we'll use</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/LieberInstitute/qsvaR" class="external-link">"qsvaR"</a></span><span class="op">)</span>
