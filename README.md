@@ -54,8 +54,12 @@ devtools::install_github("LieberInstitute/qsvaR")
 
 This is a basic example which shows you how to obtain the quality
 surrogate variables (qSVs) for the brainseq
-`phase II dataset`\[<http://eqtl.brainseq.org/phase2>\]. At the start of
-this script we will have a
+`phase II dataset`\[<http://eqtl.brainseq.org/phase2>\]. qSVs are
+essentially pricipal components from an rna-seq experiment designed to
+model bench degradation. For more on principal components you can read
+and introductory article
+`here`\[<https://towardsdatascience.com/tidying-up-with-pca-an-introduction-to-principal-components-analysis-f876599af383>\].
+At the start of this script we will have a
 `Ranged SummmarizedExperiment`\[<https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class>\]
 and a list of all the transcripts found in our degradation study. At the
 end we will have a table with differential expression results that is
