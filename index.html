@@ -125,8 +125,12 @@ RNA-seq data.</p>
 </h2>
 <p>This is a basic example which shows you how to obtain the quality
 surrogate variables (qSVs) for the brainseq
-<code>phase II dataset</code>[<a href="http://eqtl.brainseq.org/phase2" class="external-link uri">http://eqtl.brainseq.org/phase2</a>]. At the start of this
-script we will have a <code>Ranged SummmarizedExperiment</code>[<a href="https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class" class="external-link uri">https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class</a>]
+<code>phase II dataset</code>[<a href="http://eqtl.brainseq.org/phase2" class="external-link uri">http://eqtl.brainseq.org/phase2</a>]. qSVs are essentially
+pricipal components from an rna-seq experiment designed to model bench
+degradation. For more on principal components you can read and
+introductory article <code>here</code>[<a href="https://towardsdatascience.com/tidying-up-with-pca-an-introduction-to-principal-components-analysis-f876599af383" class="external-link uri">https://towardsdatascience.com/tidying-up-with-pca-an-introduction-to-principal-components-analysis-f876599af383</a>].
+At the start of this script we will have a
+<code>Ranged SummmarizedExperiment</code>[<a href="https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class" class="external-link uri">https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class</a>]
 and a list of all the transcripts found in our degradation study. At the
 end we will have a table with differential expression results that is
 adjusted for qSVs.</p>
