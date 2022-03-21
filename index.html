@@ -189,8 +189,13 @@ functions.</p>
 differential expression on the data. The key here is that we add our
 qSVs to the statisical model we use through <code><a href="https://rdrr.io/r/stats/model.matrix.html" class="external-link">model.matrix()</a></code>.
 Here we input our <code>Ranged SummarizedExperiment</code> object and
-our <code>model.matrix</code> with qSVs. The expected output is a sigTx
-object that shows the results of differential expression.</p>
+our <code>model.matrix</code> with qSVs. Note here that the
+<code>Ranged SummarizedExperiment</code> object is the orignal object
+loaded with the full list of transcripts, not the the one we subsetted
+for qSVs. This is because while PCs can be generated from a subset of
+genes, differential expression is best done on the full dataset. The
+expected output is a sigTx object that shows the results of differential
+expression.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="http://bioinf.wehi.edu.au/limma" class="external-link">"limma"</a></span><span class="op">)</span>
 
