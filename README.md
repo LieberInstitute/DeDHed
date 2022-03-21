@@ -11,17 +11,24 @@ datasets. In the case of postmortem brain tissue we are tasked with
 removing the effects of bench degradation. The qsvaR package combines an
 established method for removing the effects of degradation from RNA-seq
 data with easy to use functions. The first step in this workflow is to
-create an `Ranged Summarized Experiment` object with the transcripts
-identified in our qsva experiment. If you already have a
-`Ranged Summarized Experiment` of transcripts we can do this with the
-getDegTx function as shown below.If not this can be generated with the
-`SPEAQeasy` pipeline usinge the `--qsva` flag. This flage requires a
-full path to a text file, containing one Ensembl transcript ID per line
-for each transcript desired in the final transcripts R output object
-(called `rse_tx`). The `sig_transcripts` argument in this package should
-contain the same Ensembl transcript IDs as the text file for the
-`--qsva` flag.The goal of `qsvaR` is to provide software that can remove
-the effects of bench degradation from RNA-seq data.
+create an
+`Ranged Summarized Experiment`\[<https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class>\]
+object with the transcripts identified in our qsva experiment. If you
+already have a
+`Ranged Summarized Experiment`\[<https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class>\]
+of transcripts we can do this with the getDegTx function as shown
+below.If not this can be generated with the `SPEAQeasy` (a RNA-seq
+pipeline maintained by our lab) pipeline usinge the `--qsva` flag. If
+you already have a
+`Ranged Summarized Experiment`\[<https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class>\]
+object with transcripts then you do not need to run `SPEAQeasy`. This
+flag requires a full path to a text file, containing one Ensembl
+transcript ID per line for each transcript desired in the final
+transcripts R output object (called `rse_tx`). The `sig_transcripts`
+argument in this package should contain the same Ensembl transcript IDs
+as the text file for the `--qsva` flag.The goal of `qsvaR` is to provide
+software that can remove the effects of bench degradation from RNA-seq
+data.
 
 ## Installation Instructions
 
@@ -46,10 +53,12 @@ devtools::install_github("LieberInstitute/qsvaR")
 ## Example
 
 This is a basic example which shows you how to obtain the quality
-surrogate variables (qSVs) for the brainseq phase II dataset. At the
-start of this script we will have a `Ranged SummmarizedExperiment` and a
-list of all the transcripts found in our degradation study. At the end
-we will have a table with differential expression results that is
+surrogate variables (qSVs) for the brainseq
+`phase II dataset`\[<http://eqtl.brainseq.org/phase2>\]. At the start of
+this script we will have a
+`Ranged SummmarizedExperiment`\[<https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class>\]
+and a list of all the transcripts found in our degradation study. At the
+end we will have a table with differential expression results that is
 adjusted for qSVs.
 
 ``` r
