@@ -4,7 +4,7 @@
 \alias{select_transcripts}
 \title{Select transcripts associated with degradation}
 \usage{
-select_transcripts(type = c("cell_component", "top1500"))
+select_transcripts(type = c("cell_component", "top1500", "standard"))
 }
 \arguments{
 \item{type}{A \code{character(1)} specifying the transcripts set type. These

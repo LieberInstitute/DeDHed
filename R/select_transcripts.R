@@ -1,6 +1,6 @@
 #' Select transcripts associated with degradation
 #'
-#' TODO Description
+#' Helper function to select which experimental model will be used to generate the qSVs.
 #'
 #' @param type A `character(1)` specifying the transcripts set type. These
 #' were determined by Joshua M. Stolz et al, 2022.

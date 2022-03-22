@@ -5,10 +5,9 @@ random_de <- data.frame(
 
 
 test_that("output is a ggplot", {
-  expect_equal(class(DEqual(random_de))[1], "gg")
+    expect_equal(class(DEqual(random_de))[1], "gg")
 })
 
 test_that("output is a ggplot", {
-  expect_equal(class(DEqual(random_de))[2], "ggplot")
+    expect_equal(class(DEqual(random_de))[2], "ggplot")
 })
-
