@@ -13,6 +13,6 @@ test_that("output is a matrix", {
     expect_equal(class(qSVA(rse_tx = covComb_tx_deg, type = "cell_component", mod = mod, assayname = "tpm"))[1], "matrix")
 })
 
-test_that("output is an RSE", {
+test_that("output is an array", {
     expect_equal(class(qSVA(rse_tx = covComb_tx_deg, type = "cell_component", mod = mod, assayname = "tpm"))[2], "array")
 })
