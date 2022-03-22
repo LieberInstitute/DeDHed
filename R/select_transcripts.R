@@ -20,7 +20,6 @@ select_transcripts <- function(type = c("cell_component", "top1500", "standard")
     type <- match.arg(type)
     if (type == "cell_component") {
         return(transcripts$cell_component)
-
     } else if (type == "top1500") {
         return(transcripts$tx1500)
     } else if (type == "standard") {
