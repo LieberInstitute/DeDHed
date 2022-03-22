@@ -1,5 +1,5 @@
 test_that("length for number of rows is the same a length sig_transcripts", {
-  expect_equal(length(rownames(getDegTx(covComb_tx_deg))), length(sig_transcript))
+  expect_equal(length(rownames(getDegTx(covComb_tx_deg))), length(select_transcripts("cell_component")))
 })
 
 test_that("length for number of columns is the same a length sig_transcripts", {
