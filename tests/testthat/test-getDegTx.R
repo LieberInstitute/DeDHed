@@ -7,5 +7,5 @@ test_that("length for number of columns is the same a length sig_transcripts", {
 })
 
 test_that("output is an RSE", {
-  expect_equal(class(getDegTx(covComb_tx_deg)), "RangedSummarizedExperiment")
+  expect_equal(class(getDegTx(covComb_tx_deg)), class(covComb_tx_deg))
 })
