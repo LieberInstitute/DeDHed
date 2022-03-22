@@ -16,11 +16,14 @@
 #'
 #' ## Example where match.arg() auto-completes
 #' select_transcripts("top")
-select_transcripts <- function(type = c("cell_component", "top1500")) {
+select_transcripts <- function(type = c("cell_component", "top1500", "standard")) {
     type <- match.arg(type)
     if (type == "cell_component") {
-        return(rownames(covComb_tx_deg))
+        return(transcripts$cell_component)
+
     } else if (type == "top1500") {
-        return("TODO")
+        return(transcripts$tx1500)
+    } else if (type == "standard") {
+        return(transcripts$standard)
     }
 }
