@@ -2,7 +2,7 @@ mod <- model.matrix(~ mitoRate + Region + rRNA_rate + totalAssignedGene + RIN, d
 
 
 test_that("number of qsvs is k", {
-  expect_equal(length(colnames(qSVA(rse_tx = covComb_tx_deg, type = "cell_component", mod = mod, assayname = "tpm"))), k)
+  expect_equal(length(colnames(qSVA(rse_tx = covComb_tx_deg, type = "cell_component", mod = mod, assayname = "tpm"))), 10)
 })
 
 test_that("length of qsv rownames is the same as number of samples", {
