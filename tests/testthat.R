@@ -1,5 +1,4 @@
-library("testthat")
-library("qsvaR")
-
+library(testthat)
+library(qsvaR)
 
 test_check("qsvaR")
