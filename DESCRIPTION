@@ -17,6 +17,7 @@ RoxygenNote: 7.1.2
 Suggests: 
     BiocFileCache,
     BiocStyle,
+    covr,
     knitr,
     limma,
     RefManageR,
