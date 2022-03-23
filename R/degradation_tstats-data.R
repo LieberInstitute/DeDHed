@@ -4,7 +4,7 @@
 #' [covComb_tx_deg]. They are the results from main model where we determined
 #' the relationship with degradation time adjusting for the brain region (so
 #' parallel degradation effects across brain regions). They are used for
-#' plotting in `DEqual()`.#'
+#' plotting in `DEqual()`.
 #'
 #' @name degradation_tstats
 #' @docType data

@@ -1,8 +1,6 @@
 #' Transcripts for Degradation Models
 #'
-#' TODO.
-#'
-#'
+#' Description TODO.
 #'
 #' @name transcripts
 #' @docType data
@@ -10,3 +8,4 @@
 #' Each string is a GENCODE transcript IDs.
 #' @keywords datasets
 #' @seealso [select_transcripts]
+NULL

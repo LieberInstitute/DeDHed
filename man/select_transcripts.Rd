@@ -14,7 +14,7 @@ were determined by Joshua M. Stolz et al, 2022.}
 A \code{character()} with the transcript IDs.
 }
 \description{
-TODO Description
+Helper function to select which experimental model will be used to generate the qSVs.
 }
 \examples{
 ## Default set of transcripts associated with degradation
