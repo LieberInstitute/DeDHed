@@ -91,18 +91,17 @@ workflow is to create an <a href="https://www.rdocumentation.org/packages/Summar
 object with the transcripts identified in our qSVA experiment. If you
 already have a <a href="https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class" class="external-link"><code>RangedSummarizedExperiment</code></a>
 of transcripts we can do this with the <code><a href="reference/getDegTx.html">getDegTx()</a></code> function
-as shown below.If not this can be generated with the
-<code>SPEAQeasy</code> (a RNA-seq pipeline maintained by our lab)
-pipeline using the <code>--qsva</code> flag. If you already have a <a href="https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class" class="external-link"><code>RangedSummarizedExperiment</code></a>
-object with transcripts then you do not need to run
-<code>SPEAQeasy</code>. This flag requires a full path to a text file,
-containing one Ensembl transcript ID per line for each transcript
-desired in the final transcripts R output object (called
-<code>rse_tx</code>). The <code>sig_transcripts</code> argument in this
-package should contain the same Ensembl transcript IDs as the text file
-for the <code>--qsva</code> flag.The goal of <code>qsvaR</code> is to
-provide software that can remove the effects of bench degradation from
-RNA-seq data.</p>
+as shown below.If not this can be generated with the <a href="http://research.libd.org/SPEAQeasy/index.html" class="external-link"><code>SPEAQeasy</code></a>
+(a RNA-seq pipeline maintained by our lab) pipeline using the
+<code>--qsva</code> flag. If you already have a <a href="https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class" class="external-link"><code>RangedSummarizedExperiment</code></a>
+object with transcripts then you do not need to run <a href="http://research.libd.org/SPEAQeasy/index.html" class="external-link"><code>SPEAQeasy</code></a>.
+This flag requires a full path to a text file, containing one Ensembl
+transcript ID per line for each transcript desired in the final
+transcripts R output object (called <code>rse_tx</code>). The
+<code>sig_transcripts</code> argument in this package should contain the
+same Ensembl transcript IDs as the text file for the <code>--qsva</code>
+flag.The goal of <code>qsvaR</code> is to provide software that can
+remove the effects of bench degradation from RNA-seq data.</p>
 <div class="section level2">
 <h2 id="installation-instructions">Installation Instructions<a class="anchor" aria-label="anchor" href="#installation-instructions"></a>
 </h2>
