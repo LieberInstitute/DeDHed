@@ -4,6 +4,15 @@
 # qsvaR
 
 <!-- badges: start -->
+
+[![Lifecycle:
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![BioC
+status](http://www.bioconductor.org/shields/build/release/bioc/qsvaR.svg)](https://bioconductor.org/checkResults/release/bioc-LATEST/qsvaR)
+[![R-CMD-check-bioc](https://github.com/LieberInstitute/qsvaR/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/LieberInstitute/qsvaR/actions)
+[![Codecov test
+coverage](https://codecov.io/gh/LieberInstitute/qsvaR/branch/main/graph/badge.svg)](https://app.codecov.io/gh/LieberInstitute/qsvaR?branch=main)
+[![DOI](https://zenodo.org/badge/421556636.svg)](https://zenodo.org/badge/latestdoi/421556636)
 <!-- badges: end -->
 
 Differential expressions analysis requires the ability normalize complex
@@ -12,14 +21,14 @@ removing the effects of bench degradation. The qsvaR package combines an
 established method for removing the effects of degradation from RNA-seq
 data with easy to use functions. The first step in this workflow is to
 create an
-`Ranged Summarized Experiment`\[<https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class>\]
-object with the transcripts identified in our qsva experiment. If you
+[`RangedSummarizedExperiment`](https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class)
+object with the transcripts identified in our qSVA experiment. If you
 already have a
-`Ranged Summarized Experiment`\[<https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class>\]
-of transcripts we can do this with the getDegTx function as shown
+[`RangedSummarizedExperiment`](https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class)
+of transcripts we can do this with the `getDegTx()` function as shown
 below.If not this can be generated with the `SPEAQeasy` (a RNA-seq
-pipeline maintained by our lab) pipeline usinge the `--qsva` flag. If
-you already have a
+pipeline maintained by our lab) pipeline using the `--qsva` flag. If you
+already have a
 `Ranged Summarized Experiment`\[<https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class>\]
 object with transcripts then you do not need to run `SPEAQeasy`. This
 flag requires a full path to a text file, containing one Ensembl
@@ -125,14 +134,14 @@ dim(qsvs)
 
 Next we can use a standard `limma` package approach to do differential
 expression on the data. The key here is that we add our qSVs to the
-statisical model we use through `model.matrix()`. Here we input our
+statistical model we use through `model.matrix()`. Here we input our
 `Ranged SummarizedExperiment` object and our `model.matrix` with qSVs.
 Note here that the `Ranged SummarizedExperiment` object is the orignal
 object loaded with the full list of transcripts, not the the one we
 subsetted for qSVs. This is because while PCs can be generated from a
 subset of genes, differential expression is best done on the full
-dataset. The expected output is a sigTx object that shows the results of
-differential expression.
+dataset. The expected output is a `sigTx` object that shows the results
+of differential expression.
 
 ``` r
 library("limma")
@@ -179,12 +188,12 @@ differential expression model against the degradation time t-statistics
 adjusting for the six different brain regions. This type of plot is
 called `DEqual` plot and was shown in the initial qSVA framework paper
 ([Jaffe et al, PNAS, 2017](https://doi.org/10.1073/pnas.1617384114)). We
-are really looking for two patterns exemplified here in figure 1. A
-direct positive correlation with degradation shown in figure 1 on the
-right tells us that there is signal in the data associated with qSVs. An
-example of nonconfounded data or data that has been modeled can be seen
-in figure 1 on the right with its lack of relationship between the x and
-y variables.
+are really looking for two patterns exemplified here in Figure 1
+(cartoon shown earlier). A direct positive correlation with degradation
+shown in Figure 1 on the right tells us that there is signal in the data
+associated with qSVs. An example of nonconfounded data or data that has
+been modeled can be seen in Figure 1 on the right with its lack of
+relationship between the x and y variables.
 
 ![figure](./man/figures/DEqual_example.png)
 
