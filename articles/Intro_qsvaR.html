@@ -225,11 +225,13 @@ principal components (PCs) of the selected transcript expression data.
 This can be done with the function <code>getPCs</code>. qSVs are
 essentially pricipal components from an rna-seq experiment designed to
 model bench degradation. For more on principal components you can read
-and introductory article <code>here</code>[<a href="https://towardsdatascience.com/tidying-up-with-pca-an-introduction-to-principal-components-analysis-f876599af383" class="external-link uri">https://towardsdatascience.com/tidying-up-with-pca-an-introduction-to-principal-components-analysis-f876599af383</a>].
-<code>rse_tx</code> specifies a <code>RangedSummarizedExperiment</code>
+and introductory article <a href="https://towardsdatascience.com/tidying-up-with-pca-an-introduction-to-principal-components-analysis-f876599af383" class="external-link"><code>here</code></a>.
+<code>rse_tx</code> specifies a
+[<code>RangedSummarizedExperiment</code>] (<a href="https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class" class="external-link uri">https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class</a>)
 object that has the specified degraded transcripts. For us this is
 <code>DegTx</code>. Here <code>tpm</code> is the name of the assay we
-are using within the <code>RangedSummarizedExperiment</code> object.</p>
+are using within the <a href="https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class" class="external-link"><code>RangedSummarizedExperiment</code></a>
+object.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pcTx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getPCs.html">getPCs</a></span><span class="op">(</span>rse_tx <span class="op">=</span> <span class="va">DegTx</span>, assayname <span class="op">=</span> <span class="st">"tpm"</span><span class="op">)</span></code></pre></div>
 <p>Next we use the <code><a href="../reference/k_qsvs.html">k_qsvs()</a></code> function to calculate how many
@@ -252,7 +254,7 @@ with our <code><a href="https://rdrr.io/r/stats/model.matrix.html" class="extern
 <span class="co">#&gt; [1] 34</span></code></pre></div>
 <p>Finally we subset our data to the calculated number of PCs. The
 output of this function will be the qsvs for each sample. Here we use
-the <code>qsvBonf_tx</code> argument to enter the principal components
+the <code>qsvPCs</code> argument to enter the principal components
 (<code>pcTx</code>). Here the argument k is the number of PCs we are
 going to include as calculated in the previous step.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
@@ -270,9 +272,9 @@ functions.</p>
 <p>###Differential Expression Next we can use a standard limma package
 approach to do differential expression on the data. The key here is that
 we add our qsvs to the <code><a href="https://rdrr.io/r/stats/model.matrix.html" class="external-link">model.matrix()</a></code>. Here we input our
-<code>Ranged SummarizedExperiment</code> object and our
-<code>model.matrix</code> with qSVs. Note here that the
-<code>Ranged SummarizedExperiment</code> object is the orignal object
+<code>RangedSummarizedExperiment</code> object and our
+<code><a href="https://rdrr.io/r/stats/model.matrix.html" class="external-link">model.matrix()</a></code> with qSVs. Note here that the
+<code>RangedSummarizedExperiment</code> object is the orignal object
 loaded with the full list of transcripts, not the the one we subsetted
 for qSVs. This is because while PCs can be generated from a subset of
 genes, differential expression is best done on the full dataset. The
@@ -437,9 +439,9 @@ Johnson, Parker, Fertig, Jaffe, Zhang, Storey, and Torres, 2021)</li>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://yihui.org/knitr/" class="external-link">"knitr"</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit.html" class="external-link">knit</a></span><span class="op">(</span><span class="st">"Intro_qsvaR.Rmd"</span>, tangle <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p>Date the vignette was generated.</p>
-<pre><code><span class="co">#&gt; [1] "2022-03-23 17:43:37 UTC"</span></code></pre>
+<pre><code><span class="co">#&gt; [1] "2022-03-23 18:07:26 UTC"</span></code></pre>
 <p>Wallclock time spent generating the vignette.</p>
-<pre><code><span class="co">#&gt; Time difference of 1.326 mins</span></code></pre>
+<pre><code><span class="co">#&gt; Time difference of 2.052 mins</span></code></pre>
 <p><code>R</code> session information.</p>
 <pre><code><span class="co">#&gt; <span style="color: #00BBBB; font-weight: bold;">─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────</span></span>
 <span class="co">#&gt;  <span style="color: #555555; font-style: italic;">setting </span> <span style="color: #555555; font-style: italic;">value</span></span>
