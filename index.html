@@ -93,8 +93,7 @@ already have a <a href="https://www.rdocumentation.org/packages/SummarizedExperi
 of transcripts we can do this with the <code><a href="reference/getDegTx.html">getDegTx()</a></code> function
 as shown below.If not this can be generated with the
 <code>SPEAQeasy</code> (a RNA-seq pipeline maintained by our lab)
-pipeline using the <code>--qsva</code> flag. If you already have a
-<code>Ranged Summarized Experiment</code>[<a href="https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class" class="external-link uri">https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class</a>]
+pipeline using the <code>--qsva</code> flag. If you already have a <a href="https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class" class="external-link"><code>RangedSummarizedExperiment</code></a>
 object with transcripts then you do not need to run
 <code>SPEAQeasy</code>. This flag requires a full path to a text file,
 containing one Ensembl transcript ID per line for each transcript
@@ -124,13 +123,11 @@ RNA-seq data.</p>
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
 <p>This is a basic example which shows you how to obtain the quality
-surrogate variables (qSVs) for the brainseq
-<code>phase II dataset</code>[<a href="http://eqtl.brainseq.org/phase2" class="external-link uri">http://eqtl.brainseq.org/phase2</a>]. qSVs are essentially
-pricipal components from an rna-seq experiment designed to model bench
-degradation. For more on principal components you can read and
-introductory article <code>here</code>[<a href="https://towardsdatascience.com/tidying-up-with-pca-an-introduction-to-principal-components-analysis-f876599af383" class="external-link uri">https://towardsdatascience.com/tidying-up-with-pca-an-introduction-to-principal-components-analysis-f876599af383</a>].
-At the start of this script we will have a
-<code>Ranged SummmarizedExperiment</code>[<a href="https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class" class="external-link uri">https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class</a>]
+surrogate variables (qSVs) for the brainseq <a href="http://eqtl.brainseq.org/phase2" class="external-link">phase II dataset</a>. qSVs are
+essentially pricipal components from an rna-seq experiment designed to
+model bench degradation. For more on principal components you can read
+and introductory article [here](<a href="https://towardsdatascience.com/tidying-up-with-pca-an-introduction-to-principal-components-analysis-f876599af383_" class="external-link uri">https://towardsdatascience.com/tidying-up-with-pca-an-introduction-to-principal-components-analysis-f876599af383_</a>.
+At the start of this script we will have a <a href="https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class" class="external-link"><code>RangedSummarizedExperiment</code></a>
 and a list of all the transcripts found in our degradation study. At the
 end we will have a table with differential expression results that is
 adjusted for qSVs.</p>
@@ -188,9 +185,8 @@ functions.</p>
 <p>Next we can use a standard <code>limma</code> package approach to do
 differential expression on the data. The key here is that we add our
 qSVs to the statistical model we use through
-<code><a href="https://rdrr.io/r/stats/model.matrix.html" class="external-link">model.matrix()</a></code>. Here we input our
-<code>Ranged SummarizedExperiment</code> object and our
-<code>model.matrix</code> with qSVs. Note here that the
+<code><a href="https://rdrr.io/r/stats/model.matrix.html" class="external-link">model.matrix()</a></code>. Here we input our <a href="https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class" class="external-link"><code>Ranged SummarizedExperiment</code></a>
+object and our <code>model.matrix</code> with qSVs. Note here that the
 <code>Ranged SummarizedExperiment</code> object is the orignal object
 loaded with the full list of transcripts, not the the one we subsetted
 for qSVs. This is because while PCs can be generated from a subset of
@@ -259,6 +255,12 @@ without qSVs.</p>
 <code class="sourceCode R"><span class="fu"><a href="reference/DEqual.html">DEqual</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/limma/man/toptable.html" class="external-link">topTable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/limma/man/ebayes.html" class="external-link">eBayes</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/limma/man/lmFit.html" class="external-link">lmFit</a></span><span class="op">(</span><span class="va">txExprs</span>, <span class="va">mod</span><span class="op">)</span><span class="op">)</span>, coef <span class="op">=</span> <span class="fl">2</span>, p.value <span class="op">=</span> <span class="fl">1</span>, number <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">rse_tx</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; Warning: Zero sample variances detected, have been offset away from zero</span></code></pre></div>
 <p><img src="reference/figures/README-DEqual-no-qSVs-1.png" width="100%"></p>
+<p>In these two DEqual plots we can see that the first is much better.
+With a correlation of -0.014 we can effectively conclude that we have
+removed the effects ofm degradation from the data. In the second plot
+after modeling for several common variables we still have a correlation
+of 0.5 with the degradation experiment. This high correlation shows we
+still have a large amount of signal from degradation in our data.</p>
 </div>
 </div>
   </div>
