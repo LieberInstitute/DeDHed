@@ -21,6 +21,8 @@ c(
         title = "qsvaR",
         author = personList(
             as.person("Joshua M. Stolz"),
+            as.person("Ran Tao"),
+            as.person("Andrew E. Jaffe"),
             as.person("Leonardo Collado-Torres")
         ),
         year = format(Sys.Date(), "%Y"),
