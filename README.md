@@ -26,18 +26,19 @@ object with the transcripts identified in our qSVA experiment. If you
 already have a
 [`RangedSummarizedExperiment`](https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class)
 of transcripts we can do this with the `getDegTx()` function as shown
-below.If not this can be generated with the `SPEAQeasy` (a RNA-seq
+below.If not this can be generated with the
+[`SPEAQeasy`](http://research.libd.org/SPEAQeasy/index.html) (a RNA-seq
 pipeline maintained by our lab) pipeline using the `--qsva` flag. If you
 already have a
 [`RangedSummarizedExperiment`](https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class)
-object with transcripts then you do not need to run `SPEAQeasy`. This
-flag requires a full path to a text file, containing one Ensembl
-transcript ID per line for each transcript desired in the final
-transcripts R output object (called `rse_tx`). The `sig_transcripts`
-argument in this package should contain the same Ensembl transcript IDs
-as the text file for the `--qsva` flag.The goal of `qsvaR` is to provide
-software that can remove the effects of bench degradation from RNA-seq
-data.
+object with transcripts then you do not need to run
+[`SPEAQeasy`](http://research.libd.org/SPEAQeasy/index.html). This flag
+requires a full path to a text file, containing one Ensembl transcript
+ID per line for each transcript desired in the final transcripts R
+output object (called `rse_tx`). The `sig_transcripts` argument in this
+package should contain the same Ensembl transcript IDs as the text file
+for the `--qsva` flag.The goal of `qsvaR` is to provide software that
+can remove the effects of bench degradation from RNA-seq data.
 
 ## Installation Instructions
 
