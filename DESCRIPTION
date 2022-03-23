@@ -3,8 +3,12 @@ Title: Generate Quality Surrogate Variable Analysis for Degradation Correction
 Version: 0.99.0
 Date: 2021-10-26
 Authors@R: 
-    person("Joshua", "Stolz", , "josh.stolz@libd.org", role = c("aut", "cre"),
-           comment = c(ORCID = "0000-0001-5694-5247"))
+    c(
+    person("Joshua", "Stolz", email = "josh.stolz@libd.org", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0001-5694-5247")),
+    person("Leonardo", "Collado-Torres", role = c("ctb"),
+    email = "lcolladotor@gmail.com", comment = c(ORCID = "0000-0003-2140-308X"))
+    )
 Description: The qsvaR package contains functions for removing the effect of degration in rna-seq data from postmortem brain tissue. The package is equipped to help users generate principal components associated with degradation. The components can be used in differential expression analysis to remove the effects of degradation.
 License: Artistic-2.0
 URL: https://github.com/LieberInstitute/qsvaR
