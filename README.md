@@ -29,7 +29,7 @@ of transcripts we can do this with the `getDegTx()` function as shown
 below.If not this can be generated with the `SPEAQeasy` (a RNA-seq
 pipeline maintained by our lab) pipeline using the `--qsva` flag. If you
 already have a
-`Ranged Summarized Experiment`\[<https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class>\]
+[`RangedSummarizedExperiment`](https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class)
 object with transcripts then you do not need to run `SPEAQeasy`. This
 flag requires a full path to a text file, containing one Ensembl
 transcript ID per line for each transcript desired in the final
@@ -62,14 +62,14 @@ devtools::install_github("LieberInstitute/qsvaR")
 ## Example
 
 This is a basic example which shows you how to obtain the quality
-surrogate variables (qSVs) for the brainseq
-`phase II dataset`\[<http://eqtl.brainseq.org/phase2>\]. qSVs are
-essentially pricipal components from an rna-seq experiment designed to
-model bench degradation. For more on principal components you can read
-and introductory article
-`here`\[<https://towardsdatascience.com/tidying-up-with-pca-an-introduction-to-principal-components-analysis-f876599af383>\].
+surrogate variables (qSVs) for the brainseq [phase II
+dataset](http://eqtl.brainseq.org/phase2). qSVs are essentially pricipal
+components from an rna-seq experiment designed to model bench
+degradation. For more on principal components you can read and
+introductory article
+\[here\](<https://towardsdatascience.com/tidying-up-with-pca-an-introduction-to-principal-components-analysis-f876599af383_>.
 At the start of this script we will have a
-`Ranged SummmarizedExperiment`\[<https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class>\]
+[`RangedSummarizedExperiment`](https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class)
 and a list of all the transcripts found in our degradation study. At the
 end we will have a table with differential expression results that is
 adjusted for qSVs.
@@ -135,13 +135,14 @@ dim(qsvs)
 Next we can use a standard `limma` package approach to do differential
 expression on the data. The key here is that we add our qSVs to the
 statistical model we use through `model.matrix()`. Here we input our
-`Ranged SummarizedExperiment` object and our `model.matrix` with qSVs.
-Note here that the `Ranged SummarizedExperiment` object is the orignal
-object loaded with the full list of transcripts, not the the one we
-subsetted for qSVs. This is because while PCs can be generated from a
-subset of genes, differential expression is best done on the full
-dataset. The expected output is a `sigTx` object that shows the results
-of differential expression.
+[`Ranged SummarizedExperiment`](https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class)
+object and our `model.matrix` with qSVs. Note here that the
+`Ranged SummarizedExperiment` object is the orignal object loaded with
+the full list of transcripts, not the the one we subsetted for qSVs.
+This is because while PCs can be generated from a subset of genes,
+differential expression is best done on the full dataset. The expected
+output is a `sigTx` object that shows the results of differential
+expression.
 
 ``` r
 library("limma")
@@ -211,3 +212,10 @@ DEqual(topTable(eBayes(lmFit(txExprs, mod)), coef = 2, p.value = 1, number = nro
 ```
 
 <img src="man/figures/README-DEqual-no-qSVs-1.png" width="100%" />
+
+In these two DEqual plots we can see that the first is much better. With
+a correlation of -0.014 we can effectively conclude that we have removed
+the effects ofm degradation from the data. In the second plot after
+modeling for several common variables we still have a correlation of 0.5
+with the degradation experiment. This high correlation shows we still
+have a large amount of signal from degradation in our data.
