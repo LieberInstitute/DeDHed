@@ -188,7 +188,31 @@ cite the package and the overall approach. Thank you!</p>
 <p>###Significant Transcripts</p>
 <p>Differential expressions analysis requires the ability normalize
 complex datasets. In the case of postmortem brain tissue we are tasked
-with removing the effects of bench degradation. The <em><a href="https://bioconductor.org/packages/3.15/qsvaR" class="external-link">qsvaR</a></em>
+with removing the effects of bench degradation. Our current work expands
+the scope of qSVA by generating degradation profiles (5 donors across 4
+degradation time points: 0, 15, 30, and 60 minutes) from six human brain
+regions (n = 20 * 6 = 120): dorsolateral prefrontal cortex (DLPFC),
+hippocampus (HPC), medial prefrontal cortex (mPFC), subgenual anterior
+cingulate cortex (sACC), caudate, amygdala (AMY). We identified an
+average of 80,258 transcripts associated (FDR &lt; 5%) with degradation
+time across the six brain regions. Testing for an interaction between
+brain region and degradation time identified 45,712 transcripts (FDR
+&lt; 5%). A comparison of regions showed a unique pattern of expression
+changes associated with degradation time particularly in the DLPFC,
+implying that this region may not be representative of the effects of
+degradation on gene expression in other tissues. Furthermore previous
+work was done by analyzing expressed regions (Collado-Torres et al, NAR,
+2017), and while this is an effective method of analysis, expressed
+regions are not a common output for many pipelines and are
+computationally expensive to identify, thus creating a barrier for the
+use of any qSVA software. In our most recent work expression
+quantification was performed at the transcript level using Salmon (Patro
+et al, Nat Methods, 2017). The changes from past work on qSVs to now is
+illustrated in the below cartoon.</p>
+<div class="figure">
+<img src="../reference/figures/qsva_experimental_design.png" alt=""><p class="caption">figure</p>
+</div>
+<p>The <em><a href="https://bioconductor.org/packages/3.15/qsvaR" class="external-link">qsvaR</a></em>
 (Stolz and Collado-Torres, 2022) package combines an established method
 for removing the effects of degradation from RNA-seq data with easy to
 use functions. The first step in this workflow is to create an <a href="https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class" class="external-link"><code>RangedSummarizedExperiment</code></a>
@@ -456,9 +480,9 @@ Johnson, Parker, Fertig, Jaffe, Zhang, Storey, and Torres, 2021)</li>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://yihui.org/knitr/" class="external-link">"knitr"</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit.html" class="external-link">knit</a></span><span class="op">(</span><span class="st">"Intro_qsvaR.Rmd"</span>, tangle <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p>Date the vignette was generated.</p>
-<pre><code><span class="co">#&gt; [1] "2022-03-24 17:47:44 UTC"</span></code></pre>
+<pre><code><span class="co">#&gt; [1] "2022-03-24 19:03:51 UTC"</span></code></pre>
 <p>Wallclock time spent generating the vignette.</p>
-<pre><code><span class="co">#&gt; Time difference of 2.1 mins</span></code></pre>
+<pre><code><span class="co">#&gt; Time difference of 1.645 mins</span></code></pre>
 <p><code>R</code> session information.</p>
 <pre><code><span class="co">#&gt; <span style="color: #00BBBB; font-weight: bold;">─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────</span></span>
 <span class="co">#&gt;  <span style="color: #555555; font-style: italic;">setting </span> <span style="color: #555555; font-style: italic;">value</span></span>
