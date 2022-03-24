@@ -9,4 +9,3 @@ test_that("check that cell component is generated correctly", {
 test_that("check that standard model is generated correctly", {
     expect_equal(length(select_transcripts("standard")), length(transcripts$standard))
 })
-
