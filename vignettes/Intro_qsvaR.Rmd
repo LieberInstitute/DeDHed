@@ -243,7 +243,6 @@ DEqual(DE)
 
 # Conclusion
 
-TODO
 We have shown that this method is effective for removing the effects of degradation from RNA-seq data. Being that this is simpler to use than previous version, this software package should be preferable for users. I would encourage users to read how each set of degradation transcripts was selected as not all models may be appropriate for your experiment. Thank you for your interest and for using `r Biocpkg("qsvaR")` `r Citep(bib[["qsvaR"]])`!
 
 # Reproducibility
