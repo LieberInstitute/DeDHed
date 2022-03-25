@@ -13,6 +13,7 @@
 #' qsv <- list(x = matrix(seq_len(9), ncol = 3))
 #' get_qsvs(qsv, 2)
 get_qsvs <- function(qsvPCs, k) {
+    # check that k isn't zero
     qSVs <- qsvPCs$x[, seq_len(k), drop = FALSE]
     colnames(qSVs) <- paste0("qSV", seq_len(k))
     return(qSVs)
