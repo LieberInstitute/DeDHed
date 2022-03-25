@@ -1,4 +1,4 @@
-setwd("/dcs04/lieber/lcolladotor/qSVA_LIBD3080/degradation_experiments")
+setwd("/dcs04/lieber/lcolladotor/qSVA_LIBD3080/degradation_experiments/Joint/all/")
 
 ### this script runs on jhpce
 library("here")
@@ -16,7 +16,7 @@ covComb_tx_deg_cc_down <- covComb_tx_deg_down
 ## 1500 transcripts model
 load(here("rdas", "qsvs", "covCombs_withdlpfc_1500.rda"))
 
-transcripts <- list(tx1500 = rownames(covComb_tx_1500), standard = rownames(covComb_tx_deg), cell_component = rownames(covComb_tx_deg_cc))
+transcripts <- list(tx1500 = rownames(covComb_tx_1500), standard = rownames(covComb_tx_deg_nocc), cell_component = rownames(covComb_tx_deg_cc))
 
 
 save(transcripts, file = here("rdas", "qsvs", "model_transcripts.Rda"))
