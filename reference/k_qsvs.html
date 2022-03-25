@@ -86,6 +86,7 @@ the transcript data desired to be studied.</p></dd>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html" class="external-link">model.matrix</a></span><span class="op">(</span><span class="op">~</span> <span class="va">mitoRate</span> <span class="op">+</span> <span class="va">Region</span> <span class="op">+</span> <span class="va">rRNA_rate</span> <span class="op">+</span> <span class="va">totalAssignedGene</span> <span class="op">+</span> <span class="va">RIN</span>, data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">colData</a></span><span class="op">(</span><span class="va">covComb_tx_deg</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu">k_qsvs</span><span class="op">(</span><span class="va">covComb_tx_deg</span>, <span class="va">mod</span>, <span class="st">"tpm"</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10</span>
+<span class="r-in"></span>
 </code></pre></div>
     </div>
   </div>

@@ -166,6 +166,8 @@ transcripts in the interaction model, the main effect model, and the
 cell proportions model were used to generate this model of qSVs. In this
 example we will choose”cell_component” use the <code><a href="reference/getDegTx.html">getDegTx()</a></code>
 and <code><a href="reference/select_transcripts.html">select_transcripts()</a></code> functions.</p>
+<p><img src="./reference/figures/transcripts_venn_diagramm.png" alt="figure"> The above venn diagram shows the overlap between
+transcripts in each of the previously mentioned models.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Next we get the degraded transcripts for qSVA from the "cell_component" model</span>
 <span class="va">DegTx</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/getDegTx.html">getDegTx</a></span><span class="op">(</span><span class="va">rse_tx</span>, type <span class="op">=</span> <span class="st">"cell_component"</span><span class="op">)</span>
