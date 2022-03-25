@@ -4,7 +4,7 @@
 \alias{getPCs}
 \title{PCs from transcripts}
 \usage{
-getPCs(rse_tx, assayname)
+getPCs(rse_tx, assayname = "tpm")
 }
 \arguments{
 \item{rse_tx}{Ranged Summarizeed Experiment with only trancsripts selected for qsva}
