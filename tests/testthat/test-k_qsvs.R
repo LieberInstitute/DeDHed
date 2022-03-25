@@ -8,7 +8,6 @@ mod2<- mod
 mod2<-cbind(mod2,1 - mod[,"mitoRate"])
 colnames(mod2)[11]<-"mitotest"
 
-qSVA(rse_tx = covComb_tx_deg, type = "cell_component", mod = mod2, assayname = "tpm")
 test_that("length pf output is 1", {
     expect_equal(length(k_qsvs(covComb_tx_deg, mod, "tpm")), 1)
 })
