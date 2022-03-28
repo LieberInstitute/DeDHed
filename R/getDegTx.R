@@ -23,11 +23,11 @@
 #'
 #' @examples
 #' getDegTx(covComb_tx_deg)
-getDegTx <- function(rse_tx, type = "cell_component", sig_transcripts = select_transcripts(type)) {
+#' stopifnot(mean(rowMeans(assays(covComb_tx_deg)$tpm))>1)
+getDegTx <- function(rse_tx, type = "cell_component", sig_transcripts = select_transcripts(type), assayname="tpm") {
     stopifnot(is(rse_tx, "RangedSummarizedExperiment"))
     rse_tx <- rse_tx[rownames(rse_tx) %in% sig_transcripts, , drop = FALSE]
-
-    ## TODO: consider adding checks for determining if these transcripts
-    ## are lowly expressed. Related to the tryCatch() call in k_qsvs()
+    if(mean(rowMeans(assays(rse_tx)[[assayname]]))<1)
+        warning("Warning: The transcripts selected are lowly expressed in your dataset. This can impact downstream analysis.")
     return(rse_tx)
 }
