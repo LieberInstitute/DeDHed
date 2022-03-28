@@ -7,7 +7,8 @@
 getDegTx(
   rse_tx,
   type = "cell_component",
-  sig_transcripts = select_transcripts(type)
+  sig_transcripts = select_transcripts(type),
+  assayname = "tpm"
 )
 }
 \arguments{
@@ -34,4 +35,5 @@ necessary to remove the effect of degradation in differential expression.
 }
 \examples{
 getDegTx(covComb_tx_deg)
+stopifnot(mean(rowMeans(assays(covComb_tx_deg)$tpm)) > 1)
 }

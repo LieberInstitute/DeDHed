@@ -12,6 +12,7 @@
 #' The most effective of our models, "cell_component", involved deconvolution of the degradation matrix to determine the proportion of cell types within our studied tissue.
 #' These proportions were then added to our `model.matrix()` and the union of the top 1000 transcripts in the interaction model, the main effect model, and the cell proportions model were used to generate this model of qSVs.
 #'
+#' @param assayname character string specifying the name of the assay desired in rse_tx
 #' @param sig_transcripts A list of transcripts determined to have degradation signal in the qsva expanded paper.
 #'
 #' @return A
@@ -23,11 +24,12 @@
 #'
 #' @examples
 #' getDegTx(covComb_tx_deg)
-#' stopifnot(mean(rowMeans(assays(covComb_tx_deg)$tpm))>1)
-getDegTx <- function(rse_tx, type = "cell_component", sig_transcripts = select_transcripts(type), assayname="tpm") {
+#' stopifnot(mean(rowMeans(assays(covComb_tx_deg)$tpm)) > 1)
+getDegTx <- function(rse_tx, type = "cell_component", sig_transcripts = select_transcripts(type), assayname = "tpm") {
     stopifnot(is(rse_tx, "RangedSummarizedExperiment"))
     rse_tx <- rse_tx[rownames(rse_tx) %in% sig_transcripts, , drop = FALSE]
-    if(mean(rowMeans(assays(rse_tx)[[assayname]]))<1)
+    if (mean(rowMeans(assays(rse_tx)[[assayname]])) < 1) {
         warning("Warning: The transcripts selected are lowly expressed in your dataset. This can impact downstream analysis.")
+    }
     return(rse_tx)
 }
