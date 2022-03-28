@@ -23,6 +23,8 @@ The most effective of our models, "cell_component", involved deconvolution of th
 These proportions were then added to our \code{model.matrix()} and the union of the top 1000 transcripts in the interaction model, the main effect model, and the cell proportions model were used to generate this model of qSVs.}
 
 \item{sig_transcripts}{A list of transcripts determined to have degradation signal in the qsva expanded paper.}
+
+\item{assayname}{character string specifying the name of the assay desired in rse_tx}
 }
 \value{
 A
