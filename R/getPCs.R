@@ -10,6 +10,7 @@
 #' @export
 #' @importFrom stats prcomp
 #' @importFrom SummarizedExperiment assays
+#' @importFrom SummarizedExperiment assayNames
 #' @examples
 #' getPCs(covComb_tx_deg, "tpm")
 getPCs <- function(rse_tx, assayname = "tpm") {
