@@ -100,14 +100,14 @@ These proportions were then added to our <code><a href="https://rdrr.io/r/stats/
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">getDegTx</span><span class="op">(</span><span class="va">covComb_tx_deg</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> class: RangedSummarizedExperiment </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> dim: 2976 119 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> dim: 2976 60 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> metadata(0):</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> assays(1): tpm</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> rownames(2976): ENST00000442987.3 ENST00000623083.3 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ENST00000361681.2 ENST00000361789.2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> rowData names(22): source type ... protein_id ccdsid</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> colnames(119): DLPFC_Br1385_A1_ribo DLPFC_Br1385_A2_ribo ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   R15702_HJ7YKBBXX R15703_HJ7YKBBXX</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> colnames(60): DLPFC_Br1385_A1_ribo DLPFC_Br1385_A2_ribo ... Br5941-C5c</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Br5941-C5d</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> colData names(21): SAMPLE_ID RNum ... totalAssignedGene totalMapped</span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html" class="external-link">stopifnot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">rowMeans</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">assays</a></span><span class="op">(</span><span class="va">covComb_tx_deg</span><span class="op">)</span><span class="op">$</span><span class="va">tpm</span><span class="op">)</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">1</span><span class="op">)</span></span>
 </code></pre></div>
