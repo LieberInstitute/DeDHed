@@ -25,7 +25,7 @@ the transcript data desired to be studied.}
 \item{assayname}{character string specifying the name of the assay desired in rse_tx}
 }
 \value{
-
+matrix with k principal components for each sample
 }
 \description{
 A wrapper function used to perform qSVA in one step.

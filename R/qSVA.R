@@ -7,7 +7,7 @@
 #' @param mod Model Matrix with necessary variables the you would model for in differential expression
 #' @param assayname character string specifying the name of the assay desired in rse_tx
 #'
-#' @return
+#' @return matrix with k principal components for each sample
 #' @export
 #'
 #' @examples
