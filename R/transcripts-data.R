@@ -12,4 +12,4 @@
 #' Each string is a GENCODE transcript IDs.
 #' @keywords datasets
 #' @seealso [select_transcripts]
-NULL
+"transcripts"
