@@ -26,8 +26,10 @@
 #' set.seed(101)
 #' random_de <- data.frame(
 #'     t = rt(nrow(degradation_tstats), 5),
-#'     row.names = sample(rownames(degradation_tstats),
-#'     nrow(degradation_tstats))
+#'     row.names = sample(
+#'         rownames(degradation_tstats),
+#'         nrow(degradation_tstats)
+#'     )
 #' )
 #'
 #' ## Create the DEqual plot
