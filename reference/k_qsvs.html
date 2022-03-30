@@ -72,7 +72,8 @@
 <dd><p>A <a href="https://rdrr.io/pkg/SummarizedExperiment/man/RangedSummarizedExperiment-class.html" class="external-link">RangedSummarizedExperiment-class</a> object containing
 the transcript data desired to be studied.</p></dd>
 <dt>mod</dt>
-<dd><p>Model Matrix with necessary variables the you would model for in differential expression</p></dd>
+<dd><p>Model Matrix with necessary variables the you would
+model for in differential expression</p></dd>
 <dt>assayname</dt>
 <dd><p>character string specifying the name of the assay desired in rse_tx</p></dd>
 </dl></div>
@@ -83,7 +84,9 @@ the transcript data desired to be studied.</p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html" class="external-link">model.matrix</a></span><span class="op">(</span><span class="op">~</span> <span class="va">mitoRate</span> <span class="op">+</span> <span class="va">Region</span> <span class="op">+</span> <span class="va">rRNA_rate</span> <span class="op">+</span> <span class="va">totalAssignedGene</span> <span class="op">+</span> <span class="va">RIN</span>, data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">colData</a></span><span class="op">(</span><span class="va">covComb_tx_deg</span><span class="op">)</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html" class="external-link">model.matrix</a></span><span class="op">(</span><span class="op">~</span> <span class="va">mitoRate</span> <span class="op">+</span> <span class="va">Region</span> <span class="op">+</span> <span class="va">rRNA_rate</span> <span class="op">+</span> <span class="va">totalAssignedGene</span> <span class="op">+</span> <span class="va">RIN</span>,</span>
+<span class="r-in">    data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">colData</a></span><span class="op">(</span><span class="va">covComb_tx_deg</span><span class="op">)</span></span>
+<span class="r-in"><span class="op">)</span></span>
 <span class="r-in"><span class="fu">k_qsvs</span><span class="op">(</span><span class="va">covComb_tx_deg</span>, <span class="va">mod</span>, <span class="st">"tpm"</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10</span>
 <span class="r-in"></span>
