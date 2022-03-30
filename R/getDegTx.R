@@ -29,7 +29,7 @@ getDegTx <- function(rse_tx, type = "cell_component", sig_transcripts = select_t
     stopifnot(is(rse_tx, "RangedSummarizedExperiment"))
     rse_tx <- rse_tx[rownames(rse_tx) %in% sig_transcripts, , drop = FALSE]
     if (mean(rowMeans(assays(rse_tx)[[assayname]])) < 1) {
-        warning("Warning: The transcripts selected are lowly expressed in your dataset. This can impact downstream analysis.")
+        warning("The transcripts selected are lowly expressed in your dataset. This can impact downstream analysis.")
     }
     return(rse_tx)
 }
