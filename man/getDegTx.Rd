@@ -13,7 +13,9 @@ getDegTx(
 }
 \arguments{
 \item{rse_tx}{A \link[SummarizedExperiment:RangedSummarizedExperiment-class]{RangedSummarizedExperiment-class}
-object containing the transcript data desired to be studied. @param type A \code{character(1)} specifying the transcripts set type.
+object containing the transcript data desired to be studied.}
+
+\item{type}{A \code{character(1)} specifying the transcripts set type.
 These were determined by Joshua M. Stolz et al, 2022. Here the names "cell_component", "top1500",
 and "standard" refer to models that were determined to be effective in removing degradation effects.
 The "standard" model involves taking the union of the top 1000 transcripts
