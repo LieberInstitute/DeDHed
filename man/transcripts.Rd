@@ -8,6 +8,9 @@
 A \code{list()} with character strings containing the transcripts selected by each model.
 Each string is a GENCODE transcript IDs.
 }
+\usage{
+transcripts
+}
 \description{
 An object storing three lists of transcripts each corresponding to a model used in the degradation experiment.
 These were determined by Joshua M. Stolz et al, 2022. Here the names "cell_component", "top1500", and "standard" refer to models that were determined to be effective in removing degradation effects.

@@ -29,4 +29,3 @@ test_that("non-full rank data throws error", {
 test_that("test that full rank matrix produces check and error", {
     expect_error(k_qsvs(rse_tx_low, mod, "tpm"))
 })
-
