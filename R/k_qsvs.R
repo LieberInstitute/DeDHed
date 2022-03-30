@@ -4,7 +4,8 @@
 #'
 #' @param rse_tx A [RangedSummarizedExperiment-class][SummarizedExperiment::RangedSummarizedExperiment-class] object containing
 #' the transcript data desired to be studied.
-#' @param mod  Model Matrix with necessary variables the you would model for in differential expression
+#' @param mod  Model Matrix with necessary variables the you would
+#' model for in differential expression
 #' @param assayname character string specifying the name of the assay desired in rse_tx
 #'
 #' @return integer representing number of pcs to be included
@@ -12,7 +13,8 @@
 #' @importFrom sva num.sv
 #' @importFrom SummarizedExperiment assays
 #' @examples
-#' mod <- model.matrix(~ mitoRate + Region + rRNA_rate + totalAssignedGene + RIN, data = colData(covComb_tx_deg))
+#' mod <- model.matrix(~ mitoRate + Region + rRNA_rate + totalAssignedGene + RIN,
+#'  data = colData(covComb_tx_deg))
 #' k_qsvs(covComb_tx_deg, mod, "tpm")
 #'
 k_qsvs <- function(rse_tx, mod, assayname) {

@@ -14,7 +14,8 @@
 #' Differential Expression, typically generated with `limma::topTable()`.
 #' The `rownames(DE)` should be transcript GENCODE IDs.
 #'
-#' @return a `ggplot` object of the DE t-statistic vs the DE statistic from degradation
+#' @return a `ggplot` object of the DE t-statistic vs
+#' the DE statistic from degradation
 #' @import ggplot2
 #' @importFrom stats cor
 #' @export
