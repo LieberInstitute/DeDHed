@@ -16,13 +16,17 @@ qSVA(
 \item{rse_tx}{A \link[SummarizedExperiment:RangedSummarizedExperiment-class]{RangedSummarizedExperiment-class} object containing
 the transcript data desired to be studied.}
 
-\item{type}{a character string specifying which model you would like to use when selecting a degradation matrix.}
+\item{type}{a character string specifying which model you would
+like to use when selecting a degradation matrix.}
 
-\item{sig_transcripts}{A list of transcripts determined to have degradation signal in the qsva expanded paper.}
+\item{sig_transcripts}{A list of transcripts determined to have
+degradation signal in the qsva expanded paper.}
 
-\item{mod}{Model Matrix with necessary variables the you would model for in differential expression}
+\item{mod}{Model Matrix with necessary variables the you would
+model for in differential expression}
 
-\item{assayname}{character string specifying the name of the assay desired in rse_tx}
+\item{assayname}{character string specifying the name of
+the assay desired in rse_tx}
 }
 \value{
 matrix with k principal components for each sample
@@ -31,7 +35,9 @@ matrix with k principal components for each sample
 A wrapper function used to perform qSVA in one step.
 }
 \examples{
-mod <- model.matrix(~ mitoRate + Region + rRNA_rate + totalAssignedGene + RIN, data = colData(covComb_tx_deg))
+mod <- model.matrix(~ mitoRate + Region + rRNA_rate + totalAssignedGene + RIN,
+    data = colData(covComb_tx_deg)
+)
 qSVA(rse_tx = covComb_tx_deg, type = "cell_component", mod = mod, assayname = "tpm")
 
 }

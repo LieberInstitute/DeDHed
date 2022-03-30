@@ -12,7 +12,8 @@ Differential Expression, typically generated with \code{limma::topTable()}.
 The \code{rownames(DE)} should be transcript GENCODE IDs.}
 }
 \value{
-a \code{ggplot} object of the DE t-statistic vs the DE statistic from degradation
+a \code{ggplot} object of the DE t-statistic vs
+the DE statistic from degradation
 }
 \description{
 A DEqual plot compares the effect of RNA degradation from an independent

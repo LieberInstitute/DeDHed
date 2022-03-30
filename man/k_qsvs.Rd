@@ -10,7 +10,8 @@ k_qsvs(rse_tx, mod, assayname)
 \item{rse_tx}{A \link[SummarizedExperiment:RangedSummarizedExperiment-class]{RangedSummarizedExperiment-class} object containing
 the transcript data desired to be studied.}
 
-\item{mod}{Model Matrix with necessary variables the you would model for in differential expression}
+\item{mod}{Model Matrix with necessary variables the you would
+model for in differential expression}
 
 \item{assayname}{character string specifying the name of the assay desired in rse_tx}
 }
@@ -21,7 +22,9 @@ integer representing number of pcs to be included
 Apply num.sv algorithm to determine the number of pcs to be included
 }
 \examples{
-mod <- model.matrix(~ mitoRate + Region + rRNA_rate + totalAssignedGene + RIN, data = colData(covComb_tx_deg))
+mod <- model.matrix(~ mitoRate + Region + rRNA_rate + totalAssignedGene + RIN,
+    data = colData(covComb_tx_deg)
+)
 k_qsvs(covComb_tx_deg, mod, "tpm")
 
 }

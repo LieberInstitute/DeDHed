@@ -14,7 +14,8 @@
 #' @importFrom SummarizedExperiment assays
 #' @examples
 #' mod <- model.matrix(~ mitoRate + Region + rRNA_rate + totalAssignedGene + RIN,
-#'  data = colData(covComb_tx_deg))
+#'     data = colData(covComb_tx_deg)
+#' )
 #' k_qsvs(covComb_tx_deg, mod, "tpm")
 #'
 k_qsvs <- function(rse_tx, mod, assayname) {
