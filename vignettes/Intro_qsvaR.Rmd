@@ -156,7 +156,7 @@ These proportions were then added to our `model.matrix()` and the union of the t
 In this example we will choose "cell_component" use the `getDegTx()` and `select_transcripts()` functions.
 
 ```{r VennDiagram,fig.cap="The above venn diagram shows the overlap between transcripts in each of the previously mentioned models."}
-knitr::include_graphics("./man/figures/transcripts_venn_diagramm.png")
+knitr::include_graphics("../man/figures/transcripts_venn_diagramm.png")
 ```
 
 ```{r "Get Degraded Transcripts"}
