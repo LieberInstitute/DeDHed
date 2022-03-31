@@ -34,7 +34,7 @@ Imports:
     ggplot2,
     methods
 Depends: 
-    R (>= 4.2),
+    R (>= 4.1),
     SummarizedExperiment
 LazyData: true
 VignetteBuilder: knitr
