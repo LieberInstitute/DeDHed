@@ -166,10 +166,15 @@ transcripts in the interaction model, the main effect model, and the
 cell proportions model were used to generate this model of qSVs. In this
 example we will choose”cell_component” use the <code><a href="reference/getDegTx.html">getDegTx()</a></code>
 and <code><a href="reference/select_transcripts.html">select_transcripts()</a></code> functions.</p>
-<p><img src="./reference/figures/transcripts_venn_diagramm.png" alt="figure"> |:–:| |<em>The above venn diagram shows the overlap
-between transcripts in each of the previously mentioned
-models.</em>|</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html" class="external-link">include_graphics</a></span><span class="op">(</span><span class="st">"./man/figures/transcripts_venn_diagramm.png"</span><span class="op">)</span></code></pre></div>
+<div class="figure">
+<img src="./reference/figures/transcripts_venn_diagramm.png" alt="The above venn diagram shows the overlap between transcripts in each of the previously mentioned models." width="100%"><p class="caption">
+The above venn diagram shows the overlap between transcripts in each of
+the previously mentioned models.
+</p>
+</div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Next we get the degraded transcripts for qSVA from the "cell_component" model</span>
 <span class="va">DegTx</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/getDegTx.html">getDegTx</a></span><span class="op">(</span><span class="va">rse_tx</span>, type <span class="op">=</span> <span class="st">"cell_component"</span><span class="op">)</span>
 
@@ -188,7 +193,7 @@ interactions similarly. For more information on creating a design matrix
 for your experiment see the documentation <a href="http://bioconductor.org/packages/release/workflows/vignettes/RNAseq123/inst/doc/designmatrices.html" class="external-link">here</a>.
 Again we use the <code>assayname</code> option to specify the we are
 using the <code>tpm</code> assay.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Using a simple statistical model we determine the number of PCs needed (k)</span>
 <span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html" class="external-link">model.matrix</a></span><span class="op">(</span><span class="op">~</span> <span class="va">Dx</span> <span class="op">+</span> <span class="va">Age</span> <span class="op">+</span> <span class="va">Sex</span> <span class="op">+</span> <span class="va">Race</span> <span class="op">+</span> <span class="va">Region</span>,
     data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">colData</a></span><span class="op">(</span><span class="va">rse_tx</span><span class="op">)</span>
@@ -198,7 +203,7 @@ using the <code>tpm</code> assay.</p>
 <span class="co">#&gt; [1] 34</span></code></pre></div>
 <p>Now that we have our PCs and the number we need we can generate our
 qSVs.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Obtain the k qSVs</span>
 <span class="va">qsvs</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_qsvs.html">get_qsvs</a></span><span class="op">(</span><span class="va">pcTx</span>, <span class="va">k</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">qsvs</span><span class="op">)</span>
@@ -206,7 +211,7 @@ qSVs.</p>
 <p>This can be done in one step with our wrapper function
 <code>qSVA</code> which just combinds all the previous mentioned
 functions.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">qsvs</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/qSVA.html">qSVA</a></span><span class="op">(</span>rse_tx <span class="op">=</span> <span class="va">rse_tx</span>, type <span class="op">=</span> <span class="st">"cell_component"</span>, mod <span class="op">=</span> <span class="va">mod</span>, assayname <span class="op">=</span> <span class="st">"tpm"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">qsvs</span><span class="op">)</span>
 <span class="co">#&gt; [1] 900  34</span></code></pre></div>
@@ -225,7 +230,7 @@ for qSVs. This is because while PCs can be generated from a subset of
 genes, differential expression is best done on the full dataset. The
 expected output is a <code>sigTx</code> object that shows the results of
 differential expression.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="http://bioinf.wehi.edu.au/limma" class="external-link">"limma"</a></span><span class="op">)</span>
 
 <span class="co">## Add the qSVs to our statistical model</span>
@@ -278,12 +283,12 @@ variables.</p>
 <div class="figure">
 <img src="./reference/figures/DEqual_example.png" alt=""><p class="caption">figure</p>
 </div>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/DEqual.html">DEqual</a></span><span class="op">(</span><span class="va">sigTx</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-DEqual-1.png" width="100%"></p>
 <p>For comparison, here is the <code><a href="reference/DEqual.html">DEqual()</a></code> plot for the model
 without qSVs.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/DEqual.html">DEqual</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/limma/man/toptable.html" class="external-link">topTable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/limma/man/ebayes.html" class="external-link">eBayes</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/limma/man/lmFit.html" class="external-link">lmFit</a></span><span class="op">(</span><span class="va">txExprs</span>, <span class="va">mod</span><span class="op">)</span><span class="op">)</span>, coef <span class="op">=</span> <span class="fl">2</span>, p.value <span class="op">=</span> <span class="fl">1</span>, number <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">rse_tx</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; Warning: Zero sample variances detected, have been offset away from zero</span></code></pre></div>
 <p><img src="reference/figures/README-DEqual-no-qSVs-1.png" width="100%"></p>
