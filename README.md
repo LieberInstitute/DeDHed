@@ -247,13 +247,31 @@ associated with qSVs. An example of nonconfounded data or data that has
 been modeled can be seen in Figure 1 on the right with its lack of
 relationship between the x and y variables.
 
-![figure](./man/figures/DEqual_example.png)
+``` r
+knitr::include_graphics("./man/figures/DEqual_example.png")
+```
+
+<div class="figure">
+
+<img src="./man/figures/DEqual_example.png" alt="Cartoon showing patterns in DEqual plots" width="100%" />
+<p class="caption">
+Cartoon showing patterns in DEqual plots
+</p>
+
+</div>
 
 ``` r
 DEqual(sigTx)
 ```
 
-<img src="man/figures/README-DEqual-1.png" width="100%" />
+<div class="figure">
+
+<img src="man/figures/README-DEqual-1.png" alt="Result of Differential Expression with qSVA normalization." width="100%" />
+<p class="caption">
+Result of Differential Expression with qSVA normalization.
+</p>
+
+</div>
 
 For comparison, here is the `DEqual()` plot for the model without qSVs.
 
@@ -262,7 +280,14 @@ DEqual(topTable(eBayes(lmFit(txExprs, mod)), coef = 2, p.value = 1, number = nro
 #> Warning: Zero sample variances detected, have been offset away from zero
 ```
 
-<img src="man/figures/README-DEqual-no-qSVs-1.png" width="100%" />
+<div class="figure">
+
+<img src="man/figures/README-DEqual-no-qSVs-1.png" alt="Result of Differential Expression without qSVA normalization." width="100%" />
+<p class="caption">
+Result of Differential Expression without qSVA normalization.
+</p>
+
+</div>
 
 In these two DEqual plots we can see that the first is much better. With
 a correlation of -0.014 we can effectively conclude that we have removed

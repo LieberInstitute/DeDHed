@@ -145,15 +145,17 @@ head(sigTx)
 
 Finally, you can compare the resulting t-statistics from your differential expression model against the degradation time t-statistics adjusting for the six different brain regions. This type of plot is called `DEqual` plot and was shown in the initial qSVA framework paper ([Jaffe et al, PNAS, 2017](https://doi.org/10.1073/pnas.1617384114)). We are really looking for two patterns exemplified here in Figure 1 (cartoon shown earlier). A direct positive correlation with degradation shown in Figure 1 on the right tells us that there is signal in the data associated with qSVs. An example of nonconfounded data or data that has been modeled can be seen in Figure 1 on the right with its lack of relationship between the x and y variables.
 
-![figure](./man/figures/DEqual_example.png)
+```{r DEqualCartoon,fig.cap="Cartoon showing patterns in DEqual plots"}
+knitr::include_graphics("./man/figures/DEqual_example.png")
+```
 
-```{r "DEqual"}
+```{r "DEqual",,fig.cap="Result of Differential Expression with qSVA normalization."}
 DEqual(sigTx)
 ```
 
 For comparison, here is the `DEqual()` plot for the model without qSVs.
 
-```{r "DEqual-no-qSVs"}
+```{r "DEqual-no-qSVs",fig.cap="Result of Differential Expression without qSVA normalization."}
 DEqual(topTable(eBayes(lmFit(txExprs, mod)), coef = 2, p.value = 1, number = nrow(rse_tx)))
 ```
 
