@@ -116,9 +116,19 @@ were used to generate this model of qSVs. In this example we will
 choose”cell\_component" use the `getDegTx()` and `select_transcripts()`
 functions.
 
-![figure](./man/figures/transcripts_venn_diagramm.png) \|:–:\| \|*The
-above venn diagram shows the overlap between transcripts in each of the
-previously mentioned models.*\|
+``` r
+knitr::include_graphics("./man/figures/transcripts_venn_diagramm.png")
+```
+
+<div class="figure">
+
+<img src="./man/figures/transcripts_venn_diagramm.png" alt="The above venn diagram shows the overlap between transcripts in each of the previously mentioned models." width="100%" />
+<p class="caption">
+The above venn diagram shows the overlap between transcripts in each of
+the previously mentioned models.
+</p>
+
+</div>
 
 ``` r
 ## Next we get the degraded transcripts for qSVA from the "cell_component" model
