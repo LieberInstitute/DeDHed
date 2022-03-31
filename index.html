@@ -280,18 +280,30 @@ that there is signal in the data associated with qSVs. An example of
 nonconfounded data or data that has been modeled can be seen in Figure 1
 on the right with its lack of relationship between the x and y
 variables.</p>
-<div class="figure">
-<img src="./reference/figures/DEqual_example.png" alt=""><p class="caption">figure</p>
-</div>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html" class="external-link">include_graphics</a></span><span class="op">(</span><span class="st">"./man/figures/DEqual_example.png"</span><span class="op">)</span></code></pre></div>
+<div class="figure">
+<img src="./reference/figures/DEqual_example.png" alt="Cartoon showing patterns in DEqual plots" width="100%"><p class="caption">
+Cartoon showing patterns in DEqual plots
+</p>
+</div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/DEqual.html">DEqual</a></span><span class="op">(</span><span class="va">sigTx</span><span class="op">)</span></code></pre></div>
-<p><img src="reference/figures/README-DEqual-1.png" width="100%"></p>
+<div class="figure">
+<img src="reference/figures/README-DEqual-1.png" alt="Result of Differential Expression with qSVA normalization." width="100%"><p class="caption">
+Result of Differential Expression with qSVA normalization.
+</p>
+</div>
 <p>For comparison, here is the <code><a href="reference/DEqual.html">DEqual()</a></code> plot for the model
 without qSVs.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/DEqual.html">DEqual</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/limma/man/toptable.html" class="external-link">topTable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/limma/man/ebayes.html" class="external-link">eBayes</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/limma/man/lmFit.html" class="external-link">lmFit</a></span><span class="op">(</span><span class="va">txExprs</span>, <span class="va">mod</span><span class="op">)</span><span class="op">)</span>, coef <span class="op">=</span> <span class="fl">2</span>, p.value <span class="op">=</span> <span class="fl">1</span>, number <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">rse_tx</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; Warning: Zero sample variances detected, have been offset away from zero</span></code></pre></div>
-<p><img src="reference/figures/README-DEqual-no-qSVs-1.png" width="100%"></p>
+<div class="figure">
+<img src="reference/figures/README-DEqual-no-qSVs-1.png" alt="Result of Differential Expression without qSVA normalization." width="100%"><p class="caption">
+Result of Differential Expression without qSVA normalization.
+</p>
+</div>
 <p>In these two DEqual plots we can see that the first is much better.
 With a correlation of -0.014 we can effectively conclude that we have
 removed the effects ofm degradation from the data. In the second plot
