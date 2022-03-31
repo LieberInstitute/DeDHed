@@ -101,7 +101,7 @@ We hope that `r Biocpkg("qsvaR")` will be useful for your research. Please use t
 citation("qsvaR")
 ```
 
-# Quick start to using to `qsvaR`
+# `qsvaR` Overview
 
 ```{r "start", message=FALSE}
 library("qsvaR")
@@ -109,13 +109,15 @@ library("limma")
 library("BiocFileCache")
 ```
 
-##Get QSVs
-
-###Significant Transcripts
+#Significant Transcripts
 
 Differential expressions analysis requires the ability normalize complex datasets. In the case of postmortem brain tissue we are tasked with removing the effects of bench degradation. Our current work expands the scope of qSVA by generating degradation profiles (5 donors across 4 degradation time points: 0, 15, 30, and 60 minutes) from six human brain regions  (n = 20 * 6 = 120): dorsolateral prefrontal cortex (DLPFC), hippocampus (HPC), medial prefrontal cortex (mPFC), subgenual anterior cingulate cortex (sACC), caudate, amygdala (AMY). We identified an average of 80,258 transcripts associated (FDR < 5%) with degradation time across the six brain regions. Testing for an interaction between brain region and degradation time identified 45,712 transcripts (FDR < 5%). A comparison of regions showed a unique pattern of expression changes associated with degradation time particularly in the DLPFC, implying that this region may not be representative of the effects of degradation on gene expression in other tissues. Furthermore previous work was done by analyzing expressed regions (Collado-Torres et al, NAR, 2017), and while this is an effective method of analysis, expressed regions are not a common output for many pipelines and are computationally expensive to identify, thus creating a barrier for the use of any qSVA software. In our most recent work expression quantification was performed at the transcript level using Salmon (Patro et al, Nat Methods, 2017). The changes from past work on qSVs to now is illustrated in the below cartoon.
 
-![figure](../man/figures/qsva_experimental_design.png)
+
+
+```{r DesignDiagram,fig.cap="The diagram on the right shows the 2016 experimental design for qSVA.The diagram on the right shows the 2022 experimental design for qSVA."}
+knitr::include_graphics("../man/figures/qsva_experimental_design.png")
+```
 
 
 The `r Biocpkg("qsvaR")` `r Citep(bib[["qsvaR"]])` package combines an established method for removing the effects of degradation from RNA-seq data with easy to use functions. The first step in this workflow is to create an [`RangedSummarizedExperiment`](https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class) object with the transcripts identified in our qSVA experiment. If you already have a [`RangedSummarizedExperiment`](https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class) of transcripts we can do this with the `getDegTx()` function as shown below.If not this can be generated with the `SPEAQeasy` (a RNA-seq pipeline maintained by our lab) pipeline usinge the `--qsva` flag. If you already have a [`RangedSummarizedExperiment`](https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class) object with transcripts then you do not need to run `SPEAQeasy`. This flag requires a full path to a text file, containing one Ensembl transcript ID per line for each transcript desired in the final transcripts R output object (called `rse_tx`). The `sig_transcripts` argument in this package should contain the same Ensembl transcript IDs as the text file for the `--qsva` flag.The goal of `qsvaR` is to provide software that can remove the effects of bench degradation from RNA-seq data.
@@ -128,10 +130,12 @@ rse_file <- BiocFileCache::bfcrpath("https://s3.us-east-2.amazonaws.com/libd-bra
 load(rse_file, verbose = TRUE)
 ```
 
+#Get Degradation Matrix
 In this next step we subset for the transcripts associated with degradation. These were determined by Joshua M. Stolz et al, 2022. We have provided three models to choose from. Here the names "cell_component", "top1500", and "standard" refer to models that were determined to be effective in removing degradation effects. The "standard" model involves taking the union of the top 1000 transcripts associated with degradation from the interaction model and the main effect model. The "top1500" model is the same as the "standard model except the union of the top 1500 genes associated with degradation is selected. The most effective of our models, "cell_component", involved deconvolution of the degradation matrix to determine the proportion of cell types within our studied tissue.These proportions were then added to our `model.matrix()` and the union of the top 1000 transcripts in the interaction model, the main effect model, and the cell proportions model were used to generate this model of qSVs. In this example we will choose "cell_component" use the `getDegTx()` and `select_transcripts()` functions.
 
-![figure](../man/figures/transcripts_venn_diagramm.png)
-The above venn diagram shows the overlap between transcripts in each of the previously mentioned models.
+```{r VennDiagram,fig.cap="The above venn diagram shows the overlap between transcripts in each of the previously mentioned models."}
+knitr::include_graphics("./man/figures/transcripts_venn_diagramm.png")
+```
 
 ```{r "Get Degraded Transcripts"}
 # obtain transcripts with degradation signature
@@ -139,13 +143,14 @@ DegTx <- getDegTx(rse_tx, type = "cell_component")
 dim(DegTx)
 ```
 
-###Get principal components
+#Generate principal components
 The qsvs are derived from taking the principal components (PCs) of the selected transcript expression data. This can be done with the function `getPCs`. qSVs are essentially pricipal components from an rna-seq experiment designed to model bench degradation. For more on principal components you can read and introductory article [`here`](https://towardsdatascience.com/tidying-up-with-pca-an-introduction-to-principal-components-analysis-f876599af383). `rse_tx` specifies a [`RangedSummarizedExperiment`]
 (https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class) object that has the specified degraded transcripts. For us this is `DegTx`. Here `tpm` is the name of the assay we are using within the [`RangedSummarizedExperiment`](https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class) object.
 
 ```{r "getPCs demo"}
 pcTx <- getPCs(rse_tx = DegTx, assayname = "tpm")
 ```
+#Calculate Number of PCs Needed
 Next we use the `k_qsvs()` function to calculate how many PCs we will need to account for the variation. A model matrix accounting for relevant variables should be used. Common variables such as Age, Sex, Race and Religion are often included in the model. Again we are using our `RangedSummarizedExperiment` `DegTx` as the `rse_tx` option. Next we specify the `mod` with our `model.matrix()`. `model.matrix()` creates a design (or model) matrix, e.g., by expanding factors to a set of dummy variables (depending on the contrasts) and expanding interactions similarly. For more information on creating a design matrix for your experiment see the documentation [here](http://bioconductor.org/packages/release/workflows/vignettes/RNAseq123/inst/doc/designmatrices.html). Again we use the `assayname` option to specify the we are using the `tpm` assay.
 
 ```{r "k_qsvs demo"}
@@ -157,7 +162,7 @@ mod <- model.matrix(~ Dx + Age + Sex + Race + Region,
 k <- k_qsvs(rse_tx = DegTx, mod = mod, assayname = "tpm")
 print(k)
 ```
-
+#Return qSV Matrix
 Finally we subset our data to the calculated number of PCs. The output of this function will be the qsvs for each sample. Here we use the `qsvPCs` argument to enter the principal components (`pcTx`). Here the argument k is the number of PCs we are going to include as calculated in the previous step.
 ```{r "get_qsvs demo"}
 # get_qsvs use k to subset our pca analysis
@@ -172,7 +177,7 @@ dim(qsvs)
 ```
 
 
-###Differential Expression
+#Differential Expression
 Next we can use a standard limma package approach to do differential expression on the data. The key here is that we add our qsvs to the `model.matrix()`. Here we input our `RangedSummarizedExperiment` object and our `model.matrix()` with qSVs. Note here that the `RangedSummarizedExperiment` object is the orignal object loaded with the full list of transcripts, not the the one we subsetted for qSVs. This is because while PCs can be generated from a subset of genes, differential expression is best done on the full dataset. The expected output is a sigTx object that shows the results of differential expression.
 
 
@@ -239,12 +244,12 @@ head(DE)
 ```
 
 Using our `DEqual` function we can make a plot comparing the t-statistics from degradation and our differential expression output. We can see in the first model we have a 0.5 correlation between degradation t-statistics and our differential expression. This means the data is likely confounded for degradation and will lead to many false positives.
-```{r "Generate DEqual without qSVs"}
+```{r "Generate DEqual without qSVs",fig.cap="Result of Differential Expression without qSVA normalization."}
 DEqual(DE_noqsv)
 ```
 
 We can see that in that in the plot below when we add qSVs to our model we reduce the association with degradation.
-```{r "Generate DEqual with qSVs"}
+```{r "Generate DEqual with qSVs",fig.cap="Result of Differential Expression with qSVA normalization."}
 DEqual(DE)
 ```
 
