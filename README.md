@@ -20,7 +20,7 @@ complex datasets. In the case of postmortem brain tissue we are tasked
 with removing the effects of bench degradation. The `qsvaR` package
 combines an established method for removing the effects of degradation
 from RNA-seq data with easy to use functions. It is the second iteration
-of the qSVA framework paper ([Jaffe et al, PNAS,
+of the qSVA framework ([Jaffe et al, PNAS,
 2017](https://doi.org/10.1073/pnas.1617384114)).
 
 The first step in the `qsvaR` workflow is to create an
