@@ -76,22 +76,23 @@ load(rse_file, verbose = TRUE)
 ```
 
 
-In this next step we subset for the transcripts associated with degradation. These were determined by Joshua M. Stolz et al, 2022. We have provided three models to choose from. Here the names "cell_component", "top1500", and "standard" refer to models that were determined to be effective in removing degradation effects. The "standard" model involves taking the union of the top 1000 transcripts associated with degradation from the interaction model and the main effect model. The "top1500" model is the same as the "standard model except the union of the top 1500 genes associated with degradation is selected. The most effective of our models, "cell_component", involved deconvolution of the degradation matrix to determine the proportion of cell types within our studied tissue.These proportions were then added to our `model.matrix()` and the union of the top 1000 transcripts in the interaction model, the main effect model, and the cell proportions model were used to generate this model of qSVs. In this example we will choose "cell_component" use the `getDegTx()` and `select_transcripts()` functions.
+In this next step we subset for the transcripts associated with degradation. These were determined by Joshua M. Stolz et al, 2022. We have provided three models to choose from. Here the names `"cell_component"`, `"top1500"`, and `"standard"` refer to models that were determined to be effective in removing degradation effects. The `"standard"` model involves taking the union of the top 1000 transcripts associated with degradation from the interaction model and the main effect model. The `"top1500"` model is the same as the `"standard"` model except the union of the top 1500 genes associated with degradation is selected. The most effective of our models, `"cell_component"`, involved deconvolution of the degradation matrix to determine the proportion of cell types within our studied tissue. These proportions were then added to our `model.matrix()` and the union of the top 1000 transcripts in the interaction model, the main effect model, and the cell proportions model were used to generate this model of qSVs. In this example we will choose `"cell_component"` when using the `getDegTx()` and `select_transcripts()` functions.
 
 ```{r VennDiagram,fig.cap="The above venn diagram shows the overlap between transcripts in each of the previously mentioned models.", echo = FALSE}
 knitr::include_graphics("./man/figures/transcripts_venn_diagramm.png")
 ```
 
-
-
 ```{r select_transcripts}
-## Next we get the degraded transcripts for qSVA from the "cell_component" model
+## Next we get the degraded transcripts for qSVA from the "cell_component"
+## model
 DegTx <- getDegTx(rse_tx, type = "cell_component")
 
-## Now we can compute the Principal Components (PCs) of the degraded transcripts
+## Now we can compute the Principal Components (PCs) of the degraded
+## transcripts
 pcTx <- getPCs(DegTx, "tpm")
 ```
-Next we use the `k_qsvs()` function to calculate how many PCs we will need to account for the variation. A model matrix accounting for relevant variables should be used. Common variables such as Age, Sex, Race and Religion are often included in the model. Again we are using our `RangedSummarizedExperiment` `DegTx` as the `rse_tx` option. Next we specify the `mod` with our `model.matrix()`. `model.matrix()` creates a design (or model) matrix, e.g., by expanding factors to a set of dummy variables (depending on the contrasts) and expanding interactions similarly. For more information on creating a design matrix for your experiment see the documentation [here](http://bioconductor.org/packages/release/workflows/vignettes/RNAseq123/inst/doc/designmatrices.html). Again we use the `assayname` option to specify the we are using the `tpm` assay.
+
+Next we use the `k_qsvs()` function to calculate how many PCs we will need to account for the variation. A model matrix accounting for relevant variables should be used. Common variables such as Age, Sex, Race and Religion are often included in the model. Again we are using our `RangedSummarizedExperiment` `DegTx` as the `rse_tx` option. Next we specify the `mod` with our `model.matrix()`. `model.matrix()` creates a design (or model) matrix, e.g., by expanding factors to a set of dummy variables (depending on the contrasts) and expanding interactions similarly. For more information on creating a design matrix for your experiment see the documentation [here](http://bioconductor.org/packages/release/workflows/vignettes/RNAseq123/inst/doc/designmatrices.html). Again we use the `assayname` option to specify the we are using the `tpm` assay, where TPM stands for _transcripts per million_.
 
 ```{r select_k}
 ## Using a simple statistical model we determine the number of PCs needed (k)
@@ -113,8 +114,9 @@ dim(qsvs)
 This can be done in one step with our wrapper function `qSVA` which just combinds all the previous mentioned functions.
 
 ```{r "wrapper function"}
-qsvs <- qSVA(rse_tx = rse_tx, type = "cell_component", mod = mod, assayname = "tpm")
-dim(qsvs)
+## Example use of the wrapper function qSVA()
+qsvs_wrapper <- qSVA(rse_tx = rse_tx, type = "cell_component", mod = mod, assayname = "tpm")
+dim(qsvs_wrapper)
 ```
 
 ## Differential Expression
@@ -144,6 +146,8 @@ sigTx <- topTable(eBTx,
     coef = 2,
     p.value = 1, number = nrow(rse_tx)
 )
+
+## Explore the top results
 head(sigTx)
 ```
 
@@ -154,15 +158,17 @@ knitr::include_graphics("./man/figures/DEqual_example.png")
 ```
 
 ```{r "DEqual",fig.cap="Result of Differential Expression with qSVA normalization."}
+## Generate a DEqual() plot using the model results with qSVs
 DEqual(sigTx)
 ```
 
 For comparison, here is the `DEqual()` plot for the model without qSVs.
 
-```{r "DEqual-no-qSVs",fig.cap="Result of Differential Expression without qSVA normalization."}
+```{r "DEqual-no-qSVs",fig.cap="Result of Differential Expression without qSVA normalization.", warning=FALSE}
+## Generate a DEqual() plot using the model results without qSVs
 DEqual(topTable(eBayes(lmFit(txExprs, mod)), coef = 2, p.value = 1, number = nrow(rse_tx)))
 ```
 
-In these two DEqual plots we can see that the first is much better. With a correlation of -0.014 we can effectively conclude that we have removed the effects of degradation from the data. In the second plot after modeling for several common variables we still have a correlation of 0.5 with the degradation experiment. This high correlation shows we still have a large amount of signal from degradation in our data potentially confounding our case-control (SCZD vs NTC) differential expression results.
+In these two DEqual plots we can see that the first is much better. With a correlation of -0.014 we can effectively conclude that we have removed the effects of degradation from the data. In the second plot after modeling for several common variables we still have a correlation of 0.5 with the degradation experiment. This high correlation shows we still have a large amount of signal from degradation in our data potentially confounding our case-control (SCZD vs neurotypical controls) differential expression results.
 
 
