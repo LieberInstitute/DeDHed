@@ -23,7 +23,7 @@ knitr::opts_chunk$set(
 [![DOI](https://zenodo.org/badge/421556636.svg)](https://zenodo.org/badge/latestdoi/421556636)
 <!-- badges: end -->
 
-Differential expressions analysis requires the ability normalize complex datasets. In the case of postmortem brain tissue we are tasked with removing the effects of bench degradation. The qsvaR package combines an established method for removing the effects of degradation from RNA-seq data with easy to use functions. The first step in this workflow is to create an [`RangedSummarizedExperiment`](https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class) object with the transcripts identified in our qSVA experiment. If you already have a [`RangedSummarizedExperiment`](https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class) of transcripts we can do this with the `getDegTx()` function as shown below.If not this can be generated with the [`SPEAQeasy`](http://research.libd.org/SPEAQeasy/index.html) (a RNA-seq pipeline maintained by our lab) pipeline using the `--qsva` flag. If you already have a [`RangedSummarizedExperiment`](https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class) object with transcripts then you do not need to run [`SPEAQeasy`](http://research.libd.org/SPEAQeasy/index.html). This flag requires a full path to a text file, containing one Ensembl transcript ID per line for each transcript desired in the final transcripts R output object (called `rse_tx`). The `sig_transcripts` argument in this package should contain the same Ensembl transcript IDs as the text file for the `--qsva` flag.The goal of `qsvaR` is to provide software that can remove the effects of bench degradation from RNA-seq data.
+Differential expressions analysis requires the ability to normalize complex datasets. In the case of postmortem brain tissue we are tasked with removing the effects of bench degradation. The qsvaR package combines an established method for removing the effects of degradation from RNA-seq data with easy to use functions. The first step in this workflow is to create an [`RangedSummarizedExperiment`](https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class) object with the transcripts identified in our qSVA experiment. If you already have a [`RangedSummarizedExperiment`](https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class) of transcripts we can do this with the `getDegTx()` function as shown below.If not this can be generated with the [`SPEAQeasy`](http://research.libd.org/SPEAQeasy/index.html) (a RNA-seq pipeline maintained by our lab) pipeline using the `--qsva` flag. If you already have a [`RangedSummarizedExperiment`](https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class) object with transcripts then you do not need to run [`SPEAQeasy`](http://research.libd.org/SPEAQeasy/index.html). This flag requires a full path to a text file, containing one Ensembl transcript ID per line for each transcript desired in the final transcripts R output object (called `rse_tx`). The `sig_transcripts` argument in this package should contain the same Ensembl transcript IDs as the text file for the `--qsva` flag.The goal of `qsvaR` is to provide software that can remove the effects of bench degradation from RNA-seq data.
 
 ## Installation Instructions
 
@@ -47,7 +47,7 @@ devtools::install_github("LieberInstitute/qsvaR")
 
 ## Example
 
-This is a basic example which shows you how to obtain the quality surrogate variables (qSVs) for the brainseq [phase II dataset](http://eqtl.brainseq.org/phase2). qSVs are essentially pricipal components from an rna-seq experiment designed to model bench degradation. For more on principal components you can read and introductory article [here](https://towardsdatascience.com/tidying-up-with-pca-an-introduction-to-principal-components-analysis-f876599af383#:~:text=The%20goal%20of%20PCA%20is,eliminate%20ones%20that%20do%20not). At the start of this script we will have a [`RangedSummarizedExperiment`](https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class) and a list of all the transcripts found in our degradation study. At the end we will have a table with differential expression results that is adjusted for qSVs.
+This is a basic example which shows how to obtain the quality surrogate variables (qSVs) for the brainseq [phase II dataset](http://eqtl.brainseq.org/phase2). qSVs are essentially principal components from an rna-seq experiment designed to model bench degradation. For more on principal components you can read and introductory article [here](https://towardsdatascience.com/tidying-up-with-pca-an-introduction-to-principal-components-analysis-f876599af383#:~:text=The%20goal%20of%20PCA%20is,eliminate%20ones%20that%20do%20not). At the start of this script we will have an [`RangedSummarizedExperiment`](https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class) and a list of all the transcripts found in our degradation study. At the end we will have a table with differential expression results that is adjusted for qSVs.
 
 ```{r "load pkgs", message = FALSE, warning = FALSE}
 ## R packages we'll use
@@ -116,7 +116,7 @@ dim(qsvs)
 ## Differential Expression
 
 Next we can use a standard `limma` package approach to do differential expression on the data. The key here is that we add our qSVs to the statistical model we use through `model.matrix()`. 
-Here we input our [`Ranged SummarizedExperiment`](https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class) object and our `model.matrix` with qSVs. Note here that the `Ranged SummarizedExperiment` object is the orignal object loaded with the full list of transcripts, not the the one we subsetted for qSVs. This is because while PCs can be generated from a subset of genes, differential expression is best done on the full dataset. The expected output is a `sigTx` object that shows the results of differential expression.
+Here we input our [`Ranged SummarizedExperiment`](https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class) object and our `model.matrix` with qSVs. Note here that the `Ranged SummarizedExperiment` object is the original object loaded with the full list of transcripts, not the the one we subsetted for qSVs. This is because while PCs can be generated from a subset of genes, differential expression is best done on the full dataset. The expected output is a `sigTx` object that shows the results of differential expression.
 
 ```{r "perform DE"}
 library("limma")
@@ -149,7 +149,7 @@ Finally, you can compare the resulting t-statistics from your differential expre
 knitr::include_graphics("./man/figures/DEqual_example.png")
 ```
 
-```{r "DEqual",,fig.cap="Result of Differential Expression with qSVA normalization."}
+```{r "DEqual",fig.cap="Result of Differential Expression with qSVA normalization."}
 DEqual(sigTx)
 ```
 
@@ -159,6 +159,6 @@ For comparison, here is the `DEqual()` plot for the model without qSVs.
 DEqual(topTable(eBayes(lmFit(txExprs, mod)), coef = 2, p.value = 1, number = nrow(rse_tx)))
 ```
 
-In these two DEqual plots we can see that the first is much better. With a correlation of -0.014 we can effectively conclude that we have removed the effects ofm degradation from the data. In the second plot after modeling for several common variables we still have a correlation of 0.5 with the degradation experiment. This high correlation shows we still have a large amount of signal from degradation in our data.
+In these two DEqual plots we can see that the first is much better. With a correlation of -0.014 we can effectively conclude that we have removed the effects of degradation from the data. In the second plot after modeling for several common variables we still have a correlation of 0.5 with the degradation experiment. This high correlation shows we still have a large amount of signal from degradation in our data.
 
 

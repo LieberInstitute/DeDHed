@@ -87,7 +87,7 @@ BiocManager::valid()
 ## Required knowledge
 
 `r Biocpkg("qsvaR")` is based on many other packages and in particular in those that have implemented the infrastructure needed for dealing with RNA-seq data.
-That is, packages like `r Biocpkg("SummarizedExperiment")`. It might be useful for you to check the qSVA framework manuscript (TODO add qSVA framework citation).
+That is, packages like `r Biocpkg("SummarizedExperiment")`. Here it might be useful for you to check the qSVA framework manuscript ([Jaffe et al, PNAS, 2017](https://doi.org/10.1073/pnas.1617384114)).
 
 If you are asking yourself the question "Where do I start using Bioconductor?" you might be interested in [this blog post](http://lcolladotor.github.io/2014/10/16/startbioc/#.VkOKbq6rRuU).
 
@@ -182,7 +182,7 @@ A model matrix accounting for relevant variables should be used. Common variable
 Again we are using our `RangedSummarizedExperiment` `DegTx` as the `rse_tx` option. Next we specify the `mod` with our `model.matrix()`. 
 `model.matrix()` creates a design (or model) matrix, e.g., by expanding factors to a set of dummy variables (depending on the contrasts) and expanding interactions similarly. 
 For more information on creating a design matrix for your experiment see the documentation [here](http://bioconductor.org/packages/release/workflows/vignettes/RNAseq123/inst/doc/designmatrices.html). 
-Again we use the `assayname` option to specify the we are using the `tpm` assay.
+Again we use the `assayname` option to specify that we are using the `tpm` assay.
 
 ```{r "k_qsvs demo"}
 # design a basic model matrix to model the number of pcs needed
@@ -212,7 +212,7 @@ dim(qsvs)
 #Differential Expression
 Next we can use a standard limma package approach to do differential expression on the data. The key here is that we add our qsvs to the `model.matrix()`.
 Here we input our `RangedSummarizedExperiment` object and our `model.matrix()` with qSVs.
-Note here that the `RangedSummarizedExperiment` object is the orignal object loaded with the full list of transcripts, not the the one we subsetted for qSVs.
+Note here that the `RangedSummarizedExperiment` object is the original object loaded with the full list of transcripts, not the the one we subsetted for qSVs.
 This is because while PCs can be generated from a subset of genes, differential expression is best done on the full dataset. 
 The expected output is a sigTx object that shows the results of differential expression.
 
@@ -280,13 +280,13 @@ head(DE)
 ```
 
 Using our `DEqual` function we can make a plot comparing the t-statistics from degradation and our differential expression output.
-We can see in the first model we have a 0.5 correlation between degradation t-statistics and our differential expression.
+In the first model below there is a 0.5 correlation between degradation t-statistics and our differential expression.
 This means the data is likely confounded for degradation and will lead to many false positives.
 ```{r "Generate DEqual without qSVs",fig.cap="Result of Differential Expression without qSVA normalization."}
 DEqual(DE_noqsv)
 ```
 
-We can see that in that in the plot below when we add qSVs to our model we reduce the association with degradation.
+In the plot below when we add qSVs to our model we reduce the association with degradation.
 ```{r "Generate DEqual with qSVs",fig.cap="Result of Differential Expression with qSVA normalization."}
 DEqual(DE)
 ```
@@ -294,8 +294,8 @@ DEqual(DE)
 # Conclusion
 
 We have shown that this method is effective for removing the effects of degradation from RNA-seq data. 
-Being that this is simpler to use than previous version, this software package should be preferable for users. 
-I would encourage users to read how each set of degradation transcripts was selected as not all models may be appropriate for your experiment.
+We found that the `r Biocpkg("qsvaR")` is simpler to use than the previous version from 2016 that used expressed regions instead of transcripts making this software package preferable for users. 
+I would encourage users to read how each set of degradation transcripts was selected as not all models may be appropriate for every experiment.
 Thank you for your interest and for using `r Biocpkg("qsvaR")` `r Citep(bib[["qsvaR"]])`!
 
 # Reproducibility
