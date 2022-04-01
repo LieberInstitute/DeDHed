@@ -251,7 +251,7 @@ txExprs_noqsv <- log2(assays(rse_tx)$tpm + 1)
 fitTx_noqsv <- lmFit(txExprs_noqsv, mod)
 
 # generate empirical bayes for DE
-eBTx_noqsv <- eBayes
+eBTx_noqsv <- eBayes(fitTx_noqsv)
 
 # get DE results table
 sigTx_noqsv <- topTable(eBTx_noqsv,
