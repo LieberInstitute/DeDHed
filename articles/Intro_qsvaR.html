@@ -92,7 +92,7 @@ Collado-Torres</h4>
 Development<br><a class="author_email" href="mailto:#"></a><a href="mailto:lcolladotor@gmail.com" class="email">lcolladotor@gmail.com</a>
       </address>
                   
-            <h4 data-toc-skip class="date">31 March 2022</h4>
+            <h4 data-toc-skip class="date">1 April 2022</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/LieberInstitute/qsvaR/blob/HEAD/vignettes/Intro_qsvaR.Rmd" class="external-link"><code>vignettes/Intro_qsvaR.Rmd</code></a></small>
       <div class="hidden name"><code>Intro_qsvaR.Rmd</code></div>
@@ -130,8 +130,9 @@ using the following commands in your <code>R</code> session:</p>
 based on many other packages and in particular in those that have
 implemented the infrastructure needed for dealing with RNA-seq data.
 That is, packages like <em><a href="https://bioconductor.org/packages/3.15/SummarizedExperiment" class="external-link">SummarizedExperiment</a></em>.
-It might be useful for you to check the qSVA framework manuscript (TODO
-add qSVA framework citation).</p>
+Here it might be useful for you to check the qSVA framework manuscript
+(<a href="https://doi.org/10.1073/pnas.1617384114" class="external-link">Jaffe et al, PNAS,
+2017</a>).</p>
 <p>If you are asking yourself the question “Where do I start using
 Bioconductor?” you might be interested in <a href="http://lcolladotor.github.io/2014/10/16/startbioc/#.VkOKbq6rRuU" class="external-link">this
 blog post</a>.</p>
@@ -300,7 +301,7 @@ design (or model) matrix, e.g., by expanding factors to a set of dummy
 variables (depending on the contrasts) and expanding interactions
 similarly. For more information on creating a design matrix for your
 experiment see the documentation <a href="http://bioconductor.org/packages/release/workflows/vignettes/RNAseq123/inst/doc/designmatrices.html" class="external-link">here</a>.
-Again we use the <code>assayname</code> option to specify the we are
+Again we use the <code>assayname</code> option to specify that we are
 using the <code>tpm</code> assay.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># design a basic model matrix to model the number of pcs needed</span>
@@ -334,7 +335,7 @@ approach to do differential expression on the data. The key here is that
 we add our qsvs to the <code><a href="https://rdrr.io/r/stats/model.matrix.html" class="external-link">model.matrix()</a></code>. Here we input our
 <code>RangedSummarizedExperiment</code> object and our
 <code><a href="https://rdrr.io/r/stats/model.matrix.html" class="external-link">model.matrix()</a></code> with qSVs. Note here that the
-<code>RangedSummarizedExperiment</code> object is the orignal object
+<code>RangedSummarizedExperiment</code> object is the original object
 loaded with the full list of transcripts, not the the one we subsetted
 for qSVs. This is because while PCs can be generated from a subset of
 genes, differential expression is best done on the full dataset. The
@@ -431,7 +432,7 @@ t-statistic</p>
 <span class="co">#&gt; ENST00000572236.1 -4.806373</span></code></pre></div>
 <p>Using our <code>DEqual</code> function we can make a plot comparing
 the t-statistics from degradation and our differential expression
-output. We can see in the first model we have a 0.5 correlation between
+output. In the first model below there is a 0.5 correlation between
 degradation t-statistics and our differential expression. This means the
 data is likely confounded for degradation and will lead to many false
 positives.</p>
@@ -442,8 +443,8 @@ positives.</p>
 Result of Differential Expression without qSVA normalization.
 </p>
 </div>
-<p>We can see that in that in the plot below when we add qSVs to our
-model we reduce the association with degradation.</p>
+<p>In the plot below when we add qSVs to our model we reduce the
+association with degradation.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/DEqual.html">DEqual</a></span><span class="op">(</span><span class="va">DE</span><span class="op">)</span></code></pre></div>
 <div class="figure">
@@ -456,11 +457,12 @@ Result of Differential Expression with qSVA normalization.
 <h2 id="conclusion">Conclusion<a class="anchor" aria-label="anchor" href="#conclusion"></a>
 </h2>
 <p>We have shown that this method is effective for removing the effects
-of degradation from RNA-seq data. Being that this is simpler to use than
-previous version, this software package should be preferable for users.
-I would encourage users to read how each set of degradation transcripts
-was selected as not all models may be appropriate for your experiment.
-Thank you for your interest and for using <em><a href="https://bioconductor.org/packages/3.15/qsvaR" class="external-link">qsvaR</a></em>
+of degradation from RNA-seq data. We found that the <em><a href="https://bioconductor.org/packages/3.15/qsvaR" class="external-link">qsvaR</a></em> is
+simpler to use than the previous version from 2016 that used expressed
+regions instead of transcripts making this software package preferable
+for users. I would encourage users to read how each set of degradation
+transcripts was selected as not all models may be appropriate for every
+experiment. Thank you for your interest and for using <em><a href="https://bioconductor.org/packages/3.15/qsvaR" class="external-link">qsvaR</a></em>
 (Stolz and Collado-Torres, 2022)!</p>
 </div>
 <div class="section level2">
@@ -505,9 +507,9 @@ Johnson, Parker, Fertig, Jaffe, Zhang, Storey, and Torres, 2021)</li>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://yihui.org/knitr/" class="external-link">"knitr"</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit.html" class="external-link">knit</a></span><span class="op">(</span><span class="st">"Intro_qsvaR.Rmd"</span>, tangle <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p>Date the vignette was generated.</p>
-<pre><code><span class="co">#&gt; [1] "2022-03-31 20:14:37 UTC"</span></code></pre>
+<pre><code><span class="co">#&gt; [1] "2022-04-01 13:11:15 UTC"</span></code></pre>
 <p>Wallclock time spent generating the vignette.</p>
-<pre><code><span class="co">#&gt; Time difference of 1.738 mins</span></code></pre>
+<pre><code><span class="co">#&gt; Time difference of 1.713 mins</span></code></pre>
 <p><code>R</code> session information.</p>
 <pre><code><span class="co">#&gt; <span style="color: #00BBBB; font-weight: bold;">─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────</span></span>
 <span class="co">#&gt;  <span style="color: #555555; font-style: italic;">setting </span> <span style="color: #555555; font-style: italic;">value</span></span>
@@ -519,7 +521,7 @@ Johnson, Parker, Fertig, Jaffe, Zhang, Storey, and Torres, 2021)</li>
 <span class="co">#&gt;  collate  en_US.UTF-8</span>
 <span class="co">#&gt;  ctype    en_US.UTF-8</span>
 <span class="co">#&gt;  tz       UTC</span>
-<span class="co">#&gt;  date     2022-03-31</span>
+<span class="co">#&gt;  date     2022-04-01</span>
 <span class="co">#&gt;  pandoc   2.17.1.1 @ /usr/local/bin/ (via rmarkdown)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; <span style="color: #00BBBB; font-weight: bold;">─ Packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────</span></span>
@@ -595,7 +597,7 @@ Johnson, Parker, Fertig, Jaffe, Zhang, Storey, and Torres, 2021)</li>
 <span class="co">#&gt;  plyr                   1.8.7      <span style="color: #555555;">2022-03-24</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
 <span class="co">#&gt;  png                    0.1-7      <span style="color: #555555;">2013-12-03</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
 <span class="co">#&gt;  purrr                  0.3.4      <span style="color: #555555;">2020-04-17</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  qsvaR                * 0.99.0     <span style="color: #555555;">2022-03-31</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span>
+<span class="co">#&gt;  qsvaR                * 0.99.0     <span style="color: #555555;">2022-04-01</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span>
 <span class="co">#&gt;  R6                     2.5.1      <span style="color: #555555;">2021-08-19</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
 <span class="co">#&gt;  ragg                   1.2.2      <span style="color: #555555;">2022-02-21</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
 <span class="co">#&gt;  rappdirs               0.3.3      <span style="color: #555555;">2021-01-31</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
