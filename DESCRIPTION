@@ -40,7 +40,7 @@ Imports:
     ggplot2,
     methods
 Depends: 
-    R (>= 4.1),
+    R (>= 4.2),
     SummarizedExperiment
 LazyData: true
 VignetteBuilder: knitr
