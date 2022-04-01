@@ -56,7 +56,7 @@ bib <- c(
     ),
     BiocFileCache = citation("BiocFileCache")[1],
     BiocStyle = citation("BiocStyle")[1],
-    covr = citaiton("covr")[1],
+    covr = citation("covr")[1],
     ggplot2 = citation("ggplot2")[1],
     knitr = citation("knitr")[1],
     limma = citation("limma")[1],
