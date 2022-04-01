@@ -28,7 +28,6 @@ k_qsvs <- function(rse_tx, mod, assayname) {
         num.sv(expr, mod),
         error = function(e) {
             stop("Could not run sva::num.sv(). Likely due to transcripts being not expressed in most samples.", call. = FALSE)
-            return(NULL)
         }
     )
     return(k)
