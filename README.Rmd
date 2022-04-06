@@ -31,7 +31,7 @@ The first step in the `qsvaR` workflow is to create an [`RangedSummarizedExperim
 
 Get the latest stable R release from CRAN. Then install `qsvaR` using from Bioconductor the following code:
 
-```r
+```{r "install pkg", eval=FALSE}
 if (!requireNamespace("BiocManager", quietly = TRUE)) {
     install.packages("BiocManager")
 }
@@ -41,7 +41,7 @@ BiocManager::install("qsvaR")
 
 And the development version from GitHub with:
 
-```r
+```{r "install qsva devel", eval=FALSE}
 BiocManager::install("LieberInstitute/qsvaR")
 ```
 

@@ -11,7 +11,7 @@
 #' @return integer representing number of pcs to be included
 #' @export
 #' @importFrom sva num.sv
-#' @importFrom SummarizedExperiment assays
+#' @import SummarizedExperiment
 #' @examples
 #' mod <- model.matrix(~ mitoRate + Region + rRNA_rate + totalAssignedGene + RIN,
 #'     data = colData(covComb_tx_deg)
