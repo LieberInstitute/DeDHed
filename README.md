@@ -7,11 +7,28 @@
 
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
-[![BioC
+[![Bioc release
 status](http://www.bioconductor.org/shields/build/release/bioc/qsvaR.svg)](https://bioconductor.org/checkResults/release/bioc-LATEST/qsvaR)
-[![R-CMD-check-bioc](https://github.com/LieberInstitute/qsvaR/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/LieberInstitute/qsvaR/actions)
+[![Bioc devel
+status](http://www.bioconductor.org/shields/build/devel/bioc/qsvaR.svg)](https://bioconductor.org/checkResults/devel/bioc-LATEST/qsvaR)
+[![Bioc downloads
+rank](https://bioconductor.org/shields/downloads/release/qsvaR.svg)](http://bioconductor.org/packages/stats/bioc/qsvaR/)
+[![Bioc
+support](https://bioconductor.org/shields/posts/qsvaR.svg)](https://support.bioconductor.org/tag/qsvaR)
+[![Bioc
+history](https://bioconductor.org/shields/years-in-bioc/qsvaR.svg)](https://bioconductor.org/packages/release/bioc/html/qsvaR.html#since)
+[![Bioc last
+commit](https://bioconductor.org/shields/lastcommit/devel/bioc/qsvaR.svg)](http://bioconductor.org/checkResults/devel/bioc-LATEST/qsvaR/)
+[![Bioc
+dependencies](https://bioconductor.org/shields/dependencies/release/qsvaR.svg)](https://bioconductor.org/packages/release/bioc/html/qsvaR.html#since)
 [![Codecov test
-coverage](https://codecov.io/gh/LieberInstitute/qsvaR/branch/main/graph/badge.svg)](https://app.codecov.io/gh/LieberInstitute/qsvaR?branch=main)
+coverage](https://codecov.io/gh/LieberInstitute/qsvaR/branch/devel/graph/badge.svg)](https://codecov.io/gh/LieberInstitute/qsvaR?branch=devel)
+[![R build
+status](https://github.com/LieberInstitute/qsvaR/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/LieberInstitute/qsvaR/actions)
+[![GitHub
+issues](https://img.shields.io/github/issues/LieberInstitute/qsvaR)](https://github.com/LieberInstitute/qsvaR/issues)
+[![GitHub
+pulls](https://img.shields.io/github/issues-pr/LieberInstitute/qsvaR)](https://github.com/LieberInstitute/qsvaR/pulls)
 [![DOI](https://zenodo.org/badge/421556636.svg)](https://zenodo.org/badge/latestdoi/421556636)
 <!-- badges: end -->
 
@@ -121,7 +138,15 @@ cell proportions model were used to generate this model of qSVs. In this
 example we will choose `"cell_component"` when using the `getDegTx()`
 and `select_transcripts()` functions.
 
-<img src="./man/figures/transcripts_venn_diagramm.png" title="The above venn diagram shows the overlap between transcripts in each of the previously mentioned models." alt="The above venn diagram shows the overlap between transcripts in each of the previously mentioned models." width="100%" />
+<div class="figure">
+
+<img src="./man/figures/transcripts_venn_diagramm.png" alt="The above venn diagram shows the overlap between transcripts in each of the previously mentioned models." width="100%" />
+<p class="caption">
+The above venn diagram shows the overlap between transcripts in each of
+the previously mentioned models.
+</p>
+
+</div>
 
 ``` r
 ## Next we get the degraded transcripts for qSVA from the "cell_component"
@@ -244,14 +269,28 @@ associated with qSVs. An example of nonconfounded data or data that has
 been modeled can be seen in Figure 1 on the right with its lack of
 relationship between the x and y variables.
 
-<img src="./man/figures/DEqual_example.png" title="Cartoon showing patterns in DEqual plots" alt="Cartoon showing patterns in DEqual plots" width="100%" />
+<div class="figure">
+
+<img src="./man/figures/DEqual_example.png" alt="Cartoon showing patterns in DEqual plots" width="100%" />
+<p class="caption">
+Cartoon showing patterns in DEqual plots
+</p>
+
+</div>
 
 ``` r
 ## Generate a DEqual() plot using the model results with qSVs
 DEqual(sigTx)
 ```
 
-<img src="man/figures/README-DEqual-1.png" title="Result of Differential Expression with qSVA normalization." alt="Result of Differential Expression with qSVA normalization." width="100%" />
+<div class="figure">
+
+<img src="man/figures/README-DEqual-1.png" alt="Result of Differential Expression with qSVA normalization." width="100%" />
+<p class="caption">
+Result of Differential Expression with qSVA normalization.
+</p>
+
+</div>
 
 For comparison, here is the `DEqual()` plot for the model without qSVs.
 
@@ -260,7 +299,14 @@ For comparison, here is the `DEqual()` plot for the model without qSVs.
 DEqual(topTable(eBayes(lmFit(txExprs, mod)), coef = 2, p.value = 1, number = nrow(rse_tx)))
 ```
 
-<img src="man/figures/README-DEqual-no-qSVs-1.png" title="Result of Differential Expression without qSVA normalization." alt="Result of Differential Expression without qSVA normalization." width="100%" />
+<div class="figure">
+
+<img src="man/figures/README-DEqual-no-qSVs-1.png" alt="Result of Differential Expression without qSVA normalization." width="100%" />
+<p class="caption">
+Result of Differential Expression without qSVA normalization.
+</p>
+
+</div>
 
 In these two DEqual plots we can see that the first is much better. With
 a correlation of -0.014 we can effectively conclude that we have removed
