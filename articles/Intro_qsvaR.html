@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">qsvaR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.99.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.5.0</span>
       </span>
     </div>
 
@@ -92,7 +92,7 @@ Collado-Torres</h4>
 Development<br><a class="author_email" href="mailto:#"></a><a href="mailto:lcolladotor@gmail.com" class="email">lcolladotor@gmail.com</a>
       </address>
                   
-            <h4 data-toc-skip class="date">6 April 2022</h4>
+            <h4 data-toc-skip class="date">7 May 2023</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/LieberInstitute/qsvaR/blob/HEAD/vignettes/Intro_qsvaR.Rmd" class="external-link"><code>vignettes/Intro_qsvaR.Rmd</code></a></small>
       <div class="hidden name"><code>Intro_qsvaR.Rmd</code></div>
@@ -108,32 +108,32 @@ Development<br><a class="author_email" href="mailto:#"></a><a href="mailto:lcoll
 <h3 id="install-qsvar">Install <code>qsvaR</code><a class="anchor" aria-label="anchor" href="#install-qsvar"></a>
 </h3>
 <p><code>R</code> is an open-source statistical environment which can be
-easily modified to enhance its functionality via packages. <em><a href="https://bioconductor.org/packages/3.15/qsvaR" class="external-link">qsvaR</a></em> is a
+easily modified to enhance its functionality via packages. <em><a href="https://bioconductor.org/packages/3.17/qsvaR" class="external-link">qsvaR</a></em> is a
 <code>R</code> package available via the <a href="http://bioconductor.org" class="external-link">Bioconductor</a> repository for packages.
 <code>R</code> can be installed on any operating system from <a href="https://cran.r-project.org/" class="external-link">CRAN</a> after which you can install
-<em><a href="https://bioconductor.org/packages/3.15/qsvaR" class="external-link">qsvaR</a></em> by
+<em><a href="https://bioconductor.org/packages/3.17/qsvaR" class="external-link">qsvaR</a></em> by
 using the following commands in your <code>R</code> session:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## To install Bioconductor packages</span>
-<span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
-    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span>
-<span class="op">}</span>
-
-<span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"qsvaR"</span><span class="op">)</span>
-
-<span class="co">## Check that you have a valid Bioconductor installation</span>
-<span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/valid.html" class="external-link">valid</a></span><span class="op">(</span><span class="op">)</span>
-
-<span class="co">## You can install the development version from GitHub with:</span>
-<span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"LieberInstitute/qsvaR"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">## To install Bioconductor packages</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"qsvaR"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## Check that you have a valid Bioconductor installation</span></span>
+<span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/valid.html" class="external-link">valid</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## You can install the development version from GitHub with:</span></span>
+<span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"LieberInstitute/qsvaR"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="required-knowledge">Required knowledge<a class="anchor" aria-label="anchor" href="#required-knowledge"></a>
 </h3>
-<p><em><a href="https://bioconductor.org/packages/3.15/qsvaR" class="external-link">qsvaR</a></em> is
+<p><em><a href="https://bioconductor.org/packages/3.17/qsvaR" class="external-link">qsvaR</a></em> is
 based on many other packages and in particular in those that have
 implemented the infrastructure needed for dealing with RNA-seq data.
-That is, packages like <em><a href="https://bioconductor.org/packages/3.15/SummarizedExperiment" class="external-link">SummarizedExperiment</a></em>.
+That is, packages like <em><a href="https://bioconductor.org/packages/3.17/SummarizedExperiment" class="external-link">SummarizedExperiment</a></em>.
 Here it might be useful for you to check the qSVA framework manuscript
 (<a href="https://doi.org/10.1073/pnas.1617384114" class="external-link">Jaffe et al, PNAS,
 2017</a>).</p>
@@ -161,25 +161,26 @@ can track down the source of the error.</p>
 <div class="section level3">
 <h3 id="citing-qsvar">Citing <code>qsvaR</code><a class="anchor" aria-label="anchor" href="#citing-qsvar"></a>
 </h3>
-<p>We hope that <em><a href="https://bioconductor.org/packages/3.15/qsvaR" class="external-link">qsvaR</a></em> will
+<p>We hope that <em><a href="https://bioconductor.org/packages/3.17/qsvaR" class="external-link">qsvaR</a></em> will
 be useful for your research. Please use the following information to
 cite the package and the overall approach. Thank you!</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## Citation info</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"qsvaR"</span><span class="op">)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Stolz JM, Collado-Torres L (2022). _qsvaR_.</span>
-<span class="co">#&gt; \Sexpr[results=rd]{tools:::Rd_expr_doi("10.18129/B9.bioc.qsvaR")},</span>
-<span class="co">#&gt; https://github.com/LieberInstitute/qsvaR/qsvaR - R package version</span>
-<span class="co">#&gt; 0.99.1, &lt;URL: http://www.bioconductor.org/packages/qsvaR&gt;.</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Stolz JM, Tao R, Jaffe AE, Collado-Torres L (2022). "qsvaR." _bioRxiv_.</span>
-<span class="co">#&gt; \Sexpr[results=rd]{tools:::Rd_expr_doi("10.1101/TODO")}, &lt;URL:</span>
-<span class="co">#&gt; https://www.biorxiv.org/content/10.1101/TODO&gt;.</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; To see these entries in BibTeX format, use 'print(&lt;citation&gt;,</span>
-<span class="co">#&gt; bibtex=TRUE)', 'toBibtex(.)', or set</span>
-<span class="co">#&gt; 'options(citation.bibtex.max=999)'.</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">## Citation info</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"qsvaR"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; To cite package 'qsvaR' in publications use:</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;   Stolz JM, Collado-Torres L (2023). _qsvaR_.</span></span>
+<span><span class="co">#&gt;   doi:10.18129/B9.bioc.qsvaR &lt;https://doi.org/10.18129/B9.bioc.qsvaR&gt;,</span></span>
+<span><span class="co">#&gt;   https://github.com/LieberInstitute/qsvaR/qsvaR - R package version</span></span>
+<span><span class="co">#&gt;   1.5.0, &lt;http://www.bioconductor.org/packages/qsvaR&gt;.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;   Stolz JM, Tao R, Jaffe AE, Collado-Torres L (2023). "qsvaR."</span></span>
+<span><span class="co">#&gt;   _bioRxiv_. doi:10.1101/TODO &lt;https://doi.org/10.1101/TODO&gt;,</span></span>
+<span><span class="co">#&gt;   &lt;https://www.biorxiv.org/content/10.1101/TODO&gt;.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; To see these entries in BibTeX format, use 'print(&lt;citation&gt;,</span></span>
+<span><span class="co">#&gt; bibtex=TRUE)', 'toBibtex(.)', or set</span></span>
+<span><span class="co">#&gt; 'options(citation.bibtex.max=999)'.</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -187,9 +188,9 @@ cite the package and the overall approach. Thank you!</p>
 <code>qsvaR</code> Overview<a class="anchor" aria-label="anchor" href="#qsvar-overview"></a>
 </h2>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/LieberInstitute/qsvaR" class="external-link">"qsvaR"</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="http://bioinf.wehi.edu.au/limma" class="external-link">"limma"</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st">"BiocFileCache"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/LieberInstitute/qsvaR" class="external-link">"qsvaR"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://bioinf.wehi.edu.au/limma/" class="external-link">"limma"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st">"BiocFileCache"</span><span class="op">)</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="significant-transcripts">Significant Transcripts<a class="anchor" aria-label="anchor" href="#significant-transcripts"></a>
 </h3>
@@ -222,8 +223,8 @@ The diagram on the right shows the 2016 experimental design for qSVA.The
 diagram on the right shows the 2022 experimental design for qSVA.
 </p>
 </div>
-<p>The <em><a href="https://bioconductor.org/packages/3.15/qsvaR" class="external-link">qsvaR</a></em>
-(Stolz and Collado-Torres, 2022) package combines an established method
+<p>The <em><a href="https://bioconductor.org/packages/3.17/qsvaR" class="external-link">qsvaR</a></em>
+(Stolz and Collado-Torres, 2023) package combines an established method
 for removing the effects of degradation from RNA-seq data with easy to
 use functions. The first step in this workflow is to create an <a href="https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class" class="external-link"><code>RangedSummarizedExperiment</code></a>
 object with the transcripts identified in our qSVA experiment. If you
@@ -242,16 +243,16 @@ for the <code>--qsva</code> flag. The goal of <code>qsvaR</code> is to
 provide software that can remove the effects of bench degradation from
 RNA-seq data.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">bfc</span> <span class="op">&lt;-</span> <span class="fu">BiocFileCache</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocFileCache/man/BiocFileCache-class.html" class="external-link">BiocFileCache</a></span><span class="op">(</span><span class="op">)</span>
-
-<span class="co">## Download brainseq phase 2 ##</span>
-<span class="va">rse_file</span> <span class="op">&lt;-</span> <span class="fu">BiocFileCache</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocFileCache/man/BiocFileCache-class.html" class="external-link">bfcrpath</a></span><span class="op">(</span>
-    <span class="st">"https://s3.us-east-2.amazonaws.com/libd-brainseq2/rse_tx_unfiltered.Rdata"</span>,
-    x <span class="op">=</span> <span class="va">bfc</span>
-<span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/load.html" class="external-link">load</a></span><span class="op">(</span><span class="va">rse_file</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="co">#&gt; Loading objects:</span>
-<span class="co">#&gt;   rse_tx</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">bfc</span> <span class="op">&lt;-</span> <span class="fu">BiocFileCache</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocFileCache/man/BiocFileCache-class.html" class="external-link">BiocFileCache</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## Download brainseq phase 2 ##</span></span>
+<span><span class="va">rse_file</span> <span class="op">&lt;-</span> <span class="fu">BiocFileCache</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocFileCache/man/BiocFileCache-class.html" class="external-link">bfcrpath</a></span><span class="op">(</span></span>
+<span>    <span class="st">"https://s3.us-east-2.amazonaws.com/libd-brainseq2/rse_tx_unfiltered.Rdata"</span>,</span>
+<span>    x <span class="op">=</span> <span class="va">bfc</span></span>
+<span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/load.html" class="external-link">load</a></span><span class="op">(</span><span class="va">rse_file</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Loading objects:</span></span>
+<span><span class="co">#&gt;   rse_tx</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="get-degradation-matrix">Get Degradation Matrix<a class="anchor" aria-label="anchor" href="#get-degradation-matrix"></a>
@@ -283,10 +284,10 @@ the previously mentioned models.
 </p>
 </div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># obtain transcripts with degradation signature</span>
-<span class="va">DegTx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getDegTx.html">getDegTx</a></span><span class="op">(</span><span class="va">rse_tx</span>, type <span class="op">=</span> <span class="st">"cell_component"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">DegTx</span><span class="op">)</span>
-<span class="co">#&gt; [1] 2976  900</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># obtain transcripts with degradation signature</span></span>
+<span><span class="va">DegTx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getDegTx.html">getDegTx</a></span><span class="op">(</span><span class="va">rse_tx</span>, type <span class="op">=</span> <span class="st">"cell_component"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">DegTx</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 2976  900</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="generate-principal-components">Generate principal components<a class="anchor" aria-label="anchor" href="#generate-principal-components"></a>
@@ -302,7 +303,7 @@ object that has the specified degraded transcripts. For us this is
 are using within the <a href="https://www.rdocumentation.org/packages/SummarizedExperiment/versions/1.2.3/topics/RangedSummarizedExperiment-class" class="external-link"><code>RangedSummarizedExperiment</code></a>
 object, where TPM stands for <em>transcripts per million</em>.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">pcTx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getPCs.html">getPCs</a></span><span class="op">(</span>rse_tx <span class="op">=</span> <span class="va">DegTx</span>, assayname <span class="op">=</span> <span class="st">"tpm"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">pcTx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getPCs.html">getPCs</a></span><span class="op">(</span>rse_tx <span class="op">=</span> <span class="va">DegTx</span>, assayname <span class="op">=</span> <span class="st">"tpm"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="calculate-number-of-pcs-needed">Calculate Number of PCs Needed<a class="anchor" aria-label="anchor" href="#calculate-number-of-pcs-needed"></a>
@@ -321,14 +322,14 @@ for your experiment see the documentation <a href="http://bioconductor.org/packa
 Again we use the <code>assayname</code> option to specify that we are
 using the <code>tpm</code> assay.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># design a basic model matrix to model the number of pcs needed</span>
-<span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html" class="external-link">model.matrix</a></span><span class="op">(</span><span class="op">~</span> <span class="va">Dx</span> <span class="op">+</span> <span class="va">Age</span> <span class="op">+</span> <span class="va">Sex</span> <span class="op">+</span> <span class="va">Race</span> <span class="op">+</span> <span class="va">Region</span>,
-    data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">colData</a></span><span class="op">(</span><span class="va">rse_tx</span><span class="op">)</span>
-<span class="op">)</span>
-<span class="co"># use k qsvs function to return a integer of pcs needed</span>
-<span class="va">k</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/k_qsvs.html">k_qsvs</a></span><span class="op">(</span>rse_tx <span class="op">=</span> <span class="va">DegTx</span>, mod <span class="op">=</span> <span class="va">mod</span>, assayname <span class="op">=</span> <span class="st">"tpm"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">k</span><span class="op">)</span>
-<span class="co">#&gt; [1] 34</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># design a basic model matrix to model the number of pcs needed</span></span>
+<span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html" class="external-link">model.matrix</a></span><span class="op">(</span><span class="op">~</span> <span class="va">Dx</span> <span class="op">+</span> <span class="va">Age</span> <span class="op">+</span> <span class="va">Sex</span> <span class="op">+</span> <span class="va">Race</span> <span class="op">+</span> <span class="va">Region</span>,</span>
+<span>    data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">colData</a></span><span class="op">(</span><span class="va">rse_tx</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co"># use k qsvs function to return a integer of pcs needed</span></span>
+<span><span class="va">k</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/k_qsvs.html">k_qsvs</a></span><span class="op">(</span>rse_tx <span class="op">=</span> <span class="va">DegTx</span>, mod <span class="op">=</span> <span class="va">mod</span>, assayname <span class="op">=</span> <span class="st">"tpm"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">k</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 34</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="return-qsv-matrix">Return qSV Matrix<a class="anchor" aria-label="anchor" href="#return-qsv-matrix"></a>
@@ -339,18 +340,18 @@ the <code>qsvPCs</code> argument to enter the principal components
 (<code>pcTx</code>). Here the argument k is the number of PCs we are
 going to include as calculated in the previous step.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># get_qsvs use k to subset our pca analysis</span>
-<span class="va">qsvs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_qsvs.html">get_qsvs</a></span><span class="op">(</span>qsvPCs <span class="op">=</span> <span class="va">pcTx</span>, k <span class="op">=</span> <span class="va">k</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">qsvs</span><span class="op">)</span>
-<span class="co">#&gt; [1] 900  34</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># get_qsvs use k to subset our pca analysis</span></span>
+<span><span class="va">qsvs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_qsvs.html">get_qsvs</a></span><span class="op">(</span>qsvPCs <span class="op">=</span> <span class="va">pcTx</span>, k <span class="op">=</span> <span class="va">k</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">qsvs</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 900  34</span></span></code></pre></div>
 <p>This can be done in one step with our wrapper function
 <code>qSVA</code> which just combinds all the previous mentioned
 functions.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## Example use of the wrapper function qSVA()</span>
-<span class="va">qsvs_wrapper</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/qSVA.html">qSVA</a></span><span class="op">(</span>rse_tx <span class="op">=</span> <span class="va">rse_tx</span>, type <span class="op">=</span> <span class="st">"cell_component"</span>, mod <span class="op">=</span> <span class="va">mod</span>, assayname <span class="op">=</span> <span class="st">"tpm"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">qsvs_wrapper</span><span class="op">)</span>
-<span class="co">#&gt; [1] 900  34</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">## Example use of the wrapper function qSVA()</span></span>
+<span><span class="va">qsvs_wrapper</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/qSVA.html">qSVA</a></span><span class="op">(</span>rse_tx <span class="op">=</span> <span class="va">rse_tx</span>, type <span class="op">=</span> <span class="st">"cell_component"</span>, mod <span class="op">=</span> <span class="va">mod</span>, assayname <span class="op">=</span> <span class="st">"tpm"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">qsvs_wrapper</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 900  34</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="differential-expression">Differential Expression<a class="anchor" aria-label="anchor" href="#differential-expression"></a>
@@ -367,109 +368,109 @@ genes, differential expression is best done on the full dataset. The
 expected output is a <code>sigTx</code> object that shows the results of
 differential expression.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">### should be done by cbinding mod to pcs</span>
-<span class="co">## subset to an expression cutoff</span>
-<span class="va">rse_tx</span> <span class="op">&lt;-</span> <span class="va">rse_tx</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">rowData</a></span><span class="op">(</span><span class="va">rse_tx</span><span class="op">)</span><span class="op">$</span><span class="va">passExprsCut</span>, <span class="op">]</span>
-
-<span class="co"># create a model.matrix with demographic infor and qsvs</span>
-<span class="va">mod_qSVA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/limma/man/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">mod</span>, <span class="va">qsvs</span><span class="op">)</span>
-
-<span class="co"># log tranform transcript expression</span>
-<span class="va">txExprs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log2</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">assays</a></span><span class="op">(</span><span class="va">rse_tx</span><span class="op">)</span><span class="op">$</span><span class="va">tpm</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span>
-
-<span class="co"># linear model differential expression</span>
-<span class="va">fitTx</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/limma/man/lmFit.html" class="external-link">lmFit</a></span><span class="op">(</span><span class="va">txExprs</span>, <span class="va">mod_qSVA</span><span class="op">)</span>
-
-<span class="co"># generate empirical bayes for DE</span>
-<span class="va">eBTx</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/limma/man/ebayes.html" class="external-link">eBayes</a></span><span class="op">(</span><span class="va">fitTx</span><span class="op">)</span>
-
-<span class="co"># get DE results table</span>
-<span class="va">sigTx</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/limma/man/toptable.html" class="external-link">topTable</a></span><span class="op">(</span><span class="va">eBTx</span>,
-    coef <span class="op">=</span> <span class="fl">2</span>,
-    p.value <span class="op">=</span> <span class="fl">1</span>, number <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">rse_tx</span><span class="op">)</span>
-<span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sigTx</span><span class="op">)</span>
-<span class="co">#&gt;                         logFC   AveExpr         t      P.Value    adj.P.Val</span>
-<span class="co">#&gt; ENST00000553142.5 -0.06547988 2.0390889 -5.981344 3.242087e-09 0.0003006452</span>
-<span class="co">#&gt; ENST00000552074.5 -0.12911383 2.4347985 -5.372043 1.002462e-07 0.0046480161</span>
-<span class="co">#&gt; ENST00000530589.1 -0.10297938 2.4271711 -4.918614 1.044003e-06 0.0242568671</span>
-<span class="co">#&gt; ENST00000510632.1  0.08994392 0.9073516  4.918168 1.046321e-06 0.0242568671</span>
-<span class="co">#&gt; ENST00000450454.6  0.08446871 1.0042440  4.814104 1.746151e-06 0.0256773930</span>
-<span class="co">#&gt; ENST00000572236.1 -0.05358333 0.6254025 -4.806373 1.813172e-06 0.0256773930</span>
-<span class="co">#&gt;                           B</span>
-<span class="co">#&gt; ENST00000553142.5 10.661953</span>
-<span class="co">#&gt; ENST00000552074.5  7.426876</span>
-<span class="co">#&gt; ENST00000530589.1  5.230075</span>
-<span class="co">#&gt; ENST00000510632.1  5.228001</span>
-<span class="co">#&gt; ENST00000450454.6  4.749607</span>
-<span class="co">#&gt; ENST00000572236.1  4.714453</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">### should be done by cbinding mod to pcs</span></span>
+<span><span class="co">## subset to an expression cutoff</span></span>
+<span><span class="va">rse_tx</span> <span class="op">&lt;-</span> <span class="va">rse_tx</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">rowData</a></span><span class="op">(</span><span class="va">rse_tx</span><span class="op">)</span><span class="op">$</span><span class="va">passExprsCut</span>, <span class="op">]</span></span>
+<span></span>
+<span><span class="co"># create a model.matrix with demographic infor and qsvs</span></span>
+<span><span class="va">mod_qSVA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">mod</span>, <span class="va">qsvs</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># log tranform transcript expression</span></span>
+<span><span class="va">txExprs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log2</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">assays</a></span><span class="op">(</span><span class="va">rse_tx</span><span class="op">)</span><span class="op">$</span><span class="va">tpm</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># linear model differential expression</span></span>
+<span><span class="va">fitTx</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/limma/man/lmFit.html" class="external-link">lmFit</a></span><span class="op">(</span><span class="va">txExprs</span>, <span class="va">mod_qSVA</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># generate empirical bayes for DE</span></span>
+<span><span class="va">eBTx</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/limma/man/ebayes.html" class="external-link">eBayes</a></span><span class="op">(</span><span class="va">fitTx</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># get DE results table</span></span>
+<span><span class="va">sigTx</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/limma/man/toptable.html" class="external-link">topTable</a></span><span class="op">(</span><span class="va">eBTx</span>,</span>
+<span>    coef <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>    p.value <span class="op">=</span> <span class="fl">1</span>, number <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">rse_tx</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sigTx</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                         logFC   AveExpr         t      P.Value    adj.P.Val</span></span>
+<span><span class="co">#&gt; ENST00000553142.5 -0.06547988 2.0390889 -5.981344 3.242087e-09 0.0003006452</span></span>
+<span><span class="co">#&gt; ENST00000552074.5 -0.12911383 2.4347985 -5.372043 1.002462e-07 0.0046480161</span></span>
+<span><span class="co">#&gt; ENST00000530589.1 -0.10297938 2.4271711 -4.918614 1.044003e-06 0.0242568671</span></span>
+<span><span class="co">#&gt; ENST00000510632.1  0.08994392 0.9073516  4.918168 1.046321e-06 0.0242568671</span></span>
+<span><span class="co">#&gt; ENST00000450454.6  0.08446871 1.0042440  4.814104 1.746151e-06 0.0256773930</span></span>
+<span><span class="co">#&gt; ENST00000572236.1 -0.05358333 0.6254025 -4.806373 1.813172e-06 0.0256773930</span></span>
+<span><span class="co">#&gt;                           B</span></span>
+<span><span class="co">#&gt; ENST00000553142.5 10.661953</span></span>
+<span><span class="co">#&gt; ENST00000552074.5  7.426876</span></span>
+<span><span class="co">#&gt; ENST00000530589.1  5.230075</span></span>
+<span><span class="co">#&gt; ENST00000510632.1  5.228001</span></span>
+<span><span class="co">#&gt; ENST00000450454.6  4.749607</span></span>
+<span><span class="co">#&gt; ENST00000572236.1  4.714453</span></span></code></pre></div>
 <p>If we look at a plot of our most significant transcript we can see
 that at this level we don’t have that much fold change in our data at
 any individual transcript. These transcripts are however significant and
 it might be valuable to repeat the analysis at gene level. At gene level
 the results can be used to do gene ontology enrichment with packages
-such as <em><a href="https://bioconductor.org/packages/3.15/clusterProfiler" class="external-link">clusterProfiler</a></em>.</p>
+such as <em><a href="https://bioconductor.org/packages/3.17/clusterProfiler" class="external-link">clusterProfiler</a></em>.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># get expression for most significant gene</span>
-<span class="va">yy</span> <span class="op">&lt;-</span> <span class="va">txExprs</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">txExprs</span><span class="op">)</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">sigTx</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, <span class="op">]</span>
-
-<span class="co">## Visualize the expression of this gene using boxplots</span>
-<span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html" class="external-link">boxplot</a></span><span class="op">(</span><span class="va">yy</span> <span class="op">~</span> <span class="va">rse_tx</span><span class="op">$</span><span class="va">Dx</span>,
-    outline <span class="op">=</span> <span class="cn">FALSE</span>,
-    ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/range.html" class="external-link">range</a></span><span class="op">(</span><span class="va">yy</span><span class="op">)</span>, ylab <span class="op">=</span> <span class="st">"log2 Exprs"</span>, xlab <span class="op">=</span> <span class="st">""</span>,
-    main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">sigTx</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># get expression for most significant gene</span></span>
+<span><span class="va">yy</span> <span class="op">&lt;-</span> <span class="va">txExprs</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">txExprs</span><span class="op">)</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">sigTx</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, <span class="op">]</span></span>
+<span></span>
+<span><span class="co">## Visualize the expression of this gene using boxplots</span></span>
+<span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html" class="external-link">boxplot</a></span><span class="op">(</span><span class="va">yy</span> <span class="op">~</span> <span class="va">rse_tx</span><span class="op">$</span><span class="va">Dx</span>,</span>
+<span>    outline <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>    ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/range.html" class="external-link">range</a></span><span class="op">(</span><span class="va">yy</span><span class="op">)</span>, ylab <span class="op">=</span> <span class="st">"log2 Exprs"</span>, xlab <span class="op">=</span> <span class="st">""</span>,</span>
+<span>    main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">sigTx</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p><img src="Intro_qsvaR_files/figure-html/DE%20plot-1.png" width="700"></p>
 <p>We can assess the effectiveness of our analysis by first performing
 DE without qSVs</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># log tranform transcript expression</span>
-<span class="va">txExprs_noqsv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log2</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">assays</a></span><span class="op">(</span><span class="va">rse_tx</span><span class="op">)</span><span class="op">$</span><span class="va">tpm</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span>
-
-<span class="co"># linear model differential expression with generic model</span>
-<span class="va">fitTx_noqsv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/limma/man/lmFit.html" class="external-link">lmFit</a></span><span class="op">(</span><span class="va">txExprs_noqsv</span>, <span class="va">mod</span><span class="op">)</span>
-
-<span class="co"># generate empirical bayes for DE</span>
-<span class="va">eBTx_noqsv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/limma/man/ebayes.html" class="external-link">eBayes</a></span><span class="op">(</span><span class="va">fitTx_noqsv</span><span class="op">)</span>
-
-<span class="co"># get DE results table</span>
-<span class="va">sigTx_noqsv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/limma/man/toptable.html" class="external-link">topTable</a></span><span class="op">(</span><span class="va">eBTx_noqsv</span>,
-    coef <span class="op">=</span> <span class="fl">2</span>,
-    p.value <span class="op">=</span> <span class="fl">1</span>, number <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">rse_tx</span><span class="op">)</span>
-<span class="op">)</span>
-
-<span class="co">## Explore the top results</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sigTx_noqsv</span><span class="op">)</span>
-<span class="co">#&gt;                        logFC   AveExpr         t      P.Value    adj.P.Val</span>
-<span class="co">#&gt; ENST00000399220.2 -0.4976648 1.8820796 -8.227630 6.687751e-16 6.201686e-11</span>
-<span class="co">#&gt; ENST00000302632.3 -0.5046321 2.7424034 -7.767379 2.187319e-14 1.014172e-09</span>
-<span class="co">#&gt; ENST00000409584.5  0.2110462 0.6115977  7.686040 3.980683e-14 1.230456e-09</span>
-<span class="co">#&gt; ENST00000540372.5 -0.1844651 0.5463078 -7.621955 6.356374e-14 1.473598e-09</span>
-<span class="co">#&gt; ENST00000550948.1 -0.3359378 1.3968139 -7.496492 1.573811e-13 2.443954e-09</span>
-<span class="co">#&gt; ENST00000412814.1 -0.2589885 0.6288506 -7.495831 1.581302e-13 2.443954e-09</span>
-<span class="co">#&gt;                          B</span>
-<span class="co">#&gt; ENST00000399220.2 25.15571</span>
-<span class="co">#&gt; ENST00000302632.3 21.85502</span>
-<span class="co">#&gt; ENST00000409584.5 21.28881</span>
-<span class="co">#&gt; ENST00000540372.5 20.84637</span>
-<span class="co">#&gt; ENST00000550948.1 19.98955</span>
-<span class="co">#&gt; ENST00000412814.1 19.98506</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># log tranform transcript expression</span></span>
+<span><span class="va">txExprs_noqsv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log2</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">assays</a></span><span class="op">(</span><span class="va">rse_tx</span><span class="op">)</span><span class="op">$</span><span class="va">tpm</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># linear model differential expression with generic model</span></span>
+<span><span class="va">fitTx_noqsv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/limma/man/lmFit.html" class="external-link">lmFit</a></span><span class="op">(</span><span class="va">txExprs_noqsv</span>, <span class="va">mod</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># generate empirical bayes for DE</span></span>
+<span><span class="va">eBTx_noqsv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/limma/man/ebayes.html" class="external-link">eBayes</a></span><span class="op">(</span><span class="va">fitTx_noqsv</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># get DE results table</span></span>
+<span><span class="va">sigTx_noqsv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/limma/man/toptable.html" class="external-link">topTable</a></span><span class="op">(</span><span class="va">eBTx_noqsv</span>,</span>
+<span>    coef <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>    p.value <span class="op">=</span> <span class="fl">1</span>, number <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">rse_tx</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## Explore the top results</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sigTx_noqsv</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                        logFC   AveExpr         t      P.Value    adj.P.Val</span></span>
+<span><span class="co">#&gt; ENST00000399220.2 -0.4976648 1.8820796 -8.227630 6.687751e-16 6.201686e-11</span></span>
+<span><span class="co">#&gt; ENST00000302632.3 -0.5046321 2.7424034 -7.767379 2.187319e-14 1.014172e-09</span></span>
+<span><span class="co">#&gt; ENST00000409584.5  0.2110462 0.6115977  7.686040 3.980683e-14 1.230456e-09</span></span>
+<span><span class="co">#&gt; ENST00000540372.5 -0.1844651 0.5463078 -7.621955 6.356374e-14 1.473598e-09</span></span>
+<span><span class="co">#&gt; ENST00000550948.1 -0.3359378 1.3968139 -7.496492 1.573811e-13 2.443954e-09</span></span>
+<span><span class="co">#&gt; ENST00000412814.1 -0.2589885 0.6288506 -7.495831 1.581302e-13 2.443954e-09</span></span>
+<span><span class="co">#&gt;                          B</span></span>
+<span><span class="co">#&gt; ENST00000399220.2 25.15571</span></span>
+<span><span class="co">#&gt; ENST00000302632.3 21.85502</span></span>
+<span><span class="co">#&gt; ENST00000409584.5 21.28881</span></span>
+<span><span class="co">#&gt; ENST00000540372.5 20.84637</span></span>
+<span><span class="co">#&gt; ENST00000550948.1 19.98955</span></span>
+<span><span class="co">#&gt; ENST00000412814.1 19.98506</span></span></code></pre></div>
 <p>Next we should subset our differential expression output to just the
 t-statistic</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## Subset the topTable() results to keep just the t-statistic</span>
-<span class="va">DE_noqsv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>t <span class="op">=</span> <span class="va">sigTx_noqsv</span><span class="op">$</span><span class="va">t</span>, row.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">sigTx_noqsv</span><span class="op">)</span><span class="op">)</span>
-<span class="va">DE</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>t <span class="op">=</span> <span class="va">sigTx</span><span class="op">$</span><span class="va">t</span>, row.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">sigTx</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co">## Explore this data.frame()</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">DE</span><span class="op">)</span>
-<span class="co">#&gt;                           t</span>
-<span class="co">#&gt; ENST00000553142.5 -5.981344</span>
-<span class="co">#&gt; ENST00000552074.5 -5.372043</span>
-<span class="co">#&gt; ENST00000530589.1 -4.918614</span>
-<span class="co">#&gt; ENST00000510632.1  4.918168</span>
-<span class="co">#&gt; ENST00000450454.6  4.814104</span>
-<span class="co">#&gt; ENST00000572236.1 -4.806373</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">## Subset the topTable() results to keep just the t-statistic</span></span>
+<span><span class="va">DE_noqsv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>t <span class="op">=</span> <span class="va">sigTx_noqsv</span><span class="op">$</span><span class="va">t</span>, row.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">sigTx_noqsv</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">DE</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>t <span class="op">=</span> <span class="va">sigTx</span><span class="op">$</span><span class="va">t</span>, row.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">sigTx</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## Explore this data.frame()</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">DE</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                           t</span></span>
+<span><span class="co">#&gt; ENST00000553142.5 -5.981344</span></span>
+<span><span class="co">#&gt; ENST00000552074.5 -5.372043</span></span>
+<span><span class="co">#&gt; ENST00000530589.1 -4.918614</span></span>
+<span><span class="co">#&gt; ENST00000510632.1  4.918168</span></span>
+<span><span class="co">#&gt; ENST00000450454.6  4.814104</span></span>
+<span><span class="co">#&gt; ENST00000572236.1 -4.806373</span></span></code></pre></div>
 <p>Using our <code>DEqual</code> function we can make a plot comparing
 the t-statistics from degradation and our differential expression
 output. In the first model below there is a 0.5 correlation between
@@ -477,8 +478,8 @@ degradation t-statistics and our differential expression. This means the
 data is likely confounded for degradation and will lead to many false
 positives.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## Generate a DEqual() plot using the model results without qSVs</span>
-<span class="fu"><a href="../reference/DEqual.html">DEqual</a></span><span class="op">(</span><span class="va">DE_noqsv</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">## Generate a DEqual() plot using the model results without qSVs</span></span>
+<span><span class="fu"><a href="../reference/DEqual.html">DEqual</a></span><span class="op">(</span><span class="va">DE_noqsv</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
 <img src="Intro_qsvaR_files/figure-html/Generate%20DEqual%20without%20qSVs-1.png" alt="Result of Differential Expression without qSVA normalization." width="700"><p class="caption">
 Result of Differential Expression without qSVA normalization.
@@ -487,8 +488,8 @@ Result of Differential Expression without qSVA normalization.
 <p>In the plot below when we add qSVs to our model we reduce the
 association with degradation to -0.014, which is very close to 0.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## Generate a DEqual() plot using the model results with qSVs</span>
-<span class="fu"><a href="../reference/DEqual.html">DEqual</a></span><span class="op">(</span><span class="va">DE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">## Generate a DEqual() plot using the model results with qSVs</span></span>
+<span><span class="fu"><a href="../reference/DEqual.html">DEqual</a></span><span class="op">(</span><span class="va">DE</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
 <img src="Intro_qsvaR_files/figure-html/Generate%20DEqual%20with%20qSVs-1.png" alt="Result of Differential Expression with qSVA normalization." width="700"><p class="caption">
 Result of Differential Expression with qSVA normalization.
@@ -500,13 +501,13 @@ Result of Differential Expression with qSVA normalization.
 <h2 id="conclusion">Conclusion<a class="anchor" aria-label="anchor" href="#conclusion"></a>
 </h2>
 <p>We have shown that this method is effective for removing the effects
-of degradation from RNA-seq data. We found that the <em><a href="https://bioconductor.org/packages/3.15/qsvaR" class="external-link">qsvaR</a></em> is
+of degradation from RNA-seq data. We found that the <em><a href="https://bioconductor.org/packages/3.17/qsvaR" class="external-link">qsvaR</a></em> is
 simpler to use than the previous version from 2016 that used expressed
 regions instead of transcripts making this software package preferable
 for users. I would encourage users to read how each set of degradation
 transcripts was selected as not all models may be appropriate for every
-experiment. Thank you for your interest and for using <em><a href="https://bioconductor.org/packages/3.15/qsvaR" class="external-link">qsvaR</a></em>
-(Stolz and Collado-Torres, 2022)!</p>
+experiment. Thank you for your interest and for using <em><a href="https://bioconductor.org/packages/3.17/qsvaR" class="external-link">qsvaR</a></em>
+(Stolz and Collado-Torres, 2023)!</p>
 </div>
 <div class="section level2">
 <h2 id="acknowledgements">Acknowledgements<a class="anchor" aria-label="anchor" href="#acknowledgements"></a>
@@ -515,11 +516,11 @@ experiment. Thank you for your interest and for using <em><a href="https://bioco
 <ul>
 <li>
 <a href="https://twitter.com/HeenaDivecha" class="external-link">Heena Divecha</a> for
-proofreading the documentation of <em><a href="https://bioconductor.org/packages/3.15/qsvaR" class="external-link">qsvaR</a></em>
+proofreading the documentation of <em><a href="https://bioconductor.org/packages/3.17/qsvaR" class="external-link">qsvaR</a></em>
 </li>
 <li>
 <a href="https://twitter.com/lahuuki" class="external-link">Louise A. Huuki-Myers</a> for
-guidance with understanding R code and editing <em><a href="https://bioconductor.org/packages/3.15/qsvaR" class="external-link">qsvaR</a></em>
+guidance with understanding R code and editing <em><a href="https://bioconductor.org/packages/3.17/qsvaR" class="external-link">qsvaR</a></em>
 </li>
 <li>
 <a href="https://github.com/nick-eagles" class="external-link">Nicholas J. Eagles</a> for
@@ -527,43 +528,43 @@ help processing RNA-seq data with <a href="https://doi.org/10.1186/s12859-021-04
 </li>
 <li>
 <a href="https://twitter.com/AjasBlaaahg" class="external-link">Aja Hope</a> for
-proofreading the documentation of <em><a href="https://bioconductor.org/packages/3.15/qsvaR" class="external-link">qsvaR</a></em>
+proofreading the documentation of <em><a href="https://bioconductor.org/packages/3.17/qsvaR" class="external-link">qsvaR</a></em>
 </li>
 </ul>
 </div>
 <div class="section level2">
 <h2 id="reproducibility">Reproducibility<a class="anchor" aria-label="anchor" href="#reproducibility"></a>
 </h2>
-<p>The <em><a href="https://bioconductor.org/packages/3.15/qsvaR" class="external-link">qsvaR</a></em>
-package (Stolz and Collado-Torres, 2022) was made possible thanks
+<p>The <em><a href="https://bioconductor.org/packages/3.17/qsvaR" class="external-link">qsvaR</a></em>
+package (Stolz and Collado-Torres, 2023) was made possible thanks
 to:</p>
 <ul>
-<li>R (R Core Team, 2022)</li>
+<li>R (R Core Team, 2023)</li>
 <li>
-<em><a href="https://bioconductor.org/packages/3.15/BiocFileCache" class="external-link">BiocFileCache</a></em>
-(Shepherd and Morgan, 2022)</li>
+<em><a href="https://bioconductor.org/packages/3.17/BiocFileCache" class="external-link">BiocFileCache</a></em>
+(Shepherd and Morgan, 2023)</li>
 <li>
-<em><a href="https://bioconductor.org/packages/3.15/BiocStyle" class="external-link">BiocStyle</a></em>
-(Oleś, 2021)</li>
+<em><a href="https://bioconductor.org/packages/3.17/BiocStyle" class="external-link">BiocStyle</a></em>
+(Oleś, 2023)</li>
 <li>
 <em><a href="https://CRAN.R-project.org/package=covr" class="external-link">covr</a></em>
-(Hester, 2020)</li>
+(Hester, 2023)</li>
 <li>
 <em><a href="https://CRAN.R-project.org/package=ggplot2" class="external-link">ggplot2</a></em>
 (Wickham, 2016)</li>
 <li>
 <em><a href="https://CRAN.R-project.org/package=knitr" class="external-link">knitr</a></em> (Xie,
-2022)</li>
+2023)</li>
 <li>
-<em><a href="https://bioconductor.org/packages/3.15/limma" class="external-link">limma</a></em>
+<em><a href="https://bioconductor.org/packages/3.17/limma" class="external-link">limma</a></em>
 (Ritchie, Phipson, Wu, Hu, Law, Shi, and Smyth, 2015)</li>
 <li>
 <em><a href="https://CRAN.R-project.org/package=RefManageR" class="external-link">RefManageR</a></em>
 (McLean, 2017)</li>
 <li>
 <em><a href="https://CRAN.R-project.org/package=rmarkdown" class="external-link">rmarkdown</a></em>
-(Allaire, Xie, McPherson, Luraschi, Ushey, Atkins, Wickham, Cheng,
-Chang, and Iannone, 2022)</li>
+(Allaire, Xie, Dervieux, McPherson, Luraschi, Ushey, Atkins, Wickham,
+Cheng, Chang, and Iannone, 2023)</li>
 <li>
 <em><a href="https://CRAN.R-project.org/package=sessioninfo" class="external-link">sessioninfo</a></em>
 (Wickham, Chang, Flight, Müller, and Hester, 2021)</li>
@@ -571,179 +572,183 @@ Chang, and Iannone, 2022)</li>
 <em><a href="https://CRAN.R-project.org/package=testthat" class="external-link">testthat</a></em>
 (Wickham, 2011)</li>
 <li>
-<em><a href="https://bioconductor.org/packages/3.15/SummarizedExperiment" class="external-link">SummarizedExperiment</a></em>
-(Morgan, Obenchain, Hester, and Pagès, 2021)</li>
+<em><a href="https://bioconductor.org/packages/3.17/SummarizedExperiment" class="external-link">SummarizedExperiment</a></em>
+(Morgan, Obenchain, Hester, and Pagès, 2023)</li>
 <li>
-<em><a href="https://bioconductor.org/packages/3.15/sva" class="external-link">sva</a></em> (Leek,
-Johnson, Parker, Fertig, Jaffe, Zhang, Storey, and Torres, 2021)</li>
+<em><a href="https://bioconductor.org/packages/3.17/sva" class="external-link">sva</a></em> (Leek,
+Johnson, Parker, Fertig, Jaffe, Zhang, Storey, and Torres, 2023)</li>
 </ul>
-<p>This package was developed using <em><a href="https://bioconductor.org/packages/3.15/biocthis" class="external-link">biocthis</a></em>.</p>
+<p>This package was developed using <em><a href="https://bioconductor.org/packages/3.17/biocthis" class="external-link">biocthis</a></em>.</p>
 <p>Code for creating the vignette</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## Create the vignette</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/rstudio/rmarkdown" class="external-link">"rmarkdown"</a></span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="fu"><a href="https://pkgs.rstudio.com/rmarkdown/reference/render.html" class="external-link">render</a></span><span class="op">(</span><span class="st">"Intro_qsvaR.Rmd"</span>, <span class="st">"BiocStyle::html_document"</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co">## Extract the R code</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://yihui.org/knitr/" class="external-link">"knitr"</a></span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit.html" class="external-link">knit</a></span><span class="op">(</span><span class="st">"Intro_qsvaR.Rmd"</span>, tangle <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">## Create the vignette</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/rstudio/rmarkdown" class="external-link">"rmarkdown"</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="fu"><a href="https://pkgs.rstudio.com/rmarkdown/reference/render.html" class="external-link">render</a></span><span class="op">(</span><span class="st">"Intro_qsvaR.Rmd"</span>, <span class="st">"BiocStyle::html_document"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## Extract the R code</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://yihui.org/knitr/" class="external-link">"knitr"</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit.html" class="external-link">knit</a></span><span class="op">(</span><span class="st">"Intro_qsvaR.Rmd"</span>, tangle <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>Date the vignette was generated.</p>
-<pre><code><span class="co">#&gt; [1] "2022-04-06 15:57:52 UTC"</span></code></pre>
+<pre><code><span><span class="co">#&gt; [1] "2023-05-07 01:32:40 UTC"</span></span></code></pre>
 <p>Wallclock time spent generating the vignette.</p>
-<pre><code><span class="co">#&gt; Time difference of 2.237 mins</span></code></pre>
+<pre><code><span><span class="co">#&gt; Time difference of 1.426 mins</span></span></code></pre>
 <p><code>R</code> session information.</p>
-<pre><code><span class="co">#&gt; <span style="color: #00BBBB; font-weight: bold;">─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────</span></span>
-<span class="co">#&gt;  <span style="color: #555555; font-style: italic;">setting </span> <span style="color: #555555; font-style: italic;">value</span></span>
-<span class="co">#&gt;  version  R Under development (unstable) (2022-03-14 r81896)</span>
-<span class="co">#&gt;  os       Ubuntu 20.04.4 LTS</span>
-<span class="co">#&gt;  system   x86_64, linux-gnu</span>
-<span class="co">#&gt;  ui       X11</span>
-<span class="co">#&gt;  language en</span>
-<span class="co">#&gt;  collate  en_US.UTF-8</span>
-<span class="co">#&gt;  ctype    en_US.UTF-8</span>
-<span class="co">#&gt;  tz       UTC</span>
-<span class="co">#&gt;  date     2022-04-06</span>
-<span class="co">#&gt;  pandoc   2.17.1.1 @ /usr/local/bin/ (via rmarkdown)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; <span style="color: #00BBBB; font-weight: bold;">─ Packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────</span></span>
-<span class="co">#&gt;  <span style="color: #555555; font-style: italic;">package             </span> <span style="color: #555555; font-style: italic;">*</span> <span style="color: #555555; font-style: italic;">version   </span> <span style="color: #555555; font-style: italic;">date (UTC)</span> <span style="color: #555555; font-style: italic;">lib</span> <span style="color: #555555; font-style: italic;">source</span></span>
-<span class="co">#&gt;  annotate               1.73.0     <span style="color: #555555;">2021-10-26</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span>
-<span class="co">#&gt;  AnnotationDbi          1.57.1     <span style="color: #555555;">2021-10-29</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span>
-<span class="co">#&gt;  assertthat             0.2.1      <span style="color: #555555;">2019-03-21</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  Biobase              * 2.55.1     <span style="color: #555555;">2022-03-31</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span>
-<span class="co">#&gt;  BiocFileCache        * 2.3.4      <span style="color: #555555;">2022-01-20</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span>
-<span class="co">#&gt;  BiocGenerics         * 0.41.2     <span style="color: #555555;">2021-11-15</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span>
-<span class="co">#&gt;  BiocManager            1.30.16    <span style="color: #555555;">2021-06-15</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  BiocParallel           1.29.19    <span style="color: #555555;">2022-04-04</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span>
-<span class="co">#&gt;  BiocStyle            * 2.23.1     <span style="color: #555555;">2021-12-17</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span>
-<span class="co">#&gt;  Biostrings             2.63.3     <span style="color: #555555;">2022-03-29</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span>
-<span class="co">#&gt;  bit                    4.0.4      <span style="color: #555555;">2020-08-04</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  bit64                  4.0.5      <span style="color: #555555;">2020-08-30</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  bitops                 1.0-7      <span style="color: #555555;">2021-04-24</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  blob                   1.2.2      <span style="color: #555555;">2021-07-23</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  bookdown               0.25       <span style="color: #555555;">2022-03-16</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  bslib                  0.3.1      <span style="color: #555555;">2021-10-06</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  cachem                 1.0.6      <span style="color: #555555;">2021-08-19</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  cli                    3.2.0      <span style="color: #555555;">2022-02-14</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  colorspace             2.0-3      <span style="color: #555555;">2022-02-21</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  crayon                 1.5.1      <span style="color: #555555;">2022-03-26</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  curl                   4.3.2      <span style="color: #555555;">2021-06-23</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  DBI                    1.1.2      <span style="color: #555555;">2021-12-20</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  dbplyr               * 2.1.1      <span style="color: #555555;">2021-04-06</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  DelayedArray           0.21.2     <span style="color: #555555;">2021-11-16</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span>
-<span class="co">#&gt;  desc                   1.4.1      <span style="color: #555555;">2022-03-06</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  digest                 0.6.29     <span style="color: #555555;">2021-12-01</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  dplyr                  1.0.8      <span style="color: #555555;">2022-02-08</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  edgeR                  3.37.1     <span style="color: #555555;">2022-03-16</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span>
-<span class="co">#&gt;  ellipsis               0.3.2      <span style="color: #555555;">2021-04-29</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  evaluate               0.15       <span style="color: #555555;">2022-02-18</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  fansi                  1.0.3      <span style="color: #555555;">2022-03-24</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  farver                 2.1.0      <span style="color: #555555;">2021-02-28</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  fastmap                1.1.0      <span style="color: #555555;">2021-01-25</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  filelock               1.0.2      <span style="color: #555555;">2018-10-05</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  fs                     1.5.2      <span style="color: #555555;">2021-12-08</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  genefilter             1.77.1     <span style="color: #555555;">2022-03-15</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span>
-<span class="co">#&gt;  generics               0.1.2      <span style="color: #555555;">2022-01-31</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  GenomeInfoDb         * 1.31.7     <span style="color: #555555;">2022-04-01</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span>
-<span class="co">#&gt;  GenomeInfoDbData       1.2.7      <span style="color: #555555;">2022-03-23</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span>
-<span class="co">#&gt;  GenomicRanges        * 1.47.6     <span style="color: #555555;">2022-01-12</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span>
-<span class="co">#&gt;  ggplot2                3.3.5      <span style="color: #555555;">2021-06-25</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  glue                   1.6.2      <span style="color: #555555;">2022-02-24</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  gtable                 0.3.0      <span style="color: #555555;">2019-03-25</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  highr                  0.9        <span style="color: #555555;">2021-04-16</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  htmltools              0.5.2      <span style="color: #555555;">2021-08-25</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  httr                   1.4.2      <span style="color: #555555;">2020-07-20</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  IRanges              * 2.29.1     <span style="color: #555555;">2021-11-16</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span>
-<span class="co">#&gt;  jquerylib              0.1.4      <span style="color: #555555;">2021-04-26</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  jsonlite               1.8.0      <span style="color: #555555;">2022-02-22</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  KEGGREST               1.35.0     <span style="color: #555555;">2021-10-26</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span>
-<span class="co">#&gt;  knitr                  1.38       <span style="color: #555555;">2022-03-25</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  labeling               0.4.2      <span style="color: #555555;">2020-10-20</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  lattice                0.20-45    <span style="color: #555555;">2021-09-22</span> <span style="color: #555555;">[3]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  lifecycle              1.0.1      <span style="color: #555555;">2021-09-24</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  limma                * 3.51.5     <span style="color: #555555;">2022-02-17</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span>
-<span class="co">#&gt;  locfit                 1.5-9.5    <span style="color: #555555;">2022-03-03</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  lubridate              1.8.0      <span style="color: #555555;">2021-10-07</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  magrittr               2.0.3      <span style="color: #555555;">2022-03-30</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  Matrix                 1.4-1      <span style="color: #555555;">2022-03-23</span> <span style="color: #555555;">[3]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  MatrixGenerics       * 1.7.0      <span style="color: #555555;">2021-10-26</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span>
-<span class="co">#&gt;  matrixStats          * 0.61.0     <span style="color: #555555;">2021-09-17</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  memoise                2.0.1      <span style="color: #555555;">2021-11-26</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  mgcv                   1.8-40     <span style="color: #555555;">2022-03-29</span> <span style="color: #555555;">[3]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  munsell                0.5.0      <span style="color: #555555;">2018-06-12</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  nlme                   3.1-157    <span style="color: #555555;">2022-03-25</span> <span style="color: #555555;">[3]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  pillar                 1.7.0      <span style="color: #555555;">2022-02-01</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  pkgconfig              2.0.3      <span style="color: #555555;">2019-09-22</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  pkgdown                <span style="color: #BB00BB; font-weight: bold;">2.0.2.9000</span> <span style="color: #555555;">2022-03-23</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">Github (r-lib/pkgdown@98d5a5c)</span></span>
-<span class="co">#&gt;  plyr                   1.8.7      <span style="color: #555555;">2022-03-24</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  png                    0.1-7      <span style="color: #555555;">2013-12-03</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  purrr                  0.3.4      <span style="color: #555555;">2020-04-17</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  qsvaR                * 0.99.1     <span style="color: #555555;">2022-04-06</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span>
-<span class="co">#&gt;  R6                     2.5.1      <span style="color: #555555;">2021-08-19</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  ragg                   1.2.2      <span style="color: #555555;">2022-02-21</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  rappdirs               0.3.3      <span style="color: #555555;">2021-01-31</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  Rcpp                   1.0.8.3    <span style="color: #555555;">2022-03-17</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  RCurl                  1.98-1.6   <span style="color: #555555;">2022-02-08</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  RefManageR           * 1.3.0      <span style="color: #555555;">2020-11-13</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  rlang                  1.0.2      <span style="color: #555555;">2022-03-04</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  rmarkdown              2.13       <span style="color: #555555;">2022-03-10</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  rprojroot              2.0.3      <span style="color: #555555;">2022-04-02</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  RSQLite                2.2.12     <span style="color: #555555;">2022-04-02</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  S4Vectors            * 0.33.16    <span style="color: #555555;">2022-04-01</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span>
-<span class="co">#&gt;  sass                   0.4.1      <span style="color: #555555;">2022-03-23</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  scales                 1.1.1      <span style="color: #555555;">2020-05-11</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  sessioninfo          * 1.2.2      <span style="color: #555555;">2021-12-06</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  stringi                1.7.6      <span style="color: #555555;">2021-11-29</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  stringr                1.4.0      <span style="color: #555555;">2019-02-10</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  SummarizedExperiment * 1.25.3     <span style="color: #555555;">2021-12-08</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span>
-<span class="co">#&gt;  survival               3.3-1      <span style="color: #555555;">2022-03-03</span> <span style="color: #555555;">[3]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  sva                    3.43.0     <span style="color: #555555;">2021-10-26</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span>
-<span class="co">#&gt;  systemfonts            1.0.4      <span style="color: #555555;">2022-02-11</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  textshaping            0.3.6      <span style="color: #555555;">2021-10-13</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  tibble                 3.1.6      <span style="color: #555555;">2021-11-07</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  tidyselect             1.1.2      <span style="color: #555555;">2022-02-21</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  utf8                   1.2.2      <span style="color: #555555;">2021-07-24</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  vctrs                  0.4.0      <span style="color: #555555;">2022-03-30</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  viridisLite            0.4.0      <span style="color: #555555;">2021-04-13</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  xfun                   0.30       <span style="color: #555555;">2022-03-02</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  XML                    3.99-0.9   <span style="color: #555555;">2022-02-24</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  xml2                   1.3.3      <span style="color: #555555;">2021-11-30</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  xtable                 1.8-4      <span style="color: #555555;">2019-04-21</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  XVector                0.35.0     <span style="color: #555555;">2021-10-26</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span>
-<span class="co">#&gt;  yaml                   2.3.5      <span style="color: #555555;">2022-02-21</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span>
-<span class="co">#&gt;  zlibbioc               1.41.0     <span style="color: #555555;">2021-10-26</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; <span style="color: #555555;"> [1] /__w/_temp/Library</span></span>
-<span class="co">#&gt; <span style="color: #555555;"> [2] /usr/local/lib/R/site-library</span></span>
-<span class="co">#&gt; <span style="color: #555555;"> [3] /usr/local/lib/R/library</span></span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; <span style="color: #00BBBB; font-weight: bold;">──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span></span></code></pre>
+<pre><code><span><span class="co">#&gt; <span style="color: #00BBBB; font-weight: bold;">─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────</span></span></span>
+<span><span class="co">#&gt;  <span style="color: #555555; font-style: italic;">setting </span> <span style="color: #555555; font-style: italic;">value</span></span></span>
+<span><span class="co">#&gt;  version  R version 4.3.0 (2023-04-21)</span></span>
+<span><span class="co">#&gt;  os       Ubuntu 22.04.2 LTS</span></span>
+<span><span class="co">#&gt;  system   x86_64, linux-gnu</span></span>
+<span><span class="co">#&gt;  ui       X11</span></span>
+<span><span class="co">#&gt;  language en</span></span>
+<span><span class="co">#&gt;  collate  en_US.UTF-8</span></span>
+<span><span class="co">#&gt;  ctype    en_US.UTF-8</span></span>
+<span><span class="co">#&gt;  tz       UTC</span></span>
+<span><span class="co">#&gt;  date     2023-05-07</span></span>
+<span><span class="co">#&gt;  pandoc   2.19.2 @ /usr/local/bin/ (via rmarkdown)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB; font-weight: bold;">─ Packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────</span></span></span>
+<span><span class="co">#&gt;  <span style="color: #555555; font-style: italic;">package             </span> <span style="color: #555555; font-style: italic;">*</span> <span style="color: #555555; font-style: italic;">version  </span> <span style="color: #555555; font-style: italic;">date (UTC)</span> <span style="color: #555555; font-style: italic;">lib</span> <span style="color: #555555; font-style: italic;">source</span></span></span>
+<span><span class="co">#&gt;  annotate               1.78.0    <span style="color: #555555;">2023-04-25</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  AnnotationDbi          1.62.1    <span style="color: #555555;">2023-05-02</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  backports              1.4.1     <span style="color: #555555;">2021-12-13</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  bibtex                 0.5.1     <span style="color: #555555;">2023-01-26</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  Biobase              * 2.60.0    <span style="color: #555555;">2023-04-25</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  BiocFileCache        * 2.8.0     <span style="color: #555555;">2023-04-25</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  BiocGenerics         * 0.46.0    <span style="color: #555555;">2023-04-25</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  BiocManager            1.30.20   <span style="color: #555555;">2023-02-24</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  BiocParallel           1.34.1    <span style="color: #555555;">2023-05-05</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  BiocStyle            * 2.28.0    <span style="color: #555555;">2023-04-25</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  Biostrings             2.68.0    <span style="color: #555555;">2023-04-25</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  bit                    4.0.5     <span style="color: #555555;">2022-11-15</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  bit64                  4.0.5     <span style="color: #555555;">2020-08-30</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  bitops                 1.0-7     <span style="color: #555555;">2021-04-24</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  blob                   1.2.4     <span style="color: #555555;">2023-03-17</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  bookdown               0.33      <span style="color: #555555;">2023-03-06</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  bslib                  0.4.2     <span style="color: #555555;">2022-12-16</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  cachem                 1.0.8     <span style="color: #555555;">2023-05-01</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  cli                    3.6.1     <span style="color: #555555;">2023-03-23</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  codetools              0.2-19    <span style="color: #555555;">2023-02-01</span> <span style="color: #555555;">[3]</span> <span style="color: #555555;">CRAN (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  colorspace             2.1-0     <span style="color: #555555;">2023-01-23</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  crayon                 1.5.2     <span style="color: #555555;">2022-09-29</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  curl                   5.0.0     <span style="color: #555555;">2023-01-12</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  DBI                    1.1.3     <span style="color: #555555;">2022-06-18</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  dbplyr               * 2.3.2     <span style="color: #555555;">2023-03-21</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  DelayedArray           0.26.2    <span style="color: #555555;">2023-05-05</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  desc                   1.4.2     <span style="color: #555555;">2022-09-08</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  digest                 0.6.31    <span style="color: #555555;">2022-12-11</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  dplyr                  1.1.2     <span style="color: #555555;">2023-04-20</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  edgeR                  3.42.2    <span style="color: #555555;">2023-05-02</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  evaluate               0.20      <span style="color: #555555;">2023-01-17</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  fansi                  1.0.4     <span style="color: #555555;">2023-01-22</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  farver                 2.1.1     <span style="color: #555555;">2022-07-06</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  fastmap                1.1.1     <span style="color: #555555;">2023-02-24</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  filelock               1.0.2     <span style="color: #555555;">2018-10-05</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  fs                     1.6.2     <span style="color: #555555;">2023-04-25</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  genefilter             1.82.1    <span style="color: #555555;">2023-05-02</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  generics               0.1.3     <span style="color: #555555;">2022-07-05</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  GenomeInfoDb         * 1.36.0    <span style="color: #555555;">2023-04-25</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  GenomeInfoDbData       1.2.10    <span style="color: #555555;">2023-05-07</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  GenomicRanges        * 1.52.0    <span style="color: #555555;">2023-04-25</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  ggplot2                3.4.2     <span style="color: #555555;">2023-04-03</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  glue                   1.6.2     <span style="color: #555555;">2022-02-24</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  gtable                 0.3.3     <span style="color: #555555;">2023-03-21</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  highr                  0.10      <span style="color: #555555;">2022-12-22</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  htmltools              0.5.5     <span style="color: #555555;">2023-03-23</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  httr                   1.4.5     <span style="color: #555555;">2023-02-24</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  IRanges              * 2.34.0    <span style="color: #555555;">2023-04-25</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  jquerylib              0.1.4     <span style="color: #555555;">2021-04-26</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  jsonlite               1.8.4     <span style="color: #555555;">2022-12-06</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  KEGGREST               1.40.0    <span style="color: #555555;">2023-04-25</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  knitr                  1.42      <span style="color: #555555;">2023-01-25</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  labeling               0.4.2     <span style="color: #555555;">2020-10-20</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  lattice                0.21-8    <span style="color: #555555;">2023-04-05</span> <span style="color: #555555;">[3]</span> <span style="color: #555555;">CRAN (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  lifecycle              1.0.3     <span style="color: #555555;">2022-10-07</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  limma                * 3.56.0    <span style="color: #555555;">2023-04-25</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  locfit                 1.5-9.7   <span style="color: #555555;">2023-01-02</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  lubridate              1.9.2     <span style="color: #555555;">2023-02-10</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  magrittr               2.0.3     <span style="color: #555555;">2022-03-30</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  Matrix                 1.5-4     <span style="color: #555555;">2023-04-04</span> <span style="color: #555555;">[3]</span> <span style="color: #555555;">CRAN (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  MatrixGenerics       * 1.12.0    <span style="color: #555555;">2023-04-25</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  matrixStats          * 0.63.0    <span style="color: #555555;">2022-11-18</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  memoise                2.0.1     <span style="color: #555555;">2021-11-26</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  mgcv                   1.8-42    <span style="color: #555555;">2023-03-02</span> <span style="color: #555555;">[3]</span> <span style="color: #555555;">CRAN (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  munsell                0.5.0     <span style="color: #555555;">2018-06-12</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  nlme                   3.1-162   <span style="color: #555555;">2023-01-31</span> <span style="color: #555555;">[3]</span> <span style="color: #555555;">CRAN (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  pillar                 1.9.0     <span style="color: #555555;">2023-03-22</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  pkgconfig              2.0.3     <span style="color: #555555;">2019-09-22</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  pkgdown                2.0.7     <span style="color: #555555;">2022-12-14</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  plyr                   1.8.8     <span style="color: #555555;">2022-11-11</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  png                    0.1-8     <span style="color: #555555;">2022-11-29</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  purrr                  1.0.1     <span style="color: #555555;">2023-01-10</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  qsvaR                * 1.5.0     <span style="color: #555555;">2023-05-07</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  R6                     2.5.1     <span style="color: #555555;">2021-08-19</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  ragg                   1.2.5     <span style="color: #555555;">2023-01-12</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  Rcpp                   1.0.10    <span style="color: #555555;">2023-01-22</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  RCurl                  1.98-1.12 <span style="color: #555555;">2023-03-27</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  RefManageR           * 1.4.0     <span style="color: #555555;">2022-09-30</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  rlang                  1.1.1     <span style="color: #555555;">2023-04-28</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  rmarkdown              2.21      <span style="color: #555555;">2023-03-26</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  rprojroot              2.0.3     <span style="color: #555555;">2022-04-02</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  RSQLite                2.3.1     <span style="color: #555555;">2023-04-03</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  S4Arrays               1.0.1     <span style="color: #555555;">2023-05-01</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  S4Vectors            * 0.38.1    <span style="color: #555555;">2023-05-02</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  sass                   0.4.6     <span style="color: #555555;">2023-05-03</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  scales                 1.2.1     <span style="color: #555555;">2022-08-20</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  sessioninfo          * 1.2.2     <span style="color: #555555;">2021-12-06</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  stringi                1.7.12    <span style="color: #555555;">2023-01-11</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  stringr                1.5.0     <span style="color: #555555;">2022-12-02</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  SummarizedExperiment * 1.30.1    <span style="color: #555555;">2023-05-01</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  survival               3.5-5     <span style="color: #555555;">2023-03-12</span> <span style="color: #555555;">[3]</span> <span style="color: #555555;">CRAN (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  sva                    3.48.0    <span style="color: #555555;">2023-04-25</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  systemfonts            1.0.4     <span style="color: #555555;">2022-02-11</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  textshaping            0.3.6     <span style="color: #555555;">2021-10-13</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  tibble                 3.2.1     <span style="color: #555555;">2023-03-20</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  tidyselect             1.2.0     <span style="color: #555555;">2022-10-10</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  timechange             0.2.0     <span style="color: #555555;">2023-01-11</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  utf8                   1.2.3     <span style="color: #555555;">2023-01-31</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  vctrs                  0.6.2     <span style="color: #555555;">2023-04-19</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  viridisLite            0.4.2     <span style="color: #555555;">2023-05-02</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  withr                  2.5.0     <span style="color: #555555;">2022-03-03</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  xfun                   0.39      <span style="color: #555555;">2023-04-20</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  XML                    3.99-0.14 <span style="color: #555555;">2023-03-19</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  xml2                   1.3.4     <span style="color: #555555;">2023-04-27</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  xtable                 1.8-4     <span style="color: #555555;">2019-04-21</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  XVector                0.40.0    <span style="color: #555555;">2023-04-25</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  yaml                   2.3.7     <span style="color: #555555;">2023-01-23</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  zlibbioc               1.46.0    <span style="color: #555555;">2023-04-25</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #555555;"> [1] /__w/_temp/Library</span></span></span>
+<span><span class="co">#&gt; <span style="color: #555555;"> [2] /usr/local/lib/R/site-library</span></span></span>
+<span><span class="co">#&gt; <span style="color: #555555;"> [3] /usr/local/lib/R/library</span></span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB; font-weight: bold;">──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span></span></span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="bibliography">Bibliography<a class="anchor" aria-label="anchor" href="#bibliography"></a>
 </h2>
-<p>This vignette was generated using <em><a href="https://bioconductor.org/packages/3.15/BiocStyle" class="external-link">BiocStyle</a></em>
-(Oleś, 2021) with <em><a href="https://CRAN.R-project.org/package=knitr" class="external-link">knitr</a></em> (Xie,
-2022) and <em><a href="https://CRAN.R-project.org/package=rmarkdown" class="external-link">rmarkdown</a></em>
-(Allaire, Xie, McPherson, et al., 2022) running behind the scenes.</p>
+<p>This vignette was generated using <em><a href="https://bioconductor.org/packages/3.17/BiocStyle" class="external-link">BiocStyle</a></em>
+(Oleś, 2023) with <em><a href="https://CRAN.R-project.org/package=knitr" class="external-link">knitr</a></em> (Xie,
+2023) and <em><a href="https://CRAN.R-project.org/package=rmarkdown" class="external-link">rmarkdown</a></em>
+(Allaire, Xie, Dervieux et al., 2023) running behind the scenes.</p>
 <p>Citations made with <em><a href="https://CRAN.R-project.org/package=RefManageR" class="external-link">RefManageR</a></em>
 (McLean, 2017).</p>
 <p>
-<a id="bib-allaire2022rmarkdown"></a><a href="#cite-allaire2022rmarkdown">[1]</a><cite>
-J. Allaire, Y. Xie, J. McPherson, et al. <em>rmarkdown: Dynamic
-Documents for R</em>. R package version 2.13. 2022. URL:
+<a id="bib-allaire2023rmarkdown"></a><a href="#cite-allaire2023rmarkdown">[1]</a><cite>
+J. Allaire, Y. Xie, C. Dervieux, et al. <em>rmarkdown: Dynamic Documents
+for R</em>. R package version 2.21. 2023. URL:
 <a href="https://github.com/rstudio/rmarkdown" class="external-link">https://github.com/rstudio/rmarkdown</a>.</cite>
 </p>
 <p>
-<a id="bib-hester2020covr"></a><a href="#cite-hester2020covr">[2]</a><cite>
-J. Hester. <em>covr: Test Coverage for Packages</em>. R package version
-3.5.1. 2020. URL:
-<a href="https://CRAN.R-project.org/package=covr" class="external-link">https://CRAN.R-project.org/package=covr</a>.</cite>
+<a id="bib-hester2023covr"></a><a href="#cite-hester2023covr">[2]</a><cite>
+J. Hester. <em>covr: Test Coverage for Packages</em>. <a href="https://covr.r-lib.org" class="external-link uri">https://covr.r-lib.org</a>, <a href="https://github.com/r-lib/covr" class="external-link uri">https://github.com/r-lib/covr</a>. 2023.</cite>
 </p>
 <p>
-<a id="bib-leek2021surrogate"></a><a href="#cite-leek2021surrogate">[3]</a><cite>
+<a id="bib-leek2023surrogate"></a><a href="#cite-leek2023surrogate">[3]</a><cite>
 J. T. Leek, W. E. Johnson, H. S. Parker, et al. <em>sva: Surrogate
-Variable Analysis</em>. R package version 3.43.0. 2021.</cite>
+Variable Analysis</em>. R package version 3.48.0. 2023. DOI:
+<a href="https://doi.org/10.18129/B9.bioc.sva" class="external-link">10.18129/B9.bioc.sva</a>.
+URL:
+<a href="https://bioconductor.org/packages/sva" class="external-link">https://bioconductor.org/packages/sva</a>.</cite>
 </p>
 <p>
 <a id="bib-mclean2017refmanager"></a><a href="#cite-mclean2017refmanager">[4]</a><cite>
@@ -753,23 +758,27 @@ References in R”. In: <em>The Journal of Open Source Software</em>
 <a href="https://doi.org/10.21105/joss.00338" class="external-link">10.21105/joss.00338</a>.</cite>
 </p>
 <p>
-<a id="bib-morgan2021summarizedexperiment"></a><a href="#cite-morgan2021summarizedexperiment">[5]</a><cite>
+<a id="bib-morgan2023summarizedexperiment"></a><a href="#cite-morgan2023summarizedexperiment">[5]</a><cite>
 M. Morgan, V. Obenchain, J. Hester, et al. <em>SummarizedExperiment:
-SummarizedExperiment container</em>. R package version 1.25.3. 2021.
+SummarizedExperiment container</em>. R package version 1.30.1. 2023.
+DOI:
+<a href="https://doi.org/10.18129/B9.bioc.SummarizedExperiment" class="external-link">10.18129/B9.bioc.SummarizedExperiment</a>.
 URL:
 <a href="https://bioconductor.org/packages/SummarizedExperiment" class="external-link">https://bioconductor.org/packages/SummarizedExperiment</a>.</cite>
 </p>
 <p>
-<a id="bib-ole2021biocstyle"></a><a href="#cite-ole2021biocstyle">[6]</a><cite>
+<a id="bib-ole2023biocstyle"></a><a href="#cite-ole2023biocstyle">[6]</a><cite>
 A. Oleś. <em>BiocStyle: Standard styles for vignettes and other
-Bioconductor documents</em>. R package version 2.23.1. 2021. URL:
-<a href="https://github.com/Bioconductor/BiocStyle" class="external-link">https://github.com/Bioconductor/BiocStyle</a>.</cite>
+Bioconductor documents</em>. R package version 2.28.0. 2023. DOI:
+<a href="https://doi.org/10.18129/B9.bioc.BiocStyle" class="external-link">10.18129/B9.bioc.BiocStyle</a>.
+URL:
+<a href="https://bioconductor.org/packages/BiocStyle" class="external-link">https://bioconductor.org/packages/BiocStyle</a>.</cite>
 </p>
 <p>
-<a id="bib-2022language"></a><a href="#cite-2022language">[7]</a><cite>
+<a id="bib-2023language"></a><a href="#cite-2023language">[7]</a><cite>
 R Core Team. <em>R: A Language and Environment for Statistical
 Computing</em>. R Foundation for Statistical Computing. Vienna, Austria,
-2022. URL:
+2023. URL:
 <a href="https://www.R-project.org/" class="external-link">https://www.R-project.org/</a>.</cite>
 </p>
 <p>
@@ -780,14 +789,17 @@ expression analyses for RNA-sequencing and microarray studies”. In:
 <a href="https://doi.org/10.1093/nar/gkv007" class="external-link">10.1093/nar/gkv007</a>.</cite>
 </p>
 <p>
-<a id="bib-shepherd2022biocfilecache"></a><a href="#cite-shepherd2022biocfilecache">[9]</a><cite>
+<a id="bib-shepherd2023biocfilecache"></a><a href="#cite-shepherd2023biocfilecache">[9]</a><cite>
 L. Shepherd and M. Morgan. <em>BiocFileCache: Manage Files Across
-Sessions</em>. R package version 2.3.4. 2022.</cite>
+Sessions</em>. R package version 2.8.0. 2023. DOI:
+<a href="https://doi.org/10.18129/B9.bioc.BiocFileCache" class="external-link">10.18129/B9.bioc.BiocFileCache</a>.
+URL:
+<a href="https://bioconductor.org/packages/BiocFileCache" class="external-link">https://bioconductor.org/packages/BiocFileCache</a>.</cite>
 </p>
 <p>
-<a id="bib-stolz2022qsvar"></a><a href="#cite-stolz2022qsvar">[10]</a><cite>
+<a id="bib-stolz2023qsvar"></a><a href="#cite-stolz2023qsvar">[10]</a><cite>
 J. M. Stolz and L. Collado-Torres. <em>qsvaR</em>. <a href="https://github.com/LieberInstitute/qsvaR/qsvaR" class="external-link uri">https://github.com/LieberInstitute/qsvaR/qsvaR</a> - R
-package version 0.99.1. 2022. DOI:
+package version 1.5.0. 2023. DOI:
 <a href="https://doi.org/10.18129/B9.bioc.qsvaR" class="external-link">10.18129/B9.bioc.qsvaR</a>.
 URL:
 <a href="http://www.bioconductor.org/packages/qsvaR" class="external-link">http://www.bioconductor.org/packages/qsvaR</a>.</cite>
@@ -807,13 +819,12 @@ Journal</em> 3 (2011), pp. 5–10. URL:
 <p>
 <a id="bib-wickham2021sessioninfo"></a><a href="#cite-wickham2021sessioninfo">[13]</a><cite>
 H. Wickham, W. Chang, R. Flight, et al. <em>sessioninfo: R Session
-Information</em>. R package version 1.2.2. 2021. URL:
-<a href="https://CRAN.R-project.org/package=sessioninfo" class="external-link">https://CRAN.R-project.org/package=sessioninfo</a>.</cite>
+Information</em>. <a href="https://github.com/r-lib/sessioninfo#readme" class="external-link uri">https://github.com/r-lib/sessioninfo#readme</a>, <a href="https://r-lib.github.io/sessioninfo/" class="external-link uri">https://r-lib.github.io/sessioninfo/</a>. 2021.</cite>
 </p>
 <p>
-<a id="bib-xie2022knitr"></a><a href="#cite-xie2022knitr">[14]</a><cite>
+<a id="bib-xie2023knitr"></a><a href="#cite-xie2023knitr">[14]</a><cite>
 Y. Xie. <em>knitr: A General-Purpose Package for Dynamic Report
-Generation in R</em>. R package version 1.38. 2022. URL:
+Generation in R</em>. R package version 1.42. 2023. URL:
 <a href="https://yihui.org/knitr/" class="external-link">https://yihui.org/knitr/</a>.</cite>
 </p>
 </div>
@@ -836,8 +847,7 @@ Generation in R</em>. R package version 1.38. 2022. URL:
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.9000.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>

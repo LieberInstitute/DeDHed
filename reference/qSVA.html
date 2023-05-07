@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">qsvaR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.99.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.5.0</span>
       </span>
     </div>
 
@@ -63,13 +63,13 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">qSVA</span><span class="op">(</span>
-  <span class="va">rse_tx</span>,
-  type <span class="op">=</span> <span class="st">"cell_component"</span>,
-  sig_transcripts <span class="op">=</span> <span class="fu"><a href="select_transcripts.html">select_transcripts</a></span><span class="op">(</span><span class="va">type</span><span class="op">)</span>,
-  <span class="va">mod</span>,
-  <span class="va">assayname</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">qSVA</span><span class="op">(</span></span>
+<span>  <span class="va">rse_tx</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"cell_component"</span>,</span>
+<span>  sig_transcripts <span class="op">=</span> <span class="fu"><a href="select_transcripts.html">select_transcripts</a></span><span class="op">(</span><span class="va">type</span><span class="op">)</span>,</span>
+<span>  <span class="va">mod</span>,</span>
+<span>  <span class="va">assayname</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -77,30 +77,41 @@
     <dl><dt>rse_tx</dt>
 <dd><p>A <a href="https://rdrr.io/pkg/SummarizedExperiment/man/RangedSummarizedExperiment-class.html" class="external-link">RangedSummarizedExperiment-class</a> object containing
 the transcript data desired to be studied.</p></dd>
+
+
 <dt>type</dt>
 <dd><p>a character string specifying which model you would
 like to use when selecting a degradation matrix.</p></dd>
+
+
 <dt>sig_transcripts</dt>
 <dd><p>A list of transcripts determined to have
 degradation signal in the qsva expanded paper.</p></dd>
+
+
 <dt>mod</dt>
 <dd><p>Model Matrix with necessary variables the you would
 model for in differential expression</p></dd>
+
+
 <dt>assayname</dt>
 <dd><p>character string specifying the name of
 the assay desired in rse_tx</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>matrix with k principal components for each sample</p>
+    
+
+<p>matrix with k principal components for each sample</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html" class="external-link">model.matrix</a></span><span class="op">(</span><span class="op">~</span> <span class="va">mitoRate</span> <span class="op">+</span> <span class="va">Region</span> <span class="op">+</span> <span class="va">rRNA_rate</span> <span class="op">+</span> <span class="va">totalAssignedGene</span> <span class="op">+</span> <span class="va">RIN</span>,</span>
-<span class="r-in">    data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">colData</a></span><span class="op">(</span><span class="va">covComb_tx_deg</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-in"><span class="fu">qSVA</span><span class="op">(</span>rse_tx <span class="op">=</span> <span class="va">covComb_tx_deg</span>, type <span class="op">=</span> <span class="st">"cell_component"</span>, mod <span class="op">=</span> <span class="va">mod</span>, assayname <span class="op">=</span> <span class="st">"tpm"</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html" class="external-link">model.matrix</a></span><span class="op">(</span><span class="op">~</span> <span class="va">mitoRate</span> <span class="op">+</span> <span class="va">Region</span> <span class="op">+</span> <span class="va">rRNA_rate</span> <span class="op">+</span> <span class="va">totalAssignedGene</span> <span class="op">+</span> <span class="va">RIN</span>,</span></span>
+<span class="r-in"><span>    data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">colData</a></span><span class="op">(</span><span class="va">covComb_tx_deg</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">qSVA</span><span class="op">(</span>rse_tx <span class="op">=</span> <span class="va">covComb_tx_deg</span>, type <span class="op">=</span> <span class="st">"cell_component"</span>, mod <span class="op">=</span> <span class="va">mod</span>, assayname <span class="op">=</span> <span class="st">"tpm"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                             qSV1        qSV2        qSV3         qSV4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br1385_A1_ribo -20.8283999 -18.9358162  11.8368597  -0.38990791</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br1385_A2_ribo   3.3372474 -17.1339387   2.2181715   1.73676021</span>
@@ -284,7 +295,7 @@ the assay desired in rse_tx</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Br5941-C5b            -3.73429788   0.4379703</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Br5941-C5c            -1.37779312   4.5531531</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Br5941-C5d            -1.02865899   4.2669448</span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -299,8 +310,7 @@ the assay desired in rse_tx</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>
