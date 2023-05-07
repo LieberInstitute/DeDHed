@@ -11,7 +11,8 @@
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="Generate Quality Surrogate Variable Analysis for Degradation Correction">
+<script src="pkgdown.js"></script><link href="extra.css" rel="stylesheet">
+<meta property="og:title" content="Generate Quality Surrogate Variable Analysis for Degradation Correction">
 <meta property="og:description" content="The qsvaR package contains functions for removing the effect of
     degration in rna-seq data from postmortem brain tissue. The package is
     equipped to help users generate principal components associated with
@@ -129,7 +130,11 @@
 <span><span class="co">#&gt; Loading objects:</span></span>
 <span><span class="co">#&gt;   rse_tx</span></span></code></pre></div>
 <p>In this next step we subset for the transcripts associated with degradation. These were determined by Joshua M. Stolz et al, 2022. We have provided three models to choose from. Here the names <code>"cell_component"</code>, <code>"top1500"</code>, and <code>"standard"</code> refer to models that were determined to be effective in removing degradation effects. The <code>"standard"</code> model involves taking the union of the top 1000 transcripts associated with degradation from the interaction model and the main effect model. The <code>"top1500"</code> model is the same as the <code>"standard"</code> model except the union of the top 1500 genes associated with degradation is selected. The most effective of our models, <code>"cell_component"</code>, involved deconvolution of the degradation matrix to determine the proportion of cell types within our studied tissue. These proportions were then added to our <code><a href="https://rdrr.io/r/stats/model.matrix.html" class="external-link">model.matrix()</a></code> and the union of the top 1000 transcripts in the interaction model, the main effect model, and the cell proportions model were used to generate this model of qSVs. In this example we will choose <code>"cell_component"</code> when using the <code><a href="reference/getDegTx.html">getDegTx()</a></code> and <code><a href="reference/select_transcripts.html">select_transcripts()</a></code> functions.</p>
-<p><img src="./reference/figures/transcripts_venn_diagramm.png" title="The above venn diagram shows the overlap between transcripts in each of the previously mentioned models." alt="The above venn diagram shows the overlap between transcripts in each of the previously mentioned models." width="100%"></p>
+<div class="figure">
+<img src="./reference/figures/transcripts_venn_diagramm.png" alt="The above venn diagram shows the overlap between transcripts in each of the previously mentioned models." width="100%"><p class="caption">
+The above venn diagram shows the overlap between transcripts in each of the previously mentioned models.
+</p>
+</div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Next we get the degraded transcripts for qSVA from the "cell_component"</span></span>
 <span><span class="co">## model</span></span>
@@ -204,16 +209,28 @@
 <span><span class="co">#&gt; ENST00000572236.1  4.051142</span></span>
 <span><span class="co">#&gt; ENST00000450454.6  4.035041</span></span></code></pre></div>
 <p>Finally, you can compare the resulting t-statistics from your differential expression model against the degradation time t-statistics adjusting for the six different brain regions. This type of plot is called <code>DEqual</code> plot and was shown in the initial qSVA framework paper (<a href="https://doi.org/10.1073/pnas.1617384114" class="external-link">Jaffe et al, PNAS, 2017</a>). We are really looking for two patterns exemplified here in Figure 1 (cartoon shown earlier). A direct positive correlation with degradation shown in Figure 1 on the right tells us that there is signal in the data associated with qSVs. An example of nonconfounded data or data that has been modeled can be seen in Figure 1 on the right with its lack of relationship between the x and y variables.</p>
-<p><img src="./reference/figures/DEqual_example.png" title="Cartoon showing patterns in DEqual plots" alt="Cartoon showing patterns in DEqual plots" width="100%"></p>
+<div class="figure">
+<img src="./reference/figures/DEqual_example.png" alt="Cartoon showing patterns in DEqual plots" width="100%"><p class="caption">
+Cartoon showing patterns in DEqual plots
+</p>
+</div>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Generate a DEqual() plot using the model results with qSVs</span></span>
 <span><span class="fu"><a href="reference/DEqual.html">DEqual</a></span><span class="op">(</span><span class="va">sigTx</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-DEqual-1.png" title="Result of Differential Expression with qSVA normalization." alt="Result of Differential Expression with qSVA normalization." width="100%"></p>
+<div class="figure">
+<img src="reference/figures/README-DEqual-1.png" alt="Result of Differential Expression with qSVA normalization." width="100%"><p class="caption">
+Result of Differential Expression with qSVA normalization.
+</p>
+</div>
 <p>For comparison, here is the <code><a href="reference/DEqual.html">DEqual()</a></code> plot for the model without qSVs.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Generate a DEqual() plot using the model results without qSVs</span></span>
 <span><span class="fu"><a href="reference/DEqual.html">DEqual</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/limma/man/toptable.html" class="external-link">topTable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/limma/man/ebayes.html" class="external-link">eBayes</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/limma/man/lmFit.html" class="external-link">lmFit</a></span><span class="op">(</span><span class="va">txExprs</span>, <span class="va">mod</span><span class="op">)</span><span class="op">)</span>, coef <span class="op">=</span> <span class="fl">2</span>, p.value <span class="op">=</span> <span class="fl">1</span>, number <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">rse_tx</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-DEqual-no-qSVs-1.png" title="Result of Differential Expression without qSVA normalization." alt="Result of Differential Expression without qSVA normalization." width="100%"></p>
+<div class="figure">
+<img src="reference/figures/README-DEqual-no-qSVs-1.png" alt="Result of Differential Expression without qSVA normalization." width="100%"><p class="caption">
+Result of Differential Expression without qSVA normalization.
+</p>
+</div>
 <p>In these two DEqual plots we can see that the first is much better. With a correlation of -0.014 we can effectively conclude that we have removed the effects of degradation from the data. In the second plot after modeling for several common variables we still have a correlation of 0.5 with the degradation experiment. This high correlation shows we still have a large amount of signal from degradation in our data potentially confounding our case-control (SCZD vs neurotypical controls) differential expression results.</p>
 </div>
 </div>
@@ -264,9 +281,17 @@
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://lifecycle.r-lib.org/articles/stages.html#stable" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="Lifecycle: stable"></a></li>
-<li><a href="https://bioconductor.org/checkResults/release/bioc-LATEST/qsvaR" class="external-link"><img src="http://www.bioconductor.org/shields/build/release/bioc/qsvaR.svg" alt="BioC status"></a></li>
-<li><a href="https://github.com/LieberInstitute/qsvaR/actions" class="external-link"><img src="https://github.com/LieberInstitute/qsvaR/workflows/R-CMD-check-bioc/badge.svg" alt="R-CMD-check-bioc"></a></li>
-<li><a href="https://app.codecov.io/gh/LieberInstitute/qsvaR?branch=main" class="external-link"><img src="https://codecov.io/gh/LieberInstitute/qsvaR/branch/main/graph/badge.svg" alt="Codecov test coverage"></a></li>
+<li><a href="https://bioconductor.org/checkResults/release/bioc-LATEST/qsvaR" class="external-link"><img src="http://www.bioconductor.org/shields/build/release/bioc/qsvaR.svg" alt="Bioc release status"></a></li>
+<li><a href="https://bioconductor.org/checkResults/devel/bioc-LATEST/qsvaR" class="external-link"><img src="http://www.bioconductor.org/shields/build/devel/bioc/qsvaR.svg" alt="Bioc devel status"></a></li>
+<li><a href="http://bioconductor.org/packages/stats/bioc/qsvaR/" class="external-link"><img src="https://bioconductor.org/shields/downloads/release/qsvaR.svg" alt="Bioc downloads rank"></a></li>
+<li><a href="https://support.bioconductor.org/tag/qsvaR" class="external-link"><img src="https://bioconductor.org/shields/posts/qsvaR.svg" alt="Bioc support"></a></li>
+<li><a href="https://bioconductor.org/packages/release/bioc/html/qsvaR.html#since" class="external-link"><img src="https://bioconductor.org/shields/years-in-bioc/qsvaR.svg" alt="Bioc history"></a></li>
+<li><a href="http://bioconductor.org/checkResults/devel/bioc-LATEST/qsvaR/" class="external-link"><img src="https://bioconductor.org/shields/lastcommit/devel/bioc/qsvaR.svg" alt="Bioc last commit"></a></li>
+<li><a href="https://bioconductor.org/packages/release/bioc/html/qsvaR.html#since" class="external-link"><img src="https://bioconductor.org/shields/dependencies/release/qsvaR.svg" alt="Bioc dependencies"></a></li>
+<li><a href="https://codecov.io/gh/LieberInstitute/qsvaR?branch=devel" class="external-link"><img src="https://codecov.io/gh/LieberInstitute/qsvaR/branch/devel/graph/badge.svg" alt="Codecov test coverage"></a></li>
+<li><a href="https://github.com/LieberInstitute/qsvaR/actions" class="external-link"><img src="https://github.com/LieberInstitute/qsvaR/workflows/R-CMD-check-bioc/badge.svg" alt="R build status"></a></li>
+<li><a href="https://github.com/LieberInstitute/qsvaR/issues" class="external-link"><img src="https://img.shields.io/github/issues/LieberInstitute/qsvaR" alt="GitHub issues"></a></li>
+<li><a href="https://github.com/LieberInstitute/qsvaR/pulls" class="external-link"><img src="https://img.shields.io/github/issues-pr/LieberInstitute/qsvaR" alt="GitHub pulls"></a></li>
 <li><a href="https://zenodo.org/badge/latestdoi/421556636" class="external-link"><img src="https://zenodo.org/badge/421556636.svg" alt="DOI"></a></li>
 </ul>
 </div>
