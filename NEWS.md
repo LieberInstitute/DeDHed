@@ -1,3 +1,9 @@
+# qsvaR 1.5.1
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+* Hedia Tnani is now the maintainer of qsvaR.
+
 # qsvaR 0.99.0
 
 NEW FEATURES

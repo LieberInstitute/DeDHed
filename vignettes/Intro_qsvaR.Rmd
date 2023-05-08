@@ -4,7 +4,11 @@ author:
   - name: Joshua M. Stolz
     affiliation:
     - &libd Lieber Institute for Brain Development
-    email: josh.stolz@libd.org
+    email: jstolz80@gmail.com
+  - name: Hedia Tnani
+    affiliation:
+    - *libd
+    email: hediatnani0@gmail.com
   - name: Leonardo Collado-Torres
     affiliation:
     - *libd

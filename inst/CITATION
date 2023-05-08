@@ -10,6 +10,7 @@ c(
         title = "qsvaR",
         author = personList(
         as.person("Joshua M. Stolz"),
+		as.person("Hedia Tnani"),
         as.person("Leonardo Collado-Torres")
         ),
         year = format(Sys.Date(), "%Y"),
@@ -21,6 +22,7 @@ c(
         title = "qsvaR",
         author = personList(
             as.person("Joshua M. Stolz"),
+			as.person("Hedia Tnani"),
             as.person("Ran Tao"),
             as.person("Andrew E. Jaffe"),
             as.person("Leonardo Collado-Torres")
