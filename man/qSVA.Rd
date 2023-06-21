@@ -22,7 +22,8 @@ like to use when selecting a degradation matrix.}
 \item{sig_transcripts}{A list of transcripts that are associated with
 degradation signal. Use \code{select_transcripts()} to select sets of transcripts
 identified by the qSVA expanded paper. Specifying a \code{character()} input of
-ENSEMBL transcript IDs obtained outside of \code{select_transcripts()} overrides
+ENSEMBL transcript IDs (or whatever values you have at \code{rownames(rse_tx)})
+obtained outside of \code{select_transcripts()} overrides
 the user friendly \code{type} argument. That is, this argument provides more fine
 tuning options for advanced users.}
 

@@ -7,7 +7,8 @@
 #' @param sig_transcripts A list of transcripts that are associated with
 #' degradation signal. Use `select_transcripts()` to select sets of transcripts
 #' identified by the qSVA expanded paper. Specifying a `character()` input of
-#' ENSEMBL transcript IDs obtained outside of `select_transcripts()` overrides
+#' ENSEMBL transcript IDs (or whatever values you have at `rownames(rse_tx)`)
+#' obtained outside of `select_transcripts()` overrides
 #' the user friendly `type` argument. That is, this argument provides more fine
 #' tuning options for advanced users.
 #' @param mod Model Matrix with necessary variables the you would
@@ -27,7 +28,7 @@
 qSVA <- function(rse_tx, type = "cell_component", sig_transcripts = select_transcripts(type), mod, assayname) {
     ## We don't need to pass type to getDegTx() since it's not used internally
     ## once the sig_transcripts have been defined.
-    DegTx <- getDegTx(rse_tx, sig_transcripts = sig_transcripts)
+    DegTx <- getDegTx(rse_tx, sig_transcripts = sig_transcripts, assayname = assayname)
     PCs <- getPCs(DegTx, assayname)
     k <- k_qsvs(DegTx, mod = mod, assayname = assayname)
     qSV <- get_qsvs(PCs, k)
