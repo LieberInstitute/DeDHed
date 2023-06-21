@@ -1,3 +1,13 @@
+# qsvaR 1.5.2
+
+BUG FIXES
+
+* Fixed a bug in `qSVA()` which was not passing `sig_transcripts` to 
+`getDegTx()`. Related to https://github.com/LieberInstitute/qsvaR/issues/29.
+* Fixed the documentation to highlight when users should use `set.seed()` to
+ensure the reproducibility of their results. Related to
+https://github.com/LieberInstitute/qsvaR/issues/28.
+
 # qsvaR 1.5.1
 
 SIGNIFICANT USER-VISIBLE CHANGES
