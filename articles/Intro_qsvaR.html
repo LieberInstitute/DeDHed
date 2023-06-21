@@ -334,6 +334,13 @@ using the <code>tpm</code> assay.</p>
 <span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html" class="external-link">model.matrix</a></span><span class="op">(</span><span class="op">~</span> <span class="va">Dx</span> <span class="op">+</span> <span class="va">Age</span> <span class="op">+</span> <span class="va">Sex</span> <span class="op">+</span> <span class="va">Race</span> <span class="op">+</span> <span class="va">Region</span>,</span>
 <span>    data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">colData</a></span><span class="op">(</span><span class="va">rse_tx</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## To ensure that the results are reproducible, you will need to set a</span></span>
+<span><span class="co">## random seed with the set.seed() function. Internally, we are using</span></span>
+<span><span class="co">## sva::num.sv() which needs a random seed to ensure reproducibility of the</span></span>
+<span><span class="co">## results.</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">20230621</span><span class="op">)</span></span>
+<span></span>
 <span><span class="co"># use k qsvs function to return a integer of pcs needed</span></span>
 <span><span class="va">k</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/k_qsvs.html">k_qsvs</a></span><span class="op">(</span>rse_tx <span class="op">=</span> <span class="va">DegTx</span>, mod <span class="op">=</span> <span class="va">mod</span>, assayname <span class="op">=</span> <span class="st">"tpm"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">k</span><span class="op">)</span></span>
@@ -356,7 +363,13 @@ going to include as calculated in the previous step.</p>
 <code>qSVA</code> which just combinds all the previous mentioned
 functions.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">## Example use of the wrapper function qSVA()</span></span>
+<code class="sourceCode R"><span><span class="co">## To ensure that the results are reproducible, you will need to set a</span></span>
+<span><span class="co">## random seed with the set.seed() function. Internally, we are using</span></span>
+<span><span class="co">## sva::num.sv() which needs a random seed to ensure reproducibility of the</span></span>
+<span><span class="co">## results.</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">20230621</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## Example use of the wrapper function qSVA()</span></span>
 <span><span class="va">qsvs_wrapper</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/qSVA.html">qSVA</a></span><span class="op">(</span>rse_tx <span class="op">=</span> <span class="va">rse_tx</span>, type <span class="op">=</span> <span class="st">"cell_component"</span>, mod <span class="op">=</span> <span class="va">mod</span>, assayname <span class="op">=</span> <span class="st">"tpm"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">qsvs_wrapper</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 900  34</span></span></code></pre></div>
@@ -597,9 +610,9 @@ Johnson, Parker, Fertig, Jaffe, Zhang, Storey, and Torres, 2023)</li>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://yihui.org/knitr/" class="external-link">"knitr"</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit.html" class="external-link">knit</a></span><span class="op">(</span><span class="st">"Intro_qsvaR.Rmd"</span>, tangle <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>Date the vignette was generated.</p>
-<pre><code><span><span class="co">#&gt; [1] "2023-06-21 21:23:47 UTC"</span></span></code></pre>
+<pre><code><span><span class="co">#&gt; [1] "2023-06-21 21:30:51 UTC"</span></span></code></pre>
 <p>Wallclock time spent generating the vignette.</p>
-<pre><code><span><span class="co">#&gt; Time difference of 1.667 mins</span></span></code></pre>
+<pre><code><span><span class="co">#&gt; Time difference of 1.456 mins</span></span></code></pre>
 <p><code>R</code> session information.</p>
 <pre><code><span><span class="co">#&gt; <span style="color: #00BBBB; font-weight: bold;">─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────</span></span></span>
 <span><span class="co">#&gt;  <span style="color: #555555; font-style: italic;">setting </span> <span style="color: #555555; font-style: italic;">value</span></span></span>
