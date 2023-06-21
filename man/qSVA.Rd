@@ -40,9 +40,18 @@ matrix with k principal components for each sample
 A wrapper function used to perform qSVA in one step.
 }
 \examples{
+## First we need to define a statistical model. We'll use the example
+## covComb_tx_deg data. Note that the model you'll use in your own data
+## might look different from this model.
 mod <- model.matrix(~ mitoRate + Region + rRNA_rate + totalAssignedGene + RIN,
     data = colData(covComb_tx_deg)
 )
+
+## To ensure that the results are reproducible, you will need to set a
+## random seed with the set.seed() function. Internally, we are using
+## sva::num.sv() which needs a random seed to ensure reproducibility of the
+## results.
+set.seed(20230621)
 qSVA(rse_tx = covComb_tx_deg, type = "cell_component", mod = mod, assayname = "tpm")
 
 }
