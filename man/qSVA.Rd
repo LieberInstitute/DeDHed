@@ -19,8 +19,9 @@ the transcript data desired to be studied.}
 \item{type}{a character string specifying which model you would
 like to use when selecting a degradation matrix.}
 
-\item{sig_transcripts}{A list of transcripts determined to have
-degradation signal in the qsva expanded paper.}
+\item{sig_transcripts}{A list of transcripts that are associated with
+degradation signal. Use \code{select_transcripts()} to select sets of transcripts
+identified by the qSVA expanded paper.}
 
 \item{mod}{Model Matrix with necessary variables the you would
 model for in differential expression}

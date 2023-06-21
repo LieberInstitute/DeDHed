@@ -4,8 +4,9 @@
 #' the transcript data desired to be studied.
 #' @param type a character string specifying which model you would
 #'  like to use when selecting a degradation matrix.
-#' @param sig_transcripts A list of transcripts determined to have
-#'  degradation signal in the qsva expanded paper.
+#' @param sig_transcripts A list of transcripts that are associated with
+#' degradation signal. Use `select_transcripts()` to select sets of transcripts
+#' identified by the qSVA expanded paper.
 #' @param mod Model Matrix with necessary variables the you would
 #'  model for in differential expression
 #' @param assayname character string specifying the name of
