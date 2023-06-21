@@ -88,7 +88,8 @@ like to use when selecting a degradation matrix.</p></dd>
 <dd><p>A list of transcripts that are associated with
 degradation signal. Use <code><a href="select_transcripts.html">select_transcripts()</a></code> to select sets of transcripts
 identified by the qSVA expanded paper. Specifying a <code><a href="https://rdrr.io/r/base/character.html" class="external-link">character()</a></code> input of
-ENSEMBL transcript IDs obtained outside of <code><a href="select_transcripts.html">select_transcripts()</a></code> overrides
+ENSEMBL transcript IDs (or whatever values you have at <code>rownames(rse_tx)</code>)
+obtained outside of <code><a href="select_transcripts.html">select_transcripts()</a></code> overrides
 the user friendly <code>type</code> argument. That is, this argument provides more fine
 tuning options for advanced users.</p></dd>
 
