@@ -1,3 +1,11 @@
+# qsvaR 1.5.3
+
+BUG FIXES
+
+* Fixed the error messages displayed by `k_qsvs()` to handle different types
+of situations. We implemented this update with @HediaTnani, @reneegf, and
+@lahuuki.
+
 # qsvaR 1.5.2
 
 BUG FIXES

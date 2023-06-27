@@ -30,12 +30,23 @@ k_qsvs <- function(rse_tx, mod, assayname) {
     if (qr(mod)$rank != ncol(mod)) {
         stop("The 'mod' matrix is not full rank.", call. = FALSE)
     }
+    if (nrow(mod) != ncol(rse_tx)) {
+        stop("The number of rows in 'mod' does not match the number of input 'rse_tx' columns.", call. = FALSE)
+    }
 
     expr <- log2(assays(rse_tx)[[assayname]] + 1)
     k <- tryCatch(
         num.sv(expr, mod),
         error = function(e) {
-            stop("Could not run sva::num.sv(). Likely due to transcripts being not expressed in most samples.", call. = FALSE)
+
+            if (grepl("only 0's may be mixed with negative subscripts", e$message)) {
+                warning("Could not run sva::num.sv(). Likely due to transcripts being not expressed in most samples.", call. = FALSE)
+            } else if (grepl("system is computationally singular", e$message)) {
+                warning("Could not run sva::num.sv(). Likely due to having highly correlated variables in your 'mod'.", call. = FALSE)
+            } else {
+                warning("Could not run sva::num.sv().", call. = FALSE)
+            }
+            stop(e)
         }
     )
     return(k)

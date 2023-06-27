@@ -27,11 +27,12 @@ test_that("output is an numeric", {
 
 test_that("non-full rank data throws error", {
     set.seed(20230621)
-    expect_error(qSVA(rse_tx = covComb_tx_deg, type = "cell_component", mod = mod2, assayname = "tpm"))
+    expect_error(qSVA(rse_tx = covComb_tx_deg, type = "cell_component", mod = mod2, assayname = "tpm"), "matrix is not full rank")
 })
 
 
 test_that("test that full rank matrix produces check and error", {
     set.seed(20230621)
+    # expect_warning(k_qsvs(rse_tx_low, mod, "tpm"), "Likely due to transcripts being not expressed in most samples")
     expect_error(k_qsvs(rse_tx_low, mod, "tpm"))
 })
