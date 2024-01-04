@@ -41,7 +41,7 @@ getDegTx <- function(rse_tx, type = c("cell_component", "standard", "top1500"), 
   if (!is(rse_tx, "RangedSummarizedExperiment")) {
     stop("Error: rse_tx must be a RangedSummarizedExperiment object.")
   }
-  if (any(!grepl("^ENST", rownames(rse_tx)))) {
+  if (!all(grepl("^ENST", rownames(rse_tx)))) {
     stop("Error: Some rownames do not start with 'ENST'.")
   }
   rse_tx <- rse_tx[rownames(rse_tx) %in% sig_transcripts, , drop = FALSE]
