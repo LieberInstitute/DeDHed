@@ -33,7 +33,7 @@
 #' @examples
 #' getDegTx(covComb_tx_deg)
 #' stopifnot(mean(rowMeans(assays(covComb_tx_deg)$tpm)) > 1)
-getDegTx <- function(rse_tx, type = c("cell_component", "standard", "top1500"), sig_transcripts = select_transcripts(type), assayname = "tpm") {
+getDegTx <- function(rse_tx, type = c("cell_component", "standard", "top1500"), sig_transcripts = select_transcripts(type), assayname = "tpm", is_gencode = TRUE) {
   
   type = arg_match(type)
   
@@ -44,7 +44,14 @@ getDegTx <- function(rse_tx, type = c("cell_component", "standard", "top1500"), 
   if (!all(grepl("^ENST", rownames(rse_tx)))) {
     stop("Error: Some rownames do not start with 'ENST'.")
   }
-  rse_tx <- rse_tx[rownames(rse_tx) %in% sig_transcripts, , drop = FALSE]
+  
+  if (is_gencode) {
+    rse_tx <- rse_tx[rownames(rse_tx) %in% sig_transcripts, , drop = FALSE]
+  }else{
+    new_transcripts <- gsub("\\..*", "", sig_transcripts)
+    rse_tx <- rse_tx[rownames(rse_tx) %in% new_transcripts, , drop = FALSE]
+  }
+  
   if (mean(rowMeans(assays(rse_tx)[[assayname]])) < 1) {
     warning("The transcripts selected are lowly expressed in your dataset. This can impact downstream analysis.")
     }
