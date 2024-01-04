@@ -19,3 +19,17 @@ test_that("test warning output for lowly expressed transcripts", {
     expect_warning(getDegTx(rse_tx_low))
 })
 
+# Test for rownames starting with "ENST"
+test_that("getDegTx correctly processes covComb_tx_deg", {
+  # If covComb_tx_deg is correctly structured and all rownames start with "ENST", expect no error
+  expect_silent(getDegTx(covComb_tx_deg))
+  # For testing the error condition, altered manually rownames of covComb_tx_deg
+  altered_covComb_tx_deg <- covComb_tx_deg
+  rownames(altered_covComb_tx_deg)[1] <- "INVALID0001" # Change the first rowname to an invalid one
+  
+  # Expect an error when rownames do not start with "ENST"
+  expect_error(getDegTx(altered_covComb_tx_deg), "Error: Some rownames do not start with 'ENST'.")
+})
+  
+
+  
