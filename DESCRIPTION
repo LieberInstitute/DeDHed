@@ -41,6 +41,7 @@ Imports:
     sva,
     stats,
     ggplot2,
+    rlang,
     methods
 Depends: 
     R (>= 4.2),
