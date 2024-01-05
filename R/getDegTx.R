@@ -45,11 +45,16 @@ getDegTx <- function(rse_tx, type = c("cell_component", "standard", "top1500"), 
     stop("Error: Some rownames do not start with 'ENST'.")
   }
   
-  if (is_gencode) {
+  # Check patterns and perform operations based on the patterns
+  if (all(grepl("^ENST[0-9]{11}\\.[0-9]+$", rownames(rse_tx)))) {
+    # If all row names have the format 'ENST00000442987.3'
     rse_tx <- rse_tx[rownames(rse_tx) %in% sig_transcripts, , drop = FALSE]
-  }else{
+  } else if (all(grepl("^ENST[0-9]{11}$", rownames(rse_tx)))) {
+    # If all row names have the format 'ENST00000442987'
     new_transcripts <- gsub("\\..*", "", sig_transcripts)
     rse_tx <- rse_tx[rownames(rse_tx) %in% new_transcripts, , drop = FALSE]
+  } else {
+    stop("Error: Row names do not match the expected patterns.")
   }
   
   if (mean(rowMeans(assays(rse_tx)[[assayname]])) < 1) {
