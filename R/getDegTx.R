@@ -33,7 +33,7 @@
 #' @examples
 #' getDegTx(covComb_tx_deg)
 #' stopifnot(mean(rowMeans(assays(covComb_tx_deg)$tpm)) > 1)
-getDegTx <- function(rse_tx, type = c("cell_component", "standard", "top1500"), sig_transcripts = select_transcripts(type), assayname = "tpm", is_gencode = TRUE) {
+getDegTx <- function(rse_tx, type = c("cell_component", "standard", "top1500"), sig_transcripts = select_transcripts(type), assayname = "tpm") {
   
   type = arg_match(type)
   
