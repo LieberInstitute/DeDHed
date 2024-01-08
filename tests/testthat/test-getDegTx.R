@@ -52,6 +52,7 @@ test_that("No sig_transcripts are in rse_tx rownames", {
   }, "sig_transcripts and rownames(rse_tx) do not match")
 })
 
+# Test whether getDegTx gives the same results with original and altered row names
 test_that("getDegTx works with original and altered row names", {
   set.seed(123)
   # Apply getDegTx to covComb_tx_deg
