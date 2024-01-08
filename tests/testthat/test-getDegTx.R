@@ -61,6 +61,6 @@ test_that("getDegTx works with original and altered row names", {
   rownames(altered_covComb_tx_deg) <- gsub("\\..*", "", rownames(covComb_tx_deg))
   altered_results <- getDegTx(altered_covComb_tx_deg,select_transcripts("cell_component"))
   
-  # Test if the results are equivalent
+  # Test if the results are equal
   expect_equal(original_results, altered_results)
 })
