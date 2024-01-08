@@ -32,24 +32,26 @@ test_that("getDegTx correctly processes covComb_tx_deg", {
 })
 
 
-# Test where all sig_transcripts are in covComb_tx_deg rownames
-test_that("All sig_transcripts are in rse_tx rownames", {
+# Test where at least one sig_transcript is in covComb_tx_deg rownames
+test_that("At least one sig_transcript is in covComb_tx_deg rownames", {
   sig_transcripts <- select_transcripts("cell_component")
   expect_silent({
+    # Check if any of the sig_transcripts are in covComb_tx_deg rownames
     if (!any(sig_transcripts %in% rownames(covComb_tx_deg))) {
-      stop("sig_transcripts and rownames(rse_tx) do not match")
+      stop("No sig_transcripts found in rownames(covComb_tx_deg)")
     }
   })
 })
 
-# Test where none of the sig_transcripts are in the rse_tx rownames
-test_that("No sig_transcripts are in rse_tx rownames", {
-  sig_transcripts <- c("gene4", "gene5", "gene6")
+# Test where none of the sig_transcripts are in the covComb_tx_deg rownames
+test_that("No sig_transcripts are in covComb_tx_deg rownames", {
+  sig_transcripts <- c("gene4", "gene5", "gene6") # Example genes not in covComb_tx_deg
   expect_error({
+    # Check if any of the sig_transcripts are in covComb_tx_deg rownames
     if (!any(sig_transcripts %in% rownames(covComb_tx_deg))) {
-      stop("sig_transcripts and rownames(rse_tx) do not match")
+      stop("No sig_transcripts found in rownames(covComb_tx_deg)")
     }
-  }, "sig_transcripts and rownames(rse_tx) do not match")
+  }, "No sig_transcripts found in rownames(covComb_tx_deg)")
 })
 
 # Test whether getDegTx gives the same results with original and altered row names
