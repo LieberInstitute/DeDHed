@@ -53,8 +53,8 @@ getDegTx <- function(rse_tx, type = c("cell_component", "standard", "top1500"), 
     rse_tx <- rse_tx[rownames(rse_tx) %in% sig_transcripts, , drop = FALSE]
   } else if (all(grepl("^ENST", rownames(rse_tx)))) {
     # If all row names have the format 'ENST00000442987'
-    new_transcripts <- gsub("\\..*", "", sig_transcripts)
-    rse_tx <- rse_tx[rownames(rse_tx) %in% new_transcripts, , drop = FALSE]
+    sig_transcripts <- gsub("\\..*", "", sig_transcripts)
+    rse_tx <- rse_tx[rownames(rse_tx) %in% sig_transcripts, , drop = FALSE]
   } else {
     stop("Error: Row names do not match the expected patterns.")
   }
