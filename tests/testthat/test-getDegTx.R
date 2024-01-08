@@ -53,6 +53,7 @@ test_that("No sig_transcripts are in rse_tx rownames", {
 })
 
 test_that("getDegTx works with original and altered row names", {
+  set.seed(123)
   # Apply getDegTx to covComb_tx_deg
   original_results <- getDegTx(covComb_tx_deg,select_transcripts("cell_component"))
   
