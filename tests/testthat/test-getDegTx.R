@@ -62,5 +62,5 @@ test_that("getDegTx works with original and altered row names", {
   altered_results <- getDegTx(altered_covComb_tx_deg,select_transcripts("cell_component"))
   
   # Test if the results are equivalent
-  expect_equivalent(original_results, altered_results)
+  expect_equal(original_results, altered_results)
 })
