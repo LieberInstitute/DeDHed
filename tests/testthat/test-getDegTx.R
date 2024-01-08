@@ -54,12 +54,12 @@ test_that("No sig_transcripts are in rse_tx rownames", {
 
 test_that("getDegTx works with original and altered row names", {
   # Apply getDegTx to covComb_tx_deg
-  original_results <- getDegTx(covComb_tx_deg)
+  original_results <- getDegTx(covComb_tx_deg,select_transcripts("cell_component"))
   
   # Alter the row names of covComb_tx_deg and apply getDegTx
   altered_covComb_tx_deg <- covComb_tx_deg
   rownames(altered_covComb_tx_deg) <- gsub("\\..*", "", rownames(covComb_tx_deg))
-  altered_results <- getDegTx(altered_covComb_tx_deg)
+  altered_results <- getDegTx(altered_covComb_tx_deg,select_transcripts("cell_component"))
   
   # Test if the results are equivalent
   expect_equivalent(original_results, altered_results)
