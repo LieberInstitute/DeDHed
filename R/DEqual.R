@@ -45,14 +45,12 @@ DEqual <- function(DE) {
     # stopifnot(!is.null(rownames(DE)))
 
     # Check if 't' is in the column names of DE
-    DE %>%
-      if (!("t" %in% colnames(.))) {
+      if (!("t" %in% colnames(DE))) {
         stop("Error: 't' is not a column in DE.")
       }
     
     # Check if DE has non-null row names
-    DE %>%
-      if (is.null(rownames(.))) {
+      if (is.null(rownames(DE))) {
         stop("Error: Row names of DE are null.")
       }
     
