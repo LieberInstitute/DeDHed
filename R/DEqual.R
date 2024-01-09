@@ -48,12 +48,12 @@ DEqual <- function(DE) {
     if (!is.data.frame(DE)) { stop("Error: The input to DEqual is not a dataframe.") }
 
     # Check if 't' is in the column names of DE
-      if (!("t" %in% colnames(DE))) {
+    if (!("t" %in% colnames(DE))) {
         stop("Error: 't' is not a column in DE.")
       }
     
     # Check if DE has non-null row names
-      if (is.null(rownames(DE))) {
+    if (is.null(rownames(DE))) {
         stop("Error: Row names of DE are null.")
       }
     
