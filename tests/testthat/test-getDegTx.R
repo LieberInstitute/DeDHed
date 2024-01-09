@@ -48,7 +48,7 @@ test_that("No sig_transcripts are in covComb_tx_deg rownames", {
     # Check if any of the sig_transcripts are in covComb_tx_deg rownames
     getDegTx(covComb_tx_deg,sig_transcripts = sig_transcripts)
    
-  }, "No sig_transcripts found in rownames(covComb_tx_deg)")
+  }, "sig_transcripts and rownames of rse_tx object do not match")
 })
 
 # Test whether getDegTx gives the same results with original and altered row names

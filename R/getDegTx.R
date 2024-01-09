@@ -44,7 +44,7 @@ getDegTx <- function(rse_tx, type = c("cell_component", "standard", "top1500"), 
   
   # Check if any gene in sig_transcripts is in rownames(rse_tx)
   if (!any(sig_transcripts %in% rownames(rse_tx) | (gsub('\\..*', '', sig_transcripts) %in% rownames(rse_tx)))) {
-    stop("sig_transcripts and rownames(rse_tx) do not match")
+    stop("sig_transcripts and rownames of rse_tx object do not match")
   }
   
   # Check if all rownames start with "ENST"
