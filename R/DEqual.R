@@ -56,7 +56,14 @@ DEqual <- function(DE) {
     
     ## Locate common transcripts
     common <- intersect(rownames(qsvaR::degradation_tstats), rownames(DE))
-    stopifnot(length(common) > 0)
+    #stopifnot(length(common) > 0)
+    
+    # Check if the length of 'common' is greater than 0
+    if (length(common) <= 0) {
+      stop("Error: The length of 'common' should be greater than 0.")
+    }
+    
+    
     common_data <- data.frame(
         degradation_t = qsvaR::degradation_tstats$t[match(common, rownames(qsvaR::degradation_tstats))],
         DE_t = DE$t[match(common, rownames(DE))]
