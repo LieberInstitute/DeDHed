@@ -54,6 +54,11 @@ DEqual <- function(DE) {
         stop("Error: Row names of DE are null.")
       }
     
+    # Check if any rowname in degradation_tstats is in rownames DE
+    if (!any(rownames(DE) %in% rownames(qsvaR::degradation_tstats) | rownames(DE) %in% (gsub('\\..*', '', rownames(qsvaR::degradation_tstats))))) {
+      stop("The rownames of the DE output and the rownames of the  degradation t-statistic do not match")
+    }
+    
     ## Locate common transcripts
     common <- intersect(rownames(qsvaR::degradation_tstats), rownames(DE))
     #stopifnot(length(common) > 0)
