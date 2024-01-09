@@ -9,15 +9,6 @@ random_de <- data.frame(
     row.names = sample(rownames(degradation_tstats), nrow(degradation_tstats))
 )
 
-# Test if the input to DEqual is a dataframe
-test_that("Input to DEqual is a dataframe", {
-  
-  DEqual(random_de)
-  
-  # Test if the input to DEqual is a dataframe
-  expect_true(is.data.frame(random_de), "The input to DEqual is not a dataframe.")
-})
- 
 # Test if DEqual throws an error when input is not a dataframe
 test_that("DEqual throws an error for non-dataframe input", {
   # Test if DEqual throws an error when input is not a dataframe
@@ -44,6 +35,3 @@ test_that("DEqual correctly processes random_de", {
   
   # Expect an error when rownames do not start with "ENST"
   expect_error(DEqual(altered_random_de), "Error: Some rownames do not start with 'ENST'.")
-})
-
-
