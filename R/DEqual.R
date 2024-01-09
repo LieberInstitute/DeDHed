@@ -40,9 +40,15 @@ DEqual <- function(DE) {
     DE_t <- degradation_t <- NULL
 
     ## Check input
-    stopifnot("t" %in% colnames(DE))
-    stopifnot(!is.null(rownames(DE)))
+    # stopifnot("t" %in% colnames(DE))
+    # stopifnot(!is.null(rownames(DE)))
 
+    # Check if 't' is in the column names of DE
+    DE %>%
+      if (!("t" %in% colnames(.))) {
+        stop("Error: 't' is not a column in DE.")
+      }
+    
     ## Locate common transcripts
     common <- intersect(rownames(qsvaR::degradation_tstats), rownames(DE))
     stopifnot(length(common) > 0)
