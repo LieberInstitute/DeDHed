@@ -35,3 +35,16 @@ test_that("DEqual correctly processes random_de", {
   
   # Expect an error when rownames do not start with "ENST"
   expect_error(DEqual(altered_random_de), "Error: Some rownames do not start with 'ENST'.")
+})
+
+# Test: None of the DE rownames are in degradation_tstats rownames
+test_that("No DE rownames are in degradation_tstats rownames", {
+  # Alter rownames of random_de to simulate non-matching genes
+  altered_random_de <- random_de
+  rownames(altered_random_de) <- paste0("gene", 1:length(rownames(random_de)))
+  
+  # Expect an error if rownames in altered_random_de don't match those in degradation_tstats
+  expect_error({
+    DEqual(altered_random_de)
+  }, "DE and degradation t-statistic rownames mismatch error.")
+})

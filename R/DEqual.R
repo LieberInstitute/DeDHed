@@ -57,9 +57,9 @@ DEqual <- function(DE) {
         stop("Error: Row names of DE are null.")
       }
     
-    # Check if any rowname in degradation_tstats is in rownames DE
+    # Check if any rowname in rownames DE is in degradation_tstats
     if (!any(rownames(DE) %in% rownames(qsvaR::degradation_tstats) | rownames(DE) %in% (gsub('\\..*', '', rownames(qsvaR::degradation_tstats))))) {
-      stop("The rownames of the DE output and the rownames of the  degradation t-statistic do not match")
+      stop("DE and degradation t-statistic rownames mismatch error.")
     }
     
     # Check if all rownames start with "ENST"
