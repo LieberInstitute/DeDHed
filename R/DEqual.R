@@ -62,6 +62,11 @@ DEqual <- function(DE) {
       stop("The rownames of the DE output and the rownames of the  degradation t-statistic do not match")
     }
     
+    # Check if all rownames start with "ENST"
+    if (!all(grepl("^ENST", rownames(DE)))) {
+      stop("Error: Some rownames do not start with 'ENST'.")
+    }
+    
     ## Locate common transcripts
     if (all(grepl("^ENST.*?\\.", rownames(DE)))) {
     common <- intersect(rownames(qsvaR::degradation_tstats), rownames(DE))

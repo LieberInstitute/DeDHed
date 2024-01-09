@@ -34,4 +34,14 @@ test_that("output is a ggplot", {
     expect_equal(class(DEqual(random_de))[2], "ggplot")
 })
 
-
+# Test for rownames starting with "ENST"
+test_that("DEqual correctly processes random_de", {
+  # If random_de is correctly structured and all rownames start with "ENST", expect no error
+  expect_silent(DEqual(random_de))
+  # For testing the error condition, altered manually rownames of random_de
+  altered_random_de <- random_de
+  rownames(altered_random_de)[1] <- "INVALID0001" # Change the first rowname to an invalid one
+  
+  # Expect an error when rownames do not start with "ENST"
+  expect_error(DEqual(altered_random_de), "Error: Some rownames do not start with 'ENST'.")
+})
