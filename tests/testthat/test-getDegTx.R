@@ -37,7 +37,7 @@ test_that("At least one sig_transcript is in covComb_tx_deg rownames", {
   sig_transcripts <- select_transcripts("cell_component")
   expect_silent({
     # Check if any of the sig_transcripts are in covComb_tx_deg rownames
-    getDegTx(sig_transcripts = sig_transcripts)
+    getDegTx(covComb_tx_deg, sig_transcripts = sig_transcripts)
   })
 })
 
@@ -46,7 +46,7 @@ test_that("No sig_transcripts are in covComb_tx_deg rownames", {
   sig_transcripts <- c("gene4", "gene5", "gene6") # Example genes not in covComb_tx_deg
   expect_error({
     # Check if any of the sig_transcripts are in covComb_tx_deg rownames
-    getDegTx(sig_transcripts = sig_transcripts)
+    getDegTx(covComb_tx_deg,sig_transcripts = sig_transcripts)
    
   }, "No sig_transcripts found in rownames(covComb_tx_deg)")
 })
