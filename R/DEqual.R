@@ -60,9 +60,15 @@ DEqual <- function(DE) {
     }
     
     ## Locate common transcripts
+    if (all(grepl("^ENST.*?\\.", rownames(DE)))) {
     common <- intersect(rownames(qsvaR::degradation_tstats), rownames(DE))
-    #stopifnot(length(common) > 0)
+    } else if (all(grepl("^ENST", rownames(DE)))) {
+      common <- intersect(gsub('\\..*', '', rownames(qsvaR::degradation_tstats)), rownames(DE))
+    } else {
+      stop("The rownames of the DE output and the rownames of the  degradation t-statistic do not match")
+    }
     
+    #stopifnot(length(common) > 0)
     # Check if the length of 'common' is greater than 0
     if (length(common) <= 0) {
       stop("Error: The length of 'common' should be greater than 0.")
