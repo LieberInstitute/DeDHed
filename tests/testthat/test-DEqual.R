@@ -45,3 +45,5 @@ test_that("DEqual correctly processes random_de", {
   # Expect an error when rownames do not start with "ENST"
   expect_error(DEqual(altered_random_de), "Error: Some rownames do not start with 'ENST'.")
 })
+
+
