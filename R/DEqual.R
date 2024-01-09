@@ -49,6 +49,12 @@ DEqual <- function(DE) {
         stop("Error: 't' is not a column in DE.")
       }
     
+    # Check if DE has non-null row names
+    DE %>%
+      if (is.null(rownames(.))) {
+        stop("Error: Row names of DE are null.")
+      }
+    
     ## Locate common transcripts
     common <- intersect(rownames(qsvaR::degradation_tstats), rownames(DE))
     stopifnot(length(common) > 0)
