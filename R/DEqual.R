@@ -63,7 +63,7 @@ DEqual <- function(DE) {
       stop("Error: The length of 'common' should be greater than 0.")
     }
     
-    
+    ## Create dataframe with common transcripts
     common_data <- data.frame(
         degradation_t = qsvaR::degradation_tstats$t[match(common, rownames(qsvaR::degradation_tstats))],
         DE_t = DE$t[match(common, rownames(DE))]
