@@ -9,6 +9,15 @@ random_de <- data.frame(
     row.names = sample(rownames(degradation_tstats), nrow(degradation_tstats))
 )
 
+# Test if the input is a dataframe
+test_that("Input to DEqual is a dataframe", {
+  
+  DEqual(random_de)
+  
+  # Test if the input is a dataframe
+  expect_true(is.data.frame(random_de), "The input to DEqual is not a dataframe.")
+})
+
 # Test that the output is a ggplot object
 test_that("output is a ggplot", {
     expect_equal(class(DEqual(random_de))[1], "gg")
