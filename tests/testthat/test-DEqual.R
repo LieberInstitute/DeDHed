@@ -17,6 +17,12 @@ test_that("Input to DEqual is a dataframe", {
   # Test if the input to DEqual is a dataframe
   expect_true(is.data.frame(random_de), "The input to DEqual is not a dataframe.")
 })
+ 
+# Test if DEqual throws an error when input is not a dataframe
+test_that("DEqual throws an error for non-dataframe input", {
+  # Test if DEqual throws an error when input is not a dataframe
+  expect_error(DEqual(covComb_tx_deg), "Error: The input to DEqual is not a dataframe.")
+})
 
 # Test that the output is a ggplot object
 test_that("output is a ggplot", {
