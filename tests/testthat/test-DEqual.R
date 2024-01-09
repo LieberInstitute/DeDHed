@@ -9,12 +9,12 @@ random_de <- data.frame(
     row.names = sample(rownames(degradation_tstats), nrow(degradation_tstats))
 )
 
-# Test if the input is a dataframe
+# Test if the input to DEqual is a dataframe
 test_that("Input to DEqual is a dataframe", {
   
   DEqual(random_de)
   
-  # Test if the input is a dataframe
+  # Test if the input to DEqual is a dataframe
   expect_true(is.data.frame(random_de), "The input to DEqual is not a dataframe.")
 })
 
