@@ -42,6 +42,7 @@ Imports:
     stats,
     ggplot2,
     rlang,
+    tidyverse,
     methods
 Depends: 
     R (>= 4.2),
