@@ -24,6 +24,13 @@ test_that("output is an numeric", {
     expect_equal(class(k_res), "numeric")
 })
 
+# Test when number of rows in 'mod' does not match number of columns in 'rse_tx'
+test_that("Number of rows in 'mod' does not match number of columns in 'rse_tx'", {
+  mod_not_matching <- mod
+  mod_not_matching <- mod_not_matching[-1, ]
+  expect_error(k_qsvs(covComb_tx_deg, mod_not_matching, "tpm"), 
+               "The number of rows in 'mod' does not match the number of input 'rse_tx' columns.")
+})
 
 test_that("non-full rank data throws error", {
     set.seed(20230621)
