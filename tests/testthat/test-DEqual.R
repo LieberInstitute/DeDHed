@@ -15,6 +15,13 @@ test_that("DEqual throws an error for non-dataframe input", {
   expect_error(DEqual(covComb_tx_deg), "Error: The input to DEqual is not a dataframe.")
 })
 
+# Test when 't' is not in the columns
+test_that("DE does not have column 't'", {
+  DE_without_t <- random_de
+  DE_without_t$t <- NULL
+  expect_error(DEqual(DE_without_t), "Error: 't' is not a column in DE.")
+})
+
 # Test that the output is a ggplot object
 test_that("output is a ggplot", {
     expect_equal(class(DEqual(random_de))[1], "gg")
