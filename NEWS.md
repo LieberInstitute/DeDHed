@@ -1,4 +1,7 @@
 # qsvaR 1.6.0
+* `getDegTx()` can handle ENSEMBL IDs as input. 
+* `DEqual()` can handle ENSEMBL IDs as input. 
+* Improved unit tests for `getDegTx()` and `DEqual()`.
 
 # qsvaR 1.5.3
 
