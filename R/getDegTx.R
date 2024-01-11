@@ -57,7 +57,7 @@ getDegTx <- function(rse_tx, type = c("cell_component", "standard", "top1500"), 
   is_ensembl = all(grepl("^ENST", rownames(rse_tx)) & !grepl("\\.", rownames(rse_tx)))
   if (is_ensembl) {
     sig_transcripts <- gsub("\\..*", "", sig_transcripts)
-  } else(!is_gencode) {
+  } else if (!is_gencode) {
     stop("Rownames must all be ENSEMBL or GENCODE transcript IDs.")
   }
   

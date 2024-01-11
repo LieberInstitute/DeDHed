@@ -66,4 +66,15 @@ test_that("getDegTx works with original and altered row names", {
   expect_identical(original_results, altered_results)
 })
 
-
+# Test where we have mixed row names annotations (ENST and ENST.*?\.)
+test_that("Mixed row names annotations throw an error", {
+  # For testing the error condition, altered manually rownames of covComb_tx_deg
+  altered_covComb_tx_deg <- covComb_tx_deg
+  rownames(altered_covComb_tx_deg)[1] <- "ENST00000442987" # Change the first rowname 
+  rownames(altered_covComb_tx_deg)[2] <- "ENST00000623083" # Change the second rowname 
+  expect_error({
+    # Check if mixed row names annotations (ENST and ENST.*?\.) throw an error
+    getDegTx(altered_covComb_tx_deg)
+    
+  }, "Rownames must all be ENSEMBL or GENCODE transcript IDs.")
+})
