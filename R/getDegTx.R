@@ -53,17 +53,15 @@ getDegTx <- function(rse_tx, type = c("cell_component", "standard", "top1500"), 
   }
   
   # Check patterns and perform operations based on the patterns
-  if (all(grepl("^ENST.*?\\.", rownames(rse_tx)))) {
-    # If all row names have the format 'ENST00000442987.3'
-    rse_tx <- rse_tx[rownames(rse_tx) %in% sig_transcripts, , drop = FALSE]
-  } else if (all(grepl("^ENST", rownames(rse_tx)))) {
-    # If all row names have the format 'ENST00000442987'
+  is_gencode = all(grepl("^ENST.*?\\.", rownames(rse_tx)))
+  is_ensembl = all(grepl("^ENST", rownames(rse_tx)) & !grepl("\\.", rownames(rse_tx)))
+  if (is_ensembl) {
     sig_transcripts <- gsub("\\..*", "", sig_transcripts)
-    rse_tx <- rse_tx[rownames(rse_tx) %in% sig_transcripts, , drop = FALSE]
-  } else {
-    stop("Row names do not match the expected patterns.")
+  } else(!is_gencode) {
+    stop("Rownames must all be ENSEMBL or GENCODE transcript IDs.")
   }
   
+  rse_tx <- rse_tx[rownames(rse_tx) %in% sig_transcripts, , drop = FALSE]
   
   # Check if the row means is greater than 1
   if (mean(rowMeans(assays(rse_tx)[[assayname]])) < 1) {
