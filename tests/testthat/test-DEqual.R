@@ -41,7 +41,7 @@ test_that("DEqual correctly processes random_de", {
   rownames(altered_random_de)[1] <- "INVALID0001" # Change the first rowname to an invalid one
   
   # Expect an error when rownames do not start with "ENST"
-  expect_error(DEqual(altered_random_de), "Error: Some rownames do not start with 'ENST'.")
+  expect_error(DEqual(altered_random_de), "The rownames of the input dataframe should be either GENCODE or ENSEMBL transcript IDs.")
 })
 
 # Test: None of the DE rownames are in degradation_tstats rownames

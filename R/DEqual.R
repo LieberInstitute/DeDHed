@@ -62,11 +62,6 @@ DEqual <- function(DE) {
       stop("'DE' and degradation t-statistics rownames mismatch error.")
     }
     
-    # Check if all rownames start with "ENST"
-    if (!all(grepl("^ENST", rownames(DE)))) {
-      stop("Some rownames do not start with 'ENST'.")
-    }
-    
     ## Locate common transcripts
     is_gencode = all(grepl("^ENST.*?\\.", rownames(DE)))
     is_ensembl = all(grepl("^ENST", rownames(DE)) & !grepl("\\.", rownames(DE)))
