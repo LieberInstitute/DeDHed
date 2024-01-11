@@ -39,7 +39,7 @@ getDegTx <- function(rse_tx, type = c("cell_component", "standard", "top1500"), 
   
   # Validate rse_tx is a RangedSummarizedExperiment object
   if (!is(rse_tx, "RangedSummarizedExperiment")) {
-    stop("Error: rse_tx must be a RangedSummarizedExperiment object.")
+    stop("rse_tx must be a RangedSummarizedExperiment object.")
   }
   
   # Check if any gene in sig_transcripts is in rownames(rse_tx)
@@ -49,7 +49,7 @@ getDegTx <- function(rse_tx, type = c("cell_component", "standard", "top1500"), 
   
   # Check if all rownames start with "ENST"
   if (!all(grepl("^ENST", rownames(rse_tx)))) {
-    stop("Error: Some rownames do not start with 'ENST'.")
+    stop("Some rownames do not start with 'ENST'.", call. = FALSE)
   }
   
   # Check patterns and perform operations based on the patterns
@@ -61,7 +61,7 @@ getDegTx <- function(rse_tx, type = c("cell_component", "standard", "top1500"), 
     sig_transcripts <- gsub("\\..*", "", sig_transcripts)
     rse_tx <- rse_tx[rownames(rse_tx) %in% sig_transcripts, , drop = FALSE]
   } else {
-    stop("Error: Row names do not match the expected patterns.")
+    stop("Row names do not match the expected patterns.")
   }
   
   
