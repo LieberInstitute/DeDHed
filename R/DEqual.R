@@ -49,12 +49,12 @@ DEqual <- function(DE) {
 
     # Check if 't' is in the column names of DE
     if (!("t" %in% colnames(DE))) {
-        stop("Error: 't' is not a column in DE.")
+        stop("'t' is not a column in DE.")
       }
     
     # Check if DE has non-null row names
     if (is.null(rownames(DE))) {
-        stop("Error: Row names of DE are null.")
+        stop("Row names of DE are null.")
       }
     
     # Check if any rowname in rownames DE is in degradation_tstats
@@ -64,12 +64,12 @@ DEqual <- function(DE) {
     
     # Check if all rownames start with "ENST"
     if (!all(grepl("^ENST", rownames(DE)))) {
-      stop("Error: Some rownames do not start with 'ENST'.")
+      stop("Some rownames do not start with 'ENST'.")
     }
     
     ## Locate common transcripts
     if (all(grepl("^ENST.*?\\.", rownames(DE)))) {
-    common <- intersect(rownames(qsvaR::degradation_tstats), rownames(DE))
+      common <- intersect(rownames(qsvaR::degradation_tstats), rownames(DE))
     } else if (all(grepl("^ENST", rownames(DE)))) {
       common <- intersect(gsub('\\..*', '', rownames(qsvaR::degradation_tstats)), rownames(DE))
     } else {
@@ -79,7 +79,7 @@ DEqual <- function(DE) {
     #stopifnot(length(common) > 0)
     # Check if the length of 'common' is greater than 0
     if (length(common) <= 0) {
-      stop("Error: The length of 'common' should be greater than 0.")
+      stop("The length of 'common' should be greater than 0.")
     }
     
     ## Create dataframe with common transcripts
