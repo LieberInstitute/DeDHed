@@ -69,7 +69,7 @@ DEqual <- function(DE) {
     
     ## Locate common transcripts
     if (all(grepl("^ENST.*?\\.", rownames(DE)))) {
-    common <- intersect(rownames(qsvaR::degradation_tstats), rownames(DE))
+      common <- intersect(rownames(qsvaR::degradation_tstats), rownames(DE))
     } else if (all(grepl("^ENST", rownames(DE)))) {
       common <- intersect(gsub('\\..*', '', rownames(qsvaR::degradation_tstats)), rownames(DE))
     } else {
