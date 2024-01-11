@@ -68,12 +68,14 @@ DEqual <- function(DE) {
     }
     
     ## Locate common transcripts
-    if (all(grepl("^ENST.*?\\.", rownames(DE)))) {
+    is_gencode = all(grepl("^ENST.*?\\.", rownames(DE)))
+    is_ensembl = all(grepl("^ENST", rownames(DE)) & !grepl("\\.", rownames(DE)))
+    if (is_gencode) {
       common <- intersect(rownames(qsvaR::degradation_tstats), rownames(DE))
-    } else if (all(grepl("^ENST", rownames(DE)))) {
+    } else if (is_ensembl) {
       common <- intersect(gsub('\\..*', '', rownames(qsvaR::degradation_tstats)), rownames(DE))
     } else {
-      stop("The rownames of the DE output and the rownames of the  degradation t-statistic do not match")
+      stop("The rownames of the input dataframe should be either GENCODE or ENSEMBL transcript IDs.")
     }
     
     #stopifnot(length(common) > 0)
