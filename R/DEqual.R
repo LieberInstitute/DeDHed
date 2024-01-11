@@ -45,7 +45,7 @@ DEqual <- function(DE) {
     # stopifnot(!is.null(rownames(DE)))
     
     # Check if input is a dataframe
-    if (!is.data.frame(DE)) { stop("Error: The input to DEqual is not a dataframe.") }
+    if (!is.data.frame(DE)) { stop("The input to DEqual is not a dataframe.") }
 
     # Check if 't' is in the column names of DE
     if (!("t" %in% colnames(DE))) {
