@@ -28,7 +28,7 @@ test_that("getDegTx correctly processes covComb_tx_deg", {
   rownames(altered_covComb_tx_deg)[1] <- "INVALID0001" # Change the first rowname to an invalid one
   
   # Expect an error when rownames do not start with "ENST"
-  expect_error(getDegTx(altered_covComb_tx_deg), "Error: Some rownames do not start with 'ENST'.")
+  expect_error(getDegTx(altered_covComb_tx_deg), "Some rownames do not start with 'ENST'.")
 })
 
 
@@ -65,3 +65,5 @@ test_that("getDegTx works with original and altered row names", {
   # Test if two objects identical
   expect_identical(original_results, altered_results)
 })
+
+
