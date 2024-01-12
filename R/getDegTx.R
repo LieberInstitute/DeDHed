@@ -45,25 +45,10 @@ getDegTx <- function(rse_tx, type = c("cell_component", "standard", "top1500"), 
     stop("rse_tx must be a RangedSummarizedExperiment object.")
   }
   
-  # Check if any gene in sig_transcripts is in rownames(rse_tx)
-  if (!any(sig_transcripts %in% rownames(rse_tx) | (gsub('\\..*', '', sig_transcripts) %in% rownames(rse_tx)))) {
-    stop("sig_transcripts and rownames of rse_tx object do not match")
-  }
+  # Check for validity and matching of tx names
+  sig_transcripts = check_tx_names(rownames(rse_tx), sig_transcripts, 'rownames(rse_tx)', 'sig_transcripts')
   
-  # Check if all rownames start with "ENST"
-  if (!all(grepl("^ENST", rownames(rse_tx)))) {
-    stop("Some rownames do not start with 'ENST'.", call. = FALSE)
-  }
-  
-  # Check patterns and perform operations based on the patterns
-  is_gencode = all(grepl("^ENST.*?\\.", rownames(rse_tx)))
-  is_ensembl = all(grepl("^ENST", rownames(rse_tx)) & !grepl("\\.", rownames(rse_tx)))
-  if (is_ensembl) {
-    sig_transcripts <- gsub("\\..*", "", sig_transcripts)
-  } else if (!is_gencode) {
-    stop("Rownames must all be ENSEMBL or GENCODE transcript IDs.")
-  }
-  
+  # Subset rse_tx to include sig_transcripts
   rse_tx <- rse_tx[rownames(rse_tx) %in% sig_transcripts, , drop = FALSE]
   
   # Check if the row means is greater than 1
