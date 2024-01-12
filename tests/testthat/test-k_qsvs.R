@@ -43,3 +43,8 @@ test_that("test that full rank matrix works correctly", {
     # expect_warning(k_qsvs(rse_tx_low, mod, "tpm"), "Likely due to transcripts being not expressed in most samples")
     expect_silent(k_qsvs(covComb_tx_deg, mod, "tpm"))
 })
+
+# Test for assayname not in assayNames
+test_that("k_qsvs throws an error when assayname is not in assayNames", {
+  expect_error(k_qsvs(covComb_tx_deg, assayname = "not_in_assayNames"), "'not_in_assayNames' is not in assayNames\\(rse_tx\\).")
+})
