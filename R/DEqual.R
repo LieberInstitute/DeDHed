@@ -57,10 +57,10 @@ DEqual <- function(DE) {
         stop("Row names of DE are null.")
       }
     
-    
     ## Locate common transcripts
-    deg_tstats = check_tx_names(rownames(DE),qsvaR::degradation_tstats,'rownames(DE)','qsvaR::degradation_tstats')
-    common = intersect(deg_tstats, rownames(DE))
+    deg_tstats = qsvaR::degradation_tstats
+    rownames(deg_tstats) = check_tx_names(rownames(DE),rownames(qsvaR::degradation_tstats),'rownames(DE)','qsvaR::degradation_tstats')
+    common = intersect(rownames(deg_tstats), rownames(DE))
     
     stopifnot(length(common) > 0)
     
