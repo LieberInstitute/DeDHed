@@ -42,7 +42,14 @@ qSVA <-
     assayname) {
         ## We don't need to pass type to getDegTx() since it's not used internally
         ## once the sig_transcripts have been defined.
-        DegTx <-
+      
+      # Check if assayname is in assayNames
+      if (!assayname %in% assayNames(rse_tx)) {
+        stop(sprintf("'%s' is not in assayNames(rse_tx).", assayname), call. = FALSE)
+      }
+      
+      # Get the qSVs
+      DegTx <-
             getDegTx(rse_tx, sig_transcripts = sig_transcripts, assayname = assayname)
         PCs <- getPCs(DegTx, assayname)
         k <- k_qsvs(DegTx, mod = mod, assayname = assayname)
