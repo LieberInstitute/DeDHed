@@ -57,27 +57,12 @@ DEqual <- function(DE) {
         stop("Row names of DE are null.")
       }
     
-    # Check if any rowname in rownames DE is in degradation_tstats
-    if (!any(rownames(DE) %in% rownames(qsvaR::degradation_tstats) | rownames(DE) %in% (gsub('\\..*', '', rownames(qsvaR::degradation_tstats))))) {
-      stop("'DE' and degradation t-statistics rownames mismatch error.")
-    }
     
     ## Locate common transcripts
-    is_gencode = all(grepl("^ENST.*?\\.", rownames(DE)))
-    is_ensembl = all(grepl("^ENST", rownames(DE)) & !grepl("\\.", rownames(DE)))
-    if (is_gencode) {
-      common <- intersect(rownames(qsvaR::degradation_tstats), rownames(DE))
-    } else if (is_ensembl) {
-      common <- intersect(gsub('\\..*', '', rownames(qsvaR::degradation_tstats)), rownames(DE))
-    } else {
-      stop("The rownames of the input dataframe should be either GENCODE or ENSEMBL transcript IDs.")
-    }
+    deg_tstats = check_tx_names(rownames(DE),qsvaR::degradation_tstats,'rownames(DE)','qsvaR::degradation_tstats')
+    common = intersect(deg_tstats, rownames(DE))
     
-    #stopifnot(length(common) > 0)
-    # Check if the length of 'common' is greater than 0
-    if (length(common) <= 0) {
-      stop("The length of 'common' should be greater than 0.")
-    }
+    stopifnot(length(common) > 0)
     
     ## Create dataframe with common transcripts
     common_data <- data.frame(
