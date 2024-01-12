@@ -30,3 +30,7 @@ test_that("k is higher than the number of columns throws an error", {
   k = ncol(qsv$x) + 1000
   expect_error(get_qsvs(qsv, k), paste("k must between 1 and",ncol(qsv$x)))
 })
+
+test_that("input has to be a prcomp", {
+  expect_error(get_qsvs(covComb_tx_deg, 3), "qsvPCs must be a prcomp object.")
+})
