@@ -42,7 +42,7 @@ getDegTx <- function(rse_tx, type = c("cell_component", "standard", "top1500"), 
   
   # Validate rse_tx is a RangedSummarizedExperiment object
   if (!is(rse_tx, "RangedSummarizedExperiment")) {
-    stop("rse_tx must be a RangedSummarizedExperiment object.")
+    stop("rse_tx must be a RangedSummarizedExperiment object.", call. = FALSE)
   }
   
   # Check for validity and matching of tx names
