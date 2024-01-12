@@ -45,16 +45,18 @@ DEqual <- function(DE) {
     # stopifnot(!is.null(rownames(DE)))
     
     # Check if input is a dataframe
-    if (!is.data.frame(DE)) { stop("The input to DEqual is not a dataframe.") }
+    if (!is.data.frame(DE)) { 
+      stop("The input to DEqual is not a dataframe.", call. = FALSE) 
+      }
 
     # Check if 't' is in the column names of DE
     if (!("t" %in% colnames(DE))) {
-        stop("'t' is not a column in DE.")
+        stop("'t' is not a column in DE.", call. = FALSE)
       }
     
     # Check if DE has non-null row names
     if (is.null(rownames(DE))) {
-        stop("Row names of DE are null.")
+        stop("Row names of DE are null.", call. = FALSE)
       }
     
     ## Locate common transcripts
