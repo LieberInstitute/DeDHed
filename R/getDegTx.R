@@ -39,7 +39,7 @@ getDegTx <- function(rse_tx, type = c("cell_component", "standard", "top1500"), 
   
   # Check if assayname is in assayNames
   if (!assayname %in% assayNames(rse_tx)) {
-    stop("assayname is not in assayNames(rse_tx).", call. = FALSE)
+    stop(sprintf("'%s' is not in assayNames(rse_tx).", assayname), call. = FALSE)
   }
   
   # Validate rse_tx is a RangedSummarizedExperiment object
