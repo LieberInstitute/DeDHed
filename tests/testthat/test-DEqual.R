@@ -12,14 +12,14 @@ random_de <- data.frame(
 # Test if DEqual throws an error when input is not a dataframe
 test_that("DEqual throws an error for non-dataframe input", {
   # Test if DEqual throws an error when input is not a dataframe
-  expect_error(DEqual(covComb_tx_deg), "Error: The input to DEqual is not a dataframe.")
+  expect_error(DEqual(covComb_tx_deg), "The input to DEqual is not a dataframe.")
 })
 
 # Test when 't' is not in the columns
 test_that("DE does not have column 't'", {
   DE_without_t <- random_de
   DE_without_t$t <- NULL
-  expect_error(DEqual(DE_without_t), "Error: 't' is not a column in DE.")
+  expect_error(DEqual(DE_without_t), "'t' is not a column in DE.")
 })
 
 # Test that the output is a ggplot object
@@ -53,5 +53,5 @@ test_that("No DE rownames are in degradation_tstats rownames", {
   # Expect an error if rownames in altered_random_de don't match those in degradation_tstats
   expect_error({
     DEqual(altered_random_de)
-  }, "DE and degradation t-statistic rownames mismatch error.")
+  }, "'DE' and degradation t-statistics rownames mismatch error.")
 })
