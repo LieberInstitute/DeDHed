@@ -13,7 +13,7 @@
 #'
 #' @examples
 #' qsv <- getPCs(covComb_tx_deg, "tpm")
-#' get_qsvs(qsv$x, 2)
+#' get_qsvs(qsv, 2)
 get_qsvs <- function(qsvPCs, k) {
   
   #Validate qsvPCs is a prcomp object
