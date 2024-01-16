@@ -16,7 +16,7 @@ test_that("output is an RSE", {
 
 # Test for a warning when getDegTx is used on a dataset with lowly expressed transcripts
 test_that("test warning output for lowly expressed transcripts", {
-    expect_warning(getDegTx(rse_tx_low))
+    expect_warning(getDegTx(rse_tx_low), "The transcripts selected are lowly expressed in your dataset. This can impact downstream analysis.")
 })
 
 # Test for rownames starting with "ENST"
