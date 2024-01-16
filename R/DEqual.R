@@ -56,7 +56,7 @@ DEqual <- function(DE) {
     
     # Check if DE has non-null row names
     if (is.null(rownames(DE))) {
-        stop("Row names of DE are null.", call. = FALSE)
+        stop("Row names of DE are NULL.", call. = FALSE)
       }
     
     ## Locate common transcripts
