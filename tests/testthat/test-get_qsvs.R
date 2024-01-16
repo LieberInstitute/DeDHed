@@ -11,11 +11,7 @@ test_that("length of qsv rownames is the same as number of samples", {
 })
 
 test_that("output is a matrix", {
-    expect_equal(class(get_qsvs(qsv, k))[1], "matrix")
-})
-
-test_that("output is an array", {
-    expect_equal(class(get_qsvs(qsv, k))[2], "array")
+    expect_equal(class(get_qsvs(qsv, k)), c("matrix", "array"))
 })
 
 test_that("k is lower than 0 throws an error", {
