@@ -51,12 +51,12 @@ DEqual <- function(DE) {
 
     # Check if 't' is in the column names of DE
     if (!("t" %in% colnames(DE))) {
-        stop("'t' is not a column in DE.", call. = FALSE)
+        stop("'t' is not a column in 'DE'.", call. = FALSE)
       }
     
     # Check if DE has non-null row names
     if (is.null(rownames(DE))) {
-        stop("Row names of DE are NULL.", call. = FALSE)
+        stop("Row names of 'DE' are NULL.", call. = FALSE)
       }
     
     ## Locate common transcripts
