@@ -53,3 +53,10 @@ test_that("getDegTx works with original and altered row names", {
 test_that("getDegTx throws an error when assayname is not in assayNames", {
   expect_error(getDegTx(covComb_tx_deg, assayname = "not_in_assayNames"), "'not_in_assayNames' is not in assayNames\\(rse_tx\\).")
 })
+
+# Test for input is an rse object
+test_that("getDegTx throws an error when input is not a RangedSummarizedExperiment object", {
+  qsv <- list(x = matrix(seq_len(9), ncol = 3))
+  expect_error(getDegTx(qsv, assayname = "tpm"), "'rse_tx' must be a RangedSummarizedExperiment object.")
+})
+
