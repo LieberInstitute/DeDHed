@@ -1,3 +1,5 @@
+# qsvaR 1.7.0
+
 # qsvaR 1.6.0
 
 BUG FIXES
