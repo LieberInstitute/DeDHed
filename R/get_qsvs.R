@@ -18,7 +18,7 @@ get_qsvs <- function(qsvPCs, k) {
   
   #Validate qsvPCs is a prcomp object
   if (!is(qsvPCs, "prcomp")) {
-    stop("qsvPCs must be a prcomp object.", call. = FALSE)
+    stop("'qsvPCs' must be a prcomp object.", call. = FALSE)
   }
 
   # check that k isn't zero
