@@ -28,11 +28,22 @@
 #' k_qsvs(covComb_tx_deg, mod, "tpm")
 k_qsvs <- function(rse_tx, mod, assayname) {
   
+  # Validate rse_tx is a RangedSummarizedExperiment object
+  if (!is(rse_tx, "RangedSummarizedExperiment")) {
+    stop("'rse_tx' must be a RangedSummarizedExperiment object.", call. = FALSE)
+  }
+  
   # Check if assayname is in assayNames
   if (!assayname %in% assayNames(rse_tx)) {
     stop(sprintf("'%s' is not in assayNames(rse_tx).", assayname), call. = FALSE)
   }
   
+  # Check if mod is a matrix
+  if (!is(mod, "matrix")) {
+    stop("'mod' must be a matrix.", call. = FALSE)
+  }
+  
+  # Check if mod is full rank
   if (qr(mod)$rank != ncol(mod)) {
     stop("The 'mod' matrix is not full rank.", call. = FALSE)
   }
@@ -40,7 +51,10 @@ k_qsvs <- function(rse_tx, mod, assayname) {
     stop("The number of rows in 'mod' does not match the number of input 'rse_tx' columns.", call. = FALSE)
   }
   
+  # Get expression data normalized by log2
   expr <- log2(assays(rse_tx)[[assayname]] + 1)
+  
+  # Run num.sv
   k <- tryCatch(
     num.sv(expr, mod),
     error = function(e) {
