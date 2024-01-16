@@ -28,5 +28,5 @@ test_that("k is higher than the number of columns throws an error", {
 })
 
 test_that("input has to be a prcomp", {
-  expect_error(get_qsvs(covComb_tx_deg, 3), "qsvPCs must be a prcomp object.")
+  expect_error(get_qsvs(covComb_tx_deg, 3), "'qsvPCs' must be a prcomp object.")
 })
