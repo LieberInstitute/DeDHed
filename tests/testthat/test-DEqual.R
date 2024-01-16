@@ -24,12 +24,7 @@ test_that("DE does not have column 't'", {
 
 # Test that the output is a ggplot object
 test_that("output is a ggplot", {
-    expect_equal(class(DEqual(random_de))[1], "gg")
-})
-
-# Test that the output is a ggplot object
-test_that("output is a ggplot", {
-    expect_equal(class(DEqual(random_de))[2], "ggplot")
+    expect_equal(class(DEqual(random_de)), c("ggplot","gg"))
 })
 
 # Test for rownames starting with "ENST"
