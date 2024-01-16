@@ -13,6 +13,12 @@
 #' @examples
 #' getPCs(covComb_tx_deg, "tpm")
 getPCs <- function(rse_tx, assayname = "tpm") {
+  
+  # Validate rse_tx is a RangedSummarizedExperiment object
+  if (!is(rse_tx, "RangedSummarizedExperiment")) {
+    stop("'rse_tx' must be a RangedSummarizedExperiment object.", call. = FALSE)
+  }
+  
   # Check if assayname is in assayNames
   if (!assayname %in% assayNames(rse_tx)) {
     stop(sprintf("'%s' is not in assayNames(rse_tx).", assayname), call. = FALSE)
