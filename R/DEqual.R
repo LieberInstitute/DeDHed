@@ -68,7 +68,7 @@ DEqual <- function(DE) {
     
     ## Create dataframe with common transcripts
     common_data <- data.frame(
-        degradation_t = qsvaR::degradation_tstats$t[match(common, rownames(qsvaR::degradation_tstats))],
+        degradation_t = deg_tstats$t[match(common, rownames(deg_tstats))],
         DE_t = DE$t[match(common, rownames(DE))]
     )
     p <- ggplot(common_data, aes(x = DE_t, y = degradation_t)) +
