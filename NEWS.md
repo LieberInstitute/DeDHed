@@ -1,5 +1,11 @@
 # qsvaR 1.7.0
 
+BUG FIXES
+
+* Fixed the error messages displayed by `getDegTx()`, `k_qsvs()`,`get_qsvs()`, `getPCs()` and `DEqual()` to handle different types of situations. 
+
+* Improved unit tests for `getDegTx()`, `k_qsvs()`,`get_qsvs()`, `getPCs()` and `DEqual()`.
+
 # qsvaR 1.6.0
 
 BUG FIXES
