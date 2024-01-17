@@ -43,6 +43,11 @@ qSVA <-
         ## We don't need to pass type to getDegTx() since it's not used internally
         ## once the sig_transcripts have been defined.
       
+      # Validate rse_tx is a RangedSummarizedExperiment object
+      if (!is(rse_tx, "RangedSummarizedExperiment")) {
+        stop("'rse_tx' must be a RangedSummarizedExperiment object.", call. = FALSE)
+      }
+      
       # Check if assayname is in assayNames
       if (!assayname %in% assayNames(rse_tx)) {
         stop(sprintf("'%s' is not in assayNames(rse_tx).", assayname), call. = FALSE)
