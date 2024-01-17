@@ -36,12 +36,14 @@
 #'
 qSVA <-
     function(rse_tx,
-    type = "cell_component",
+    type = c("cell_component", "standard", "top1500"),
     sig_transcripts = select_transcripts(type),
     mod,
     assayname) {
         ## We don't need to pass type to getDegTx() since it's not used internally
         ## once the sig_transcripts have been defined.
+      
+      type = arg_match(type)
       
       # Validate rse_tx is a RangedSummarizedExperiment object
       if (!is(rse_tx, "RangedSummarizedExperiment")) {
