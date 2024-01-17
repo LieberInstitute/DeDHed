@@ -1,6 +1,20 @@
 #' Check validity of transcript vectors
-
+#'
+#' This function is used to check if the tx1 and tx2 are GENCODE or ENSEMBL and print an error message if it's not and return a character vector of transcripts in tx2 that are in tx1.
+#'
+#' @param tx1 A `character()` vector of GENCODE or ENSEMBL transcripts.
+#' @param tx2 A `character()` vector of GENCODE or ENSEMBL transcripts.
+#'
+#' @param argname1 A `character(1)` vector of description of tx1
+#' @param argname2 A `character(1)` vector of description of tx2
+#'
+#' @return A
+#'  `character()` vector of transcripts in `tx2` that are in `tx1`.
+#'
 #' @export
+#'
+#' @examples
+#' check_tx_names(rownames(rse_tx), sig_transcripts, 'rownames(rse_tx)', 'sig_transcripts')
 
 
 check_tx_names = function(tx1, tx2, arg_name1, arg_name2) {

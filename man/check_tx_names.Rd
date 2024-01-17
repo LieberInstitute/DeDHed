@@ -6,6 +6,22 @@
 \usage{
 check_tx_names(tx1, tx2, arg_name1, arg_name2)
 }
+\arguments{
+\item{tx1}{A \code{character()} vector of GENCODE or ENSEMBL transcripts.}
+
+\item{tx2}{A \code{character()} vector of GENCODE or ENSEMBL transcripts.}
+
+\item{argname1}{A \code{character(1)} vector of description of tx1}
+
+\item{argname2}{A \code{character(1)} vector of description of tx2}
+}
+\value{
+A
+\code{character()} vector of transcripts in \code{tx2} that are in \code{tx1}.
+}
 \description{
-Check validity of transcript vectors
+This function is used to check if the tx1 and tx2 are GENCODE or ENSEMBL and print an error message if it's not and return a character vector of transcripts in tx2 that are in tx1.
+}
+\examples{
+check_tx_names(rownames(rse_tx), sig_transcripts, 'rownames(rse_tx)', 'sig_transcripts')
 }
