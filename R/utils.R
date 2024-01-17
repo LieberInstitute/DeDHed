@@ -14,7 +14,8 @@
 #' @export
 #'
 #' @examples
-#' check_tx_names(rownames(rse_tx), sig_transcripts, 'rownames(rse_tx)', 'sig_transcripts')
+#' sig_transcripts = select_transcripts("cell_component")
+#' check_tx_names(rownames(covComb_tx_deg), sig_transcripts, 'rownames(covComb_tx_deg)', 'sig_transcripts')
 
 
 check_tx_names = function(tx1, tx2, arg_name1, arg_name2) {

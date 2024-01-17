@@ -23,5 +23,6 @@ A
 This function is used to check if the tx1 and tx2 are GENCODE or ENSEMBL and print an error message if it's not and return a character vector of transcripts in tx2 that are in tx1.
 }
 \examples{
-check_tx_names(rownames(rse_tx), sig_transcripts, 'rownames(rse_tx)', 'sig_transcripts')
+sig_transcripts = select_transcripts("cell_component")
+check_tx_names(rownames(covComb_tx_deg), sig_transcripts, 'rownames(covComb_tx_deg)', 'sig_transcripts')
 }
