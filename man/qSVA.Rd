@@ -6,7 +6,7 @@
 \usage{
 qSVA(
   rse_tx,
-  type = "cell_component",
+  type = c("cell_component", "standard", "top1500"),
   sig_transcripts = select_transcripts(type),
   mod,
   assayname
