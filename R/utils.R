@@ -5,8 +5,8 @@
 #' @param tx1 A `character()` vector of GENCODE or ENSEMBL transcripts.
 #' @param tx2 A `character()` vector of GENCODE or ENSEMBL transcripts.
 #'
-#' @param argname1 A `character(1)` vector of description of tx1
-#' @param argname2 A `character(1)` vector of description of tx2
+#' @param arg_name1 A `character(1)` vector of description of tx1
+#' @param arg_name2 A `character(1)` vector of description of tx2
 #'
 #' @return A
 #'  `character()` vector of transcripts in `tx2` that are in `tx1`.

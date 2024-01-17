@@ -11,9 +11,9 @@ check_tx_names(tx1, tx2, arg_name1, arg_name2)
 
 \item{tx2}{A \code{character()} vector of GENCODE or ENSEMBL transcripts.}
 
-\item{argname1}{A \code{character(1)} vector of description of tx1}
+\item{arg_name1}{A \code{character(1)} vector of description of tx1}
 
-\item{argname2}{A \code{character(1)} vector of description of tx2}
+\item{arg_name2}{A \code{character(1)} vector of description of tx2}
 }
 \value{
 A
