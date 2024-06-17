@@ -161,7 +161,7 @@ pcTx <- getPCs(DegTx, "tpm")
 Next we use the `k_qsvs()` function to calculate how many PCs we will
 need to account for the variation. A model matrix accounting for
 relevant variables should be used. Common variables such as Age, Sex,
-Race and Religion are often included in the model. Again we are using
+Ancestry are often included in the model. Again we are using
 our `RangedSummarizedExperiment` `DegTx` as the `rse_tx` option. Next we
 specify the `mod` with our `model.matrix()`. `model.matrix()` creates a
 design (or model) matrix, e.g., by expanding factors to a set of dummy
