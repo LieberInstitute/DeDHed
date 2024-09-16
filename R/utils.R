@@ -14,46 +14,19 @@
 #' @export
 #'
 #' @examples
-#' sig_transcripts = select_transcripts("cell_component")
-#' check_tx_names(rownames(covComb_tx_deg), sig_transcripts, 'rownames(covComb_tx_deg)', 'sig_transcripts')
+#' sig_tx <-  select_transcripts("cell_component")
+#' whichTx <- check_tx_names(rownames(rse_tx), sig_tx)
 
-
-check_tx_names = function(tx1, tx2, arg_name1, arg_name2) {
+check_tx_names = function(txnames, sig_transcripts) {
   #   Functions for checking whether a vector of transcripts all match GENCODE
   #   or ENSEMBL naming conventions
-  is_gencode = function(x) all(grepl("^ENST.*?\\.", x))
-  is_ensembl = function(x) all(grepl("^ENST", x) & !grepl("\\.", x))
-  
-  #   Check that both vectors either follow GENCODE or ENSEMBL
-  if (!is_gencode(tx1) && !is_ensembl(tx1)) {
-    stop(
-      sprintf(
-        "'%s' must use either all GENCODE or all ENSEMBL transcript IDs",
-        arg_name1
-      )
-    )
+  ## Between releases 25 and 43, PAR genes and transcripts had the "_PAR_Y" suffix appended to their identifiers.
+  ## Since release 44, these have their own IDs
+  if (!all(grepl("^ENST\\d+", txnames))) {
+    stop("The transcript names must be ENSEMBL or Gencode IDs (ENST...)" )
   }
-  if (!is_gencode(tx2) && !is_ensembl(tx2)) {
-    stop(
-      sprintf(
-        "'%s' must use either all GENCODE or all ENSEMBL transcript IDs",
-        arg_name2
-      )
-    )
-  }
-  
-  #   Change 'tx2' to match 'tx1', noting that the case where 'tx1' is GENCODE
-  #   but 'tx2' is ENSEMBL is not allowed (and an error will be thrown further
-  #   down)
-  if (is_gencode(tx2) && is_ensembl(tx1)) {
-    tx2 = sub('\\..*', '', tx2)
-  }
-  
-  #   At least some transcripts must overlap between 'tx1' and 'tx2'
-  if (!any(tx2 %in% tx1)) {
-    stop(sprintf("None of '%s' are in '%s'", arg_name2, arg_name1))
-  }
-  
-  #   Since only 'tx2' was modified, return the changed copy
-  return(tx2)
+  ## normalize the transcript names
+  sig_tx <- sub('(ENST\\d+)\\.\\d+(.*)$','\\1\\2', sig_transcripts, perl=TRUE)
+  r_tx <- sub('(ENST\\d+)\\.\\d+(.*)$','\\1\\2', txnames, perl=TRUE)
+  which(r_tx %in% sig_tx)
 }
