@@ -144,6 +144,9 @@ rse_file <- BiocFileCache::bfcrpath(
     x = bfc
 )
 load(rse_file, verbose = TRUE)
+## keep only adult samples and apply minimum expression cutoff
+rse_tx <- rse_tx[, rse_tx$Age > 17 ]
+rse_tx <- rse_tx[rowMeans(assays(rse_tx)$tpm) > 0.3, ]
 ```
 
 ## Get Degradation Matrix
@@ -221,7 +224,7 @@ Next we can use a standard limma package approach to do differential expression 
 ```{r "perform DE"}
 ### should be done by cbinding mod to pcs
 ## subset to an expression cutoff
-rse_tx <- rse_tx[rowData(rse_tx)$passExprsCut, ]
+#rse_tx <- rse_tx[rowData(rse_tx)$passExprsCut, ]
 
 # create a model.matrix with demographic infor and qsvs
 mod_qSVA <- cbind(mod, qsvs)
