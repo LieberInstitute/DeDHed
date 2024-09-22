@@ -23,10 +23,10 @@ Apply num.sv algorithm to determine the number of pcs to be included
 }
 \examples{
 ## First we need to define a statistical model. We'll use the example
-## covComb_tx_deg data. Note that the model you'll use in your own data
+## rse_tx data. Note that the model you'll use in your own data
 ## might look different from this model.
 mod <- model.matrix(~ mitoRate + Region + rRNA_rate + totalAssignedGene + RIN,
-    data = colData(covComb_tx_deg)
+    data = colData(rse_tx)
 )
 
 ## To ensure that the results are reproducible, you will need to set a
@@ -34,5 +34,5 @@ mod <- model.matrix(~ mitoRate + Region + rRNA_rate + totalAssignedGene + RIN,
 ## sva::num.sv() which needs a random seed to ensure reproducibility of the
 ## results.
 set.seed(20230621)
-k_qsvs(covComb_tx_deg, mod, "tpm")
+k_qsvs(rse_tx, mod, "tpm")
 }

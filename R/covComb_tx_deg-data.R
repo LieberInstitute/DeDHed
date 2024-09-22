@@ -6,7 +6,7 @@
 #' in bulk RNA-seq data.
 #'
 #'
-#' @name covComb_tx_deg
+#' @name rse_tx
 #' @docType data
 #' @format A [RangedSummarizedExperiment-class][SummarizedExperiment::RangedSummarizedExperiment-class]
 #' @keywords datasets

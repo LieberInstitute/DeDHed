@@ -11,7 +11,7 @@
 #' @importFrom stats prcomp
 #' @import SummarizedExperiment
 #' @examples
-#' getPCs(covComb_tx_deg, "tpm")
+#' getPCs(rse_tx, "tpm")
 getPCs <- function(rse_tx, assayname = "tpm") {
   
   # Validate rse_tx is a RangedSummarizedExperiment object

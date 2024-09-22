@@ -20,6 +20,6 @@ Using the pcs and the k number of components be included,
 we generate the qsva matrix.
 }
 \examples{
-qsv <- getPCs(covComb_tx_deg, "tpm")
+qsv <- getPCs(rse_tx, "tpm")
 get_qsvs(qsv, 2)
 }

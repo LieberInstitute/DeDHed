@@ -4,16 +4,16 @@
 \alias{which_tx_names}
 \title{Check validity of transcript vectors and return a vector matching indexes in tx1}
 \usage{
-which_tx_names(txnames, sig_transcripts)
+which_tx_names(txnames, sig_tx)
 }
 \arguments{
-\item{tx1}{A \code{character()} vector of GENCODE or ENSEMBL transcript IDs.}
+\item{txnames}{A \code{character()} vector of GENCODE or ENSEMBL transcript IDs.}
 
-\item{tx2}{A \code{character()} vector of GENCODE or ENSEMBL transcript IDs.}
+\item{sig_tx}{A \code{character()} vector of GENCODE or ENSEMBL signature transcript IDs.}
 }
 \value{
 A
-\code{integer()} vector of \code{tx1} transcript indexes in \code{tx2}.
+\code{integer()} vector of \code{txnames} transcript indexes in \code{sig_tx}.
 }
 \description{
 This function is used to check if tx1 and tx2 are GENCODE or ENSEMBL transcript IDs

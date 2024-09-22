@@ -1,10 +1,10 @@
-mod <- model.matrix(~ mitoRate + Region + rRNA_rate + totalAssignedGene + RIN, data = colData(covComb_tx_deg))
+mod <- model.matrix(~ mitoRate + Region + rRNA_rate + totalAssignedGene + RIN, data = colData(rse_tx))
 
 ## Run qSVA with 2 types
 set.seed(20230621)
-qsva_cc <- qSVA(rse_tx = covComb_tx_deg, type = "cell_component", mod = mod, assayname = "tpm")
+qsva_cc <- qSVA(rse_tx = rse_tx, type = "cell_component", mod = mod, assayname = "tpm")
 set.seed(20230621)
-qsva_standard <- qSVA(rse_tx = covComb_tx_deg, type = "standard", mod = mod, assayname = "tpm")
+qsva_standard <- qSVA(rse_tx = rse_tx, type = "standard", mod = mod, assayname = "tpm")
 
 test_that("number of qsvs is k", {
     expect_equal(length(colnames(qsva_cc)), 10)
@@ -12,7 +12,7 @@ test_that("number of qsvs is k", {
 })
 
 test_that("length of qsv rownames is the same as number of samples", {
-    expect_equal(length(rownames(qsva_cc)), length(colnames(covComb_tx_deg)))
+    expect_equal(length(rownames(qsva_cc)), length(colnames(rse_tx)))
 })
 
 test_that("output is a matrix", {
@@ -25,7 +25,7 @@ test_that("output is an array", {
 
 # Test for assayname not in assayNames
 test_that("qSVA throws an error when assayname is not in assayNames", {
-  expect_error(qSVA(covComb_tx_deg, type = "standard", mod = mod,assayname = "not_in_assayNames"), "'not_in_assayNames' is not in assayNames\\(rse_tx\\).")
+  expect_error(qSVA(rse_tx, type = "standard", mod = mod,assayname = "not_in_assayNames"), "'not_in_assayNames' is not in assayNames\\(rse_tx\\).")
 })
 
 # Test for input is an rse object

@@ -8,7 +8,7 @@
 #' <https://doi.org/10.1016/j.neuron.2019.05.013>. This function compares your
 #' t-statistics of interest computed on transcripts against the
 #' t-statistics from degradation time adjusting for the six brain regions from
-#' degradation experiment data used for determining `covComb_tx_deg`.
+#' degradation experiment data used for determining `rse_tx`.
 #'
 #' @param DE a `data.frame()` with one column containing the t-statistics from
 #' Differential Expression, typically generated with `limma::topTable()`.

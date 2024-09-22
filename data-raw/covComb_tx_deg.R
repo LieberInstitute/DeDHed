@@ -1,6 +1,5 @@
-## code to prepare `covComb_tx_deg` dataset goes here
+## code to prepare `rse_tx` example goes here
 
-## change to jhpce path
-load("data/covComb_tx_deg.rda")
-
-usethis::use_data(covComb_tx_deg, overwrite = TRUE)
+load("data/rse_tx_example.rda")
+# the above loads rse_tx
+usethis::use_data(rse_tx, overwrite = TRUE)

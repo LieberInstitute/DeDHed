@@ -1,13 +1,13 @@
-mod <- model.matrix(~ mitoRate + Region + rRNA_rate + totalAssignedGene + RIN, data = colData(covComb_tx_deg))
-k <- k_qsvs(covComb_tx_deg, mod, "tpm")
-qsv <- getPCs(covComb_tx_deg, "tpm")
+mod <- model.matrix(~ mitoRate + Region + rRNA_rate + totalAssignedGene + RIN, data = colData(rse_tx))
+k <- k_qsvs(rse_tx, mod, "tpm")
+qsv <- getPCs(rse_tx, "tpm")
 
 test_that("number of qsvs is k", {
     expect_equal(length(colnames(get_qsvs(qsv, k))), k)
 })
 
 test_that("length of qsv rownames is the same as number of samples", {
-    expect_equal(length(rownames(get_qsvs(qsv, k))), length(colnames(covComb_tx_deg)))
+    expect_equal(length(rownames(get_qsvs(qsv, k))), length(colnames(rse_tx)))
 })
 
 test_that("output is a matrix", {
@@ -28,5 +28,5 @@ test_that("k is higher than the number of columns throws an error", {
 })
 
 test_that("input has to be a prcomp", {
-  expect_error(get_qsvs(covComb_tx_deg, 3), "'qsvPCs' must be a prcomp object.")
+  expect_error(get_qsvs(rse_tx, 3), "'qsvPCs' must be a prcomp object.")
 })

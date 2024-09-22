@@ -21,10 +21,10 @@
 #'
 #' @examples
 #' ## First we need to define a statistical model. We'll use the example
-#' ## covComb_tx_deg data. Note that the model you'll use in your own data
+#' ## rse_tx data. Note that the model you'll use in your own data
 #' ## might look different from this model.
 #' mod <- model.matrix(~ mitoRate + Region + rRNA_rate + totalAssignedGene + RIN,
-#'     data = colData(covComb_tx_deg)
+#'     data = colData(rse_tx)
 #' )
 #'
 #' ## To ensure that the results are reproducible, you will need to set a
@@ -32,7 +32,7 @@
 #' ## sva::num.sv() which needs a random seed to ensure reproducibility of the
 #' ## results.
 #' set.seed(20230621)
-#' qSVA(rse_tx = covComb_tx_deg, type = "cell_component", mod = mod, assayname = "tpm")
+#' qSVA(rse_tx = rse_tx, type = "cell_component", mod = mod, assayname = "tpm")
 #'
 qSVA <-
     function(rse_tx,  type = c("cell_component", "standard", "top1500"),

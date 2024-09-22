@@ -8,7 +8,8 @@ getDegTx(
   rse_tx,
   type = c("cell_component", "standard", "top1500"),
   sig_transcripts = NULL,
-  assayname = "tpm"
+  assayname = "tpm",
+  verbose = TRUE
 )
 }
 \arguments{
@@ -30,6 +31,8 @@ the main effect model, and the cell proportions model were used to generate this
 \item{sig_transcripts}{A list of transcripts determined to have degradation signal in the qsva expanded paper.}
 
 \item{assayname}{character string specifying the name of the assay desired in rse_tx}
+
+\item{verbose}{specify if the function should report how many model transcripts were matched}
 }
 \value{
 A

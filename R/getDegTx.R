@@ -19,8 +19,9 @@
 #' These proportions were then added to our `model.matrix()` and the union of the top 1000 transcripts in the interaction model,
 #' the main effect model, and the cell proportions model were used to generate this model of qSVs.
 #'
-#' @param assayname character string specifying the name of the assay desired in rse_tx
 #' @param sig_transcripts A list of transcripts determined to have degradation signal in the qsva expanded paper.
+#' @param assayname character string specifying the name of the assay desired in rse_tx
+#' @param verbose specify if the function should report how many model transcripts were matched
 #'
 #' @return A
 #'  [RangedSummarizedExperiment-class][SummarizedExperiment::RangedSummarizedExperiment-class]
@@ -32,7 +33,8 @@
 #'
 #' @examples
 #' degTx <- getDegTx(rse_tx, "standard")
-getDegTx <- function(rse_tx, type = c("cell_component", "standard", "top1500"), sig_transcripts = NULL, assayname = "tpm") {
+getDegTx <- function(rse_tx, type = c("cell_component", "standard", "top1500"),
+                     sig_transcripts = NULL, assayname = "tpm", verbose = TRUE) {
 
   #type = arg_match(type)
   if (is.null(sig_transcripts)) {
@@ -53,11 +55,13 @@ getDegTx <- function(rse_tx, type = c("cell_component", "standard", "top1500"), 
 
   # Check for validity and matching of tx names and return the tx subset indexes in rse_tx
   wtx <- which_tx_names(rownames(rse_tx), sig_transcripts)
-  if (length(wtx) < 10) {
-    stop("Not enough transcript names were found in the '",type, "' degradation model transcripts" )
+  if (length(wtx) == 0) {
+    stop("No transcripts found in the '",type, "' degradation model transcripts" )
   }
-  # if (verbose)
-  message("   '",type,"' degradation model transcripts found: ", length(wtx))
+
+  if (verbose) {
+      message("   '",type,"' degradation model transcripts found: ", length(wtx))
+  }
   rse_tx <- rse_tx[wtx, , drop = FALSE]
 
   # Check if the row means is greater than 1
