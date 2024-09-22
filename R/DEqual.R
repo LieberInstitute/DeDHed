@@ -69,8 +69,8 @@ DEqual <- function(DE) {
     rownames(deg_tstats) <- qsvaR::normalize_tx_names(rownames(deg_tstats))
     ## Create dataframe with common transcripts
     common_data <- data.frame(
-        degradation_t = deg_tstats[common, ]$t,
-        DE_t = DE[whichTx, ]$t
+        degradation_t = deg_tstats[common, ],
+        DE_t = DE[whichTx, ]
     )
     p <- ggplot(common_data, aes(x = DE_t, y = degradation_t)) +
         xlab("DE t-statistic") +

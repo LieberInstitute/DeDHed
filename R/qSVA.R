@@ -35,29 +35,26 @@
 #' qSVA(rse_tx = covComb_tx_deg, type = "cell_component", mod = mod, assayname = "tpm")
 #'
 qSVA <-
-    function(rse_tx,
-    type = c("cell_component", "standard", "top1500"),
-    sig_transcripts = select_transcripts(type),
-    mod,
-    assayname) {
-        ## We don't need to pass type to getDegTx() since it's not used internally
-        ## once the sig_transcripts have been defined.
-      
-      type = arg_match(type)
-      
+    function(rse_tx,  type = c("cell_component", "standard", "top1500"),
+                      sig_transcripts = NULL,    mod,   assayname) {
+
+      if (is.null(sig_transcripts)) {
+        type = arg_match(type) # must be one of those in the list if sig_transcripts is NULL
+      }
+
       # Validate rse_tx is a RangedSummarizedExperiment object
       if (!is(rse_tx, "RangedSummarizedExperiment")) {
         stop("'rse_tx' must be a RangedSummarizedExperiment object.", call. = FALSE)
       }
-      
+
       # Check if assayname is in assayNames
       if (!assayname %in% assayNames(rse_tx)) {
         stop(sprintf("'%s' is not in assayNames(rse_tx).", assayname), call. = FALSE)
       }
-      
+
       # Get the qSVs
       DegTx <-
-            getDegTx(rse_tx, sig_transcripts = sig_transcripts, assayname = assayname)
+            getDegTx(rse_tx, type = type, sig_transcripts = sig_transcripts, assayname = assayname)
         PCs <- getPCs(DegTx, assayname)
         k <- k_qsvs(DegTx, mod = mod, assayname = assayname)
         qSV <- get_qsvs(PCs, k)
