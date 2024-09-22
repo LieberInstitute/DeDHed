@@ -17,15 +17,15 @@ qSVA(
 the transcript data desired to be studied.}
 
 \item{type}{a character string specifying which model you would
-like to use when selecting a degradation matrix.}
+like to use from the sets of signature transcripts identified
+by the qsvaR package. This can be omitted if a custom set of
+transcripts is provided to sig_transcripts.}
 
-\item{sig_transcripts}{A list of transcripts that are associated with
-degradation signal. Use \code{select_transcripts()} to select sets of transcripts
-identified by the qSVA expanded paper. Specifying a \code{character()} input of
-ENSEMBL transcript IDs (or whatever values you have at \code{rownames(rse_tx)})
-obtained outside of \code{select_transcripts()} overrides
-the user friendly \code{type} argument. That is, this argument provides more fine
-tuning options for advanced users.}
+\item{sig_transcripts}{A list of transcript IDs that are associated
+with degradation signal. Specifying a \code{character()} input with ENSEMBL
+transcript IDs (whose values should match entries in \code{rownames(rse_tx)}).
+This argument provides a custom list of transcripts for adjusting
+for degradation; this should be used instead of the \code{type} argument.}
 
 \item{mod}{Model Matrix with necessary variables the you would
 model for in differential expression}

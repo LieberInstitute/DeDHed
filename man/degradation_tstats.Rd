@@ -9,11 +9,11 @@ A \code{data.frame()} with the \code{t} statistics for degradation time. The
 \code{rownames()} are the GENCODE transcript IDs.
 }
 \description{
-These t-statistics are derived from the same data that was used for
-\link{rse_tx}. They are the results from main model where we determined
-the relationship with degradation time adjusting for the brain region (so
-parallel degradation effects across brain regions). They are used for
-plotting in \code{DEqual()}.
+These t-statistics are derived from the degradation timepoints data
+built into qsvaR. They are the results from multiple models where
+we determined the association of transcripts with degradation time
+adjusting for brain region (so parallel degradation effects across
+brain regions). They are used for plotting in \code{DEqual()}.
 }
 \seealso{
 \link{DEqual}

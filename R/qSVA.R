@@ -3,14 +3,14 @@
 #' @param rse_tx A [RangedSummarizedExperiment-class][SummarizedExperiment::RangedSummarizedExperiment-class] object containing
 #' the transcript data desired to be studied.
 #' @param type a character string specifying which model you would
-#'  like to use when selecting a degradation matrix.
-#' @param sig_transcripts A list of transcripts that are associated with
-#' degradation signal. Use `select_transcripts()` to select sets of transcripts
-#' identified by the qSVA expanded paper. Specifying a `character()` input of
-#' ENSEMBL transcript IDs (or whatever values you have at `rownames(rse_tx)`)
-#' obtained outside of `select_transcripts()` overrides
-#' the user friendly `type` argument. That is, this argument provides more fine
-#' tuning options for advanced users.
+#'  like to use from the sets of signature transcripts identified
+#'  by the qsvaR package. This can be omitted if a custom set of
+#'  transcripts is provided to sig_transcripts.
+#' @param sig_transcripts A list of transcript IDs that are associated
+#'  with degradation signal. Specifying a `character()` input with ENSEMBL
+#' transcript IDs (whose values should match entries in `rownames(rse_tx)`).
+#' This argument provides a custom list of transcripts for adjusting
+#' for degradation; this should be used instead of the `type` argument.
 #' @param mod Model Matrix with necessary variables the you would
 #'  model for in differential expression
 #' @param assayname character string specifying the name of
