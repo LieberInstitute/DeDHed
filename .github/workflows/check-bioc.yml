@@ -38,7 +38,7 @@ env:
   run_covr: 'true'
   run_pkgdown: 'true'
   has_RUnit: 'false'
-  cache-version: 'cache-v1'
+  cache-version: 'cache-v3'
   run_docker: 'false'
 
 jobs:
@@ -194,13 +194,13 @@ jobs:
         shell: Rscript {0}
 
       - name: Install covr
-        if: github.ref == 'refs/heads/devel' && env.run_covr == 'true' && runner.os == 'Linux'
+        if: env.run_covr == 'true' && runner.os == 'Linux'
         run: |
           remotes::install_cran("covr")
         shell: Rscript {0}
 
       - name: Install pkgdown
-        if: github.ref == 'refs/heads/devel' && env.run_pkgdown == 'true' && runner.os == 'Linux'
+        if: env.run_pkgdown == 'true' && runner.os == 'Linux'
         run: |
           remotes::install_cran("pkgdown")
         shell: Rscript {0}
@@ -250,13 +250,21 @@ jobs:
         shell: Rscript {0}
 
       - name: Test coverage
-        if: github.ref == 'refs/heads/devel' && env.run_covr == 'true' && runner.os == 'Linux'
+        if: env.run_covr == 'true' && runner.os == 'Linux'
         run: |
           covr::codecov()
         shell: Rscript {0}
 
+      - name: List R and man directories
+        if: github.ref == 'refs/heads/gdev' && runner.os == 'Linux'
+        run: |
+          echo "R directory:"
+          ls -l R/
+          echo "man directory:"
+          ls -l man/
+
       - name: Install package
-        if: github.ref == 'refs/heads/devel' && env.run_pkgdown == 'true' && runner.os == 'Linux'
+        if: env.run_pkgdown == 'true' && runner.os == 'Linux'
         run: R CMD INSTALL .
 
       - name: Build pkgdown site
