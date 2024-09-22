@@ -51,8 +51,8 @@ getDegTx <- function(rse_tx, type = c("cell_component", "standard", "top1500"), 
     stop(sprintf("'%s' is not in assayNames(rse_tx).", assayname), call. = FALSE)
   }
 
-  # Check for validity and matching of tx names
-  wtx <- check_tx_names(rownames(rse_tx), sig_transcripts)
+  # Check for validity and matching of tx names and return the tx subset indexes in rse_tx
+  wtx <- which_tx_names(rownames(rse_tx), sig_transcripts)
   if (length(wtx) < 10) {
     stop("Not enough transcript names were found in the '",type, "' degradation model transcripts" )
   }

@@ -5,3 +5,8 @@
 ^\.github$
 ^data-raw$
 ^codecov\.yml$
+^\.Rhistory$
+^\.Rdata$
+^\.httr-oauth$
+^\.DS_Store$
+^dcs04_data$

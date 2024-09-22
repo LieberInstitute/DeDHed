@@ -43,33 +43,34 @@ DEqual <- function(DE) {
     ## Check input
     # stopifnot("t" %in% colnames(DE))
     # stopifnot(!is.null(rownames(DE)))
-    
+
     # Check if input is a dataframe
-    if (!is.data.frame(DE)) { 
-      stop("The input to DEqual is not a dataframe.", call. = FALSE) 
+    if (!is.data.frame(DE)) {
+      stop("The input to DEqual is not a dataframe.", call. = FALSE)
       }
 
     # Check if 't' is in the column names of DE
     if (!("t" %in% colnames(DE))) {
         stop("'t' is not a column in 'DE'.", call. = FALSE)
       }
-    
+
     # Check if DE has non-null row names
     if (is.null(rownames(DE))) {
         stop("Row names of 'DE' are NULL.", call. = FALSE)
       }
-    
+
     ## Locate common transcripts
     deg_tstats = qsvaR::degradation_tstats
-    rownames(deg_tstats) = check_tx_names(rownames(DE),rownames(qsvaR::degradation_tstats),'rownames(DE)','qsvaR::degradation_tstats')
-    common = intersect(rownames(deg_tstats), rownames(DE))
-    
+    whichTx <- which_tx_names(rownames(DE),rownames(deg_tstats))
+    #rownames(deg_tstats) = check_tx_names(rownames(DE),rownames(qsvaR::degradation_tstats),'rownames(DE)','qsvaR::degradation_tstats')
+    #common = intersect(rownames(deg_tstats), rownames(DE))
+    common = qsvaR::normalize_tx_names(rownames(DE)[whichTx])
     stopifnot(length(common) > 0)
-    
+    rownames(deg_tstats) <- qsvaR::normalize_tx_names(rownames(deg_tstats))
     ## Create dataframe with common transcripts
     common_data <- data.frame(
-        degradation_t = deg_tstats$t[match(common, rownames(deg_tstats))],
-        DE_t = DE$t[match(common, rownames(DE))]
+        degradation_t = deg_tstats[common, ]$t,
+        DE_t = DE[whichTx, ]$t
     )
     p <- ggplot(common_data, aes(x = DE_t, y = degradation_t)) +
         xlab("DE t-statistic") +

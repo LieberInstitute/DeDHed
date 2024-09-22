@@ -1,32 +1,53 @@
-#' Check validity of transcript vectors
+
+
+
+#' Remove version number from Gencode/Ensembl transcript names
 #'
-#' This function is used to check if the tx1 and tx2 are GENCODE or ENSEMBL and print an error message if it's not and return a character vector of transcripts in tx2 that are in tx1.
+#' This function removes the Gencode/ENSEMBL version from the transcript ID, while protecting _PAR_Y suffixes if present
 #'
-#' @param tx1 A `character()` vector of GENCODE or ENSEMBL transcripts.
-#' @param tx2 A `character()` vector of GENCODE or ENSEMBL transcripts.
+#' @param txnames A `character()` vector of GENCODE or ENSEMBL transcript IDs
 #'
-#' @param arg_name1 A `character(1)` vector of description of tx1
-#' @param arg_name2 A `character(1)` vector of description of tx2
 #'
 #' @return A
-#'  `character()` vector of transcripts in `tx2` that are in `tx1`.
+#'  `character()` vector of transcript names without versioning
+#'
+#' @export
+#'
+#' @examples
+#' ensIDs <-  normalize_tx_names(rownames(rse_tx))
+
+normalize_tx_names <- function(txnames) {
+  sub('(ENST\\d+)\\.\\d+(.*)$','\\1\\2', txnames, perl=TRUE)
+}
+
+
+#' Check validity of transcript vectors and return a vector matching indexes in tx1
+#'
+#' This function is used to check if tx1 and tx2 are GENCODE or ENSEMBL transcript IDs
+#' and return an integer vector of tx1 transcript indexes that are in tx2.
+#'
+#' @param tx1 A `character()` vector of GENCODE or ENSEMBL transcript IDs.
+#' @param tx2 A `character()` vector of GENCODE or ENSEMBL transcript IDs.
+#'
+#'
+#' @return A
+#'  `integer()` vector of `tx1` transcript indexes in `tx2`.
 #'
 #' @export
 #'
 #' @examples
 #' sig_tx <-  select_transcripts("cell_component")
-#' whichTx <- check_tx_names(rownames(rse_tx), sig_tx)
+#' whichTx <- which_tx_names(rownames(rse_tx), sig_tx)
 
-check_tx_names = function(txnames, sig_transcripts) {
-  #   Functions for checking whether a vector of transcripts all match GENCODE
-  #   or ENSEMBL naming conventions
+which_tx_names = function(txnames, sig_transcripts) {
   ## Between releases 25 and 43, PAR genes and transcripts had the "_PAR_Y" suffix appended to their identifiers.
   ## Since release 44, these have their own IDs
   if (!all(grepl("^ENST\\d+", txnames))) {
     stop("The transcript names must be ENSEMBL or Gencode IDs (ENST...)" )
   }
   ## normalize the transcript names
-  sig_tx <- sub('(ENST\\d+)\\.\\d+(.*)$','\\1\\2', sig_transcripts, perl=TRUE)
-  r_tx <- sub('(ENST\\d+)\\.\\d+(.*)$','\\1\\2', txnames, perl=TRUE)
+  r_tx <- normalize_tx_names(txnames)
+  sig_tx <- normalize_tx_names(sig_transcripts)
   which(r_tx %in% sig_tx)
 }
+

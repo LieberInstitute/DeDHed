@@ -7,7 +7,7 @@
 getDegTx(
   rse_tx,
   type = c("cell_component", "standard", "top1500"),
-  sig_transcripts = select_transcripts(type),
+  sig_transcripts = NULL,
   assayname = "tpm"
 )
 }
@@ -43,6 +43,5 @@ postmortem brain tissues. This object can later be used to obtain the principle 
 necessary to remove the effect of degradation in differential expression.
 }
 \examples{
-getDegTx(covComb_tx_deg)
-stopifnot(mean(rowMeans(assays(covComb_tx_deg)$tpm)) > 1)
+degTx <- getDegTx(rse_tx, "standard")
 }
