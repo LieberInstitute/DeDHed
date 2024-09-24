@@ -13,7 +13,7 @@
 #' @param DE a `data.frame()` with a column "t" containing the t-statistics
 #' from Differential Expression, typically generated with `limma::topTable()`.
 #' `rownames(DE)` must have transcript Ensembl/Gencode IDs.
-#' @param deg_tstats an optional`data.frame()` with a column "t" containing
+#' @param deg_tstats an optional `data.frame()` with a column "t" containing
 #' t-statistics resulted from a degradation experiment. Default is the
 #' internal `qsvaR::degradation_tstats` from the package authors.
 #' @param show.legend logical (default TRUE) to show legend in the plot
