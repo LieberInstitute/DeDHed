@@ -16,6 +16,14 @@
 #' @param deg_tstats an optional`data.frame()` with a column "t" containing
 #' t-statistics resulted from a degradation experiment. Default is the
 #' internal `qsvaR::degradation_tstats` from the package authors.
+#' @param show.legend logical (default TRUE) to show legend in the plot
+#' @param show.cor specify where to show the correlation value. Can be one of
+#' "caption", "corner-top", "corner-bottom", or "none".
+#' @param font.size numeric value to set the base font size of the plot
+#' @param cor.size numeric (default font.size/2) to set the font size for the
+#' correlation text
+#' @param cor.label character (default "cor: ") to set the text preceding the
+#'  correlation value
 #'
 #' @return a `ggplot` object of the DE t-statistic vs
 #' the DE statistic from degradation
