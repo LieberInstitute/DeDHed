@@ -40,7 +40,8 @@
 #' ## Create the DEqual plot
 #' DEqual(random_de)
 DEqual <- function(DE, deg_tstats = qsvaR::degradation_tstats, show.legend = TRUE,
-                        show.cor = c('caption','corner-top','corner-bottom','none')) {
+                        show.cor = c('caption','corner-top','corner-bottom','none'),
+                        font.size = 12,  cor.size = font.size/2, cor.label = 'cor: ') {
     ## For R CMD check
     DE_t <- degradation_t <- NULL
     show.cor=rlang::arg_match(show.cor)
@@ -81,25 +82,28 @@ DEqual <- function(DE, deg_tstats = qsvaR::degradation_tstats, show.legend = TRU
         degradation_t = deg_tstats[common, "t"],
         DE_t = DE[whichTx, "t"]
     )
-    cor_val <- signif(cor(common_data[, 1], common_data[, 2]), 2))
+    cor_val <- signif(cor(common_data[, 1], common_data[, 2]), 2)
     p <- ggplot(common_data, aes(x = DE_t, y = degradation_t)) +
         xlab("DE t-statistic") +
         ylab("Degradation t-statistic") +
-        geom_bin2d(bins = 70, show.legend = FALSE) +
+        geom_bin2d(bins = 70, show.legend = show.legend) +
         scale_fill_continuous(type = "viridis") +
-        theme_bw()
+        theme_bw() +
+        theme(text = element_text(size = font.size))
         # labs(caption = paste0("correlation: ", cor_val)
     if (show.cor != 'none') {
       switch(show.cor,
         'caption' = {
-          p <- p + labs(caption = paste0("correlation: ", cor_val))
+          p <- p + labs(caption = paste0(cor.label, cor_val))
         },
         'corner-top' = {
-          p <- p + annotate("text", x = max(DE_t), y = max(degradation_t), label = paste0("correlation: ", cor_val), hjust = 1, vjust = 1)
+          p <- p + annotate("text", x = max(common_data$DE_t), y = max(common_data$degradation_t),
+                            label = paste0(cor.label, cor_val), size = cor.size, hjust = 1, vjust = 1)
         },
         'corner-bottom' = {
-          p <- p + annotate("text", x = max(DE_t), y = min(degradation_t), label = paste0("correlation: ", cor_val), hjust = 1, vjust = 0)
-        }
+          p <- p + annotate("text", x = max(common_data$DE_t), y = min(common_data$degradation_t),
+                            label = paste0(cor.label, cor_val), size = cor.size, hjust = 1, vjust = 0)
+        })
     }
     return(p)
 }
