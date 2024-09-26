@@ -38,7 +38,7 @@ env:
   run_covr: 'true'
   run_pkgdown: 'true'
   has_RUnit: 'false'
-  cache-version: 'cache-v3'
+  cache-version: 'cache-v1'
   run_docker: 'false'
 
 jobs:
@@ -171,7 +171,7 @@ jobs:
 
           ## For running the checks
           message(paste('****', Sys.time(), 'installing rcmdcheck and BiocCheck ****'))
-          install.packages(c("rcmdcheck", "devtools", "BiocCheck"), repos = BiocManager::repositories())
+          install.packages(c("rcmdcheck", "BiocCheck"), repos = BiocManager::repositories())
 
           ## Pass #1 at installing dependencies
           message(paste('****', Sys.time(), 'pass number 1 at installing dependencies: local dependencies ****'))
@@ -194,13 +194,13 @@ jobs:
         shell: Rscript {0}
 
       - name: Install covr
-        if: env.run_covr == 'true' && runner.os == 'Linux'
+        if: github.ref == 'refs/heads/devel' && env.run_covr == 'true' && runner.os == 'Linux'
         run: |
           remotes::install_cran("covr")
         shell: Rscript {0}
 
       - name: Install pkgdown
-        if: env.run_pkgdown == 'true' && runner.os == 'Linux'
+        if: github.ref == 'refs/heads/devel' && env.run_pkgdown == 'true' && runner.os == 'Linux'
         run: |
           remotes::install_cran("pkgdown")
         shell: Rscript {0}
@@ -210,11 +210,6 @@ jobs:
           options(width = 100)
           pkgs <- installed.packages()[, "Package"]
           sessioninfo::session_info(pkgs, include_base = TRUE)
-        shell: Rscript {0}
-
-      - name: Generate documentation
-        run: |
-          devtools::document()
         shell: Rscript {0}
 
       - name: Run CMD check
@@ -255,13 +250,13 @@ jobs:
         shell: Rscript {0}
 
       - name: Test coverage
-        if: env.run_covr == 'true' && runner.os == 'Linux'
+        if: github.ref == 'refs/heads/devel' && env.run_covr == 'true' && runner.os == 'Linux'
         run: |
           covr::codecov()
         shell: Rscript {0}
 
       - name: Install package
-        if: env.run_pkgdown == 'true' && runner.os == 'Linux'
+        if: github.ref == 'refs/heads/devel' && env.run_pkgdown == 'true' && runner.os == 'Linux'
         run: R CMD INSTALL .
 
       - name: Build pkgdown site
@@ -269,7 +264,7 @@ jobs:
         run: pkgdown::build_site_github_pages(new_process = FALSE, install = FALSE)
         shell: Rscript {0}
         ## Note that you need to run pkgdown::deploy_to_branch(new_process = FALSE)
-        ## at least once locally before this will work. This creates the gh-pages
+        ## at least one locally before this will work. This creates the gh-pages
         ## branch (erasing anything you haven't version controlled!) and
         ## makes the git history recognizable by pkgdown.
 
