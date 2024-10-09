@@ -7,8 +7,9 @@
 getDegTx(
   rse_tx,
   type = c("cell_component", "standard", "top1500"),
-  sig_transcripts = select_transcripts(type),
-  assayname = "tpm"
+  sig_transcripts = NULL,
+  assayname = "tpm",
+  verbose = TRUE
 )
 }
 \arguments{
@@ -30,6 +31,8 @@ the main effect model, and the cell proportions model were used to generate this
 \item{sig_transcripts}{A list of transcripts determined to have degradation signal in the qsva expanded paper.}
 
 \item{assayname}{character string specifying the name of the assay desired in rse_tx}
+
+\item{verbose}{specify if the function should report how many model transcripts were matched}
 }
 \value{
 A
@@ -43,6 +46,5 @@ postmortem brain tissues. This object can later be used to obtain the principle 
 necessary to remove the effect of degradation in differential expression.
 }
 \examples{
-getDegTx(covComb_tx_deg)
-stopifnot(mean(rowMeans(assays(covComb_tx_deg)$tpm)) > 1)
+degTx <- getDegTx(rse_tx, "standard")
 }

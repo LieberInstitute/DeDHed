@@ -4,4 +4,10 @@
 ^README\.Rmd$
 ^\.github$
 ^data-raw$
+^dcs04_data$
+^dcs04_data/.*$
 ^codecov\.yml$
+^\.Rhistory$
+^\.Rdata$
+^\.httr-oauth$
+^\.DS_Store$

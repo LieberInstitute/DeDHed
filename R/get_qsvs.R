@@ -12,7 +12,7 @@
 #' @export
 #'
 #' @examples
-#' qsv <- getPCs(covComb_tx_deg, "tpm")
+#' qsv <- getPCs(rse_tx, "tpm")
 #' get_qsvs(qsv, 2)
 get_qsvs <- function(qsvPCs, k) {
   

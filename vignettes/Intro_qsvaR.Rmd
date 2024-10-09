@@ -144,6 +144,9 @@ rse_file <- BiocFileCache::bfcrpath(
     x = bfc
 )
 load(rse_file, verbose = TRUE)
+## keep only adult samples and apply minimum expression cutoff
+rse_tx <- rse_tx[, rse_tx$Age > 17 ]
+rse_tx <- rse_tx[rowMeans(assays(rse_tx)$tpm) > 0.3, ]
 ```
 
 ## Get Degradation Matrix
@@ -219,11 +222,8 @@ dim(qsvs_wrapper)
 Next we can use a standard limma package approach to do differential expression on the data. The key here is that we add our qsvs to the `model.matrix()`. Here we input our `RangedSummarizedExperiment` object and our `model.matrix()` with qSVs. Note here that the `RangedSummarizedExperiment` object is the original object loaded with the full list of transcripts, not the the one we subsetted for qSVs. This is because while PCs can be generated from a subset of genes, differential expression is best done on the full dataset. The expected output is a `sigTx` object that shows the results of differential expression.
 
 ```{r "perform DE"}
-### should be done by cbinding mod to pcs
-## subset to an expression cutoff
-rse_tx <- rse_tx[rowData(rse_tx)$passExprsCut, ]
 
-# create a model.matrix with demographic infor and qsvs
+# create a model.matrix with demographic info and qsvs
 mod_qSVA <- cbind(mod, qsvs)
 
 # log tranform transcript expression

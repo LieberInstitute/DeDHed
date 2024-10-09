@@ -12,7 +12,7 @@ random_de <- data.frame(
 # Test if DEqual throws an error when input is not a dataframe
 test_that("DEqual throws an error for non-dataframe input", {
   # Test if DEqual throws an error when input is not a dataframe
-  expect_error(DEqual(covComb_tx_deg), "The input to DEqual is not a dataframe.")
+  expect_error(DEqual(rse_tx), "The input to DEqual is not a dataframe.")
 })
 
 # Test when 't' is not in the columns

@@ -7,7 +7,7 @@
 qSVA(
   rse_tx,
   type = c("cell_component", "standard", "top1500"),
-  sig_transcripts = select_transcripts(type),
+  sig_transcripts = NULL,
   mod,
   assayname
 )
@@ -17,15 +17,15 @@ qSVA(
 the transcript data desired to be studied.}
 
 \item{type}{a character string specifying which model you would
-like to use when selecting a degradation matrix.}
+like to use from the sets of signature transcripts identified
+by the qsvaR package. This can be omitted if a custom set of
+transcripts is provided to sig_transcripts.}
 
-\item{sig_transcripts}{A list of transcripts that are associated with
-degradation signal. Use \code{select_transcripts()} to select sets of transcripts
-identified by the qSVA expanded paper. Specifying a \code{character()} input of
-ENSEMBL transcript IDs (or whatever values you have at \code{rownames(rse_tx)})
-obtained outside of \code{select_transcripts()} overrides
-the user friendly \code{type} argument. That is, this argument provides more fine
-tuning options for advanced users.}
+\item{sig_transcripts}{A list of transcript IDs that are associated
+with degradation signal. Specifying a \code{character()} input with ENSEMBL
+transcript IDs (whose values should match entries in \code{rownames(rse_tx)}).
+This argument provides a custom list of transcripts for adjusting
+for degradation; this should be used instead of the \code{type} argument.}
 
 \item{mod}{Model Matrix with necessary variables the you would
 model for in differential expression}
@@ -41,10 +41,10 @@ A wrapper function used to perform qSVA in one step.
 }
 \examples{
 ## First we need to define a statistical model. We'll use the example
-## covComb_tx_deg data. Note that the model you'll use in your own data
+## rse_tx data. Note that the model you'll use in your own data
 ## might look different from this model.
 mod <- model.matrix(~ mitoRate + Region + rRNA_rate + totalAssignedGene + RIN,
-    data = colData(covComb_tx_deg)
+    data = colData(rse_tx)
 )
 
 ## To ensure that the results are reproducible, you will need to set a
@@ -52,6 +52,6 @@ mod <- model.matrix(~ mitoRate + Region + rRNA_rate + totalAssignedGene + RIN,
 ## sva::num.sv() which needs a random seed to ensure reproducibility of the
 ## results.
 set.seed(20230621)
-qSVA(rse_tx = covComb_tx_deg, type = "cell_component", mod = mod, assayname = "tpm")
+qSVA(rse_tx = rse_tx, type = "cell_component", mod = mod, assayname = "tpm")
 
 }

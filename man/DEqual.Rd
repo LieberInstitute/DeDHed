@@ -4,12 +4,37 @@
 \alias{DEqual}
 \title{Differential expression quality (DEqual) plot}
 \usage{
-DEqual(DE)
+DEqual(
+  DE,
+  deg_tstats = qsvaR::degradation_tstats,
+  show.legend = TRUE,
+  show.cor = c("caption", "corner-top", "corner-bottom", "none"),
+  font.size = 12,
+  cor.size = font.size/2,
+  cor.label = "cor: "
+)
 }
 \arguments{
-\item{DE}{a \code{data.frame()} with one column containing the t-statistics from
-Differential Expression, typically generated with \code{limma::topTable()}.
-The \code{rownames(DE)} should be transcript GENCODE IDs.}
+\item{DE}{a \code{data.frame()} with a column "t" containing the t-statistics
+from Differential Expression, typically generated with \code{limma::topTable()}.
+\code{rownames(DE)} must have transcript Ensembl/Gencode IDs.}
+
+\item{deg_tstats}{an optional\code{data.frame()} with a column "t" containing
+t-statistics resulted from a degradation experiment. Default is the
+internal \code{qsvaR::degradation_tstats} from the package authors.}
+
+\item{show.legend}{logical (default TRUE) to show legend in the plot}
+
+\item{show.cor}{specify where to show the correlation value. Can be one of
+"caption", "corner-top", "corner-bottom", or "none".}
+
+\item{font.size}{numeric value to set the base font size of the plot}
+
+\item{cor.size}{numeric (default font.size/2) to set the font size for the
+correlation text}
+
+\item{cor.label}{character (default "cor: ") to set the text preceding the
+correlation value}
 }
 \value{
 a \code{ggplot} object of the DE t-statistic vs
@@ -24,7 +49,7 @@ included in Collado-Torres et al, Neuron, 2019
 \url{https://doi.org/10.1016/j.neuron.2019.05.013}. This function compares your
 t-statistics of interest computed on transcripts against the
 t-statistics from degradation time adjusting for the six brain regions from
-degradation experiment data used for determining \code{covComb_tx_deg}.
+degradation experiment data used for determining \code{rse_tx}.
 }
 \examples{
 

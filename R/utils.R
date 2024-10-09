@@ -1,59 +1,55 @@
-#' Check validity of transcript vectors
+
+
+#' Remove version number from Gencode/Ensembl transcript names
 #'
-#' This function is used to check if the tx1 and tx2 are GENCODE or ENSEMBL and print an error message if it's not and return a character vector of transcripts in tx2 that are in tx1.
+#' This function removes the Gencode/ENSEMBL version from the transcript ID, while protecting _PAR_Y suffixes if present
 #'
-#' @param tx1 A `character()` vector of GENCODE or ENSEMBL transcripts.
-#' @param tx2 A `character()` vector of GENCODE or ENSEMBL transcripts.
+#' @param txnames A `character()` vector of GENCODE or ENSEMBL transcript IDs
 #'
-#' @param arg_name1 A `character(1)` vector of description of tx1
-#' @param arg_name2 A `character(1)` vector of description of tx2
 #'
 #' @return A
-#'  `character()` vector of transcripts in `tx2` that are in `tx1`.
+#'  `character()` vector of transcript names without versioning
 #'
 #' @export
 #'
 #' @examples
-#' sig_transcripts = select_transcripts("cell_component")
-#' check_tx_names(rownames(covComb_tx_deg), sig_transcripts, 'rownames(covComb_tx_deg)', 'sig_transcripts')
+#' ensIDs <-  normalize_tx_names(rownames(rse_tx))
 
-
-check_tx_names = function(tx1, tx2, arg_name1, arg_name2) {
-  #   Functions for checking whether a vector of transcripts all match GENCODE
-  #   or ENSEMBL naming conventions
-  is_gencode = function(x) all(grepl("^ENST.*?\\.", x))
-  is_ensembl = function(x) all(grepl("^ENST", x) & !grepl("\\.", x))
-  
-  #   Check that both vectors either follow GENCODE or ENSEMBL
-  if (!is_gencode(tx1) && !is_ensembl(tx1)) {
-    stop(
-      sprintf(
-        "'%s' must use either all GENCODE or all ENSEMBL transcript IDs",
-        arg_name1
-      )
-    )
-  }
-  if (!is_gencode(tx2) && !is_ensembl(tx2)) {
-    stop(
-      sprintf(
-        "'%s' must use either all GENCODE or all ENSEMBL transcript IDs",
-        arg_name2
-      )
-    )
-  }
-  
-  #   Change 'tx2' to match 'tx1', noting that the case where 'tx1' is GENCODE
-  #   but 'tx2' is ENSEMBL is not allowed (and an error will be thrown further
-  #   down)
-  if (is_gencode(tx2) && is_ensembl(tx1)) {
-    tx2 = sub('\\..*', '', tx2)
-  }
-  
-  #   At least some transcripts must overlap between 'tx1' and 'tx2'
-  if (!any(tx2 %in% tx1)) {
-    stop(sprintf("None of '%s' are in '%s'", arg_name2, arg_name1))
-  }
-  
-  #   Since only 'tx2' was modified, return the changed copy
-  return(tx2)
+normalize_tx_names <- function(txnames) {
+  sub('(ENST\\d+)\\.\\d+(.*)$','\\1\\2', txnames, perl=TRUE)
 }
+
+
+#' Check validity of transcript vectors and return a vector matching indexes in tx1
+#'
+#' This function is used to check if tx1 and tx2 are GENCODE or ENSEMBL transcript IDs
+#' and return an integer vector of tx1 transcript indexes that are in tx2.
+#'
+#' @param txnames A `character()` vector of GENCODE or ENSEMBL transcript IDs.
+#' @param sig_tx A `character()` vector of GENCODE or ENSEMBL signature transcript IDs.
+#'
+#'
+#' @return A
+#'  `integer()` vector of `txnames` transcript indexes in `sig_tx`.
+#'
+#' @export
+#'
+#' @examples
+#' sig_tx <-  select_transcripts("cell_component")
+#' whichTx <- which_tx_names(rownames(rse_tx), sig_tx)
+
+which_tx_names = function(txnames, sig_tx) {
+  ## Between releases 25 and 43, PAR genes and transcripts had the "_PAR_Y" suffix appended to their identifiers.
+  ## Since release 44, these have their own IDs
+  if (!all(grepl("^ENST\\d+", txnames))) {
+    stop("The transcript names must be ENSEMBL or Gencode IDs (ENST...)" )
+  }
+  if (!all(grepl("^ENST\\d+", sig_tx))) {
+    stop("The signature transcript names must be ENSEMBL or Gencode IDs (ENST...)" )
+  }
+  ## normalize the transcript names
+  r_tx <- normalize_tx_names(txnames)
+  s_tx <- normalize_tx_names(sig_tx)
+  which(r_tx %in% s_tx)
+}
+
