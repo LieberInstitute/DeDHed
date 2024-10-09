@@ -31,12 +31,6 @@
     <loc>/reference/DEqual.html</loc>
   </url>
   <url>
-    <loc>/reference/check_tx_names.html</loc>
-  </url>
-  <url>
-    <loc>/reference/covComb_tx_deg.html</loc>
-  </url>
-  <url>
     <loc>/reference/degradation_tstats.html</loc>
   </url>
   <url>
@@ -55,12 +49,21 @@
     <loc>/reference/k_qsvs.html</loc>
   </url>
   <url>
+    <loc>/reference/normalize_tx_names.html</loc>
+  </url>
+  <url>
     <loc>/reference/qSVA.html</loc>
+  </url>
+  <url>
+    <loc>/reference/rse_tx.html</loc>
   </url>
   <url>
     <loc>/reference/select_transcripts.html</loc>
   </url>
   <url>
     <loc>/reference/transcripts.html</loc>
+  </url>
+  <url>
+    <loc>/reference/which_tx_names.html</loc>
   </url>
 </urlset>

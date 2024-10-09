@@ -20,7 +20,7 @@ necessary to remove the effect of degradation in differential expression."><!-- 
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">qsvaR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.9.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.9.1</span>
       </span>
     </div>
 
@@ -72,8 +72,9 @@ necessary to remove the effect of degradation in differential expression.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">getDegTx</span><span class="op">(</span></span>
 <span>  <span class="va">rse_tx</span>,</span>
 <span>  type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"cell_component"</span>, <span class="st">"standard"</span>, <span class="st">"top1500"</span><span class="op">)</span>,</span>
-<span>  sig_transcripts <span class="op">=</span> <span class="fu"><a href="select_transcripts.html">select_transcripts</a></span><span class="op">(</span><span class="va">type</span><span class="op">)</span>,</span>
-<span>  assayname <span class="op">=</span> <span class="st">"tpm"</span></span>
+<span>  sig_transcripts <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  assayname <span class="op">=</span> <span class="st">"tpm"</span>,</span>
+<span>  verbose <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -105,6 +106,10 @@ the main effect model, and the cell proportions model were used to generate this
 <dt>assayname</dt>
 <dd><p>character string specifying the name of the assay desired in rse_tx</p></dd>
 
+
+<dt>verbose</dt>
+<dd><p>specify if the function should report how many model transcripts were matched</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
@@ -119,18 +124,8 @@ the main effect model, and the cell proportions model were used to generate this
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">getDegTx</span><span class="op">(</span><span class="va">covComb_tx_deg</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> class: RangedSummarizedExperiment </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> dim: 2976 60 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> metadata(0):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> assays(1): tpm</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> rownames(2976): ENST00000442987.3 ENST00000623083.3 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ENST00000361681.2 ENST00000361789.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> rowData names(22): source type ... protein_id ccdsid</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> colnames(60): DLPFC_Br1385_A1_ribo DLPFC_Br1385_A2_ribo ... Br5941-C5c</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Br5941-C5d</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> colData names(21): SAMPLE_ID RNum ... totalAssignedGene totalMapped</span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html" class="external-link">stopifnot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">rowMeans</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">assays</a></span><span class="op">(</span><span class="va">covComb_tx_deg</span><span class="op">)</span><span class="op">$</span><span class="va">tpm</span><span class="op">)</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">1</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">degTx</span> <span class="op">&lt;-</span> <span class="fu">getDegTx</span><span class="op">(</span><span class="va">rse_tx</span>, <span class="st">"standard"</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>    'standard' degradation model transcripts found: 1792</span>
 </code></pre></div>
     </div>
   </div>

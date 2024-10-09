@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">qsvaR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.9.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.9.1</span>
       </span>
     </div>
 
@@ -92,10 +92,10 @@ model for in differential expression</p></dd>
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">## First we need to define a statistical model. We'll use the example</span></span></span>
-<span class="r-in"><span><span class="co">## covComb_tx_deg data. Note that the model you'll use in your own data</span></span></span>
+<span class="r-in"><span><span class="co">## rse_tx data. Note that the model you'll use in your own data</span></span></span>
 <span class="r-in"><span><span class="co">## might look different from this model.</span></span></span>
 <span class="r-in"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html" class="external-link">model.matrix</a></span><span class="op">(</span><span class="op">~</span> <span class="va">mitoRate</span> <span class="op">+</span> <span class="va">Region</span> <span class="op">+</span> <span class="va">rRNA_rate</span> <span class="op">+</span> <span class="va">totalAssignedGene</span> <span class="op">+</span> <span class="va">RIN</span>,</span></span>
-<span class="r-in"><span>    data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">colData</a></span><span class="op">(</span><span class="va">covComb_tx_deg</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">colData</a></span><span class="op">(</span><span class="va">rse_tx</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## To ensure that the results are reproducible, you will need to set a</span></span></span>
@@ -103,7 +103,7 @@ model for in differential expression</p></dd>
 <span class="r-in"><span><span class="co">## sva::num.sv() which needs a random seed to ensure reproducibility of the</span></span></span>
 <span class="r-in"><span><span class="co">## results.</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">20230621</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">k_qsvs</span><span class="op">(</span><span class="va">covComb_tx_deg</span>, <span class="va">mod</span>, <span class="st">"tpm"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">k_qsvs</span><span class="op">(</span><span class="va">rse_tx</span>, <span class="va">mod</span>, <span class="st">"tpm"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10</span>
 </code></pre></div>
     </div>
