@@ -19,7 +19,7 @@ DEqual(
 from Differential Expression, typically generated with \code{limma::topTable()}.
 \code{rownames(DE)} must have transcript Ensembl/Gencode IDs.}
 
-\item{deg_tstats}{an optional\code{data.frame()} with a column "t" containing
+\item{deg_tstats}{an optional \code{data.frame()} with a column "t" containing
 t-statistics resulted from a degradation experiment. Default is the
 internal \code{qsvaR::degradation_tstats} from the package authors.}
 
