@@ -17,5 +17,5 @@ A
 This function removes the Gencode/ENSEMBL version from the transcript ID, while protecting _PAR_Y suffixes if present
 }
 \examples{
-ensIDs <-  normalize_tx_names(rownames(rse_tx))
+ensIDs <- normalize_tx_names(rownames(rse_tx))
 }

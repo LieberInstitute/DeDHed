@@ -9,10 +9,10 @@
 #' object containing the transcript data desired to be studied.
 #' @param type A `character(1)` specifying the transcripts set type.
 #' These were determined by Joshua M. Stolz et al, 2022. Here the names "cell_component", "top1500",
-#' and "standard" refer to models that were determined to be effective in removing degradation effects.
-#' The "standard" model involves taking the union of the top 1000 transcripts
+#' and "top1000" refer to models that were determined to be effective in removing degradation effects.
+#' The "top1000" model involves taking the union of the top 1000 transcripts
 #' associated with degradation from the interaction model and the main effect model.
-#' The "top1500" model is the same as the "standard model except the
+#' The "top1500" model is the same as the "top1000 model except the
 #' union of the top 1500 genes associated with degradation is selected.
 #' The most effective of our models, "cell_component", involved deconvolution of
 #' the degradation matrix to determine the proportion of cell types within our studied tissue.
@@ -32,8 +32,8 @@
 #' @import rlang
 #'
 #' @examples
-#' degTx <- getDegTx(rse_tx, "standard")
-getDegTx <- function(rse_tx, type = c("cell_component", "standard", "top1500"),
+#' degTx <- getDegTx(rse_tx, "top1000")
+getDegTx <- function(rse_tx, type = c("cell_component", "top1000", "top1500"),
     sig_transcripts = NULL, assayname = "tpm", verbose = TRUE) {
     # type = arg_match(type)
     if (is.null(sig_transcripts)) {
