@@ -15,18 +15,18 @@ test_that("output is a matrix", {
 })
 
 test_that("k is lower than 0 throws an error", {
-    expect_error(get_qsvs(qsv, -1), paste("k must between 1 and",ncol(qsv$x)))
+    expect_error(get_qsvs(qsv, -1), paste("k must between 1 and", ncol(qsv$x)))
 })
 
 test_that("k is 0 throws an error", {
-   expect_error(get_qsvs(qsv, 0), paste("k must between 1 and",ncol(qsv$x)))
+    expect_error(get_qsvs(qsv, 0), paste("k must between 1 and", ncol(qsv$x)))
 })
 
 test_that("k is higher than the number of columns throws an error", {
-  k = ncol(qsv$x) + 1000
-  expect_error(get_qsvs(qsv, k), paste("k must between 1 and",ncol(qsv$x)))
+    k <- ncol(qsv$x) + 1000
+    expect_error(get_qsvs(qsv, k), paste("k must between 1 and", ncol(qsv$x)))
 })
 
 test_that("input has to be a prcomp", {
-  expect_error(get_qsvs(rse_tx, 3), "'qsvPCs' must be a prcomp object.")
+    expect_error(get_qsvs(rse_tx, 3), "'qsvPCs' must be a prcomp object.")
 })

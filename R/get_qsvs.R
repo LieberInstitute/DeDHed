@@ -15,18 +15,17 @@
 #' qsv <- getPCs(rse_tx, "tpm")
 #' get_qsvs(qsv, 2)
 get_qsvs <- function(qsvPCs, k) {
-  
-  #Validate qsvPCs is a prcomp object
-  if (!is(qsvPCs, "prcomp")) {
-    stop("'qsvPCs' must be a prcomp object.", call. = FALSE)
-  }
+    # Validate qsvPCs is a prcomp object
+    if (!is(qsvPCs, "prcomp")) {
+        stop("'qsvPCs' must be a prcomp object.", call. = FALSE)
+    }
 
-  # check that k isn't zero
-  if (k <= 0 | k > ncol(qsvPCs$x)) {
-    stop(paste("k must between 1 and",ncol(qsvPCs$x)))
-  }
-  
-  qSVs <- qsvPCs$x[, seq_len(k), drop = FALSE]
-  colnames(qSVs) <- paste0("qSV", seq_len(k))
-  return(qSVs)
+    # check that k isn't zero
+    if (k <= 0 | k > ncol(qsvPCs$x)) {
+        stop(paste("k must between 1 and", ncol(qsvPCs$x)))
+    }
+
+    qSVs <- qsvPCs$x[, seq_len(k), drop = FALSE]
+    colnames(qSVs) <- paste0("qSV", seq_len(k))
+    return(qSVs)
 }

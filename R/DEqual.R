@@ -48,19 +48,19 @@
 #' ## Create the DEqual plot
 #' DEqual(random_de)
 DEqual <- function(DE, deg_tstats = qsvaR::degradation_tstats, show.legend = TRUE,
-                        show.cor = c('caption','corner-top','corner-bottom','none'),
-                        font.size = 12,  cor.size = font.size/2, cor.label = 'cor: ') {
+    show.cor = c("caption", "corner-top", "corner-bottom", "none"),
+    font.size = 12, cor.size = font.size / 2, cor.label = "cor: ") {
     ## For R CMD check
     DE_t <- degradation_t <- NULL
-    show.cor=rlang::arg_match(show.cor)
+    show.cor <- rlang::arg_match(show.cor)
     ## Check input
     if (!is.data.frame(DE)) {
-      stop("The input to DEqual is not a dataframe.", call. = FALSE)
-      }
+        stop("The input to DEqual is not a dataframe.", call. = FALSE)
+    }
     # Check if 't' is in the column names of DE
     if (!("t" %in% colnames(DE))) {
         stop("'t' is not a column in 'DE'.", call. = FALSE)
-      }
+    }
     # Check if DE has non-null row names
     if (is.null(rownames(DE))) {
         stop("Row names of 'DE' are NULL.", call. = FALSE)
@@ -81,8 +81,8 @@ DEqual <- function(DE, deg_tstats = qsvaR::degradation_tstats, show.legend = TRU
     }
 
     ## Locate common transcripts
-    whichTx <- which_tx_names(rownames(DE),rownames(deg_tstats))
-    common = qsvaR::normalize_tx_names(rownames(DE)[whichTx])
+    whichTx <- which_tx_names(rownames(DE), rownames(deg_tstats))
+    common <- qsvaR::normalize_tx_names(rownames(DE)[whichTx])
     stopifnot(length(common) > 0)
     rownames(deg_tstats) <- qsvaR::normalize_tx_names(rownames(deg_tstats))
     ## Create dataframe with common transcripts
@@ -98,20 +98,25 @@ DEqual <- function(DE, deg_tstats = qsvaR::degradation_tstats, show.legend = TRU
         scale_fill_continuous(type = "viridis") +
         theme_bw() +
         theme(text = element_text(size = font.size))
-        # labs(caption = paste0("correlation: ", cor_val)
-    if (show.cor != 'none') {
-      switch(show.cor,
-        'caption' = {
-          p <- p + labs(caption = paste0(cor.label, cor_val))
-        },
-        'corner-top' = {
-          p <- p + annotate("text", x = max(common_data$DE_t), y = max(common_data$degradation_t),
-                            label = paste0(cor.label, cor_val), size = cor.size, hjust = 1, vjust = 1)
-        },
-        'corner-bottom' = {
-          p <- p + annotate("text", x = max(common_data$DE_t), y = min(common_data$degradation_t),
-                            label = paste0(cor.label, cor_val), size = cor.size, hjust = 1, vjust = 0)
-        })
+    # labs(caption = paste0("correlation: ", cor_val)
+    if (show.cor != "none") {
+        switch(show.cor,
+            "caption" = {
+                p <- p + labs(caption = paste0(cor.label, cor_val))
+            },
+            "corner-top" = {
+                p <- p + annotate("text",
+                    x = max(common_data$DE_t), y = max(common_data$degradation_t),
+                    label = paste0(cor.label, cor_val), size = cor.size, hjust = 1, vjust = 1
+                )
+            },
+            "corner-bottom" = {
+                p <- p + annotate("text",
+                    x = max(common_data$DE_t), y = min(common_data$degradation_t),
+                    label = paste0(cor.label, cor_val), size = cor.size, hjust = 1, vjust = 0
+                )
+            }
+        )
     }
     return(p)
 }

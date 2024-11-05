@@ -26,20 +26,20 @@ test_that("output is an numeric", {
 
 # Test for input is an rse object
 test_that("getDegTx throws an error when input is not a RangedSummarizedExperiment object", {
-  qsv <- list(x = matrix(seq_len(9), ncol = 3))
-  expect_error(getDegTx(qsv, assayname = "tpm"), "'rse_tx' must be a RangedSummarizedExperiment object.")
+    qsv <- list(x = matrix(seq_len(9), ncol = 3))
+    expect_error(getDegTx(qsv, assayname = "tpm"), "'rse_tx' must be a RangedSummarizedExperiment object.")
 })
 
 # Test for assayname not in assayNames
 test_that("k_qsvs throws an error when assayname is not in assayNames", {
-  expect_error(k_qsvs(rse_tx, assayname = "not_in_assayNames"), "'not_in_assayNames' is not in assayNames\\(rse_tx\\).")
+    expect_error(k_qsvs(rse_tx, assayname = "not_in_assayNames"), "'not_in_assayNames' is not in assayNames\\(rse_tx\\).")
 })
 
 # Test when number of rows in 'mod' does not match number of columns in 'rse_tx'
 test_that("Number of rows in 'mod' does not match number of columns in 'rse_tx'", {
-  mod_not_matching <- mod
-  mod_not_matching <- mod_not_matching[-1, ]
-  expect_error(k_qsvs(rse_tx, mod_not_matching, "tpm"), "The number of rows in 'mod' does not match the number of input 'rse_tx' columns.")
+    mod_not_matching <- mod
+    mod_not_matching <- mod_not_matching[-1, ]
+    expect_error(k_qsvs(rse_tx, mod_not_matching, "tpm"), "The number of rows in 'mod' does not match the number of input 'rse_tx' columns.")
 })
 
 test_that("non-full rank data throws error", {
@@ -58,4 +58,3 @@ test_that("test that mod is a matrix", {
     set.seed(20230621)
     expect_error(k_qsvs(rse_tx, mod = "mod", assayname = "tpm"), "'mod' must be a matrix.")
 })
-

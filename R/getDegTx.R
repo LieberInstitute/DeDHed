@@ -34,39 +34,38 @@
 #' @examples
 #' degTx <- getDegTx(rse_tx, "standard")
 getDegTx <- function(rse_tx, type = c("cell_component", "standard", "top1500"),
-                     sig_transcripts = NULL, assayname = "tpm", verbose = TRUE) {
-
-  #type = arg_match(type)
-  if (is.null(sig_transcripts)) {
-    type = arg_match(type)
-    sig_transcripts <- select_transcripts(type)
-  } else {
-    type = "custom"
-  }
-  # Validate rse_tx is a RangedSummarizedExperiment object
-  if (!is(rse_tx, "RangedSummarizedExperiment")) {
-    stop("'rse_tx' must be a RangedSummarizedExperiment object.", call. = FALSE)
-  }
-
-  # Check if assayname is in assayNames
-  if (!assayname %in% assayNames(rse_tx)) {
-    stop(sprintf("'%s' is not in assayNames(rse_tx).", assayname), call. = FALSE)
-  }
-
-  # Check for validity and matching of tx names and return the tx subset indexes in rse_tx
-  wtx <- which_tx_names(rownames(rse_tx), sig_transcripts)
-  if (length(wtx) == 0) {
-    stop("No transcripts found in the '",type, "' degradation model transcripts" )
-  }
-
-  if (verbose) {
-      message("   '",type,"' degradation model transcripts found: ", length(wtx))
-  }
-  rse_tx <- rse_tx[wtx, , drop = FALSE]
-
-  # Check if the row means is greater than 1
-  if (mean(rowMeans(assays(rse_tx)[[assayname]])) < 1) {
-    warning("The transcripts selected are lowly expressed in your dataset. This can impact downstream analysis.")
+    sig_transcripts = NULL, assayname = "tpm", verbose = TRUE) {
+    # type = arg_match(type)
+    if (is.null(sig_transcripts)) {
+        type <- arg_match(type)
+        sig_transcripts <- select_transcripts(type)
+    } else {
+        type <- "custom"
     }
-  return(rse_tx)
+    # Validate rse_tx is a RangedSummarizedExperiment object
+    if (!is(rse_tx, "RangedSummarizedExperiment")) {
+        stop("'rse_tx' must be a RangedSummarizedExperiment object.", call. = FALSE)
+    }
+
+    # Check if assayname is in assayNames
+    if (!assayname %in% assayNames(rse_tx)) {
+        stop(sprintf("'%s' is not in assayNames(rse_tx).", assayname), call. = FALSE)
+    }
+
+    # Check for validity and matching of tx names and return the tx subset indexes in rse_tx
+    wtx <- which_tx_names(rownames(rse_tx), sig_transcripts)
+    if (length(wtx) == 0) {
+        stop("No transcripts found in the '", type, "' degradation model transcripts")
+    }
+
+    if (verbose) {
+        message("   '", type, "' degradation model transcripts found: ", length(wtx))
+    }
+    rse_tx <- rse_tx[wtx, , drop = FALSE]
+
+    # Check if the row means is greater than 1
+    if (mean(rowMeans(assays(rse_tx)[[assayname]])) < 1) {
+        warning("The transcripts selected are lowly expressed in your dataset. This can impact downstream analysis.")
+    }
+    return(rse_tx)
 }

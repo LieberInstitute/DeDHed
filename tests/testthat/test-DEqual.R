@@ -11,25 +11,24 @@ random_de <- data.frame(
 
 # Test if DEqual throws an error when input is not a dataframe
 test_that("DEqual throws an error for non-dataframe input", {
-  # Test if DEqual throws an error when input is not a dataframe
-  expect_error(DEqual(rse_tx), "The input to DEqual is not a dataframe.")
+    # Test if DEqual throws an error when input is not a dataframe
+    expect_error(DEqual(rse_tx), "The input to DEqual is not a dataframe.")
 })
 
 # Test when 't' is not in the columns
 test_that("DE does not have column 't'", {
-  DE_without_t <- random_de
-  DE_without_t$t <- NULL
-  expect_error(DEqual(DE_without_t), "'t' is not a column in 'DE'.")
+    DE_without_t <- random_de
+    DE_without_t$t <- NULL
+    expect_error(DEqual(DE_without_t), "'t' is not a column in 'DE'.")
 })
 
 # Test that the output is a ggplot object
 test_that("output is a ggplot", {
-    expect_equal(class(DEqual(random_de)), c("gg",      "ggplot"))
+    expect_equal(class(DEqual(random_de)), c("gg", "ggplot"))
 })
 
 # Test for rownames starting with "ENST"
 test_that("DEqual correctly processes random_de", {
-  # If random_de is correctly structured and all rownames start with "ENST", expect no error
-  expect_silent(DEqual(random_de))
+    # If random_de is correctly structured and all rownames start with "ENST", expect no error
+    expect_silent(DEqual(random_de))
 })
-

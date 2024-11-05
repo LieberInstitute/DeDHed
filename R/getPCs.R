@@ -13,16 +13,15 @@
 #' @examples
 #' getPCs(rse_tx, "tpm")
 getPCs <- function(rse_tx, assayname = "tpm") {
-  
-  # Validate rse_tx is a RangedSummarizedExperiment object
-  if (!is(rse_tx, "RangedSummarizedExperiment")) {
-    stop("'rse_tx' must be a RangedSummarizedExperiment object.", call. = FALSE)
-  }
-  
-  # Check if assayname is in assayNames
-  if (!assayname %in% assayNames(rse_tx)) {
-    stop(sprintf("'%s' is not in assayNames(rse_tx).", assayname), call. = FALSE)
-  }
-  # Compute PCs
-  qsvPCs <- prcomp(t(log2(assays(rse_tx)[[assayname]] + 1)))
+    # Validate rse_tx is a RangedSummarizedExperiment object
+    if (!is(rse_tx, "RangedSummarizedExperiment")) {
+        stop("'rse_tx' must be a RangedSummarizedExperiment object.", call. = FALSE)
+    }
+
+    # Check if assayname is in assayNames
+    if (!assayname %in% assayNames(rse_tx)) {
+        stop(sprintf("'%s' is not in assayNames(rse_tx).", assayname), call. = FALSE)
+    }
+    # Compute PCs
+    qsvPCs <- prcomp(t(log2(assays(rse_tx)[[assayname]] + 1)))
 }
