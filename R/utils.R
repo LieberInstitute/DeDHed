@@ -1,50 +1,50 @@
-#' Remove version number from Gencode/Ensembl transcript names
+#' Remove version number from Gencode/Ensembl IDs
 #'
-#' This function removes the Gencode/ENSEMBL version from the transcript ID, while protecting _PAR_Y suffixes if present
+#' This function removes the version from the Gencode/ENSEMBL IDs, while protecting _PAR_Y suffixes if present
 #'
-#' @param txnames A `character()` vector of GENCODE or ENSEMBL transcript IDs
+#' @param fids A `character()` vector of GENCODE or ENSEMBL feature IDs
 #'
 #'
 #' @return A
-#'  `character()` vector of transcript names without versioning
+#'  `character()` vector of feature IDs without versioning
 #'
 #' @export
 #'
 #' @examples
-#' ensIDs <- normalize_tx_names(rownames(rse_tx))
-normalize_tx_names <- function(txnames) {
-    sub("(ENST\\d+)\\.\\d+(.*)$", "\\1\\2", txnames, perl = TRUE)
+#' ensIDs <- normalize_feature_ids(rownames(rse))
+normalize_feature_ids <- function(fids) {
+    sub("(ENS[TG]\\d+)\\.\\d+(.*)$", "\\1\\2", fids, perl = TRUE)
 }
 
 
-#' Check validity of transcript vectors and return a vector matching indexes in tx1
+#' Check validity of feature vectors and return a vector matching indexes in f1
 #'
-#' This function is used to check if tx1 and tx2 are GENCODE or ENSEMBL transcript IDs
-#' and return an integer vector of tx1 transcript indexes that are in tx2.
+#' This function is used to check if fids and sig_ids are GENCODE/ENSEMBL IDs
+#' and return an integer vector of fids feature indexes that are in sig_ids.
 #'
-#' @param txnames A `character()` vector of GENCODE or ENSEMBL transcript IDs.
-#' @param sig_tx A `character()` vector of GENCODE or ENSEMBL signature transcript IDs.
+#' @param fids A `character()` vector of GENCODE or ENSEMBL feature IDs.
+#' @param sig_ids A `character()` vector of GENCODE or ENSEMBL signature feature IDs.
 #'
 #'
 #' @return A
-#'  `integer()` vector of `txnames` transcript indexes in `sig_tx`.
+#'  `integer()` vector of `fids` feature indexes in `sig_ids`.
 #'
 #' @export
 #'
 #' @examples
-#' sig_tx <- select_transcripts("cell_component")
-#' whichTx <- which_tx_names(rownames(rse_tx), sig_tx)
-which_tx_names <- function(txnames, sig_tx) {
+#' sig_ids <- select_features("cell_component")
+#' whichIDs <- which_feature_ids(rownames(rse), sig_ids)
+which_feature_ids <- function(fids, sig_ids) {
     ## Between releases 25 and 43, PAR genes and transcripts had the "_PAR_Y" suffix appended to their identifiers.
     ## Since release 44, these have their own IDs
-    if (!all(grepl("^ENST\\d+", txnames))) {
-        stop("The transcript names must be ENSEMBL or Gencode IDs (ENST...)")
+    if (!all(grepl("^ENS[TG]\\d+", fids))) {
+        stop("The feature IDs must be ENSEMBL or Gencode IDs (ENS[TG]...)")
     }
-    if (!all(grepl("^ENST\\d+", sig_tx))) {
-        stop("The signature transcript names must be ENSEMBL or Gencode IDs (ENST...)")
+    if (!all(grepl("^ENS[TG]\\d+", sig_ids))) {
+        stop("The signature feature IDs must be ENSEMBL or Gencode IDs (ENS[TG]...)")
     }
-    ## normalize the transcript names
-    r_tx <- normalize_tx_names(txnames)
-    s_tx <- normalize_tx_names(sig_tx)
-    which(r_tx %in% s_tx)
+    ## normalize the feature IDs
+    r_ids <- normalize_feature_ids(fids)
+    s_ids <- normalize_feature_ids(sig_ids)
+    which(r_ids %in% s_ids)
 }
