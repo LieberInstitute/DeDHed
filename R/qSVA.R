@@ -35,7 +35,7 @@
 #' qSVA(rse = rse, type = "cell_component", mod = mod, assayname = "tpm")
 #'
 qSVA <- function(rse, type = c("cell_component", "top1000", "top1500"),
-                      sig_features = NULL, mod, assayname) {
+                      sig_features = NULL, mod, assayname="tpm") {
     if (is.null(sig_features)) {
         type <- arg_match(type) # must be one of those in the list if sig_features is NULL
     }

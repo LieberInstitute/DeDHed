@@ -9,7 +9,7 @@ qSVA(
   type = c("cell_component", "top1000", "top1500"),
   sig_features = NULL,
   mod,
-  assayname
+  assayname = "tpm"
 )
 }
 \arguments{

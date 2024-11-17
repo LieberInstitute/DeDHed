@@ -54,7 +54,7 @@ getDegFeatures <- function(rse, type = c("cell_component", "top1000", "top1500")
     }
 
     # Check for validity and matching of tx names and return the tx subset indexes in rse_tx
-    wtx <- which_tx_names(rownames(rse), sig_features)
+    wtx <- which_feature_ids(rownames(rse), sig_features)
     if (length(wtx) == 0) {
         stop("No features found in the '", type, "' degradation model features")
     }
