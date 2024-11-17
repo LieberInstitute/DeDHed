@@ -45,7 +45,7 @@ select_features <- function(type = c("cell_component", "top1500", "top1000", "st
         if (type == "cell_component") {
             return(qsvaR::genes$cell_component)
         } else if (type == "top1500") {
-            return(qsvaR::genes$gene1500)
+            return(qsvaR::genes$tx1500) ## I know, it should be genes1500
         } else if (type == "top1000" || type == "standard") {
             return(qsvaR::genes$standard)
         }

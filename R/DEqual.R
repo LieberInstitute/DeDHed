@@ -75,20 +75,19 @@ DEqual <- function(DE, deg_tstats = qsvaR::degradation_tstats, show.legend = TRU
         if (is.null(rownames(deg_tstats))) {
             stop("Row names of 'deg_tstats' are NULL.", call. = FALSE)
         }
-        if (!all(grepl("^ENST\\d+", rownames(deg_tstats)))) {
-            stop("The row names of 'deg_tstats' must be ENSEMBL or Gencode IDs (ENST...)", call. = FALSE)
+        if (!all(grepl("^ENS[TG]\\d+", rownames(deg_tstats)))) {
+            stop("The row names of 'deg_tstats' must be ENSEMBL or Gencode IDs (ENS...)", call. = FALSE)
         }
     }
-
-    ## Locate common transcripts
-    whichTx <- which_tx_names(rownames(DE), rownames(deg_tstats))
-    common <- qsvaR::normalize_tx_names(rownames(DE)[whichTx])
+    ## Locate common features
+    whichFt <- qsvaR::which_feature_ids(rownames(DE), rownames(deg_tstats))
+    common <- qsvaR::normalize_feature_ids(rownames(DE)[whichFt])
     stopifnot(length(common) > 0)
-    rownames(deg_tstats) <- qsvaR::normalize_tx_names(rownames(deg_tstats))
-    ## Create dataframe with common transcripts
+    rownames(deg_tstats) <- qsvaR::normalize_feature_ids(rownames(deg_tstats))
+    ## Create dataframe with common features
     common_data <- data.frame(
         degradation_t = deg_tstats[common, "t"],
-        DE_t = DE[whichTx, "t"]
+        DE_t = DE[whichFt, "t"]
     )
     cor_val <- signif(cor(common_data[, 1], common_data[, 2]), 2)
     p <- ggplot(common_data, aes(x = DE_t, y = degradation_t)) +
@@ -98,7 +97,6 @@ DEqual <- function(DE, deg_tstats = qsvaR::degradation_tstats, show.legend = TRU
         scale_fill_continuous(type = "viridis") +
         theme_bw() +
         theme(text = element_text(size = font.size))
-    # labs(caption = paste0("correlation: ", cor_val)
     if (show.cor != "none") {
         switch(show.cor,
             "caption" = {

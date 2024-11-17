@@ -4,16 +4,16 @@
 \alias{k_qsvs}
 \title{Apply num.sv algorithm to determine the number of pcs to be included}
 \usage{
-k_qsvs(rse_tx, mod, assayname)
+k_qsvs(rse, mod, assayname)
 }
 \arguments{
-\item{rse_tx}{A \link[SummarizedExperiment:RangedSummarizedExperiment-class]{RangedSummarizedExperiment-class} object containing
-the transcript data desired to be studied.}
+\item{rse}{A \link[SummarizedExperiment:RangedSummarizedExperiment-class]{RangedSummarizedExperiment-class} object containing
+the feature data desired to be studied.}
 
 \item{mod}{Model Matrix with necessary variables the you would
 model for in differential expression}
 
-\item{assayname}{character string specifying the name of the assay desired in rse_tx}
+\item{assayname}{character string specifying the name of the assay desired in rse}
 }
 \value{
 integer representing number of pcs to be included
@@ -26,7 +26,7 @@ Apply num.sv algorithm to determine the number of pcs to be included
 ## rse_tx data. Note that the model you'll use in your own data
 ## might look different from this model.
 mod <- model.matrix(~ mitoRate + Region + rRNA_rate + totalAssignedGene + RIN,
-    data = colData(rse_tx)
+    data = colData(rse)
 )
 
 ## To ensure that the results are reproducible, you will need to set a
@@ -34,5 +34,5 @@ mod <- model.matrix(~ mitoRate + Region + rRNA_rate + totalAssignedGene + RIN,
 ## sva::num.sv() which needs a random seed to ensure reproducibility of the
 ## results.
 set.seed(20230621)
-k_qsvs(rse_tx, mod, "tpm")
+k_qsvs(rse, mod, "tpm")
 }

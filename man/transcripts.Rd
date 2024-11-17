@@ -28,6 +28,6 @@ model, the main effect model, and the cell proportions models (main and
 interaction) were used to generate this model of qSVs.
 }
 \seealso{
-\link{select_transcripts}
+\link{select_features}
 }
 \keyword{datasets}
