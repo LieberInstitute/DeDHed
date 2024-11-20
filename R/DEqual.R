@@ -48,8 +48,8 @@
 #' ## Create the DEqual plot
 #' DEqual(random_de)
 DEqual <- function(DE, deg_tstats = qsvaR::degradation_tstats, show.legend = TRUE,
-    show.cor = c("caption", "corner-top", "corner-bottom", "none"),
-    font.size = 12, cor.size = font.size / 2, cor.label = "cor: ") {
+    show.cor = c("corner-bottom", "corner-top","caption", "none"), xlab = "DE t-statistic",
+    ylab = "Degradation t-statistic", font.size = 12, cor.size = font.size / 2, cor.label = "cor: ") {
     ## For R CMD check
     DE_t <- degradation_t <- NULL
     show.cor <- rlang::arg_match(show.cor)
@@ -91,8 +91,8 @@ DEqual <- function(DE, deg_tstats = qsvaR::degradation_tstats, show.legend = TRU
     )
     cor_val <- signif(cor(common_data[, 1], common_data[, 2]), 2)
     p <- ggplot(common_data, aes(x = DE_t, y = degradation_t)) +
-        xlab("DE t-statistic") +
-        ylab("Degradation t-statistic") +
+        xlab(xlab) +
+        ylab(ylab) +
         geom_bin2d(bins = 70, show.legend = show.legend) +
         scale_fill_continuous(type = "viridis") +
         theme_bw() +
