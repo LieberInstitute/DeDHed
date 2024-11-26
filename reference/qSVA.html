@@ -63,45 +63,28 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">qSVA</span><span class="op">(</span></span>
-<span>  <span class="va">rse_tx</span>,</span>
-<span>  type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"cell_component"</span>, <span class="st">"standard"</span>, <span class="st">"top1500"</span><span class="op">)</span>,</span>
-<span>  sig_transcripts <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  <span class="va">mod</span>,</span>
-<span>  <span class="va">assayname</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">qSVA</span><span class="op">(</span><span class="va">rse_tx</span>, sig_transcripts <span class="op">=</span> <span class="fu"><a href="select_transcripts.html">select_transcripts</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">mod</span>, <span class="va">assayname</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>rse_tx</dt>
-<dd><p>A <a href="https://rdrr.io/pkg/SummarizedExperiment/man/RangedSummarizedExperiment-class.html" class="external-link">RangedSummarizedExperiment-class</a> object containing
-the transcript data desired to be studied.</p></dd>
-
-
-<dt>type</dt>
-<dd><p>a character string specifying which model you would
-like to use from the sets of signature transcripts identified
-by the qsvaR package. This can be omitted if a custom set of
-transcripts is provided to sig_transcripts.</p></dd>
+<dd><p>A <a href="https://rdrr.io/pkg/SummarizedExperiment/man/RangedSummarizedExperiment-class.html" class="external-link">RangedSummarizedExperiment-class</a>
+object containing the transcript data desired to be studied.</p></dd>
 
 
 <dt>sig_transcripts</dt>
-<dd><p>A list of transcript IDs that are associated
-with degradation signal. Specifying a <code><a href="https://rdrr.io/r/base/character.html" class="external-link">character()</a></code> input with ENSEMBL
-transcript IDs (whose values should match entries in <code>rownames(rse_tx)</code>).
-This argument provides a custom list of transcripts for adjusting
-for degradation; this should be used instead of the <code>type</code> argument.</p></dd>
+<dd><p>A <code><a href="https://rdrr.io/r/base/character.html" class="external-link">character()</a></code> vector of transcripts that should be
+associated with degradation, expected to be present in <code>rownames(rse_tx)</code>.</p></dd>
 
 
 <dt>mod</dt>
-<dd><p>Model Matrix with necessary variables the you would
-model for in differential expression</p></dd>
+<dd><p>Model Matrix with necessary variables the you would model for in
+differential expression.</p></dd>
 
 
 <dt>assayname</dt>
-<dd><p>character string specifying the name of
-the assay desired in rse_tx</p></dd>
+<dd><p>character string specifying the name of the assay desired in rse_tx</p></dd>
 
 </dl></div>
     <div id="value">
@@ -125,191 +108,130 @@ the assay desired in rse_tx</p></dd>
 <span class="r-in"><span><span class="co">## sva::num.sv() which needs a random seed to ensure reproducibility of the</span></span></span>
 <span class="r-in"><span><span class="co">## results.</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">20230621</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">qSVA</span><span class="op">(</span>rse_tx <span class="op">=</span> <span class="va">rse_tx</span>, type <span class="op">=</span> <span class="st">"cell_component"</span>, mod <span class="op">=</span> <span class="va">mod</span>, assayname <span class="op">=</span> <span class="st">"tpm"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>    'cell_component' degradation model transcripts found: 2976</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                             qSV1        qSV2        qSV3         qSV4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br1385_A1_ribo -20.8283999 -18.9358162  11.8368597  -0.38990791</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br1385_A2_ribo   3.3372474 -17.1339387   2.2181715   1.73676021</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br1385_A3_ribo  35.3748653 -17.7544971  -5.5450016  -0.04749162</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br1385_A4_ribo  22.4269171 -20.3065083   4.2369380   1.48712394</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br1729_B1_ribo -25.0123011 -18.8415182  15.0132410  -0.70108704</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br1729_B2_ribo -15.1701602 -17.9420267  13.7012744   0.50581653</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br1729_B3_ribo  46.9207780 -22.2897020   0.4372831  -0.21605089</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br1729_B4_ribo  10.9413016 -22.0281930  12.7142861   0.08721363</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2015_F1_ribo -29.3995258  -8.3544389   3.9805431   1.74773326</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2015_F2_ribo  -6.3204198 -10.4721078   6.4247990   2.18864116</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2015_F3_ribo  15.7779525 -16.5898440  -4.4563884   0.50583992</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2015_F4_ribo  11.2904985 -23.0349209   4.0765805   0.50995351</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2020_C1_ribo -23.7013135 -16.3300484   9.4727160   2.79459708</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2020_C2_ribo   7.1892335 -19.3861125   9.8201769   4.19523622</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2020_C3_ribo  57.4179250 -24.7576640  -6.8127194   2.19078208</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2020_C4_ribo  29.7637525 -21.1729343   5.4408057   4.11319713</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2074_D1_ribo -43.8123596  -9.8948694   2.2809540  -1.54354325</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2074_D2_ribo -19.3014354 -19.3799657  12.0356772   0.32831012</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2074_D3_ribo  29.2666406 -31.4707974   3.8466814  -0.90302457</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2074_D4_ribo  -8.8774683 -19.9736883   9.5838997  -0.13659758</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br2623-H1a           -29.5871404  -0.8983503 -11.0290341  -4.47414859</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br2623-H1b           -15.4894971   0.1209622  -9.4141881   1.04938327</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br2623-H1c           -15.9828262  -4.0485559 -10.6427513  -3.99206981</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br2623-H1d             3.6237689  -3.1175709 -16.2738209  -1.91615026</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5005-H2a           -38.3799917   2.8809254   4.9856222 -12.92133083</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5005-H2b            -9.3337908   8.7067971  10.2751425  -4.95540639</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5005-H2c           -18.4853856   3.5485338   1.8176085  -7.47678165</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5005-H2d            -6.5076058   6.0442811  -0.3228424  -9.91571964</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5370-H3a           -23.5888134   1.6245009  -8.2861373 -21.34840512</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5370-H3b            -1.4434709   4.1472788  -5.0481132 -16.94304366</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5370-H3c             1.9617211   5.1906688  -6.7759051 -17.83768277</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5370-H3d            17.8526682   2.7759192 -17.2175150 -21.15270193</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5889-H4a            -0.4701251  11.8751826  13.8751852 -11.41212989</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5889-H4b             7.0633761  16.4422422  15.2495352  -7.23392242</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5889-H4c            25.2251257  17.6023287  12.4713693  -6.87359313</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5889-H4d            29.8482061  20.9653347   5.5102993  -6.43804434</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5941-H5a           -35.6253833   0.7134732 -10.5264167  -5.42196417</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5941-H5b           -17.6191395   2.5113135 -13.4322834   1.56757862</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5941-H5c            -6.6487252  -1.2955902  -9.5993058   0.78914386</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5941-H5d            -7.6194942   1.3309445 -13.6071695  -2.26065092</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br2623-C1a           -10.1010034   3.4651972 -12.6639320  14.68966429</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br2623-C1b           -12.7938639  13.1044541  -8.6413894  11.72388243</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br2623-C1c            -6.8892598   5.5181045 -14.9853887  15.12509117</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br2623-C1d            -0.6433381   5.7535892 -14.0623212  15.30292400</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5005-C2a           -18.5856349  10.7736928   7.0093586   3.88175527</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5005-C2b           -10.1477427  11.8512887   5.5053828   6.00909087</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5005-C2c           -11.2904273  12.5751571   3.0188303   7.33514500</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5005-C2d             3.7343795  14.3375912   2.0946709   8.34727817</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5370-C3a            11.1243523  14.9407954 -13.1933827  -7.11805206</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5370-C3b            19.3258020  18.4608793 -11.4828406  -6.25664758</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5370-C3c            25.8292091  15.8747211 -16.7403786  -6.34834583</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5370-C3d            28.5445500  12.7132908 -19.2216966  -6.53677072</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5889-C4a            -0.9700789  21.7463078  22.4511925   3.15678553</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5889-C4b            11.7991678  28.3404649  26.4469573   4.29122128</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5889-C4c            21.2170851  31.2093559  22.3907290   5.21536455</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5889-C4d            26.1076975  31.6279907  18.7055320   5.07813587</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5941-C5a            -4.6088301   4.6893368  -8.8994060  17.20439550</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5941-C5b            -8.3377268  10.1820536  -6.3878007  14.04295770</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5941-C5c            -3.2186105   6.8648876 -11.6051628  17.77800976</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5941-C5d             3.8270681   4.8998134 -12.0550115  17.79225266</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                              qSV5        qSV6         qSV7         qSV8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br1385_A1_ribo   3.29894775  -1.8954415   4.83406406 -11.68699091</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br1385_A2_ribo   0.84142914   1.4315062   1.15898669 -16.89668243</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br1385_A3_ribo  -1.23691206   9.2405143   1.60037940 -10.94782893</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br1385_A4_ribo  -0.22938461   6.4807403   4.29630078 -12.12410484</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br1729_B1_ribo   4.75300439  -4.0030144   3.11435837  -4.92000092</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br1729_B2_ribo   4.51049214  -1.6362233   2.41412494  -5.16683186</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br1729_B3_ribo   0.56971055   5.7599980  -1.07249220  -5.43263053</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br1729_B4_ribo   3.16838318  -0.5522472   4.42032899  -0.20649712</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2015_F1_ribo   3.41900549  -0.6198994  -0.73421338 -10.13414592</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2015_F2_ribo   4.31215189   2.1610525   6.00198455  -1.42144827</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2015_F3_ribo  -0.40935541   8.6863557  -0.13533690  -2.25662222</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2015_F4_ribo   4.94372727   3.4489181  -0.32213329  -4.96589724</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2020_C1_ribo   1.46720062  -7.7961467   2.75399362   7.83051976</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2020_C2_ribo   1.34470808  -6.3384212   5.19661754  12.62619357</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2020_C3_ribo  -3.81432346   4.5802790  -1.48774773   9.35572524</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2020_C4_ribo  -1.47191987  -3.2541064   2.09588336  13.76465289</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2074_D1_ribo  -1.75183563 -12.9689274 -10.11617641  -4.74763398</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2074_D2_ribo   0.32398169 -13.1519853  -6.31620484   6.45949931</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2074_D3_ribo  -0.90696548  -5.2032692 -11.94930102   6.45550449</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2074_D4_ribo  -0.57767914 -11.4013011  -6.68290750   8.43098576</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br2623-H1a           -12.69740447   1.9138557  -6.53451425  -1.75738761</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br2623-H1b           -10.87797067   3.0498629  -7.11817127   0.93318134</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br2623-H1c           -12.55090381   2.9803121  -6.44253868   1.52592184</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br2623-H1d           -14.53239623   5.7884663  -8.67921032   1.79698709</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5005-H2a             2.42068118  10.9512446  -0.12953474   2.41265702</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5005-H2b             7.79465882  12.0175275   1.36284577   6.16517224</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5005-H2c             6.76454127  14.1901712  -0.58747472   4.79404488</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5005-H2d             3.38080691  14.3939315   2.02688893   6.22810083</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5370-H3a             1.93037917  -5.7163601   0.71840260  -0.64194065</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5370-H3b             5.25120934  -7.3121912   2.03259249   2.40058084</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5370-H3c             3.55916337  -5.2554067   3.54218830   3.01837757</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5370-H3d             2.96665210  -2.1553103   0.05010423   0.03320052</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5889-H4a           -12.72343611   1.6713121  -0.36124754  -0.05454226</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5889-H4b           -11.96667889   1.4334044  -0.59322297   0.32283968</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5889-H4c           -13.12566123   3.2421874  -1.88918750   0.55878449</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5889-H4d           -14.81789627   6.0559651  -2.18691163  -1.67350138</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5941-H5a            -9.28421469   1.3716811   8.20367336  -0.24067790</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5941-H5b           -10.17626423   0.8594806   9.46620221  -0.70811909</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5941-H5c           -10.71952941   1.1437176  12.15379216   4.57822866</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5941-H5d           -11.36542196   2.5073586  11.16092701   1.70449173</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br2623-C1a            -1.90938499  -1.0596874 -10.57105777  -1.19942304</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br2623-C1b            -3.48398945  -1.2994313  -6.77690867  -2.80423421</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br2623-C1c            -2.03352754  -0.2720727 -10.96103824  -2.32973869</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br2623-C1d            -2.57191628  -0.3600162 -10.48283360  -1.25557221</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5005-C2a            15.07619837   8.8410781  -3.68414960   3.64808322</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5005-C2b            16.94193248  11.3370314  -2.86233994   3.82357436</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5005-C2c            15.77557559  11.3491061  -4.42787165   1.76588752</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5005-C2d            15.90688141  11.2769542  -3.13208193   3.72499896</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5370-C3a            12.76596963 -11.0755391   0.50262761  -2.74326702</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5370-C3b            13.62213996 -11.0004558   1.01741797  -2.41919924</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5370-C3c            12.98295147 -10.4774349  -0.88237918  -2.40960925</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5370-C3d            14.87685298  -8.0954038  -1.53708193  -2.77389696</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5889-C4a            -2.19946861  -6.3500535  -1.17184592  -1.15574276</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5889-C4b            -3.81272604  -6.8604795   0.83932014  -1.91890775</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5889-C4c            -5.33064053  -5.3499233  -0.47747863  -3.04230493</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5889-C4d            -6.55865453  -4.0737780   0.22353501  -2.73816700</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5941-C5a            -0.06518356  -2.9455861   9.93025775   2.93378335</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5941-C5b            -1.40041323  -4.2474997  10.81490274   1.04866021</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5941-C5c             0.22658203  -2.6394660   9.04720791   1.44201283</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5941-C5d            -0.59385989  -2.7969340   9.32568543   2.99089692</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                              qSV9       qSV10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br1385_A1_ribo   6.34511072  -4.1495011</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br1385_A2_ribo  -1.92442917  -8.1839256</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br1385_A3_ribo   3.60630196  -6.2568901</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br1385_A4_ribo   7.54302269  -5.3148216</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br1729_B1_ribo   5.77893819   9.1803349</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br1729_B2_ribo   7.28928533   8.4832380</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br1729_B3_ribo  -3.02450270  13.2738159</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br1729_B4_ribo  10.55883394  10.9141091</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2015_F1_ribo -11.81402317  -6.5252192</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2015_F2_ribo  -4.91369086  -8.5616784</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2015_F3_ribo  -1.66189763   1.3488337</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2015_F4_ribo  -9.58395499   1.3503042</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2020_C1_ribo   3.10327300  -7.9392924</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2020_C2_ribo   7.02504464 -10.5244890</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2020_C3_ribo  -8.62780929  -4.9353544</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2020_C4_ribo   7.29553174  -8.1189661</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2074_D1_ribo -11.97889427  -2.7206437</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2074_D2_ribo  -1.96818749   0.1528716</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2074_D3_ribo -13.77037563   9.1639410</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2074_D4_ribo  -0.86310922   0.7028271</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br2623-H1a             2.86676237  -0.2293483</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br2623-H1b             3.90817300  -1.6207157</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br2623-H1c             7.19468385   0.5193020</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br2623-H1d             3.64329853  -0.2277253</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5005-H2a            -3.15012947   0.2044681</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5005-H2b             0.15519638  -1.4527198</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5005-H2c             0.07232186  -3.7066066</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5005-H2d            -1.81868765  -1.8361417</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5370-H3a             1.40711187   1.7683458</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5370-H3b             3.56969060   0.9653862</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5370-H3c             2.07156301  -2.4789929</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5370-H3d             0.95105339   0.5577165</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5889-H4a             1.65074195   4.8675765</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5889-H4b             1.76308175   2.2874004</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5889-H4c             1.27294612   1.6974219</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5889-H4d            -3.20788895  -0.8667641</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5941-H5a            -5.31164609   1.8319140</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5941-H5b            -4.06731484   2.7464987</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5941-H5c            -1.11500418   1.4189277</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5941-H5d            -4.74351709   0.3225908</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br2623-C1a             6.31286510   2.2224562</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br2623-C1b             0.76255820  -4.4206101</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br2623-C1c             4.95793090  -0.5068652</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br2623-C1d             5.05998073  -1.6079189</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5005-C2a            -0.84760437   3.0707237</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5005-C2b            -1.20533328   1.0742630</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5005-C2c             0.09316461   2.6961947</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5005-C2d            -0.59410619  -0.5768293</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5370-C3a             1.00753636   2.4760862</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5370-C3b            -0.34848194  -2.4107377</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5370-C3c             0.82808073  -0.5304384</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5370-C3d             1.12594882  -0.9059015</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5889-C4a             0.79079185   4.5549161</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5889-C4b            -1.72577388  -2.3539147</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5889-C4c            -1.88028060  -1.6856983</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5889-C4d            -2.09381344  -4.2096251</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5941-C5a            -1.62961776   5.7478035</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5941-C5b            -3.73429788   0.4379703</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5941-C5c            -1.37779312   4.5531531</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Br5941-C5d            -1.02865899   4.2669448</span>
+<span class="r-in"><span><span class="fu">qSVA</span><span class="op">(</span>rse_tx <span class="op">=</span> <span class="va">rse_tx</span>, mod <span class="op">=</span> <span class="va">mod</span>, assayname <span class="op">=</span> <span class="st">"tpm"</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Using 1044 degradation-associated transcripts.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             qSV1        qSV2       qSV3        qSV4        qSV5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br1385_A1_ribo -15.8672721 -12.3706539 -1.8250557  1.51888632 -0.01218481</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br1385_A2_ribo   1.6556199  -8.0281324 -1.0738816 -4.50675618 -8.58825752</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br1385_A3_ribo  25.3384820  -5.3240146  3.3150845 -0.56546246 -1.79096470</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br1385_A4_ribo  15.5859442 -10.4722056  0.3932367  0.99627839 -4.19047380</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br1729_B1_ribo -19.0007397 -12.2808055 -3.2636667  2.36908526  3.22374567</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br1729_B2_ribo -11.6801225 -11.4216642 -3.5355365  2.59402359 -0.14089959</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br1729_B3_ribo  33.5338036  -9.4991199  0.9506116 -4.88265288  2.67239443</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br1729_B4_ribo   6.7616423 -11.3475373 -2.7645155  6.56305015  2.40399963</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2015_F1_ribo -21.6646587  -4.4813660 -2.5604991 -6.62907017 -4.29788099</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2015_F2_ribo  -6.0196725  -8.5483118 -2.5461525  1.48356212 -0.10765696</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2015_F3_ribo  14.0693876  -4.1953416  3.2272074 -0.43368309  1.44563204</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2015_F4_ribo   9.0662610 -11.3620345 -2.3466733 -5.51689536  3.43711249</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2020_C1_ribo -17.7970001 -10.4456548 -4.0617924  1.65550803 -0.31407413</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2020_C2_ribo   2.7134773 -12.7331262 -4.4315213  5.48231731 -2.32052637</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2020_C3_ribo  41.3621779 -10.0975048  2.4201913 -6.52387331  3.65186231</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2020_C4_ribo  19.4249036 -11.1049686 -2.0921942  4.64493744 -1.46323248</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2074_D1_ribo -31.3822759  -4.2196405 -1.6018474 -7.56412052 -7.23769162</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2074_D2_ribo -14.6788526 -12.3946647 -3.9470495  1.68872681 -1.18334265</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2074_D3_ribo  22.2372531 -17.5881834 -0.4283349 -9.31245868  3.92253931</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2074_D4_ribo  -6.6602334 -11.9102376 -2.9932042  1.94225622 -2.97647765</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br2623-H1a           -17.4368272   3.3103737  8.4901488 -2.23516849  0.09691782</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br2623-H1b            -8.1086581   3.6500902  5.9787834 -0.62422784 -0.14121237</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br2623-H1c            -7.9022620   1.9855486  7.4230501  1.25420734  0.47473428</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br2623-H1d             6.0361201   5.1841577  9.9366248  0.09940832 -0.18942747</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5005-H2a           -25.6966081  -3.3646831  5.4395129 -1.11580169  2.01702683</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5005-H2b            -7.0497022  -0.7393247  0.1819131  3.19412165  1.31282809</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5005-H2c           -12.3931268  -0.2302357  3.3274929  2.08726661  2.33580293</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5005-H2d            -3.3015962   2.0176566  5.6557587  1.88070719  2.50506599</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5370-H3a           -15.3021782  -0.1408422  7.7460122  0.45830226  1.31590218</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5370-H3b            -0.8750812   0.5281671  3.8815361  3.67581441 -0.34284862</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5370-H3c             0.5837811   1.3426739  7.1195996  3.55593853  0.52337138</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5370-H3d            13.4756531   4.0693719  8.8956802  2.08654061 -0.25212951</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5889-H4a            -1.4146639  -0.3514845  5.0184463  2.75141034  1.15700192</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5889-H4b             3.4433652   2.1969559  3.3681149  3.88684088 -1.95214054</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5889-H4c            15.9873176   3.7633527  4.0637448  4.31141121 -3.35253144</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5889-H4d            19.5094658   7.4096739  5.9341236  1.80368304 -3.67381412</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5941-H5a           -22.0419158   1.5807285  8.1295078 -3.41247294  1.64470779</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5941-H5b            -8.8697237   5.6519260  5.8918015 -3.30879930 -0.38555744</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5941-H5c            -2.3678784   1.9300725  6.5161765  2.36053327  0.58450593</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5941-H5d            -3.0199792   3.4015244  7.5119565 -0.50574036 -0.41101206</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br2623-C1a            -4.5199965   8.9249453 -2.7801294 -2.38976044  1.36556803</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br2623-C1b            -9.3546218   9.5386242 -2.1276540 -3.95446968  0.46479482</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br2623-C1c            -3.1657310  10.1323544 -2.7417267 -3.00703860 -0.03148605</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br2623-C1d             0.7736339   9.9680350 -3.2045912 -2.22683210 -0.24318779</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5005-C2a           -12.8475582   3.8741030 -5.3069843  0.14286265  5.26345205</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5005-C2b            -7.4429662   4.8847338 -6.1230187  0.12203656  3.48710335</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5005-C2c            -7.4277746   7.1227905 -6.4037019 -1.14615485  2.17730076</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5005-C2d             2.2957480   7.5932940 -6.9834747  0.44091452 -0.41002468</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5370-C3a             7.8626696  10.0100012 -2.4449842 -1.35874912  1.06817387</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5370-C3b            11.3834946  10.2360201 -3.9916927 -0.32084631 -1.22874239</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5370-C3c            16.9801608  11.3703756 -2.5986650 -0.53488319 -1.78817309</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5370-C3d            19.3334321  10.1322825 -2.8902334 -0.36933264 -1.41092261</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5889-C4a            -3.9052788   2.8812354 -5.7253843  2.83609041  3.81624293</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5889-C4b             2.2369303   3.6432344 -7.0027978  3.52195782  0.64948482</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5889-C4c             9.2464010   6.9474427 -6.6720996  2.51806225 -1.26608458</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5889-C4d            12.5556762   8.4500147 -5.4778069  3.32774688 -2.65883440</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5941-C5a            -1.7130276   6.6881252 -4.7813919 -0.70428838  1.84668374</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5941-C5b            -5.9645386   7.0068497 -4.1438332 -2.01879942 -0.15737483</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5941-C5c            -0.7358994   9.0086645 -4.9518412 -1.42215720  0.05585854</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5941-C5d             4.1556194   8.2163381 -4.9923800 -0.66399321 -0.40064668</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             qSV6         qSV7         qSV8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br1385_A1_ribo  1.06453573 -3.815556219  1.027593763</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br1385_A2_ribo -1.91660808 -0.373412600  1.557946934</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br1385_A3_ribo  0.82740993 -2.212276260  1.863476084</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br1385_A4_ribo  1.74505075 -1.115064084  2.834002112</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br1729_B1_ribo -0.27758192 -3.694350036  0.604497945</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br1729_B2_ribo  0.94333344 -2.300718429  0.833032270</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br1729_B3_ribo -2.81410074  0.164342146  0.410570144</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br1729_B4_ribo  0.76181246  0.899574264 -0.862819348</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2015_F1_ribo -2.81227313 -0.543555516  2.975156750</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2015_F2_ribo  0.60277590 -0.228855169  5.246330856</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2015_F3_ribo  1.22030932  0.377111210  2.365659903</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2015_F4_ribo -1.58251006 -0.195619129  2.428274741</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2020_C1_ribo  1.59616912 -1.418234848  0.241582073</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2020_C2_ribo  4.23857840  2.580718424  0.849556950</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2020_C3_ribo -0.13360171 -0.056514286  0.156322719</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2020_C4_ribo  3.72033921  3.082108375  0.744166153</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2074_D1_ribo -2.17610415 -0.645713558 -3.357053282</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2074_D2_ribo  1.94149150 -0.079358609 -4.692604532</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2074_D3_ribo -1.74165236  2.971756749 -5.179630330</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DLPFC_Br2074_D4_ribo  2.42652749  2.161298643 -5.173738926</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br2623-H1a            0.14637755  1.194930418 -0.672847932</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br2623-H1b            1.07979871  2.855834580 -0.695539948</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br2623-H1c            1.30163472  3.921330802 -1.267392877</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br2623-H1d            3.93193146  2.122686712  0.477239843</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5005-H2a           -1.65730262 -1.166873529  1.898825629</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5005-H2b           -1.59447123  1.378500228  1.368447893</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5005-H2c           -1.25019696  1.619695306  2.091350440</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5005-H2d           -0.61713110  0.336181957  2.790450433</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5370-H3a           -1.29379050 -1.989147917 -2.943435220</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5370-H3b           -0.82777172  0.270676633 -3.597173069</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5370-H3c            0.12262276 -1.781037990 -1.454198677</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5370-H3d            0.10683698 -3.182788886 -1.609341001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5889-H4a           -3.75657200 -0.716657922 -2.659844471</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5889-H4b           -4.12240714  1.092508056 -1.645915017</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5889-H4c           -4.09234605  0.868814257 -1.101129325</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5889-H4d           -3.83254177 -0.687076820  0.371552020</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5941-H5a            0.48467345 -1.650517932  1.662855093</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5941-H5b            0.89532156 -0.004574709  1.280077530</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5941-H5c            1.85917400  0.938641762  0.883438253</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5941-H5d            1.58236376  0.438603339  2.639189967</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br2623-C1a            3.24585929  1.698399794 -1.420480730</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br2623-C1b            0.06200314  1.974004453  0.892435462</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br2623-C1c            3.06565524  2.293391255 -0.129613022</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br2623-C1d            3.04601058  2.985352440 -0.131862698</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5005-C2a           -0.99549421 -1.739838536 -0.192846850</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5005-C2b           -0.97955997 -0.228420366  0.821118120</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5005-C2c           -1.24089333  0.736576234 -0.182421919</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5005-C2d           -0.39937389  2.194399385  0.806529030</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5370-C3a            2.24681796 -5.667046630 -2.196750720</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5370-C3b            1.27472065 -4.087188119 -1.141386043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5370-C3c            2.13487792 -4.213819776 -1.267943503</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5370-C3d            3.25956846 -5.574951123 -0.329608668</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5889-C4a           -3.26079690 -0.775653930 -1.637361337</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5889-C4b           -4.74726678  0.456974381  0.472426284</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5889-C4c           -4.48924614  1.891780432  0.376824968</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5889-C4d           -3.65896124  1.687838776  2.061090990</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5941-C5a            1.52811658  0.653077397 -0.211566924</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5941-C5b            0.53873097  1.041772240  0.864655602</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5941-C5c            1.28614257  1.450106099 -0.139988199</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Br5941-C5d            1.98298417  1.805836180 -0.002182388</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
@@ -321,7 +243,7 @@ the assay desired in rse_tx</p></dd>
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Joshua Stolz, Hedia Tnani.</p>
+  <p></p><p>Developed by Joshua Stolz, Hedia Tnani, Nicholas J. Eagles.</p>
 </div>
 
 <div class="pkgdown">

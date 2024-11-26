@@ -99,7 +99,7 @@ Collado-Torres</h4>
 Development<br><a class="author_email" href="mailto:#"></a><a href="mailto:lcolladotor@gmail.com" class="email">lcolladotor@gmail.com</a>
       </address>
                   
-            <h4 data-toc-skip class="date">9 October 2024</h4>
+            <h4 data-toc-skip class="date">26 November 2024</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/LieberInstitute/qsvaR/blob/HEAD/vignettes/Intro_qsvaR.Rmd" class="external-link"><code>vignettes/Intro_qsvaR.Rmd</code></a></small>
       <div class="hidden name"><code>Intro_qsvaR.Rmd</code></div>
@@ -262,7 +262,7 @@ RNA-seq data.</p>
 <span><span class="co">#&gt; Loading objects:</span></span>
 <span><span class="co">#&gt;   rse_tx</span></span>
 <span><span class="co">## keep only adult samples and apply minimum expression cutoff</span></span>
-<span><span class="va">rse_tx</span> <span class="op">&lt;-</span> <span class="va">rse_tx</span><span class="op">[</span>, <span class="va">rse_tx</span><span class="op">$</span><span class="va">Age</span> <span class="op">&gt;</span> <span class="fl">17</span> <span class="op">]</span></span>
+<span><span class="va">rse_tx</span> <span class="op">&lt;-</span> <span class="va">rse_tx</span><span class="op">[</span>, <span class="va">rse_tx</span><span class="op">$</span><span class="va">Age</span> <span class="op">&gt;</span> <span class="fl">17</span><span class="op">]</span></span>
 <span><span class="va">rse_tx</span> <span class="op">&lt;-</span> <span class="va">rse_tx</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">rowMeans</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">assays</a></span><span class="op">(</span><span class="va">rse_tx</span><span class="op">)</span><span class="op">$</span><span class="va">tpm</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0.3</span>, <span class="op">]</span></span></code></pre></div>
 </div>
 <div class="section level3">
@@ -272,12 +272,12 @@ RNA-seq data.</p>
 degradation. These were determined by Joshua M. Stolz et al, 2022. We
 have provided three models to choose from. Here the names
 <code>"cell_component"</code>, <code>"top1500"</code>, and
-<code>"standard"</code> refer to models that were determined to be
-effective in removing degradation effects. The <code>"standard"</code>
+<code>"top1000"</code> refer to models that were determined to be
+effective in removing degradation effects. The <code>"top1000"</code>
 model involves taking the union of the top 1000 transcripts associated
 with degradation from the interaction model and the main effect model.
 The <code>"top1500"</code> model is the same as the
-<code>"standard"</code> model except the union of the top 1500 genes
+<code>"top1000"</code> model except the union of the top 1500 genes
 associated with degradation is selected. The most effective of our
 models, <code>"cell_component"</code>, involved deconvolution of the
 degradation matrix to determine the proportion of cell types within our
@@ -296,10 +296,12 @@ the previously mentioned models.
 </div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># obtain transcripts with degradation signature</span></span>
-<span><span class="va">DegTx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getDegTx.html">getDegTx</a></span><span class="op">(</span><span class="va">rse_tx</span>, type <span class="op">=</span> <span class="st">"cell_component"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;    'cell_component' degradation model transcripts found: 2975</span></span>
+<span><span class="va">DegTx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getDegTx.html">getDegTx</a></span><span class="op">(</span></span>
+<span>  <span class="va">rse_tx</span>, sig_transcripts <span class="op">=</span> <span class="fu"><a href="../reference/select_transcripts.html">select_transcripts</a></span><span class="op">(</span>cell_component <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; Using 2315 degradation-associated transcripts.</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">DegTx</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 2975  755</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] 2315  755</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="generate-principal-components">Generate principal components<a class="anchor" aria-label="anchor" href="#generate-principal-components"></a>
@@ -348,7 +350,7 @@ using the <code>tpm</code> assay.</p>
 <span><span class="co"># use k qsvs function to return a integer of pcs needed</span></span>
 <span><span class="va">k</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/k_qsvs.html">k_qsvs</a></span><span class="op">(</span>rse_tx <span class="op">=</span> <span class="va">DegTx</span>, mod <span class="op">=</span> <span class="va">mod</span>, assayname <span class="op">=</span> <span class="st">"tpm"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">k</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 33</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] 19</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="return-qsv-matrix">Return qSV Matrix<a class="anchor" aria-label="anchor" href="#return-qsv-matrix"></a>
@@ -362,7 +364,7 @@ going to include as calculated in the previous step.</p>
 <code class="sourceCode R"><span><span class="co"># get_qsvs use k to subset our pca analysis</span></span>
 <span><span class="va">qsvs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_qsvs.html">get_qsvs</a></span><span class="op">(</span>qsvPCs <span class="op">=</span> <span class="va">pcTx</span>, k <span class="op">=</span> <span class="va">k</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">qsvs</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 755  33</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] 755  19</span></span></code></pre></div>
 <p>This can be done in one step with our wrapper function
 <code>qSVA</code> which just combinds all the previous mentioned
 functions.</p>
@@ -374,10 +376,15 @@ functions.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">20230621</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">## Example use of the wrapper function qSVA()</span></span>
-<span><span class="va">qsvs_wrapper</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/qSVA.html">qSVA</a></span><span class="op">(</span>rse_tx <span class="op">=</span> <span class="va">rse_tx</span>, type <span class="op">=</span> <span class="st">"cell_component"</span>, mod <span class="op">=</span> <span class="va">mod</span>, assayname <span class="op">=</span> <span class="st">"tpm"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;    'cell_component' degradation model transcripts found: 2975</span></span>
+<span><span class="va">qsvs_wrapper</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/qSVA.html">qSVA</a></span><span class="op">(</span></span>
+<span>    rse_tx <span class="op">=</span> <span class="va">rse_tx</span>,</span>
+<span>    sig_transcripts <span class="op">=</span> <span class="fu"><a href="../reference/select_transcripts.html">select_transcripts</a></span><span class="op">(</span>cell_component <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>    mod <span class="op">=</span> <span class="va">mod</span>, </span>
+<span>    assayname <span class="op">=</span> <span class="st">"tpm"</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; Using 2315 degradation-associated transcripts.</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">qsvs_wrapper</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 755  33</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] 755  19</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="differential-expression">Differential Expression<a class="anchor" aria-label="anchor" href="#differential-expression"></a>
@@ -394,8 +401,7 @@ genes, differential expression is best done on the full dataset. The
 expected output is a <code>sigTx</code> object that shows the results of
 differential expression.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="co"># create a model.matrix with demographic info and qsvs</span></span>
+<code class="sourceCode R"><span><span class="co"># create a model.matrix with demographic info and qsvs</span></span>
 <span><span class="va">mod_qSVA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">mod</span>, <span class="va">qsvs</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># log tranform transcript expression</span></span>
@@ -413,20 +419,20 @@ differential expression.</p>
 <span>    p.value <span class="op">=</span> <span class="fl">1</span>, number <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">rse_tx</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sigTx</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                         logFC   AveExpr         t      P.Value  adj.P.Val</span></span>
-<span><span class="co">#&gt; ENST00000553142.5 -0.05452519 1.9540624 -5.330324 1.314790e-07 0.01321837</span></span>
-<span><span class="co">#&gt; ENST00000373510.8  0.03659497 1.2749503  5.116673 3.997196e-07 0.02009311</span></span>
-<span><span class="co">#&gt; ENST00000369700.3  0.08877571 0.9304537  4.852840 1.494276e-06 0.04312538</span></span>
-<span><span class="co">#&gt; ENST00000264126.7 -0.08555902 2.3063053 -4.807498 1.862963e-06 0.04312538</span></span>
-<span><span class="co">#&gt; ENST00000317802.8 -0.03504801 0.6355337 -4.747511 2.487218e-06 0.04312538</span></span>
-<span><span class="co">#&gt; ENST00000609578.1  0.10279599 3.2232434  4.732823 2.668318e-06 0.04312538</span></span>
-<span><span class="co">#&gt;                          B</span></span>
-<span><span class="co">#&gt; ENST00000553142.5 7.172618</span></span>
-<span><span class="co">#&gt; ENST00000373510.8 6.128070</span></span>
-<span><span class="co">#&gt; ENST00000369700.3 4.892977</span></span>
-<span><span class="co">#&gt; ENST00000264126.7 4.686860</span></span>
-<span><span class="co">#&gt; ENST00000317802.8 4.416954</span></span>
-<span><span class="co">#&gt; ENST00000609578.1 4.351351</span></span></code></pre></div>
+<span><span class="co">#&gt;                         logFC  AveExpr         t      P.Value    adj.P.Val</span></span>
+<span><span class="co">#&gt; ENST00000484223.1 -0.16801225 1.155197 -6.434391 2.241717e-10 2.253733e-05</span></span>
+<span><span class="co">#&gt; ENST00000344423.9  0.08388265 1.823057  6.023398 2.705136e-09 1.359818e-04</span></span>
+<span><span class="co">#&gt; ENST00000453370.1 -0.14813207 1.405052 -5.578121 3.424946e-08 1.060144e-03</span></span>
+<span><span class="co">#&gt; ENST00000399808.4  0.24131361 4.393914  5.540228 4.217967e-08 1.060144e-03</span></span>
+<span><span class="co">#&gt; ENST00000373510.8  0.03789957 1.274950  5.486733 5.647882e-08 1.135631e-03</span></span>
+<span><span class="co">#&gt; ENST00000446193.1 -0.12094546 2.303149 -5.277337 1.729461e-07 2.663972e-03</span></span>
+<span><span class="co">#&gt;                           B</span></span>
+<span><span class="co">#&gt; ENST00000484223.1 13.199862</span></span>
+<span><span class="co">#&gt; ENST00000344423.9 10.837738</span></span>
+<span><span class="co">#&gt; ENST00000453370.1  8.437965</span></span>
+<span><span class="co">#&gt; ENST00000399808.4  8.241509</span></span>
+<span><span class="co">#&gt; ENST00000373510.8  7.966261</span></span>
+<span><span class="co">#&gt; ENST00000446193.1  6.912510</span></span></code></pre></div>
 <p>If we look at a plot of our most significant transcript we can see
 that at this level we don’t have that much fold change in our data at
 any individual transcript. These transcripts are however significant and
@@ -488,12 +494,12 @@ t-statistic</p>
 <span><span class="co">## Explore this data.frame()</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">DE</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                           t</span></span>
-<span><span class="co">#&gt; ENST00000553142.5 -5.330324</span></span>
-<span><span class="co">#&gt; ENST00000373510.8  5.116673</span></span>
-<span><span class="co">#&gt; ENST00000369700.3  4.852840</span></span>
-<span><span class="co">#&gt; ENST00000264126.7 -4.807498</span></span>
-<span><span class="co">#&gt; ENST00000317802.8 -4.747511</span></span>
-<span><span class="co">#&gt; ENST00000609578.1  4.732823</span></span></code></pre></div>
+<span><span class="co">#&gt; ENST00000484223.1 -6.434391</span></span>
+<span><span class="co">#&gt; ENST00000344423.9  6.023398</span></span>
+<span><span class="co">#&gt; ENST00000453370.1 -5.578121</span></span>
+<span><span class="co">#&gt; ENST00000399808.4  5.540228</span></span>
+<span><span class="co">#&gt; ENST00000373510.8  5.486733</span></span>
+<span><span class="co">#&gt; ENST00000446193.1 -5.277337</span></span></code></pre></div>
 <p>Using our <code>DEqual</code> function we can make a plot comparing
 the t-statistics from degradation and our differential expression
 output. In the first model below there is a 0.5 correlation between
@@ -612,9 +618,9 @@ Johnson, Parker, Fertig, Jaffe, Zhang, Storey, and Torres, 2023)</li>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://yihui.org/knitr/" class="external-link">"knitr"</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit.html" class="external-link">knit</a></span><span class="op">(</span><span class="st">"Intro_qsvaR.Rmd"</span>, tangle <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>Date the vignette was generated.</p>
-<pre><code><span><span class="co">#&gt; [1] "2024-10-09 19:02:48 UTC"</span></span></code></pre>
+<pre><code><span><span class="co">#&gt; [1] "2024-11-26 20:48:38 UTC"</span></span></code></pre>
 <p>Wallclock time spent generating the vignette.</p>
-<pre><code><span><span class="co">#&gt; Time difference of 59.686 secs</span></span></code></pre>
+<pre><code><span><span class="co">#&gt; Time difference of 54.017 secs</span></span></code></pre>
 <p><code>R</code> session information.</p>
 <pre><code><span><span class="co">#&gt; <span style="color: #00BBBB; font-weight: bold;">─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────</span></span></span>
 <span><span class="co">#&gt;  <span style="color: #555555; font-style: italic;">setting </span> <span style="color: #555555; font-style: italic;">value</span></span></span>
@@ -626,7 +632,7 @@ Johnson, Parker, Fertig, Jaffe, Zhang, Storey, and Torres, 2023)</li>
 <span><span class="co">#&gt;  collate  en_US.UTF-8</span></span>
 <span><span class="co">#&gt;  ctype    en_US.UTF-8</span></span>
 <span><span class="co">#&gt;  tz       UTC</span></span>
-<span><span class="co">#&gt;  date     2024-10-09</span></span>
+<span><span class="co">#&gt;  date     2024-11-26</span></span>
 <span><span class="co">#&gt;  pandoc   3.1.1 @ /usr/local/bin/ (via rmarkdown)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB; font-weight: bold;">─ Packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────</span></span></span>
@@ -705,7 +711,7 @@ Johnson, Parker, Fertig, Jaffe, Zhang, Storey, and Torres, 2023)</li>
 <span><span class="co">#&gt;  plyr                   1.8.9       <span style="color: #555555;">2023-10-02</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
 <span><span class="co">#&gt;  png                    0.1-8       <span style="color: #555555;">2022-11-29</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
 <span><span class="co">#&gt;  purrr                  1.0.2       <span style="color: #555555;">2023-08-10</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
-<span><span class="co">#&gt;  qsvaR                * 1.9.1       <span style="color: #555555;">2024-10-09</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  qsvaR                * 1.9.1       <span style="color: #555555;">2024-11-26</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span></span>
 <span><span class="co">#&gt;  R6                     2.5.1       <span style="color: #555555;">2021-08-19</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
 <span><span class="co">#&gt;  ragg                   1.3.0       <span style="color: #555555;">2024-03-13</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
 <span><span class="co">#&gt;  Rcpp                   1.0.12      <span style="color: #555555;">2024-01-09</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
@@ -730,7 +736,6 @@ Johnson, Parker, Fertig, Jaffe, Zhang, Storey, and Torres, 2023)</li>
 <span><span class="co">#&gt;  textshaping            0.3.7       <span style="color: #555555;">2023-10-09</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
 <span><span class="co">#&gt;  tibble                 3.2.1       <span style="color: #555555;">2023-03-20</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
 <span><span class="co">#&gt;  tidyselect             1.2.1       <span style="color: #555555;">2024-03-11</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
-<span><span class="co">#&gt;  tidyverse              2.0.0       <span style="color: #555555;">2023-02-22</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
 <span><span class="co">#&gt;  timechange             0.3.0       <span style="color: #555555;">2024-01-18</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
 <span><span class="co">#&gt;  utf8                   1.2.4       <span style="color: #555555;">2023-10-22</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
 <span><span class="co">#&gt;  vctrs                  0.6.5       <span style="color: #555555;">2023-12-01</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.3.0)</span></span></span>
@@ -869,7 +874,7 @@ Generation in R</em>. R package version 1.46. 2024. URL:
 
       <footer><div class="copyright">
   <p></p>
-<p>Developed by Joshua Stolz, Hedia Tnani.</p>
+<p>Developed by Joshua Stolz, Hedia Tnani, Nicholas J. Eagles.</p>
 </div>
 
 <div class="pkgdown">
