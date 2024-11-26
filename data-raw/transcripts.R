@@ -1,5 +1,3 @@
-library(tidyverse)
-
 #   The top degradation-associated transcripts using each model was already
 #   computed in the QSVA_2020 repo at JHPCE; see:
 #   https://github.com/LieberInstitute/QSVA_2020/blob/a03958532e653c73a5c075be0afcb13a8cf5eeac/code/03_explore_transcripts/00_explore_transcripts_qsva/04_Modeling_NoVoom.R
@@ -18,11 +16,11 @@ top_n = 10000
 #   their adjusted p values as a tibble
 get_top_n = function(tx_df, top_n) {
     tx_df = tx_df |>
-        rownames_to_column('tx') |>
-        arrange(adj.P.Val) |>
-        select(tx, adj.P.Val) |>
-        slice_head(n = top_n) |>
-        as_tibble()
+        dplyr::rownames_to_column('tx') |>
+        dplyr::arrange(adj.P.Val) |>
+        dplyr::select(tx, adj.P.Val) |>
+        dplyr::slice_head(n = top_n) |>
+        dplyr::as_tibble()
     
     return(tx_df)
 }
