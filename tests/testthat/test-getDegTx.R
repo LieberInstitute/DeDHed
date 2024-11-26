@@ -33,12 +33,12 @@ test_that("getDegTx correctly processes rse_tx", {
 test_that("getDegTx works with original and altered row names", {
     set.seed(123)
     # Apply getDegTx to rse_tx
-    original_results <- getDegTx(rse_tx, sig_transcripts = select_transcripts("cell_component"))
+    original_results <- getDegTx(rse_tx, sig_transcripts = select_transcripts(cell_component = TRUE))
 
     # Alter the row names of rse_tx and apply getDegTx
     altered_rse_tx <- rse_tx
     rownames(altered_rse_tx) <- gsub("\\..\\d+", "", rownames(rse_tx))
-    altered_results <- getDegTx(altered_rse_tx, sig_transcripts = select_transcripts("cell_component"))
+    altered_results <- getDegTx(altered_rse_tx, sig_transcripts = select_transcripts(cell_component = TRUE))
     rownames(altered_results) <- rownames(original_results)
     # Test if two objects identical
     expect_identical(original_results, altered_results)

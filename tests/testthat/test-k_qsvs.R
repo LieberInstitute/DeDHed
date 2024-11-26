@@ -44,7 +44,15 @@ test_that("Number of rows in 'mod' does not match number of columns in 'rse_tx'"
 
 test_that("non-full rank data throws error", {
     set.seed(20230621)
-    expect_error(qSVA(rse_tx = rse_tx, type = "cell_component", mod = mod2, assayname = "tpm"), "matrix is not full rank")
+    expect_error(
+        qSVA(
+            rse_tx = rse_tx,
+            sig_transcripts = select_transcripts(cell_component = TRUE),
+            mod = mod2,
+            assayname = "tpm"
+        ),
+        "matrix is not full rank"
+    )
 })
 
 
