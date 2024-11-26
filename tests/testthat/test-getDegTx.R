@@ -1,7 +1,10 @@
 # Filter out lowly expressed transcripts and test if the number of rows in getDegTx output matches expected transcript count
 rse_tx_low <- rse_tx[rowMeans(assays(rse_tx)$tpm) < 1, ]
 test_that("length for number of rows is the same as length sig_transcripts", {
-    expect_equal(nrow(getDegTx(rse_tx)), length(select_transcripts()))
+    expect_equal(
+        nrow(getDegTx(rse_tx)),
+        length(intersect(rownames(rse_tx), select_transcripts()))
+    )
 })
 
 # Test if number of columns in getDegTx output matches number of columns in original dataset

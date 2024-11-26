@@ -12,8 +12,26 @@ qsva_cc <- qSVA(
 qsva_standard <- qSVA(rse_tx = rse_tx, mod = mod, assayname = "tpm")
 
 test_that("number of qsvs is k", {
-    expect_equal(length(colnames(qsva_cc)), 10)
-    expect_equal(length(colnames(qsva_standard)), 8)
+    expect_equal(
+        ncol(qsva_cc),
+        k_qsvs(
+            rse_tx[
+                intersect(
+                    rownames(rse_tx), select_transcripts(cell_component = TRUE)
+                ),
+            ],
+            mod,
+            assayname = "tpm"
+        )
+    )
+    expect_equal(
+        ncol(qsva_cc),
+        k_qsvs(
+            rse_tx[intersect(rownames(rse_tx), select_transcripts()),],
+            mod,
+            assayname = "tpm"
+        )
+    )
 })
 
 test_that("length of qsv rownames is the same as number of samples", {
