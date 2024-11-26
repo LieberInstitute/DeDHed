@@ -1,21 +1,20 @@
 #' Select transcripts associated with degradation
 #'
-#' Helper function to select which experimental model will be used to generate the qSVs.
-#'
-#' @param type A `character(1)` specifying the transcripts set type.
-#' These were determined by Joshua M. Stolz
-#' et al, 2022. Here the names "cell_component", "top1500", and "top1000" refer
-#' to models that were determined to be effective in removing degradation
-#' effects. The "top1000" model involves taking the union of the top 1000
-#' transcripts associated with degradation from the interaction model and the
-#' main effect model. The "top1500" model is the same as the "top1000" model
-#' except the union of the top 1500 genes associated with degradation is
-#' selected. The most effective of our models, "cell_component", involved
-#' deconvolution of the degradation matrix to determine the proportion of cell
-#' types within our studied tissue. These proportions were then added to our
-#' `model.matrix()` and the union of the top 1000 transcripts in the interaction
-#' model, the main effect model, and the cell proportions models (main and
-#' interaction) were used to generate this model of qSVs.
+#' Helper function to select which experimental model(s) will be used to
+#' generate the qSVs. Degradation-associated transcripts are derived in four
+#' different models (\link{transcripts}). The `cell_component` parameter
+#' controls whether the models with cell-type proportions are included. This
+#' function extract the top `top_n` transcripts found to be significant in
+#' each considered model, then returns the union of transcripts across all
+#' considered models. Up to 10,000 transcripts are available to select from
+#' each model prior to taking the union.
+#' 
+#' @param top_n An `integer(1)` specifying how many significant transcripts to
+#' extract from each model prior to taking a union across models.
+#' @param cell_component A `logical(1)`. If `FALSE`, only include transcripts
+#' from the main and interaction models (see `main_model` and `int_model`
+#' here: \link{transcripts}). If `TRUE`, additionally include main and
+#' interaction models that include cell-type proportions (a total of 4 models).
 #'
 #' @return A `character()` with the transcript IDs.
 #' @export
@@ -26,15 +25,33 @@
 #' length(sig_transcripts)
 #' head(sig_transcripts)
 #'
-#' ## Example where match.arg() auto-completes
-#' select_transcripts("top")
-select_transcripts <- function(type = c("cell_component", "top1500", "top1000")) {
-    type <- match.arg(type)
-    if (type == "cell_component") {
-        return(qsvaR::transcripts$cell_component)
-    } else if (type == "top1500") {
-        return(qsvaR::transcripts$tx1500)
-    } else if (type == "top1000") {
-        return(qsvaR::transcripts$standard)
+#' ## Select more transcripts if desired
+#' length(select_transcripts(top_n = 5000))
+select_transcripts <- function(top_n = 1000, cell_component = FALSE) {
+    if (top_n > 10000) {
+        stop("'top_n' currently must not exceed 10,000", call. = FALSE)
+    }
+
+    non_cell_tx = union(
+        qsvaR::transcripts$main_model |>
+            slice_head(n = top_n) |>
+            pull(tx),
+        qsvaR::transcripts$int_model |>
+            slice_head(n = top_n) |>
+            pull(tx)
+    )
+
+    if (cell_component) {
+        cell_tx = union(
+            qsvaR::transcripts$cell_main_model |>
+                slice_head(n = top_n) |>
+                pull(tx),
+            qsvaR::transcripts$cell_int_model |>
+                slice_head(n = top_n) |>
+                pull(tx)
+        )
+        return(union(non_cell_tx, cell_tx))
+    } else {
+        return(non_cell_tx)
     }
 }

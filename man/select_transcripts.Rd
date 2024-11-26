@@ -4,29 +4,29 @@
 \alias{select_transcripts}
 \title{Select transcripts associated with degradation}
 \usage{
-select_transcripts(type = c("cell_component", "top1500", "top1000"))
+select_transcripts(top_n = 1000, cell_component = FALSE)
 }
 \arguments{
-\item{type}{A \code{character(1)} specifying the transcripts set type.
-These were determined by Joshua M. Stolz
-et al, 2022. Here the names "cell_component", "top1500", and "top1000" refer
-to models that were determined to be effective in removing degradation
-effects. The "top1000" model involves taking the union of the top 1000
-transcripts associated with degradation from the interaction model and the
-main effect model. The "top1500" model is the same as the "top1000" model
-except the union of the top 1500 genes associated with degradation is
-selected. The most effective of our models, "cell_component", involved
-deconvolution of the degradation matrix to determine the proportion of cell
-types within our studied tissue. These proportions were then added to our
-\code{model.matrix()} and the union of the top 1000 transcripts in the interaction
-model, the main effect model, and the cell proportions models (main and
-interaction) were used to generate this model of qSVs.}
+\item{top_n}{An \code{integer(1)} specifying how many significant transcripts to
+extract from each model prior to taking a union across models.}
+
+\item{cell_component}{A \code{logical(1)}. If \code{FALSE}, only include transcripts
+from the main and interaction models (see \code{main_model} and \code{int_model}
+here: \link{transcripts}). If \code{TRUE}, additionally include main and
+interaction models that include cell-type proportions (a total of 4 models).}
 }
 \value{
 A \code{character()} with the transcript IDs.
 }
 \description{
-Helper function to select which experimental model will be used to generate the qSVs.
+Helper function to select which experimental model(s) will be used to
+generate the qSVs. Degradation-associated transcripts are derived in four
+different models (\link{transcripts}). The \code{cell_component} parameter
+controls whether the models with cell-type proportions are included. This
+function extract the top \code{top_n} transcripts found to be significant in
+each considered model, then returns the union of transcripts across all
+considered models. Up to 10,000 transcripts are available to select from
+each model prior to taking the union.
 }
 \examples{
 ## Default set of transcripts associated with degradation
@@ -34,6 +34,6 @@ sig_transcripts <- select_transcripts()
 length(sig_transcripts)
 head(sig_transcripts)
 
-## Example where match.arg() auto-completes
-select_transcripts("top")
+## Select more transcripts if desired
+length(select_transcripts(top_n = 5000))
 }
