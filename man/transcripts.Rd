@@ -5,27 +5,22 @@
 \alias{transcripts}
 \title{Transcripts for Degradation Models}
 \format{
-A \code{list()} with character strings containing the transcripts selected by each model.
+A \code{list()} of \code{tibble()}s containing the transcripts and adjusted
+p-values selected by each model.
 Each string is a GENCODE transcript IDs.
 }
 \usage{
 transcripts
 }
 \description{
-An object storing three lists of transcripts each corresponding to a model
-used in the degradation experiment. These were determined by Joshua M. Stolz
-et al, 2022. Here the names "cell_component", "top1500", and "top1000" refer
-to models that were determined to be effective in removing degradation
-effects. The "top1000" model involves taking the union of the top 1000
-transcripts associated with degradation from the interaction model and the
-main effect model. The "top1500" model is the same as the "top1000" model
-except the union of the top 1500 genes associated with degradation is
-selected. The most effective of our models, "cell_component", involved
-deconvolution of the degradation matrix to determine the proportion of cell
-types within our studied tissue. These proportions were then added to our
-\code{model.matrix()} and the union of the top 1000 transcripts in the interaction
-model, the main effect model, and the cell proportions models (main and
-interaction) were used to generate this model of qSVs.
+This object is a list of four \code{tibble}s where each element corresponds to the
+top 10,000 transcripts (by significance) and their adjusted p-values for a
+given degradation model. The \code{main_model} model is a linear model modelling
+expression against a sample's degradation time, with brain region as a
+covariate. The \code{int_model} model is similar but includes an interaction term
+with degradation time and brain region. The \code{cell_main_model} and
+\code{cell_int_model} models are like the respective \code{main_model} and \code{int_model}
+models, but including cell-type fractions from deconvolution as linear terms.
 }
 \seealso{
 \link{select_transcripts}

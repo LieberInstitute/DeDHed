@@ -8,35 +8,32 @@ transcripts_path <- file.path(
     jhpce_dir, "preprocessed-data", "03_explore_transcripts", "Sig_Txs.RData"
 )
 
-#   Grab the top N significant transcripts from the main and interaction models,
-#   then take their union
-get_top_n <- function(tx_main, tx_int, num_tx) {
-    sig_tx_main <- tx_main |>
-        rownames_to_column("tx") |>
-        as_tibble() |>
-        arrange(adj.P.Val) |>
-        slice_head(n = num_tx) |>
-        pull(tx)
+#   We want to provide as much information from the degradation DE as
+#   potentially is useful, but the data is quite large for a Bioc package. To
+#   balance these constraints, we'll provide just the top 10,000 significant
+#   transcripts and their adjusted p values for each type of degradation model
+top_n = 10000
 
-    sig_tx_int <- tx_int |>
-        rownames_to_column("tx") |>
-        as_tibble() |>
+#   Given a data frame of DE results, return the top [top_n] transcripts and
+#   their adjusted p values as a tibble
+get_top_n = function(tx_df, top_n) {
+    tx_df = tx_df |>
+        rownames_to_column('tx') |>
         arrange(adj.P.Val) |>
-        slice_head(n = num_tx) |>
-        pull(tx)
-
-    return(union(sig_tx_main, sig_tx_int))
+        select(tx, adj.P.Val) |>
+        slice_head(n = top_n) |>
+        as_tibble()
+    
+    return(tx_df)
 }
 
 load(transcripts_path)
 
 transcripts <- list(
-    standard = get_top_n(outTxMain, outTxInt, 1000),
-    tx1500 = get_top_n(outTxMain, outTxInt, 1500),
-    cell_component = union(
-        get_top_n(outTxMain, outTxInt, 1000),
-        get_top_n(outTxMainSc, outTxIntSc, 1000)
-    )
+    main_model = get_top_n(outTxMain, top_n),
+    int_model = get_top_n(outTxInt, top_n),
+    cell_main_model = get_top_n(outTxMainSc, top_n),
+    cell_int_model = get_top_n(outTxIntSc, top_n)
 )
 
 usethis::use_data(transcripts, overwrite = TRUE)
