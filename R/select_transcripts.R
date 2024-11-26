@@ -18,6 +18,8 @@
 #'
 #' @return A `character()` with the transcript IDs.
 #' @export
+#' 
+#' @importFrom dplyr pull slice_head
 #'
 #' @examples
 #' ## Default set of transcripts associated with degradation
@@ -34,21 +36,21 @@ select_transcripts <- function(top_n = 1000, cell_component = FALSE) {
 
     non_cell_tx = union(
         qsvaR::transcripts$main_model |>
-            slice_head(n = top_n) |>
-            pull(tx),
+            dplyr::slice_head(n = top_n) |>
+            dplyr::pull(tx),
         qsvaR::transcripts$int_model |>
-            slice_head(n = top_n) |>
-            pull(tx)
+            dplyr::slice_head(n = top_n) |>
+            dplyr::pull(tx)
     )
 
     if (cell_component) {
         cell_tx = union(
             qsvaR::transcripts$cell_main_model |>
-                slice_head(n = top_n) |>
-                pull(tx),
+                dplyr::slice_head(n = top_n) |>
+                dplyr::pull(tx),
             qsvaR::transcripts$cell_int_model |>
-                slice_head(n = top_n) |>
-                pull(tx)
+                dplyr::slice_head(n = top_n) |>
+                dplyr::pull(tx)
         )
         return(union(non_cell_tx, cell_tx))
     } else {
