@@ -32,9 +32,7 @@ normalize_tx_names <- function(txnames) {
 #' @export
 #'
 #' @examples
-#' sig_tx <- select_transcripts(
-#'     sig_transcripts = select_transcripts(cell_component = TRUE)
-#' )
+#' sig_tx <- select_transcripts(cell_component = TRUE)
 #' whichTx <- which_tx_names(rownames(rse_tx), sig_tx)
 which_tx_names <- function(txnames, sig_tx) {
     ## Between releases 25 and 43, PAR genes and transcripts had the "_PAR_Y" suffix appended to their identifiers.
