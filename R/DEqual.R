@@ -28,7 +28,6 @@
 #' @return a `ggplot` object of the DE t-statistic vs
 #' the DE statistic from degradation
 #' @import ggplot2
-#' @import tidyverse
 #' @importFrom stats cor
 #' @export
 #'

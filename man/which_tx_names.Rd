@@ -20,6 +20,8 @@ This function is used to check if tx1 and tx2 are GENCODE or ENSEMBL transcript 
 and return an integer vector of tx1 transcript indexes that are in tx2.
 }
 \examples{
-sig_tx <- select_transcripts("cell_component")
+sig_tx <- select_transcripts(
+    sig_transcripts = select_transcripts(cell_component = TRUE)
+)
 whichTx <- which_tx_names(rownames(rse_tx), sig_tx)
 }
