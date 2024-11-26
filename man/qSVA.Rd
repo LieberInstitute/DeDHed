@@ -4,34 +4,18 @@
 \alias{qSVA}
 \title{A wrapper function used to perform qSVA in one step.}
 \usage{
-qSVA(
-  rse_tx,
-  type = c("cell_component", "top1000", "top1500"),
-  sig_transcripts = NULL,
-  mod,
-  assayname
-)
+qSVA(rse_tx, sig_transcripts = select_transcripts(), mod, assayname)
 }
 \arguments{
-\item{rse_tx}{A \link[SummarizedExperiment:RangedSummarizedExperiment-class]{RangedSummarizedExperiment-class} object containing
-the transcript data desired to be studied.}
+\item{rse_tx}{A \link[SummarizedExperiment:RangedSummarizedExperiment-class]{RangedSummarizedExperiment-class}
+object containing the transcript data desired to be studied.}
 
-\item{type}{a character string specifying which model you would
-like to use from the sets of signature transcripts identified
-by the qsvaR package. This can be omitted if a custom set of
-transcripts is provided to sig_transcripts.}
+\item{sig_transcripts}{A list of transcripts determined to have degradation signal in the qsva expanded paper.}
 
-\item{sig_transcripts}{A list of transcript IDs that are associated
-with degradation signal. Specifying a \code{character()} input with ENSEMBL
-transcript IDs (whose values should match entries in \code{rownames(rse_tx)}).
-This argument provides a custom list of transcripts for adjusting
-for degradation; this should be used instead of the \code{type} argument.}
+\item{mod}{Model Matrix with necessary variables the you would model for in
+differential expression.}
 
-\item{mod}{Model Matrix with necessary variables the you would
-model for in differential expression}
-
-\item{assayname}{character string specifying the name of
-the assay desired in rse_tx}
+\item{assayname}{character string specifying the name of the assay desired in rse_tx}
 }
 \value{
 matrix with k principal components for each sample
@@ -52,6 +36,6 @@ mod <- model.matrix(~ mitoRate + Region + rRNA_rate + totalAssignedGene + RIN,
 ## sva::num.sv() which needs a random seed to ensure reproducibility of the
 ## results.
 set.seed(20230621)
-qSVA(rse_tx = rse_tx, type = "cell_component", mod = mod, assayname = "tpm")
+qSVA(rse_tx = rse_tx, mod = mod, assayname = "tpm")
 
 }
