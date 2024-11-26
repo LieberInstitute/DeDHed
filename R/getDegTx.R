@@ -7,19 +7,8 @@
 #'
 #' @param rse_tx A [RangedSummarizedExperiment-class][SummarizedExperiment::RangedSummarizedExperiment-class]
 #' object containing the transcript data desired to be studied.
-#' @param type A `character(1)` specifying the transcripts set type.
-#' These were determined by Joshua M. Stolz et al, 2022. Here the names "cell_component", "top1500",
-#' and "top1000" refer to models that were determined to be effective in removing degradation effects.
-#' The "top1000" model involves taking the union of the top 1000 transcripts
-#' associated with degradation from the interaction model and the main effect model.
-#' The "top1500" model is the same as the "top1000 model except the
-#' union of the top 1500 genes associated with degradation is selected.
-#' The most effective of our models, "cell_component", involved deconvolution of
-#' the degradation matrix to determine the proportion of cell types within our studied tissue.
-#' These proportions were then added to our `model.matrix()` and the union of the top 1000 transcripts in the interaction model,
-#' the main effect model, and the cell proportions model were used to generate this model of qSVs.
-#'
-#' @param sig_transcripts A list of transcripts determined to have degradation signal in the qsva expanded paper.
+#' @param sig_transcripts A `character()` vector of transcripts that should be
+#' associated with degradation, expected to be present in `rownames(rse_tx)`.
 #' @param assayname character string specifying the name of the assay desired in rse_tx
 #' @param verbose specify if the function should report how many model transcripts were matched
 #'
@@ -32,16 +21,11 @@
 #' @import rlang
 #'
 #' @examples
-#' degTx <- getDegTx(rse_tx, "top1000")
-getDegTx <- function(rse_tx, type = c("cell_component", "top1000", "top1500"),
-    sig_transcripts = NULL, assayname = "tpm", verbose = TRUE) {
-    # type = arg_match(type)
-    if (is.null(sig_transcripts)) {
-        type <- arg_match(type)
-        sig_transcripts <- select_transcripts(type)
-    } else {
-        type <- "custom"
-    }
+#' degTx <- getDegTx(rse_tx)
+getDegTx <- function(
+        rse_tx, sig_transcripts = select_transcripts(), assayname = "tpm",
+        verbose = TRUE
+    ) {
     # Validate rse_tx is a RangedSummarizedExperiment object
     if (!is(rse_tx, "RangedSummarizedExperiment")) {
         stop("'rse_tx' must be a RangedSummarizedExperiment object.", call. = FALSE)
@@ -55,11 +39,18 @@ getDegTx <- function(rse_tx, type = c("cell_component", "top1000", "top1500"),
     # Check for validity and matching of tx names and return the tx subset indexes in rse_tx
     wtx <- which_tx_names(rownames(rse_tx), sig_transcripts)
     if (length(wtx) == 0) {
-        stop("No transcripts found in the '", type, "' degradation model transcripts")
+        stop(
+            "No transcripts in 'sig_transcripts' match those found in 'rse_tx'.",
+            call. = FALSE
+        )
     }
 
     if (verbose) {
-        message("   '", type, "' degradation model transcripts found: ", length(wtx))
+        message(
+            sprintf(
+                "Using %s degradation-associated transcripts." , length(wtx)
+            )
+        )
     }
     rse_tx <- rse_tx[wtx, , drop = FALSE]
 

@@ -10,7 +10,8 @@ qSVA(rse_tx, sig_transcripts = select_transcripts(), mod, assayname)
 \item{rse_tx}{A \link[SummarizedExperiment:RangedSummarizedExperiment-class]{RangedSummarizedExperiment-class}
 object containing the transcript data desired to be studied.}
 
-\item{sig_transcripts}{A list of transcripts determined to have degradation signal in the qsva expanded paper.}
+\item{sig_transcripts}{A \code{character()} vector of transcripts that should be
+associated with degradation, expected to be present in \code{rownames(rse_tx)}.}
 
 \item{mod}{Model Matrix with necessary variables the you would model for in
 differential expression.}
