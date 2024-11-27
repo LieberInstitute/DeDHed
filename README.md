@@ -113,6 +113,7 @@ rse_file <- BiocFileCache::bfcrpath(
     "https://s3.us-east-2.amazonaws.com/libd-brainseq2/rse_tx_unfiltered.Rdata",
     x = bfc
 )
+#> adding rname 'https://s3.us-east-2.amazonaws.com/libd-brainseq2/rse_tx_unfiltered.Rdata'
 
 ## Now that we have the data in our computer, we can load it.
 load(rse_file, verbose = TRUE)
@@ -120,38 +121,34 @@ load(rse_file, verbose = TRUE)
 #>   rse_tx
 ```
 
-In this next step we subset for the transcripts associated with
-degradation. These were determined by Joshua M. Stolz et al, 2022. We
-have provided three models to choose from. Here the names
-`"cell_component"`, `"top1500"`, and `"standard"` refer to models that
-were determined to be effective in removing degradation effects. The
-`"standard"` model involves taking the union of the top 1000 transcripts
-associated with degradation from the interaction model and the main
-effect model. The `"top1500"` model is the same as the `"standard"`
-model except the union of the top 1500 genes associated with degradation
-is selected. The most effective of our models, `"cell_component"`,
-involved deconvolution of the degradation matrix to determine the
-proportion of cell types within our studied tissue. These proportions
-were then added to our `model.matrix()` and the union of the top 1000
-transcripts in the interaction model, the main effect model, and the
-cell proportions model were used to generate this model of qSVs. In this
-example we will choose `"cell_component"` when using the `getDegTx()`
-and `select_transcripts()` functions.
+In this next step, we subset to the transcripts associated with
+degradation. `qsvaR` provides significant transcripts determined in four
+different linear models of transcript expression against degradation
+time, brain region, and potentially cell-type proportions:
 
-<div class="figure">
+1.  `exp ~ DegradationTime + Region`
+2.  `exp ~ DegradationTime * Region`
+3.  `exp ~ DegradationTime + Region + CellTypeProp`
+4.  `exp ~ DegradationTime * Region + CellTypeProp`
 
-<img src="./man/figures/transcripts_venn_diagramm.png" alt="The above venn diagram shows the overlap between transcripts in each of the previously mentioned models." width="100%" />
-<p class="caption">
-The above venn diagram shows the overlap between transcripts in each of
-the previously mentioned models.
-</p>
+`select_transcripts()` returns degradation-associated transcripts and
+supports two parameters. First, `top_n` controls how many significant
+transcripts to extract from each model. When `cell_component = TRUE`,
+all four models are used; otherwise, just the first two are used. The
+union of significant transcripts from all used models is returned.
 
-</div>
+As an example, we’ll subset our `RangedSummarizedExperiment` to the
+union of the top 1000 significant transcripts derived from each of the
+four models.
 
 ``` r
-## Next we get the degraded transcripts for qSVA from the "cell_component"
-## model
-DegTx <- getDegTx(rse_tx, type = "cell_component")
+#   Subset 'rse_tx' to the top 1000 significant transcripts from the four
+#   degradation models
+DegTx <- getDegTx(
+    rse_tx,
+    sig_transcripts = select_transcripts(top_n = 1000, cell_component = TRUE)
+)
+#> Using 2496 degradation-associated transcripts.
 
 ## Now we can compute the Principal Components (PCs) of the degraded
 ## transcripts
@@ -161,8 +158,8 @@ pcTx <- getPCs(DegTx, "tpm")
 Next we use the `k_qsvs()` function to calculate how many PCs we will
 need to account for the variation. A model matrix accounting for
 relevant variables should be used. Common variables such as Age, Sex,
-Race and Region are often included in the model. Again we are using
-our `RangedSummarizedExperiment` `DegTx` as the `rse_tx` option. Next we
+Race and Region are often included in the model. Again we are using our
+`RangedSummarizedExperiment` `DegTx` as the `rse_tx` option. Next we
 specify the `mod` with our `model.matrix()`. `model.matrix()` creates a
 design (or model) matrix, e.g., by expanding factors to a set of dummy
 variables (depending on the contrasts) and expanding interactions
@@ -179,7 +176,7 @@ mod <- model.matrix(~ Dx + Age + Sex + Race + Region,
 )
 k <- k_qsvs(DegTx, mod, "tpm")
 print(k)
-#> [1] 34
+#> [1] 20
 ```
 
 Now that we have our PCs and the number we need we can generate our
@@ -189,7 +186,7 @@ qSVs.
 ## Obtain the k qSVs
 qsvs <- get_qsvs(pcTx, k)
 dim(qsvs)
-#> [1] 900  34
+#> [1] 900  20
 ```
 
 This can be done in one step with our wrapper function `qSVA` which just
@@ -197,9 +194,15 @@ combinds all the previous mentioned functions.
 
 ``` r
 ## Example use of the wrapper function qSVA()
-qsvs_wrapper <- qSVA(rse_tx = rse_tx, type = "cell_component", mod = mod, assayname = "tpm")
+qsvs_wrapper <- qSVA(
+    rse_tx = rse_tx,
+    sig_transcripts = select_transcripts(top_n = 1000, cell_component = TRUE),
+    mod = mod,
+    assayname = "tpm"
+)
+#> Using 2496 degradation-associated transcripts.
 dim(qsvs_wrapper)
-#> [1] 900  34
+#> [1] 900  20
 ```
 
 ## Differential Expression
@@ -241,20 +244,20 @@ sigTx <- topTable(eBTx,
 
 ## Explore the top results
 head(sigTx)
-#>                         logFC   AveExpr         t      P.Value    adj.P.Val
-#> ENST00000553142.5 -0.06547988 2.0390889 -5.999145 2.921045e-09 0.0005786386
-#> ENST00000552074.5 -0.12911383 2.4347985 -5.370828 1.009549e-07 0.0099992338
-#> ENST00000510632.1  0.08994392 0.9073516  4.920042 1.037016e-06 0.0473143146
-#> ENST00000530589.1 -0.10297938 2.4271711 -4.918806 1.043399e-06 0.0473143146
-#> ENST00000572236.1 -0.05358333 0.6254025 -4.819980 1.697403e-06 0.0473143146
-#> ENST00000450454.6  0.08446871 1.0042440  4.816539 1.726143e-06 0.0473143146
+#>                         logFC  AveExpr         t      P.Value    adj.P.Val
+#> ENST00000484223.1 -0.17439018 1.144051 -6.685583 4.099898e-11 8.121610e-06
+#> ENST00000344423.9  0.09212678 1.837102  6.449533 1.855943e-10 1.838246e-05
+#> ENST00000399808.4  0.28974369 4.246788  6.320041 4.165237e-10 2.233477e-05
+#> ENST00000467370.5  0.06313938 0.301711  6.307179 4.509956e-10 2.233477e-05
+#> ENST00000264657.9  0.09913353 2.450684  5.933186 4.280565e-09 1.375288e-04
+#> ENST00000415912.6  0.09028757 1.736581  5.918230 4.671963e-09 1.375288e-04
 #>                           B
-#> ENST00000553142.5 10.200286
-#> ENST00000552074.5  6.767821
-#> ENST00000510632.1  4.524039
-#> ENST00000530589.1  4.518145
-#> ENST00000572236.1  4.051142
-#> ENST00000450454.6  4.035041
+#> ENST00000484223.1 14.338379
+#> ENST00000344423.9 12.865110
+#> ENST00000399808.4 12.077344
+#> ENST00000467370.5 11.999896
+#> ENST00000264657.9  9.811110
+#> ENST00000415912.6  9.726142
 ```
 
 Finally, you can compare the resulting t-statistics from your
